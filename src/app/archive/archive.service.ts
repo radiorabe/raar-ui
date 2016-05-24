@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {ShowModel, BroadcastModel, AudioFileModel, CrudList} from '../shared/models/index';
 import {BroadcastsService, AudioFilesService} from '../shared/services/index';
 import {AudioPlayerService} from './player/audio_player.service';
@@ -13,7 +14,8 @@ export class ArchiveService {
 
   constructor(private broadcastsService: BroadcastsService,
               private audioFilesService: AudioFilesService,
-              public audioPlayer: AudioPlayerService) {}
+              public audioPlayer: AudioPlayerService,
+              private router: Router) {}
 
   get show(): ShowModel {
     return this._show;
@@ -23,7 +25,9 @@ export class ArchiveService {
     this._show = show;
     this._selectedBroadcast = null;
     this.fetchBroadcasts();
-    if (show) window.scroll(0, 0);
+    if (show) {
+      window.scroll(0, 0);
+    }
   }
 
   get date(): Date {

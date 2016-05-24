@@ -18,6 +18,10 @@ import { ArchiveComponent } from './archive/archive.component';
   {
     path: '/',
     component: ArchiveComponent
+  },
+  {
+    path: '*',
+    component: ArchiveComponent
   }
 ])
 export class AppComponent {}

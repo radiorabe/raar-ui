@@ -19,8 +19,8 @@ export class BroadcastModel extends CrudModel {
   }
 
   private convertToDate(key: string) {
-    if (typeof this.attributes[key] == "string") {
-      this.attributes[key] = new Date(this.attributes[key]);
+    if (typeof (<any>this.attributes)[key] == "string") {
+      (<any>this.attributes)[key] = new Date((<any>this.attributes)[key]);
     }
   }
 }

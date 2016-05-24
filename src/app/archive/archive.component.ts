@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES, Routes} from '@angular/router';
 import {ArchiveService} from './archive.service';
 import {BroadcastsService, AudioFilesService} from '../shared/services/index';
 import {AudioPlayerService} from './player/audio_player.service';
@@ -13,8 +14,22 @@ import {PlayerComponent} from './player/player.component';
   selector: 'sd-archive',
   templateUrl: 'archive.html',
   providers: [ArchiveService, BroadcastsService, AudioFilesService, AudioPlayerService],
-  directives: [DatepickerComponent, ShowsComponent, BroadcastsShowComponent, BroadcastsDateComponent, PlayerComponent]
+  directives: [ROUTER_DIRECTIVES, DatepickerComponent, ShowsComponent, BroadcastsShowComponent, BroadcastsDateComponent, PlayerComponent]
 })
+@Routes([
+  {
+    path: '/show/:id',
+    component: BroadcastsShowComponent
+  },
+  {
+    path: '/:year/:month/:day',
+    component: BroadcastsDateComponent
+  },
+  {
+    path: '*',
+    component: BroadcastsDateComponent
+  }
+])
 export class ArchiveComponent {
 
   constructor(private archive: ArchiveService) {}
