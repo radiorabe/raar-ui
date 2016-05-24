@@ -49,6 +49,7 @@ export class ProjectConfig extends SeedConfig {
       {src: 'moment/min/moment.min.js', inject: 'libs'},
       {src: 'moment/locale/de.js', inject: 'libs'},
       {src: 'ng2-bootstrap/bundles/ng2-bootstrap.js', inject: 'libs'},
+      {src: 'soundmanager2/script/soundmanager2.js', inject: 'libs' }
     ];
 
     const seedDependencies = this.NPM_DEPENDENCIES;

@@ -1,11 +1,12 @@
 sd-player {
   float: right;
-  width: 300px;
+  width: 400px;
 
   .well {
     background-color: $brand-info;
     padding: 10px;
     border: 0;
+    margin-bottom: 0;
   }
 
   .controls {

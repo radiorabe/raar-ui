@@ -17,7 +17,7 @@ export class PlayerComponent {
 
   togglePlay() {
     if (!this.player.audioFile) return;
-    if (this.player.playing()) {
+    if (this.player.playing) {
       this.player.pause();
     } else {
       this.player.play();
