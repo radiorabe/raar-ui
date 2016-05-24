@@ -1,0 +1,19 @@
+
+<div class="container">
+  <sd-player></sd-player>
+
+  <h1>RaBe Archiv</h1>
+
+  <aside class="sidebar">
+    <div class="sidebar-content">
+      <sd-datepicker></sd-datepicker>
+      <sd-shows></sd-shows>
+    </div>
+  </aside>
+
+  <div class="content">
+    <sd-broadcasts-show *ngIf="archive.show"></sd-broadcasts-show>
+    <sd-broadcasts-date *ngIf="!archive.show"></sd-broadcasts-date>
+  </div>
+
+</div>

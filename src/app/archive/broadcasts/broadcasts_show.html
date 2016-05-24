@@ -1,0 +1,10 @@
+<h2>{{show.attributes.name}}</h2>
+
+<!--<div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()">-->
+  <div *ngFor="let month of months, trackBy: getMonthIdentifier">
+    <h3>{{month}}</h3>
+    <div class="list-group">
+      <sd-broadcast *ngFor="let broadcast of monthlyBroadcasts[month], trackBy: getCrudIdentifier" [broadcast]="broadcast"></sd-broadcast>
+    </div>
+  </div>
+<!--</div>-->

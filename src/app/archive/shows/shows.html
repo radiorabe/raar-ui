@@ -1,0 +1,19 @@
+<h3>oder Sendung</h3>
+
+<input #query
+       type="text"
+       class="form-control"
+       placeholder="Suchen... "
+       (keyup)="search(query.value)" />
+
+<br/>
+
+<div class="list-group">
+  <a href=""
+     *ngFor="let show of shows"
+     class="list-group-item"
+     [ngClass]="{active: (selected == show)}"
+     (click)="select(show, $event)">
+    {{show.attributes.name}}
+  </a>
+</div>

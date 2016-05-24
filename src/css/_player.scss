@@ -1,0 +1,40 @@
+sd-player {
+  float: right;
+  width: 300px;
+
+  .well {
+    background-color: $brand-info;
+    padding: 10px;
+    border: 0;
+  }
+
+  .controls {
+    margin-right: 10px;
+
+    a {
+      color: #FFF;
+    }
+  }
+}
+
+.circle-xl {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  font-size: 24px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #FFF;
+  padding: 0;
+  width: 40px;
+  display: inline-block;
+
+  .glyphicon {
+    left: 1px;
+    top: 2px;
+  }
+
+  &:hover {
+    color: $brand-primary;
+  }
+}

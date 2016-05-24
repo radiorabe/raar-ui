@@ -1,0 +1,12 @@
+<nav class="pull-right">
+  <ul class="pager" style="margin-top: 0;">
+    <li><a href="#" (click)="prevDate($event)"><span aria-hidden="true">&lt;</span></a></li>
+    <li><a href="#" (click)="nextDate($event)" [ngClass]="{disabled: nextDateDisabled()}"><span aria-hidden="true">&gt;</span></a></li>
+  </ul>
+</nav>
+
+<h2>{{date | dateString: 'date'}}</h2>
+
+<div class="list-group">
+  <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier" [broadcast]="broadcast" [dateFormat]="'time'"></sd-broadcast>
+</div>

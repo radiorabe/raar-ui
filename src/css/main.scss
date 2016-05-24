@@ -1,65 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One|Roboto:500italic,500,300&subset=latin,latin-ext);
+
+$brand-primary:             #c93f51 !default;
+//$brand-success:             #5cb85c !default;
+$brand-info:                #68796f !default;
+//$brand-warning:             #f0ad4e !default;
+//$brand-danger:              #d9534f !default;
+
+$body-bg:                    #b8ddc2 !default;
+
+$font-family-sans-serif:     'Roboto', sans-serif !default;
+$headings-font-family:       'Fjalla One', sans-serif !default;
+$text-muted:                 #888888;
+
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "player";
 
-/* Reset */
-html,
-body,
-div {
-  border: 0;
-  margin: 0;
+
+sd-app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  position: static;
+  top: 50px;
+  bottom: 0;
+  z-index: 2;
+  width: 270px;
+  float: left;
+
+  .well {
+    background-color: $brand-info;
+    border: 0;
+  }
+}
+
+.content {
+  position: relative;
+  vertical-align: top;
   padding: 0;
+  height: 100%;
+  transition: margin 200ms ease;
+  margin-left: 300px;
 }
 
-/* Box-sizing border-box */
-* {
-  box-sizing: border-box;
+.list-group-item-heading {
+  font-family: $font-family-sans-serif;
 }
 
-/* Set up a default font and some padding to provide breathing room */
-body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.list-group-item-text {
+  &.fixclear:before, &.fixclear:after {
+    content: " ";
+    display: table;
+  }
+  &.fixclear:after {
+    clear: right;
+  }
 }
 
-p {
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 20px;
-  margin-bottom: 1em;
-  margin-top: 1em;
-}
-
-ul {
-  margin: 10px 0 0 0;
-  padding: 0 0 0 20px;
-}
-
-li {
-  font-weight: 400;
-  margin-top: 4px;
-}
-
-input {
-  border: 1px solid #106cc8;
-  font-size: 14px;
-  height: 40px;
-  outline: none;
-  padding: 8px;
-}
-
-button {
-  background-color: #106cc8;
-  border-style: none;
-  color: rgba(255, 255, 255, 0.87);
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  height: 40px;
-  padding: 8px 18px;
+.list-group-item-heading > a {
+  color: #000;
   text-decoration: none;
 }
 
-button:hover {
-  background-color: #28739e;
+.icon-pulse {
+  overflow: hidden;
+  font-size: 22px;
+  color: $gray;
+  -webkit-animation: icon-pulse 1s infinite linear;
+  animation: icon-pulse 1s infinite linear;
+}
+
+@keyframes icon-pulse  {
+  0% { width: 8px; }
+  32% { width: 8px; }
+  33% { width: 15px; }
+  65% { width: 15px; }
+  66% { width: 22px; }
+  100% { width: 22px; }
+}
+
+@-webkit-keyframes icon-pulse {
+  0% { width: 8px; }
+  32% { width: 8px; }
+  33% { width: 15px; }
+  65% { width: 15px; }
+  66% { width: 22px; }
+  100% { width: 22px; }
 }

@@ -1,0 +1,10 @@
+<h3>nach Datum</h3>
+
+<div style="display:inline-block;">
+  <datepicker [(ngModel)]="date"
+              [showWeeks]="false"
+              [maxDate]="today()"
+              [startingDay]="1"
+              [minMode]="getMode()">
+  </datepicker>
+</div>

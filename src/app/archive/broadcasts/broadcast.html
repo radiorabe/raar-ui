@@ -1,0 +1,24 @@
+<div class="list-group-item">
+  <h4 class="list-group-item-heading" (click)="toggleSelect(broadcast, $event)">
+    <a href="#">{{broadcast | broadcastTime: dateFormat}} &nbsp; {{broadcast.attributes.label}}</a>
+  </h4>
+
+  <div class="list-group-item-text fixclear" *ngIf="selected == broadcast">
+    <ul class="list-unstyled pull-right">
+      <li *ngFor="let audio of broadcast.relationships.audio_files">
+        <a href="#" (click)="archive.play(audio, $event)">
+          <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+          {{audio.attributes.codec | uppercase}}
+          {{audio.attributes.playback_format}}
+          ({{audio.attributes.bitrate}}k {{audio.attributes.channels == 2 ? 'stereo' : 'mono'}})
+          </a>
+      </li>
+    </ul>
+    <div class="pull-right" *ngIf="broadcast.relationships.audio_files && broadcast.relationships.audio_files.length == 0">
+      Keine Audio Dateien vorhanden
+    </div>
+
+    <div>{{broadcast.attributes.details}}</div>
+    <div>{{broadcast.attributes.people}}</div>
+  </div>
+</div>
