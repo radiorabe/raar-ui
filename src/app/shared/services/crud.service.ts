@@ -1,5 +1,6 @@
 import {Http, Headers, RequestOptions, Response, URLSearchParams} from '@angular/http';
 import {Observable} from "rxjs/Observable";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 import {CrudModel} from '../models/crud.model';
 import {CrudList} from '../models/crud_list';
@@ -15,15 +16,16 @@ export class CrudService<T extends CrudModel> {
       .map(res => this.buildListFromResponse(res, this.buildEntity));
   }
 
-  getNextEntries(list: CrudList<T>) {
-    if (list.links.next === undefined) return;
+  getNextEntries(list: CrudList<T>): Observable<CrudList<T>> {
+    if (list.links.next === undefined) return new BehaviorSubject<CrudList<T>>(list);
 
-    this.http.get(list.links.next, this.options)
+    return this.http.get(list.links.next, this.options)
       .map(res => this.buildListFromResponse(res, this.buildEntity))
-      .subscribe(res => {
+      .map(res => {
         list.links.next = res.links.next;
         list.entries = list.entries.concat(res.entries);
         list.included = list.included.concat(res.included);
+        return list;
       });
   }
 

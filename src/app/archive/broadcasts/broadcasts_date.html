@@ -8,5 +8,5 @@
 <h2>{{date | dateString: 'date'}}</h2>
 
 <div class="list-group">
-  <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier" [broadcast]="broadcast" [dateFormat]="'time'"></sd-broadcast>
+  <sd-broadcast *ngFor="let broadcast of broadcasts | async, trackBy: getCrudIdentifier" [broadcast]="broadcast" [dateFormat]="'time'"></sd-broadcast>
 </div>

@@ -21,7 +21,7 @@ import 'rxjs/add/operator/filter';
 export class ShowsComponent {
 
   public shows: Observable<ShowModel[]>;
-  
+
   public query: Control = new Control();
 
   constructor(private showService: ShowsService, private archive: ArchiveService) {
@@ -29,14 +29,14 @@ export class ShowsComponent {
   }
 
   public select(show: ShowModel, e: Event) {
-    this.archive.show = show;
+    this.archive.setShow(show);
     e.preventDefault();
   }
 
-  public get selected(): ShowModel {
+  public get selected(): Observable<ShowModel> {
     return this.archive.show;
   }
-  
+
   private showObservable(): Observable<ShowModel[]> {
     return this.query.valueChanges
       .startWith('')

@@ -11,7 +11,7 @@
   <a href=""
      *ngFor="let show of shows | async"
      class="list-group-item"
-     [ngClass]="{active: (selected == show)}"
+     [ngClass]="{active: ((selected | async) == show)}"
      (click)="select(show, $event)">
     {{show.attributes.name}}
   </a>

@@ -1,44 +1,51 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {ShowModel, BroadcastModel, AudioFileModel, CrudList} from '../shared/models/index';
 import {BroadcastsService, AudioFilesService} from '../shared/services/index';
 import {AudioPlayerService} from './player/audio_player.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/withLatestFrom';
 
 @Injectable()
 export class ArchiveService {
 
-  private _show: ShowModel;
-  private _date: Date = new Date();
-  private _broadcastList: CrudList<BroadcastModel> = new CrudList<BroadcastModel>();
+  show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
+  date: Subject<Date> = new BehaviorSubject<Date>(new Date());
+  broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
+  private fetchMore: Subject<boolean> = new Subject<boolean>();
   private _selectedBroadcast: BroadcastModel;
 
   constructor(private broadcastsService: BroadcastsService,
               private audioFilesService: AudioFilesService,
               public audioPlayer: AudioPlayerService,
-              private router: Router) {}
-
-  get show(): ShowModel {
-    return this._show;
+              private router: Router) {
+    this.broadcastShowObservable()
+      .merge(this.broadcastDateObservable(),
+             this.broadcastMoreObservable())
+      .subscribe(this.broadcastList);
   }
 
-  set show(show: ShowModel) {
-    this._show = show;
+  setShow(show: ShowModel) {
     this._selectedBroadcast = null;
-    this.fetchBroadcasts();
+    this.show.next(show);
     if (show) {
       window.scroll(0, 0);
     }
   }
 
-  get date(): Date {
-    return this._date;
-  }
-
-  set date(date: Date) {
-    this._date = date;
-    this._show = null;
+  setDate(date: Date) {
     this._selectedBroadcast = null;
-    this.fetchBroadcasts();
+    this.show.next(null);
+    this.date.next(date);
   }
 
   get selectedBroadcast(): BroadcastModel {
@@ -50,28 +57,35 @@ export class ArchiveService {
     this.fetchAudioFiles(broadcast);
   }
 
-  get broadcasts(): BroadcastModel[] {
-    return this._broadcastList.entries;
+  get broadcasts(): Observable<BroadcastModel[]> {
+    return this.broadcastList.map(list => list.entries);
   }
 
   play(audio: AudioFileModel) {
     this.audioPlayer.play(audio);
   }
 
-  hasMoreBroadcasts(): boolean {
-    return this._broadcastList.links.next != undefined;
-  }
-
   fetchNextBroadcasts() {
-    this.broadcastsService.getNextEntries(this._broadcastList);
+    this.fetchMore.next(true);
   }
 
-  private fetchBroadcasts() {
-    if (this._show) {
-      this.broadcastsService.getListForShow(this._show).subscribe(list => this._broadcastList = list);
-    } else if (this._date) {
-      this.broadcastsService.getListForDate(this._date).subscribe(list => this._broadcastList = list);
-    }
+  private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
+    return this.show
+      .filter(show => !!show)
+      .distinctUntilChanged()
+      .flatMap(show => this.broadcastsService.getListForShow(show));
+  }
+
+  private broadcastDateObservable(): Observable<CrudList<BroadcastModel>> {
+    return this.date
+      .distinctUntilChanged()
+      .flatMap(date => this.broadcastsService.getListForDate(date));
+  }
+
+  private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
+    return this.fetchMore
+      .withLatestFrom(this.broadcastList, (_, list) => list)
+      .flatMap(list => this.broadcastsService.getNextEntries(list));
   }
 
   private fetchAudioFiles(broadcast: BroadcastModel) {

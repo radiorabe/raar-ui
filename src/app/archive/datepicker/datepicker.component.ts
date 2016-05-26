@@ -11,14 +11,18 @@ import {ArchiveService} from '../archive.service';
 })
 export class DatepickerComponent  {
 
-  public constructor(private archive: ArchiveService) {  }
+  private _date: Date;
+
+  public constructor(private archive: ArchiveService) {
+    this.archive.date.subscribe(date => this._date = date);
+  }
 
   public get date() {
-    return this.archive.date;
+    return this._date;
   }
 
   public set date(date: Date) {
-    this.archive.date = date;
+    this.archive.setDate(date);
   }
 
   public getDate(): number {
