@@ -1,16 +1,15 @@
 <h3>oder Sendung</h3>
 
-<input #query
-       type="text"
+<input type="text"
        class="form-control"
        placeholder="Suchen... "
-       (keyup)="search(query.value)" />
+       [ngFormControl]="query" />
 
 <br/>
 
 <div class="list-group">
   <a href=""
-     *ngFor="let show of shows"
+     *ngFor="let show of shows | async"
      class="list-group-item"
      [ngClass]="{active: (selected == show)}"
      (click)="select(show, $event)">

@@ -1,7 +1,14 @@
 import {Component} from '@angular/core';
+import {Control} from '@angular/common';
+import {Observable} from 'rxjs/Observable';
 import {ShowsService} from '../../shared/services/shows.service';
 import {ShowModel} from '../../shared/models/show.model';
 import {ArchiveService} from '../archive.service';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/filter';
 
 
 @Component({
@@ -13,18 +20,12 @@ import {ArchiveService} from '../archive.service';
 })
 export class ShowsComponent {
 
-  public shows: ShowModel[] = [];
+  public shows: Observable<ShowModel[]>;
+  
+  public query: Control = new Control();
 
-  constructor(private crud: ShowsService, private archive: ArchiveService) {
-    crud.getList().subscribe(list => this.shows = list.entries);
-  }
-
-  public search(query: string) {
-    if (query.length > 2) {
-      this.crud.getList({ q: query }).subscribe(list => this.shows = list.entries);
-    } else if (query.length == 0) {
-      this.crud.getList().subscribe(list => this.shows = list.entries);
-    }
+  constructor(private showService: ShowsService, private archive: ArchiveService) {
+    this.shows = this.showObservable();
   }
 
   public select(show: ShowModel, e: Event) {
@@ -34,5 +35,15 @@ export class ShowsComponent {
 
   public get selected(): ShowModel {
     return this.archive.show;
+  }
+  
+  private showObservable(): Observable<ShowModel[]> {
+    return this.query.valueChanges
+      .startWith('')
+      .debounceTime(200)
+      .filter(q => q.length == 0 || q.length > 2)
+      .distinctUntilChanged()
+      .switchMap(q => this.showService.getList({ q: q }))
+      .map(list => list.entries);
   }
 }
