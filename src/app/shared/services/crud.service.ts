@@ -22,10 +22,10 @@ export class CrudService<T extends CrudModel> {
     return this.http.get(list.links.next, this.options)
       .map(res => this.buildListFromResponse(res, this.buildEntity))
       .map(res => {
-        list.links.next = res.links.next;
-        list.entries = list.entries.concat(res.entries);
-        list.included = list.included.concat(res.included);
-        return list;
+        res.links.prev = list.links.prev;
+        res.entries = list.entries.concat(res.entries);
+        res.included = list.included.concat(res.included);
+        return res;
       });
   }
 

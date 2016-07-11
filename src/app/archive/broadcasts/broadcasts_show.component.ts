@@ -4,7 +4,7 @@ import {Subject} from 'rxjs/Subject';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/publishReplay';
 import 'rxjs/add/operator/share';
-//import {InfiniteScroll} from 'angular2-infinite-scroll/angular2-infinite-scroll';
+import {InfiniteScroll} from 'angular2-infinite-scroll';
 import {BroadcastModel, ShowModel} from '../../shared/models/index';
 import {ArchiveService} from '../archive.service';
 import {BroadcastComponent} from './broadcast.component';
@@ -17,7 +17,7 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
   selector: 'sd-broadcasts-show',
   templateUrl: 'broadcasts_show.html',
   providers: [],
-  directives: [BroadcastComponent] //, InfiniteScroll]
+  directives: [BroadcastComponent, InfiniteScroll]
 })
 export class BroadcastsShowComponent {
 
@@ -39,13 +39,13 @@ export class BroadcastsShowComponent {
   }
 
   buildMonthlyBroadcasts(broadcasts: BroadcastModel[]): MonthlyBroadcasts {
-      const result: { [id: string]: BroadcastModel[] } = {};
-      for (const b of broadcasts) {
-        const label = moment(b.attributes.started_at).format('MMMM YYYY');
-        if (result[label] === undefined) result[label] = [];
-        result[label].push(b);
-      }
-      return result;
+    const result: MonthlyBroadcasts = {};
+    for (const b of broadcasts) {
+      const label = moment(b.attributes.started_at).format('MMMM YYYY');
+      if (result[label] === undefined) result[label] = [];
+      result[label].push(b);
+    }
+    return result;
   }
 
   get months(): Observable<string[]> {

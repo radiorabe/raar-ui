@@ -14,6 +14,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withLatestFrom';
+import 'rxjs/add/operator/debounceTime';
 
 @Injectable()
 export class ArchiveService {
@@ -85,6 +86,7 @@ export class ArchiveService {
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
     return this.fetchMore
       .withLatestFrom(this.broadcastList, (_, list) => list)
+      .debounceTime(300)
       .flatMap(list => this.broadcastsService.getNextEntries(list));
   }
 
