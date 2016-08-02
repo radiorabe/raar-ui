@@ -1,6 +1,5 @@
 import { join } from 'path';
 import { SeedConfig } from './seed.config';
-import { InjectableDependency } from './seed.config.interfaces';
 
 const proxy = require('proxy-middleware');
 
@@ -19,7 +18,8 @@ export class ProjectConfig extends SeedConfig {
 
   constructor() {
     super();
-    this.BROWSER_SYNC_CONFIG = {
+
+    this.PLUGIN_CONFIGS['browser-sync'] = {
       port: this.PORT,
       startPath: this.APP_BASE,
       server: {
@@ -43,22 +43,25 @@ export class ProjectConfig extends SeedConfig {
     };
 
     this.APP_TITLE = 'RaBe Archiv';
-    let additional_deps: InjectableDependency[] = [
-      //{src: 'intl/dist/Intl.min.js', inject: 'libs'},
-      //{src: 'intl/locale-data/jsonp/de-CH.js', inject: 'libs'},
+
+    /* Enable typeless compiler runs (faster) between typed compiler runs. */
+    // this.TYPED_COMPILE_INTERVAL = 5;
+
+    // Add `NPM` third-party libraries to be injected/bundled.
+    this.NPM_DEPENDENCIES = [
+      ...this.NPM_DEPENDENCIES,
       {src: 'moment/min/moment.min.js', inject: 'libs'},
       {src: 'moment/locale/de.js', inject: 'libs'},
       {src: 'ng2-bootstrap/bundles/ng2-bootstrap.js', inject: 'libs'},
       {src: 'soundmanager2/script/soundmanager2.js', inject: 'libs' }
+      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
+      // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
-
-    const seedDependencies = this.NPM_DEPENDENCIES;
-
-    this.NPM_DEPENDENCIES = seedDependencies.concat(additional_deps);
 
     this.CSS_PROD_BUNDLE = 'main.css';
     this.APP_ASSETS = [
       { src: `${this.ASSETS_SRC}/main.scss`, inject: true }, // renamed SASS file
     ];
   }
+
 }

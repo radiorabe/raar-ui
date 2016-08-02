@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Control} from '@angular/common';
+import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {ShowsService} from '../../shared/services/shows.service';
 import {ShowModel} from '../../shared/models/show.model';
@@ -16,7 +17,7 @@ import 'rxjs/add/operator/filter';
   selector: 'sd-shows',
   templateUrl: 'shows.html',
   providers: [ShowsService],
-  directives: []
+  directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class ShowsComponent {
 

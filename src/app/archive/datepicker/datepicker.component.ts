@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FORM_DIRECTIVES } from '@angular/forms';
 import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap';
 import {ArchiveService} from '../archive.service';
 
@@ -7,7 +8,7 @@ import {ArchiveService} from '../archive.service';
   moduleId: module.id,
   selector: 'sd-datepicker',
   templateUrl: 'datepicker.html',
-  directives: [DATEPICKER_DIRECTIVES]
+  directives: [FORM_DIRECTIVES, DATEPICKER_DIRECTIVES]
 })
 export class DatepickerComponent  {
 

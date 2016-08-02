@@ -24,6 +24,11 @@ npm run build.prod
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).
 
+To update from there:
+
+    git remote add seed https://github.com/mgechev/angular2-seed
+    git pull seed master  
+
 A documentation of the provided tools can be found in [tools/README.md](tools/README.md).
 
 ## License
