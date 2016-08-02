@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FORM_DIRECTIVES } from '@angular/forms';
+import { Router } from '@angular/router';
 import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap';
-import {ArchiveService} from '../archive.service';
+import {ISubscription} from 'rxjs/Subscription';
 
 
 @Component({
@@ -13,9 +14,29 @@ import {ArchiveService} from '../archive.service';
 export class DatepickerComponent  {
 
   private _date: Date;
+  private sub: ISubscription;
 
-  public constructor(private archive: ArchiveService) {
-    this.archive.date.subscribe(date => this._date = date);
+  public constructor(private router: Router) {
+  }
+
+  ngOnInit() {
+    const state = this.router.routerState;
+    const dateRoute = state.firstChild(state.firstChild(state.root));
+    this.sub = dateRoute.params
+      .subscribe(params => {
+        let year = params['year'];
+        let month = params['month'];
+        let day = params['day'];
+        if (year && month && day) {
+          this._date = new Date(+year, +month - 1, +day);
+        } else {
+          this._date = this.today();
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   public get date() {
@@ -23,11 +44,7 @@ export class DatepickerComponent  {
   }
 
   public set date(date: Date) {
-    this.archive.setDate(date);
-  }
-
-  public getDate(): number {
-    return this.date && this.date.getTime() || new Date().getTime();
+    this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()])
   }
 
   public getMode(): string {

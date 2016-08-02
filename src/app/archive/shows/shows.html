@@ -8,11 +8,10 @@
 <br/>
 
 <div class="list-group">
-  <a href=""
-     *ngFor="let show of shows | async"
-     class="list-group-item"
-     [ngClass]="{active: ((selected | async) == show)}"
-     (click)="select(show, $event)">
+  <a *ngFor="let show of shows | async"
+     [routerLink]="['/show', show.id]"
+     routerLinkActive="active"
+     class="list-group-item">
     {{show.attributes.name}}
   </a>
 </div>

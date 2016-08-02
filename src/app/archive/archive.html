@@ -12,8 +12,7 @@
   </aside>
 
   <div class="content">
-    <sd-broadcasts-show *ngIf="(archive.show | async)"></sd-broadcasts-show>
-    <sd-broadcasts-date *ngIf="!(archive.show | async)"></sd-broadcasts-date>
+    <router-outlet></router-outlet>
   </div>
 
 </div>

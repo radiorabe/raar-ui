@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {BroadcastModel} from '../../shared/models/broadcast.model';
-import {ArchiveService} from '../archive.service';
+import {BroadcastsService} from '../../shared/services/broadcasts.service';
 import {BroadcastComponent} from './broadcast.component';
 import {DateStringPipe} from '../../shared/pipes/date_string.pipe';
+import {ISubscription} from 'rxjs/Subscription';
 import * as moment from 'moment/moment';
 
 @Component({
@@ -16,34 +18,54 @@ import * as moment from 'moment/moment';
 })
 export class BroadcastsDateComponent {
 
-  date: Date;
+  date: Observable<Date>;
+  currentDate: Date;
+  broadcasts: Observable<BroadcastModel[]>;
 
-  constructor(private archive: ArchiveService) {
-    this.archive.date.subscribe(date => this.date = date);
+  private sub: ISubscription;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private broadcastsService: BroadcastsService) {
+    this.date = this.route.params
+          .distinctUntilChanged()
+          .map(params => new Date(+params['year'], +params['month'] - 1, +params['day']));
+    this.broadcasts = this.date
+       .distinctUntilChanged()
+       .flatMap(date => this.broadcastsService.getListForDate(date))
+       .map(list => list.entries);
   }
 
-  get broadcasts(): Observable<BroadcastModel[]> {
-    return this.archive.broadcasts;
+  ngOnInit() {
+    this.sub = this.date.subscribe(date => this.currentDate = date);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   prevDate(e: Event) {
-    this.archive.setDate(moment(this.date).subtract(1, 'd').toDate());
+    this.navigateTo(moment(this.currentDate).subtract(1, 'd').toDate());
     e.preventDefault();
   }
 
   nextDate(e: Event) {
     if (!this.nextDateDisabled()) {
-      this.archive.setDate(moment(this.date).add(1, 'd').toDate());
+      this.navigateTo(moment(this.currentDate).add(1, 'd').toDate());
     }
     e.preventDefault();
   }
 
   nextDateDisabled(): boolean {
-    return this.date >= moment().startOf('day').toDate();
+    return this.currentDate >= moment().startOf('day').toDate();
   }
 
   getCrudIdentifier(i: number, model: BroadcastModel): number {
     return model.id;
+  }
+
+  private navigateTo(date: Date) {
+    this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
   }
 
 }
