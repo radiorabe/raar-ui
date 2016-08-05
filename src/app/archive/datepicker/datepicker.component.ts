@@ -22,6 +22,7 @@ export class DatepickerComponent  {
   ngOnInit() {
     const state = this.router.routerState;
     const dateRoute = state.firstChild(state.firstChild(state.root));
+    if (dateRoute === null) return;
     this.sub = dateRoute.params
       .subscribe(params => {
         let year = params['year'];
@@ -36,7 +37,9 @@ export class DatepickerComponent  {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   public get date() {
