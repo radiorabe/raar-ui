@@ -11,7 +11,7 @@
   <a *ngFor="let show of shows | async"
      [routerLink]="['/show', show.id]"
      routerLinkActive="active"
-     class="list-group-item">
+     class="list-group-item title">
     {{show.attributes.name}}
   </a>
 </div>

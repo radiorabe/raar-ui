@@ -9,7 +9,10 @@
   </div>
 
   <div *ngIf="player.audioFile">
-    <div>{{player.audioFile.relationships.broadcast.attributes.label}}</div>
-    <div>{{player.audioFile.relationships.broadcast | broadcastTime}} ({{player.position}})</div>
+    <h4 class="show title">{{player.audioFile.relationships.broadcast.attributes.label}}</h4>
+    <div>
+      {{player.audioFile.relationships.broadcast | broadcastTime: 'full'}}
+      ({{player.position}})
+    </div>
   </div>
 </div>

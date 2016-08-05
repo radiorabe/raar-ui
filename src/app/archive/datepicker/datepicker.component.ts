@@ -31,7 +31,7 @@ export class DatepickerComponent  {
         if (year && month && day) {
           this._date = new Date(+year, +month - 1, +day);
         } else {
-          this._date = this.today();
+          this._date = undefined;
         }
       });
   }

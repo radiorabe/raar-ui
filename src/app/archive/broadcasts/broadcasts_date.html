@@ -7,7 +7,7 @@
   </ul>
 </nav>
 
-<h2>{{currentDate | dateString: 'date'}}</h2>
+<h2 class="title">{{currentDate | dateString: 'date'}}</h2>
 
 <div class="list-group">
   <sd-broadcast *ngFor="let broadcast of broadcasts | async, trackBy: getCrudIdentifier"

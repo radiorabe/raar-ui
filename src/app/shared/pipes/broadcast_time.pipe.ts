@@ -5,14 +5,19 @@ import {BroadcastModel} from '../models/broadcast.model';
 @Pipe({name: 'broadcastTime'})
 export class BroadcastTimePipe implements PipeTransform {
   transform(broadcast: BroadcastModel, format: string): string {
-    let output = '';
-    if (format == 'time') {
-      output += moment(broadcast.attributes.started_at).format('HH:mm');
-    } else {
-      output += moment(broadcast.attributes.started_at).format('DD.MM. HH:mm');
-    }
+    let output = moment(broadcast.attributes.started_at).format(this.startFormat(format));
     output += ' - ';
     output += moment(broadcast.attributes.finished_at).format('HH:mm');
     return output;
+  }
+
+  private startFormat(format: string): string {
+    if (format == 'time') {
+      return 'HH:mm';
+    } else if (format == 'full') {
+      return 'DD.MM.YYYY HH:mm';
+    } else {
+      return 'DD.MM. HH:mm';
+    }
   }
 }
