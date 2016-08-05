@@ -14,7 +14,7 @@ sd-player {
     margin-right: 15px;
 
     a {
-      color: #FFF;
+      color: rgb( 0, 225, 212 );
     }
   }
 
@@ -32,7 +32,7 @@ sd-player {
   font-size: 30px;
   border-style: solid;
   border-width: 3px;
-  border-color: #FFF;
+  border-color: rgb( 0, 225, 212 );
   padding: 0;
   width: 50px;
   display: inline-block;
@@ -43,7 +43,7 @@ sd-player {
   }
 
   &:hover, &:focus {
-    color: $brand-primary;
+    color: rgb( 0, 225, 212 );
   }
 
 }

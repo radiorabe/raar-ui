@@ -3,7 +3,7 @@
 $brand-primary:              rgb( 0, 201, 191 ) !default;
 //$brand-success:             #5cb85c !default;
 //$brand-info:                #68796f !default;
-$brand-info:                 rgba( 18, 26, 44, 0.75 ) !default;
+$brand-info:                 #064c57 !default;
 //$brand-warning:             #f0ad4e !default;
 //$brand-danger:              #d9534f !default;
 
@@ -14,7 +14,10 @@ $link-hover-color:          rgb( 0, 225, 212);
 $font-family-sans-serif:     'Roboto', sans-serif !default;
 $headings-font-family:       'Fjalla One', sans-serif !default;
 $text-muted:                 #888888;
-$font-size-h2: 36px;
+$border-radius-base:         0;
+$border-radius-small:         0;
+$pagination-border:          rgb( 0, 225, 212);
+$font-size-h2: 30px;
 $font-size-h3: 20px;
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -76,27 +79,51 @@ daypicker {
   margin-left: 300px;
 }
 
-.list-group-item.title {
-  font-size: 16px;
-}
+sd-broadcast {
 
-.list-group-item-heading {
-  &> a {
-    color: #000;
-    text-decoration: none;
-  }
-}
+  .list-group-item {
+    border: 0;
 
-.list-group-item-text {
-  &.fixclear:before, &.fixclear:after {
-    content: " ";
-    display: table;
-  }
-  &.fixclear:after {
-    clear: right;
-  }
-}
+    &.title {
+      font-size: 16px;
+    }
 
+    &:before {
+      content: "";
+      position: absolute;
+      left: 1.25%;
+      bottom: 0;
+      height: 1px;
+      width: 97.5%;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  &:last-child .list-group-item:before {
+    border-bottom: none;
+    height: 0px;
+  }
+
+  .list-group-item-heading {
+    &> a {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+
+  .list-group-item-text {
+    &.fixclear:before, &.fixclear:after {
+      content: " ";
+      display: table;
+    }
+    &.fixclear:after {
+      clear: right;
+    }
+  }
+
+
+
+}
 .icon-pulse {
   overflow: hidden;
   font-size: 22px;
