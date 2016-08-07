@@ -1,11 +1,11 @@
 <div class="list-group-item">
-  <h4 class="list-group-item-heading title" (click)="toggle($event)">
+  <h4 class="list-group-item-heading title" (click)="toggle()">
     <a href="#">{{broadcast | broadcastTime: dateFormat}} &nbsp; {{broadcast.attributes.label}}</a>
   </h4>
 
   <div class="list-group-item-text fixclear" *ngIf="expanded">
     <ul class="list-unstyled pull-right">
-      <li *ngFor="let audio of broadcast.relationships.audio_files">
+      <li *ngFor="let audio of audioFiles">
         <a href="#" (click)="audioPlayer.play(audio)">
           <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
           {{audio.attributes.codec | uppercase}}
@@ -15,7 +15,7 @@
       </li>
     </ul>
     <div class="pull-right"
-         *ngIf="broadcast.relationships.audio_files && broadcast.relationships.audio_files.length == 0">
+         *ngIf="audioFiles && audioFiles.length == 0">
       Keine Aufnahme vorhanden
     </div>
 

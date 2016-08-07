@@ -6,6 +6,8 @@ import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {ISubscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/publishReplay';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/withLatestFrom';
 import {InfiniteScroll} from 'angular2-infinite-scroll';
 import {BroadcastModel, ShowModel, CrudList} from '../../shared/models/index';
 import {ShowsService} from '../../shared/services/shows.service';

@@ -18,54 +18,85 @@ import * as moment from 'moment/moment';
 })
 export class BroadcastsDateComponent {
 
-  date: Observable<Date>;
-  currentDate: Date;
+  date: Date;
+  dateWithTime: Date;
   broadcasts: Observable<BroadcastModel[]>;
 
-  private sub: ISubscription;
+  private dateSub: ISubscription;
+  private dateWithTimeSub: ISubscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private broadcastsService: BroadcastsService) {
-    this.date = this.route.params
-          .distinctUntilChanged()
-          .map(params => new Date(+params['year'], +params['month'] - 1, +params['day']));
-    this.broadcasts = this.date
-       .distinctUntilChanged()
-       .flatMap(date => this.broadcastsService.getListForDate(date))
-       .map(list => list.entries);
   }
 
   ngOnInit() {
-    this.sub = this.date.subscribe(date => this.currentDate = date);
+    const paramsObservable = this.route.params.distinctUntilChanged();
+    const dateObservable = paramsObservable.map(params => this.getDate(params));
+
+    this.dateSub = dateObservable.subscribe(date => this.date = date);
+    this.dateWithTimeSub = paramsObservable.subscribe(params => this.dateWithTime = this.getDateWithTime(params));
+    this.broadcasts = dateObservable
+       .map(date => date.getTime()) // required to test date changes
+       .distinctUntilChanged()
+       .flatMap(date => this.broadcastsService.getListForDate(new Date(date)))
+       .map(list => list.entries);
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.dateSub.unsubscribe();
+    this.dateWithTimeSub.unsubscribe();
   }
 
-  prevDate(e: Event) {
-    this.navigateTo(moment(this.currentDate).subtract(1, 'd').toDate());
-    e.preventDefault();
+  prevDate() {
+    this.navigateTo(moment(this.date).subtract(1, 'd').toDate());
   }
 
-  nextDate(e: Event) {
+  nextDate() {
     if (!this.nextDateDisabled()) {
-      this.navigateTo(moment(this.currentDate).add(1, 'd').toDate());
+      this.navigateTo(moment(this.date).add(1, 'd').toDate());
     }
-    e.preventDefault();
   }
 
   nextDateDisabled(): boolean {
-    return this.currentDate >= moment().startOf('day').toDate();
+    return this.date >= moment().startOf('day').toDate();
   }
 
   getCrudIdentifier(i: number, model: BroadcastModel): number {
     return model.id;
   }
 
+  isExpanded(broadcast: BroadcastModel): boolean {
+    return this.dateWithTime &&
+           broadcast.attributes.started_at <= this.dateWithTime &&
+           broadcast.attributes.finished_at > this.dateWithTime;
+  }
+
   private navigateTo(date: Date) {
     this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
   }
 
+  private getDate(params: { [key: string]: any }): Date {
+    if (params['year']) {
+      return new Date(+params['year'], +params['month'] - 1, +params['day']);
+    } else {
+      return new Date();
+    }
+  }
+
+  private getDateWithTime(params: { [key: string]: any }): Date {
+    let date: Date = undefined;
+    if (params['time']) {
+      const hour = params['time'].substring(0, 2);
+      const min = params['time'].substring(2, 4);
+      if (min.length == 2) {
+        date = new Date(+params['year'],
+                        +params['month'] - 1,
+                        +params['day'],
+                        +hour,
+                        +min);
+      }
+    }
+    return date;
+  }
 }
