@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Response} from '@angular/http';
 import {CrudService} from './crud.service';
+import {DateParamsService} from './date_params.service';
 import {BroadcastModel, ShowModel, CrudList} from '../models/index';
 import {Observable} from "rxjs/Observable";
 
@@ -16,23 +17,26 @@ export class BroadcastsService extends CrudService<BroadcastModel> {
   }
 
   getListForDate(date: Date): Observable<CrudList<BroadcastModel>> {
-    return this.http.get(this.baseUrl + this.convertDateToPath(date), this.options)
+    return this.http.get(this.baseUrl + DateParamsService.convertDateToPath(date), this.options)
       .map(res => this.buildListFromResponse(res, this.buildEntity));
+  }
+
+  getForTime(date: Date): Observable<BroadcastModel> {
+    return this.http.get(this.baseUrl + DateParamsService.convertTimeToPath(date), this.options)
+      .map(res => this.buildBroadcastFromResponse(res));
   }
 
   protected buildEntity(): BroadcastModel {
     return new BroadcastModel();
   }
 
-  private convertDateToPath(date: Date): string {
-    return '/' +
-           [date.getFullYear(),
-            this.zeroPad(date.getMonth() + 1),
-            this.zeroPad(date.getDate())]
-           .join('/');
+  private buildBroadcastFromResponse(res: Response): BroadcastModel {
+    const data = res.json()['data'];
+    if (data.length == 0) {
+      return undefined;
+    } else {
+      return this.copyAttributes(data[0], this.buildEntity());
+    }
   }
 
-  private zeroPad(n: number): string {
-    return ('0' + n).slice(-2);
-  }
 }

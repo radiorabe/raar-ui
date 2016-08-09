@@ -6,7 +6,7 @@
   <div class="list-group-item-text fixclear" *ngIf="expanded">
     <ul class="list-unstyled pull-right">
       <li *ngFor="let audio of audioFiles">
-        <a href="#" (click)="audioPlayer.play(audio)">
+        <a href="#" (click)="play(audio)">
           <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
           {{audio.attributes.codec | uppercase}}
           {{audio.attributes.playback_format}}

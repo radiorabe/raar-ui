@@ -8,6 +8,12 @@ export class AudioFileModel extends CrudModel {
     channels: number;
     playback_format: string;
     url: string;
+  } = {
+    codec: undefined,
+    bitrate: undefined,
+    channels: undefined,
+    playback_format: undefined,
+    url: undefined,
   };
 
   public relationships: {

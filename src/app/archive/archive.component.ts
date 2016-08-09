@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router';
-import {BroadcastsService, AudioFilesService} from '../shared/services/index';
+import {BroadcastsService, AudioFilesService, DateParamsService} from '../shared/services/index';
 import {AudioPlayerService} from './player/audio_player.service';
 import {DatepickerComponent} from './datepicker/datepicker.component';
 import {ShowsComponent} from './shows/shows.component';

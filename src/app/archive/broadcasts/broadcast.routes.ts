@@ -9,10 +9,6 @@ export const BroadcastRoutes: RouterConfig = [
     component: BroadcastsShowComponent
   },
   {
-    path: ':year/:month/:day/:time',
-    component: BroadcastsDateComponent
-  },
-  {
     path: ':year/:month/:day',
     component: BroadcastsDateComponent
   },

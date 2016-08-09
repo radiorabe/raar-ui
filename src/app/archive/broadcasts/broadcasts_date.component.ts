@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {BroadcastModel} from '../../shared/models/broadcast.model';
 import {BroadcastsService} from '../../shared/services/broadcasts.service';
+import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
 import {BroadcastComponent} from './broadcast.component';
 import {DateStringPipe} from '../../shared/pipes/date_string.pipe';
 import {ISubscription} from 'rxjs/Subscription';
@@ -35,12 +36,13 @@ export class BroadcastsDateComponent {
     const dateObservable = paramsObservable.map(params => this.getDate(params));
 
     this.dateSub = dateObservable.subscribe(date => this.date = date);
-    this.dateWithTimeSub = paramsObservable.subscribe(params => this.dateWithTime = this.getDateWithTime(params));
+    this.dateWithTimeSub = paramsObservable
+      .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
     this.broadcasts = dateObservable
-       .map(date => date.getTime()) // required to test date changes
-       .distinctUntilChanged()
-       .flatMap(date => this.broadcastsService.getListForDate(new Date(date)))
-       .map(list => list.entries);
+      .map(date => date.getTime()) // required to test date changes
+      .distinctUntilChanged()
+      .flatMap(date => this.broadcastsService.getListForDate(new Date(date)))
+      .map(list => list.entries);
   }
 
   ngOnDestroy() {
@@ -67,36 +69,26 @@ export class BroadcastsDateComponent {
   }
 
   isExpanded(broadcast: BroadcastModel): boolean {
-    return this.dateWithTime &&
-           broadcast.attributes.started_at <= this.dateWithTime &&
-           broadcast.attributes.finished_at > this.dateWithTime;
+    return this.dateWithTime && broadcast.isCovering(this.dateWithTime);
   }
 
   private navigateTo(date: Date) {
     this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
   }
 
-  private getDate(params: { [key: string]: any }): Date {
+  private getDate(params: RouteParams): Date {
     if (params['year']) {
-      return new Date(+params['year'], +params['month'] - 1, +params['day']);
+      return DateParamsService.dateFromParams(params);
     } else {
       return new Date();
     }
   }
 
-  private getDateWithTime(params: { [key: string]: any }): Date {
-    let date: Date = undefined;
-    if (params['time']) {
-      const hour = params['time'].substring(0, 2);
-      const min = params['time'].substring(2, 4);
-      if (min.length == 2) {
-        date = new Date(+params['year'],
-                        +params['month'] - 1,
-                        +params['day'],
-                        +hour,
-                        +min);
-      }
+  private getDateWithTime(params: RouteParams): Date {
+    if (params['time'] && params['time'].length >= 4) {
+      return DateParamsService.timeFromParams(params);
+    } else {
+      return undefined;
     }
-    return date;
   }
 }

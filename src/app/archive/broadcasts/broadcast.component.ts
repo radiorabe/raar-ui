@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {ISubscription} from 'rxjs/Subscription';
 import {BroadcastModel, AudioFileModel} from '../../shared/models/index';
 import {BroadcastTimePipe} from '../../shared/pipes/broadcast_time.pipe';
-import {AudioFilesService} from '../../shared/services/index';
+import {AudioFilesService, DateParamsService} from '../../shared/services/index';
 import {AudioPlayerService} from '../player/audio_player.service';
 
 
@@ -41,6 +41,11 @@ export class BroadcastComponent {
     }
   }
 
+  play(audio: AudioFileModel) {
+    this.audioPlayer.play(audio);
+    this.navigateToPlay(audio);
+  }
+
   get audioFiles(): AudioFileModel[] {
     return this.broadcast.relationships.audio_files;
   }
@@ -55,21 +60,27 @@ export class BroadcastComponent {
     }
   }
 
-  private navigateToSelf() {
-    const state = this.router.routerState;
-    const dateRoute = state.firstChild(state.firstChild(state.root));
-    if (dateRoute === null || dateRoute.snapshot.url[0].path == 'show') return;
+  private navigateToSelf(queryParams: any = {}) {
+    if (!this.broadcastRoute) return;
+    const url = this.broadcastRoute.snapshot.url.map(e => e.path);
     const date = this.broadcast.attributes.started_at;
-    this.router.navigate([date.getFullYear(),
-                          date.getMonth() + 1,
-                          date.getDate(),
-                          this.leftPad(date.getHours()) +
-                          this.leftPad(date.getMinutes())])
+    queryParams['time'] = DateParamsService.convertTimeToParam(date);
+    if (url[0] === 'show') {
+      queryParams['year'] = date.getFullYear();
+      queryParams['month'] = date.getMonth() + 1;
+      queryParams['day'] = date.getDate();
+    }
+    this.router.navigate([...url, queryParams])
   }
 
-  private leftPad(number: number): string {
-    let s = '0' + number;
-    return s.substr(s.length-2);
+  private navigateToPlay(audio: AudioFileModel) {
+    this.navigateToSelf({ play: audio.attributes.playback_format,
+                          format: audio.attributes.codec });
+  }
+
+  private get broadcastRoute(): ActivatedRoute {
+    const state = this.router.routerState;
+    return state.firstChild(state.firstChild(state.root));
   }
 
 }

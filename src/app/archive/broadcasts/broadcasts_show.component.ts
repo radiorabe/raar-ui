@@ -40,9 +40,9 @@ export class BroadcastsShowComponent {
               private broadcastsService: BroadcastsService) {
     this.show = this.route.params
           .distinctUntilChanged()
-          .flatMap(params => {
-              let id = +params['id']; // (+) converts string 'id' to a number
-              return this.showsService.get(id); });
+          .map(params => +params['id'])
+          .distinctUntilChanged()
+          .flatMap(id => this.showsService.get(id));
   }
 
   ngOnInit() {
@@ -89,6 +89,11 @@ export class BroadcastsShowComponent {
 
   onScroll() {
     this.fetchMore.next(true);
+  }
+
+  // TODO: same as in BroadcastDateComponnent
+  isExpanded(broadcast: BroadcastModel): boolean {
+    return false;
   }
 
   private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {

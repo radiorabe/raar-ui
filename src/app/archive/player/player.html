@@ -1,6 +1,6 @@
 <div class="well clearfix">
   <div class="controls pull-left">
-    <a class="btn circle-xl" href="#" (click)="togglePlay()" [ngClass]="{'disabled': !player.audioFile }">
+    <a class="btn circle-xl" href="#" (click)="togglePlay()" [ngClass]="{'disabled': !audioFile }">
       <span class="glyphicon"
             role="button"
             [ngClass]="{ 'glyphicon-play': !player.playing, 'glyphicon-pause': player.playing }">
@@ -9,9 +9,9 @@
   </div>
 
   <div *ngIf="player.audioFile">
-    <h4 class="show title">{{player.audioFile.relationships.broadcast.attributes.label}}</h4>
+    <h4 class="show title">{{broadcast.attributes.label}}</h4>
     <div>
-      {{player.audioFile.relationships.broadcast | broadcastTime: 'full'}}
+      {{broadcast | broadcastTime: 'full'}}
       ({{player.position}})
     </div>
   </div>
