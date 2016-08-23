@@ -14,13 +14,19 @@ export class AudioPlayerService {
     return this._audioFile;
   }
 
-  play(audioFile?: AudioFileModel) {
+  play(audioFile?: AudioFileModel, position?: Date) {
     if (audioFile) {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
+      const pos = position ?
+        position - this._audioFile.relationships.broadcast.attributes.started_at :
+        0;
       this._audio = (<any>window).soundManager.createSound({
         url: audioFile.attributes.url,
         volume: 100,
+        position: pos,
+        autoLoad: true,
+        autoPlay: true,
         onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
         ondataerror: () => this._events.emit(PlayerEvents.AudioError),
         onfinish: () => this._events.emit(PlayerEvents.Finish),
@@ -31,8 +37,6 @@ export class AudioPlayerService {
         onstop: () => this._events.emit(PlayerEvents.Finish),
         whileplaying: () => this._events.emit(PlayerEvents.Time)
       });
-
-      this._audio.play();
     } else if (this._audio) {
       this._audio.resume();
     }

@@ -63,11 +63,13 @@ export class PlayerComponent {
       const time = DateParamsService.timeFromParams(params);
       if (this.isCurrentBroadcast(time)) {
         if (!this.isCurrentAudioFile(params['play'], params['format'])) {
-          this.player.play(this.buildAudioFile(this.broadcast, time, params['play'], params['format']));
+          const audio = this.buildAudioFile(this.broadcast, time, params['play'], params['format']);
+          this.player.play(audio, time);
         }
       } else {
         this.broadcastsService.getForTime(time).subscribe(broadcast => {
-          this.player.play(this.buildAudioFile(broadcast, time, params['play'], params['format']));
+          const audio = this.buildAudioFile(broadcast, time, params['play'], params['format']);
+          this.player.play(audio, time);
         });
       }
     }
