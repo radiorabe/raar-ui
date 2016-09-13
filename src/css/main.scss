@@ -38,7 +38,7 @@ sd-app {
 }
 
 h1.brand {
-  margin-top: 48px;
+  margin-top: 18px;
 }
 
 .title {
@@ -77,6 +77,16 @@ daypicker {
   height: 100%;
   transition: margin 200ms ease;
   margin-left: 300px;
+}
+
+sd-shows {
+  #show_query {
+    margin-bottom: 5px;
+  }
+
+  .list-group {
+    margin-bottom: 80px;
+  }
 }
 
 sd-broadcast {
@@ -121,9 +131,8 @@ sd-broadcast {
     }
   }
 
-
-
 }
+
 .icon-pulse {
   overflow: hidden;
   font-size: 22px;

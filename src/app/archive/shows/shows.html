@@ -1,11 +1,10 @@
 <h3>oder Sendung</h3>
 
 <input type="text"
+       id="show_query"
        class="form-control"
        placeholder="Suchen... "
        [formControl]="query" />
-
-<br/>
 
 <div class="list-group">
   <a *ngFor="let show of shows | async"

@@ -1,18 +1,20 @@
-<div class="well clearfix">
-  <div class="controls pull-left">
-    <a class="btn circle-xl" href="#" (click)="togglePlay()" [ngClass]="{'disabled': !audioFile }">
-      <span class="glyphicon"
-            role="button"
-            [ngClass]="{ 'glyphicon-play': !player.playing, 'glyphicon-pause': player.playing }">
-      </span>
-    </a>
-  </div>
+<div class="well clearfix" [ngClass]="{'visible': !!audioFile}">
+  <div class="container">
+    <div class="controls pull-left">
+      <a class="btn circle-xl" href="#" (click)="togglePlay()" [ngClass]="{'disabled': !audioFile }">
+        <span class="glyphicon"
+              role="button"
+              [ngClass]="{ 'glyphicon-play': !player.playing, 'glyphicon-pause': player.playing }">
+        </span>
+      </a>
+    </div>
 
-  <div *ngIf="player.audioFile">
-    <h4 class="show title">{{broadcast.attributes.label}}</h4>
-    <div>
-      {{broadcast | broadcastTime: 'full'}}
-      ({{player.position}})
+    <div *ngIf="audioFile">
+      <h4 class="show title">{{broadcast.attributes.label}}</h4>
+      <div>
+        {{broadcast | broadcastTime: 'full'}}
+        ({{player.position}})
+      </div>
     </div>
   </div>
 </div>

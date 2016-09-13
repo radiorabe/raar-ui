@@ -3,6 +3,7 @@
 * responsive mobile view
 * check permission for requested audio
 * continue playing the following broadcast when the current is finished in date view
+* update to latest angular version
 
 * add login
 * add admin interface

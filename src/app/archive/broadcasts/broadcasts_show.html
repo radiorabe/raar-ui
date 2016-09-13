@@ -4,7 +4,9 @@
   <div *ngFor="let month of months | async, trackBy: getMonthIdentifier">
     <h3 class="title">{{month}}</h3>
     <div class="list-group">
-      <sd-broadcast *ngFor="let broadcast of (monthlyBroadcasts | async)[month], trackBy: getCrudIdentifier" [broadcast]="broadcast"></sd-broadcast>
+      <sd-broadcast *ngFor="let broadcast of (monthlyBroadcasts | async)[month], trackBy: getCrudIdentifier"
+                    [broadcast]="broadcast">
+      </sd-broadcast>
     </div>
   </div>
 </div>

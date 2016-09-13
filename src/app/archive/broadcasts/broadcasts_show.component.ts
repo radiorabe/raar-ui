@@ -30,6 +30,7 @@ export class BroadcastsShowComponent {
   show: Observable<ShowModel>;
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
+
   private fetchMore: Subject<boolean> = new Subject<boolean>();
   private listSub: ISubscription;
   private monthlySub: ISubscription;
@@ -56,7 +57,10 @@ export class BroadcastsShowComponent {
       .subscribe(this.monthlyBroadcasts);
 
     this.titleSub = this.show
-      .subscribe(show => this.title = show.attributes.name);
+      .subscribe(show => {
+        this.title = show.attributes.name;
+        window.scrollTo(0, 0);
+      });
   }
 
   ngOnDestroy() {
@@ -103,8 +107,8 @@ export class BroadcastsShowComponent {
 
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
     return this.fetchMore
-      .withLatestFrom(this.broadcastList, (_, list) => list)
       .debounceTime(300)
+      .withLatestFrom(this.broadcastList, (_, list) => list)
       .flatMap(list => this.broadcastsService.getNextEntries(list));
   }
 

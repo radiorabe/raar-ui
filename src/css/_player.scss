@@ -1,13 +1,27 @@
 sd-player {
-  float: right;
-  width: 400px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  visibility: hidden;
 
   .well {
     background-color: $brand-info;
-    padding: 20px;
+    padding: 10px;
     border: 0;
     color: white;
     margin-bottom: 0;
+    transition: -webkit-transform 200ms ease-out;
+    transition: transform 200ms ease-out;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+
+    &.visible {
+      visibility: visible;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
   }
 
   .controls {
@@ -21,7 +35,7 @@ sd-player {
   .show {
     font-size: 16px;
     margin-top: 4px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 }
 
