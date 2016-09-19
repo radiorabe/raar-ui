@@ -12,6 +12,7 @@ import {InfiniteScroll} from 'angular2-infinite-scroll';
 import {BroadcastModel, ShowModel, CrudList} from '../../shared/models/index';
 import {ShowsService} from '../../shared/services/shows.service';
 import {BroadcastsService} from '../../shared/services/broadcasts.service';
+import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
 import {BroadcastComponent} from './broadcast.component';
 import * as moment from 'moment';
 
@@ -27,6 +28,7 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 export class BroadcastsShowComponent {
 
   title: string;
+  dateWithTime: Date;
   show: Observable<ShowModel>;
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
@@ -35,6 +37,7 @@ export class BroadcastsShowComponent {
   private listSub: ISubscription;
   private monthlySub: ISubscription;
   private titleSub: ISubscription;
+  private dateWithTimeSub: ISubscription;
 
   constructor(private route: ActivatedRoute,
               private showsService: ShowsService,
@@ -61,12 +64,16 @@ export class BroadcastsShowComponent {
         this.title = show.attributes.name;
         window.scrollTo(0, 0);
       });
+
+    this.dateWithTimeSub = this.route.params.distinctUntilChanged()
+      .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
   }
 
   ngOnDestroy() {
     this.titleSub.unsubscribe();
     this.monthlySub.unsubscribe();
     this.listSub.unsubscribe();
+    this.dateWithTimeSub.unsubscribe();
   }
 
   buildMonthlyBroadcasts(broadcasts: BroadcastModel[]): MonthlyBroadcasts {
@@ -95,9 +102,8 @@ export class BroadcastsShowComponent {
     this.fetchMore.next(true);
   }
 
-  // TODO: same as in BroadcastDateComponnent
   isExpanded(broadcast: BroadcastModel): boolean {
-    return false;
+    return this.dateWithTime && broadcast.isCovering(this.dateWithTime);
   }
 
   private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
@@ -112,4 +118,11 @@ export class BroadcastsShowComponent {
       .flatMap(list => this.broadcastsService.getNextEntries(list));
   }
 
+  private getDateWithTime(params: RouteParams): Date {
+    if (params['time'] && params['time'].length >= 4) {
+      return DateParamsService.timeFromParams(params);
+    } else {
+      return undefined;
+    }
+  }
 }

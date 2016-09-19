@@ -61,12 +61,7 @@ export class PlayerComponent {
   private handleRouteParams(params: { [key: string]: any }) {
     if (params['time'] && params['play'] && params['format']) {
       const time = DateParamsService.timeFromParams(params);
-      if (this.isCurrentBroadcast(time)) {
-        if (!this.isCurrentAudioFile(params['play'], params['format'])) {
-          const audio = this.buildAudioFile(this.broadcast, time, params['play'], params['format']);
-          this.player.play(audio, time);
-        }
-      } else {
+      if (!this.isCurrentBroadcast(time)) {
         this.broadcastsService.getForTime(time).subscribe(broadcast => {
           const audio = this.buildAudioFile(broadcast, time, params['play'], params['format']);
           this.player.play(audio, time);

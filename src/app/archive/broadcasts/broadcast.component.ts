@@ -69,6 +69,9 @@ export class BroadcastComponent {
       queryParams['year'] = date.getFullYear();
       queryParams['month'] = date.getMonth() + 1;
       queryParams['day'] = date.getDate();
+    } else if (url[url.length - 1] != date.getDate().toString()) {
+      // handle shows that begin before midnight and go on to the current day.
+      queryParams['time'] = '0000';
     }
     this.router.navigate([...url, queryParams])
   }
