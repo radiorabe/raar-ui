@@ -18,7 +18,7 @@ export class AudioPlayerService {
     if (audioFile) {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
-      const pos = position ?
+      const pos: number = position ?
         position - this._audioFile.relationships.broadcast.attributes.started_at :
         0;
       this._audio = (<any>window).soundManager.createSound({

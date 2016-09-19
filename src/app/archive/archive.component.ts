@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
 import {BroadcastsService, AudioFilesService, DateParamsService} from '../shared/services/index';
 import {AudioPlayerService} from './player/audio_player.service';
 import {DatepickerComponent} from './datepicker/datepicker.component';
@@ -18,6 +18,16 @@ import {PlayerComponent} from './player/player.component';
 })
 export class ArchiveComponent {
 
-  constructor() {}
+  private showNav: boolean = false;
+
+  constructor(private router: Router) {
+    router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) this.showNav = false
+    });
+  }
+
+  toggleNav() {
+    this.showNav = !this.showNav;
+  }
 
 }

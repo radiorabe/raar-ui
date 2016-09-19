@@ -23,7 +23,7 @@ import 'rxjs/add/operator/filter';
 export class ShowsComponent {
 
   // maximally show this number of shows if no search query is given.
-  private static MAX_INITIAL_SHOWS = 150;
+  private static MAX_INITIAL_SHOWS = 100;
   // list shows back to the beginning of this year (relative to today).
   private static RELATIVE_INITIAL_YEAR = -1;
 
