@@ -55,18 +55,43 @@ export class AudioPlayerService {
     }
   }
 
+  toggleMute() {
+    if (this._audio) {
+      this._audio.toggleMute();
+    }
+  }
+
+  setVolume(vol: number) {
+    if (this._audio) {
+      this._audio.setVolume(vol);
+    }
+  }
+
   get playing(): boolean {
     return this._audio && !this._audio.paused;
   }
 
-  get position(): string {
+  get currentTime(): string {
     if (!this._audio) return '00:00';
     return this.durationAsString(this._audio.position);
   }
 
-  get duration(): string {
-    if (!this._audio) return '00:00';
-    return this.durationAsString(this._audio.duration == 0 ? this._audio.durationEstimate : this._audio.duration);
+  get totalTime(): string {
+    return this.durationAsString(this.duration);
+  }
+
+  get duration(): number {
+    if (!this._audio) return 0;
+    return this._audio.duration == 0 ? this._audio.durationEstimate : this._audio.duration;
+  }
+
+  get percent(): number {
+    if (!this._audio) return 0;
+    return Math.round(this._audio.position / this.duration * 1000) / 10;
+  }
+
+  get muted(): boolean {
+    return this._audio.muted;
   }
 
   private durationAsString(milis: number): string {

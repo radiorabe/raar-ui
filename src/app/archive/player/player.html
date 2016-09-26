@@ -10,10 +10,27 @@
     </div>
 
     <div *ngIf="audioFile">
-      <h4 class="show title">{{broadcast.attributes.label}}</h4>
-      <div>
-        {{broadcast | broadcastTime: 'full'}}
-        ({{player.position}})
+      <div class="info pull-left">
+        <h4 class="show title">{{broadcast.attributes.label}}</h4>
+        <div>
+          {{broadcast | broadcastTime: 'full'}}
+        </div>
+      </div>
+      <div class="time-passed">
+        {{player.currentTime}}
+      </div>
+      <div class="time-progress">
+        <span class="time-background"></span>
+        <span class="time-played" [style.width]="player.percent + '%'"></span>
+        <span class="time-handle" [style.left]="player.percent + '%'"></span>
+      </div>
+      <div class="time-total">
+        {{player.totalTime}}
+      </div>
+      <div class="volume">
+        <span class="glyphicon"
+              [ngClass]="{ 'glyphicon-volume-up': !player.muted, 'glyphicon-volume-off': player.muted}"
+              (click)="player.toggleMute()"></span>
       </div>
     </div>
   </div>
