@@ -5,6 +5,7 @@ import {AudioPlayerService} from './audio_player.service';
 import {AudioFilesService, BroadcastsService, DateParamsService} from '../../shared/services/index';
 import {AudioFileModel, BroadcastModel} from '../../shared/models/index';
 import {BroadcastTimePipe} from '../../shared/pipes/broadcast_time.pipe';
+import {SliderDirective} from './slider.directive';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {BroadcastTimePipe} from '../../shared/pipes/broadcast_time.pipe';
   selector: 'sd-player',
   templateUrl: 'player.html',
   providers: [],
-  directives: [],
+  directives: [SliderDirective],
   pipes: [BroadcastTimePipe]
 })
 export class PlayerComponent {

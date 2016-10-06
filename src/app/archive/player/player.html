@@ -22,7 +22,10 @@
       <div class="time-progress">
         <span class="time-background"></span>
         <span class="time-played" [style.width]="player.percent + '%'"></span>
-        <span class="time-handle" [style.left]="player.percent + '%'"></span>
+        <span slider
+              class="time-handle"
+              [style.left]="player.percent + '%'"
+              (sliding)="player.seek($event)"></span>
       </div>
       <div class="time-total">
         {{player.totalTime}}

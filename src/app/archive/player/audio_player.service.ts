@@ -19,7 +19,7 @@ export class AudioPlayerService {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
       const pos: number = position ?
-        position - this._audioFile.relationships.broadcast.attributes.started_at :
+        position.getTime() - this._audioFile.relationships.broadcast.attributes.started_at.getTime() :
         0;
       this._audio = (<any>window).soundManager.createSound({
         url: audioFile.attributes.url,
@@ -38,7 +38,7 @@ export class AudioPlayerService {
         whileplaying: () => this._events.emit(PlayerEvents.Time)
       });
     } else if (this._audio) {
-      this._audio.resume();
+      this._audio.play();
     }
   }
 
@@ -68,7 +68,7 @@ export class AudioPlayerService {
   }
 
   get playing(): boolean {
-    return this._audio && !this._audio.paused;
+    return this._audio && this._audio.playState == 1 && !this._audio.paused;
   }
 
   get currentTime(): string {

@@ -1,9 +1,8 @@
 ## Next steps
 
-* add time & volume slider in player
 * check permission for requested audio
 * update to latest angular version
-* check audio play in various systems (android, ios, windows)
+* check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 
 ## Future steps
 
