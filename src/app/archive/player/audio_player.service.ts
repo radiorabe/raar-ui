@@ -6,6 +6,7 @@ export class AudioPlayerService {
 
   private _audio: any;
   private _audioFile: AudioFileModel;
+  private _volume: number = 100;
   private _events: EventEmitter<any> = new EventEmitter();
 
   constructor() {  }
@@ -23,7 +24,7 @@ export class AudioPlayerService {
         0;
       this._audio = (<any>window).soundManager.createSound({
         url: audioFile.attributes.url,
-        volume: 100,
+        volume: this._volume,
         position: pos,
         autoLoad: true,
         autoPlay: true,
@@ -62,9 +63,11 @@ export class AudioPlayerService {
   }
 
   setVolume(vol: number) {
+    this._volume = vol;
     if (this._audio) {
       this._audio.setVolume(vol);
     }
+    console.log(vol);
   }
 
   get playing(): boolean {
@@ -90,8 +93,12 @@ export class AudioPlayerService {
     return Math.round(this._audio.position / this.duration * 1000) / 10;
   }
 
+  get volume(): number {
+    return this._volume;
+  }
+
   get muted(): boolean {
-    return this._audio.muted;
+    return !!this._audio && this._audio.muted;
   }
 
   private durationAsString(milis: number): string {

@@ -50,6 +50,22 @@ export class PlayerComponent {
     return this.audioFile.relationships.broadcast;
   }
 
+  get volume(): number {
+    return this.player.muted ? 0 : this.player.volume;
+  }
+
+  get highVolume(): boolean {
+    return !this.player.muted && this.player.volume >= 40;
+  }
+
+  get lowVolume(): boolean {
+    return !this.player.muted && this.player.volume < 40 && this.player.volume > 0;
+  }
+
+  get mute(): boolean {
+    return this.player.muted || this.player.volume == 0;
+  }
+
   togglePlay() {
     if (!this.player.audioFile) return;
     if (this.player.playing) {

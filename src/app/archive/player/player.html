@@ -19,21 +19,31 @@
       <div class="time-passed">
         {{player.currentTime}}
       </div>
-      <div class="time-progress">
-        <span class="time-background"></span>
-        <span class="time-played" [style.width]="player.percent + '%'"></span>
+      <div class="time-progress slider">
+        <span class="background"></span>
+        <span class="current" [style.width]="player.percent + '%'"></span>
         <span slider
-              class="time-handle"
+              class="handle"
               [style.left]="player.percent + '%'"
               (sliding)="player.seek($event)"></span>
       </div>
       <div class="time-total">
         {{player.totalTime}}
       </div>
-      <div class="volume">
+      <div class="volume-icon">
         <span class="glyphicon"
-              [ngClass]="{ 'glyphicon-volume-up': !player.muted, 'glyphicon-volume-off': player.muted}"
+              [ngClass]="{ 'glyphicon-volume-up': highVolume,
+                           'glyphicon-volume-down': lowVolume,
+                           'glyphicon-volume-off': mute }"
               (click)="player.toggleMute()"></span>
+      </div>
+      <div class="volume-slider slider">
+        <span class="background"></span>
+        <span class="current" [style.width]="volume + '%'"></span>
+        <span slider
+              class="handle"
+              [style.left]="volume + '%'"
+              (sliding)="player.setVolume($event)"></span>
       </div>
     </div>
   </div>
