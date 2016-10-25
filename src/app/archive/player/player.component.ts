@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {ISubscription} from 'rxjs/Subscription';
 import {AudioPlayerService} from './audio_player.service';
 import {AudioFilesService, BroadcastsService, DateParamsService} from '../../shared/services/index';
 import {AudioFileModel, BroadcastModel} from '../../shared/models/index';
+import {SliderComponent} from '../../shared/components/slider.component';
 import {BroadcastTimePipe} from '../../shared/pipes/broadcast_time.pipe';
-import {SliderDirective} from './slider.directive';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {SliderDirective} from './slider.directive';
   selector: 'sd-player',
   templateUrl: 'player.html',
   providers: [],
-  directives: [SliderDirective],
+  directives: [SliderComponent],
   pipes: [BroadcastTimePipe]
 })
 export class PlayerComponent {

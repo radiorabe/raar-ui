@@ -19,14 +19,9 @@
       <div class="time-passed">
         {{player.currentTime}}
       </div>
-      <div class="time-progress slider">
-        <span class="background"></span>
-        <span class="current" [style.width]="player.percent + '%'"></span>
-        <span slider
-              class="handle"
-              [style.left]="player.percent + '%'"
-              (sliding)="player.seek($event)"></span>
-      </div>
+      <sd-slider class="time-progress"
+                 [value]="player.percent"
+                 (sliding)="player.seek($event)"></sd-slider>
       <div class="time-total">
         {{player.totalTime}}
       </div>
@@ -37,14 +32,9 @@
                            'glyphicon-volume-off': mute }"
               (click)="player.toggleMute()"></span>
       </div>
-      <div class="volume-slider slider">
-        <span class="background"></span>
-        <span class="current" [style.width]="volume + '%'"></span>
-        <span slider
-              class="handle"
-              [style.left]="volume + '%'"
-              (sliding)="player.setVolume($event)"></span>
-      </div>
+      <sd-slider class="volume-slider"
+                 [value]="player.volume"
+                 (sliding)="player.setVolume($event)"></sd-slider>
     </div>
   </div>
 </div>

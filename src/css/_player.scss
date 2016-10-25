@@ -54,8 +54,7 @@ sd-player {
 
   .slider {
     position: relative;
-    padding: 4px 0;
-    margin: 3px 10px 0 10px;
+    cursor: pointer;
 
     * {
       position: absolute;
@@ -88,10 +87,14 @@ sd-player {
   }
 
   .time-progress {
+    padding: 4px 0;
+    margin: 3px 10px 0 10px;
     width: 35%;
   }
 
   .volume-slider {
+    padding: 4px 0;
+    margin: 3px 10px 0 10px;
     width: 40px;
     margin-right: 0;
   }
@@ -122,7 +125,7 @@ sd-player {
       text-align: right;
       min-width: 50px;
     }
-    .slider {
+    .time-progress, .volume-slider {
       padding: 10px 0;
       margin-top: 13px;
     }

@@ -1,27 +1,34 @@
-import {Directive, Input, Output, Renderer, ElementRef, EventEmitter, ContentChildren,
+import {Component, Input, Output, Renderer, ElementRef, EventEmitter, ContentChildren,
         QueryList, ViewContainerRef} from '@angular/core'
+import {ISubscription} from 'rxjs/Subscription';
 
-@Directive({
-    selector: '[slider]',
-    host: {
-      '(mousedown)': 'startSliding($event)',
-      '(touchstart)': 'startSliding($event)'
-    }
+
+@Component({
+  moduleId: module.id,
+  selector: 'sd-slider',
+  templateUrl: 'slider.html',
+  providers: [],
 })
-export class SliderDirective {
+export class SliderComponent {
 
+  @Input() value: number = 0;
   @Output('slidingStart') startSlidingEvent = new EventEmitter<number>();
   @Output('sliding') slidingEvent = new EventEmitter<number>();
   @Output('slidingStop') stopSlidingEvent = new EventEmitter<number>();
 
   private lastMove: number = new Date().getTime();
   private dragTimer: number;
+  private sliding: boolean = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer, private _view: ViewContainerRef) {
+  constructor(private el: ElementRef,
+              private renderer: Renderer) {
   }
+
+  // TODO update slider when input value changes
+
   ngAfterViewInit() {
-
   }
+
   startSliding(e: any) {
     // deny dragging and selecting
     document.ondragstart = () => false;
@@ -32,14 +39,18 @@ export class SliderDirective {
     document.onmouseup = this.stopSliding.bind(this);
     document.ontouchend = this.stopSliding.bind(this);
 
-    this.renderer.setElementClass(this.el.nativeElement, 'sliding', true);
-
-    this.startSlidingEvent.emit(this.calculatePercent(e));
+    this.sliding = true;
+    this.startSlidingEvent.emit(this.updateValue(e));
 
     return this.stopEvent(e);
   }
 
-  handleSliding(e: any) {
+  onClick(e: any) {
+    this.slidingEvent.emit(this.updateValue(e))
+    return this.stopEvent(e);
+  }
+
+  private handleSliding(e: any) {
     if (this.isTouchDevice() && e.touches) {
       e = e.touches[0];
     }
@@ -47,11 +58,11 @@ export class SliderDirective {
     // be nice to CPU/externalInterface
     const d = new Date().getTime();
     if (d - this.lastMove > 20) {
-      this.slidingEvent.emit(this.calculatePercent(e));
+      this.slidingEvent.emit(this.updateValue(e));
     } else {
       window.clearTimeout(this.dragTimer);
       this.dragTimer = window.setTimeout(() => {
-        this.slidingEvent.emit(this.calculatePercent(e))
+        this.slidingEvent.emit(this.updateValue(e))
       }, 20);
     }
     this.lastMove = d;
@@ -59,27 +70,31 @@ export class SliderDirective {
     return this.stopEvent(e);
   }
 
-  stopSliding(e: any) {
+  private stopSliding(e: any) {
     document.onmousemove = null;
     document.ontouchmove = null;
     document.onmouseup = null;
     document.ontouchend = null;
 
-    this.renderer.setElementClass(this.el.nativeElement, 'sliding', false);
-    this.stopSlidingEvent.emit(this.calculatePercent(e));
+    this.sliding = false;
+    // TODO for handle
+    //this.renderer.setElementStyle(this.el.nativeElement, 'left', this.value + '%');
+    this.stopSlidingEvent.emit(this.updateValue(e));
 
     return this.stopEvent(e);
-  };
-
-  calculatePercent(e: any): number {
-    const parent = this.el.nativeElement.parentNode;
-    var percent = (parseInt(e.clientX, 10) - this.getOffX(parent)) / parent.offsetWidth * 100;
-    percent = Math.max(0, Math.min(100, percent));
-    this.renderer.setElementStyle(this.el.nativeElement, 'left', percent + '%');
-    return percent;
   }
 
-  getOffX(element: any): number {
+  private updateValue(e: any): number {
+    return this.value = this.calculatePercent(e);
+  }
+
+  private calculatePercent(e: any): number {
+    const parent = this.el.nativeElement;
+    var percent = (parseInt(e.clientX, 10) - this.getOffX(parent)) / parent.offsetWidth * 100;
+    return Math.max(0, Math.min(100, percent));
+  }
+
+  private getOffX(element: any): number {
     // http://www.xs4all.nl/~ppk/js/findpos.html
     var curleft = 0;
     if (element.offsetParent) {
@@ -92,9 +107,9 @@ export class SliderDirective {
       curleft += element.x;
     }
     return curleft;
-  };
+  }
 
-  stopEvent(e: any) {
+  private stopEvent(e: any) {
     if (typeof e.preventDefault !== 'undefined') {
       e.preventDefault();
     } else {
@@ -104,7 +119,7 @@ export class SliderDirective {
     return false;
   }
 
-  isTouchDevice(): boolean {
+  private isTouchDevice(): boolean {
     return !!navigator.userAgent.match(/ipad|ipod|iphone/i);
   }
 }
