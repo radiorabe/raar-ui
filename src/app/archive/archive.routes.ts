@@ -1,9 +1,9 @@
-import { RouterConfig } from '@angular/router';
+import {Route} from '@angular/router';
 
-import { ArchiveComponent } from './archive.component';
+import {ArchiveComponent} from './archive.component';
 import {BroadcastRoutes} from './broadcasts/broadcast.routes';
 
-export const ArchiveRoutes: RouterConfig = [
+export const ArchiveRoutes: Route[] = [
   {
     path: '',
     component: ArchiveComponent,

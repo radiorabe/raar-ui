@@ -7,15 +7,15 @@ import * as reporter from 'postcss-reporter';
 import * as stylelint from 'stylelint';
 import { join} from 'path';
 
-import { APP_ASSETS, APP_SRC, BROWSER_LIST, CSS_SRC, ENV, DEPENDENCIES } from '../../config';
+import Config from '../../config';
 
 const plugins = <any>gulpLoadPlugins();
 
-const isProd = ENV === 'prod';
+const isProd = Config.BUILD_TYPE === 'prod';
 
 const processors = [
   doiuse({
-    browsers: BROWSER_LIST,
+    browsers: Config.BROWSER_LIST,
   }),
   colorguard(),
   stylelint(),
@@ -27,8 +27,8 @@ const processors = [
  */
 function lintComponentScss() {
   return gulp.src([
-    join(APP_SRC, '**', '*.scss'),
-    '!' + join(APP_SRC, 'assets', '**', '*.scss')
+    join(Config.APP_SRC, '**', '*.scss'),
+    '!' + join(Config.APP_SRC, 'assets', '**', '*.scss')
   ])
     .pipe(isProd ? plugins.cached('css-lint') : plugins.util.noop())
     .pipe(plugins.postcss(processors));
@@ -41,7 +41,7 @@ function lintExternalScss() {
 }
 
 function getExternalScss() {
-  return DEPENDENCIES.filter(d => /\.scss/.test(d.src) && !d.vendor);
+  return Config.DEPENDENCIES.filter(d => /\.scss/.test(d.src) && !d.vendor);
 }
 
 

@@ -4,16 +4,11 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {ISubscription} from 'rxjs/Subscription';
-import 'rxjs/add/operator/publishReplay';
-import 'rxjs/add/operator/share';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/withLatestFrom';
-import {InfiniteScroll} from 'angular2-infinite-scroll';
 import {BroadcastModel, ShowModel, CrudList} from '../../shared/models/index';
 import {ShowsService} from '../../shared/services/shows.service';
 import {BroadcastsService} from '../../shared/services/broadcasts.service';
 import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
-import {BroadcastComponent} from './broadcast.component';
+
 import * as moment from 'moment';
 
 type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
@@ -21,9 +16,7 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 @Component({
   moduleId: module.id,
   selector: 'sd-broadcasts-show',
-  templateUrl: 'broadcasts_show.html',
-  providers: [ShowsService],
-  directives: [BroadcastComponent, InfiniteScroll]
+  templateUrl: 'broadcasts_show.html'
 })
 export class BroadcastsShowComponent {
 

@@ -9,27 +9,41 @@ This project requires node v4.x.x or higher and npm 2.14.7.
 In order to start developing use:
 
 ```bash
+
 # install the project's dependencies
-npm install
+$ npm install
+# fast install (via Yarn, https://yarnpkg.com)
+$ yarn install  # or yarn
+
 # watches your files and uses livereload by default
-npm start
+$ npm start
 # api document for the app
 npm run build.docs
 
+# to start deving with livereload site and coverage as well as continuous testing
+$ npm run start.deving
+
 # dev build
-npm run build.dev
+$ npm run build.dev
 # prod build
-npm run build.prod
+$ npm run build.prod
+# prod build with AoT compilation
+$ npm run build.prod.exp
+
+# dev build of multiple applications (by default the value of --app is "app")
+$ npm start -- --app baz
+$ npm start -- --app foo
+$ npm start -- --app bar
 ```
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).
 
 To update from there:
 
-    git remote add seed https://github.com/mgechev/angular2-seed
-    git pull seed master  
-
-A documentation of the provided tools can be found in [tools/README.md](tools/README.md).
+```
+git remote add seed https://github.com/mgechev/angular2-seed.git
+git pull seed master
+```
 
 ## License
 

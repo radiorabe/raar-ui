@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import { HTTP_PROVIDERS } from '@angular/http';
+import { Config } from './shared/config/env.config';
 import { ArchiveComponent } from './archive/archive.component';
-
+import './operators';
 
 @Component({
   moduleId: module.id,
   selector: 'sd-app',
-  viewProviders: [HTTP_PROVIDERS],
-  templateUrl: 'app.html',
-  directives: [ROUTER_DIRECTIVES, ArchiveComponent]
+  templateUrl: 'app.html'
 })
 export class AppComponent {
   constructor() {

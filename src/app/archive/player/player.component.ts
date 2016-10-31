@@ -4,17 +4,11 @@ import {ISubscription} from 'rxjs/Subscription';
 import {AudioPlayerService} from './audio_player.service';
 import {AudioFilesService, BroadcastsService, DateParamsService} from '../../shared/services/index';
 import {AudioFileModel, BroadcastModel} from '../../shared/models/index';
-import {SliderComponent} from '../../shared/components/slider.component';
-import {BroadcastTimePipe} from '../../shared/pipes/broadcast_time.pipe';
-
 
 @Component({
   moduleId: module.id,
   selector: 'sd-player',
-  templateUrl: 'player.html',
-  providers: [],
-  directives: [SliderComponent],
-  pipes: [BroadcastTimePipe]
+  templateUrl: 'player.html'
 })
 export class PlayerComponent {
 

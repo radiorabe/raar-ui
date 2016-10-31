@@ -5,18 +5,18 @@ import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import { join } from 'path';
 
-import { APP_DEST, APP_SRC, BROWSER_LIST, CSS_DEST, CSS_PROD_BUNDLE, DEPENDENCIES, ENV, TMP_DIR } from '../../config';
+import Config from '../../config';
 
 const plugins = <any>gulpLoadPlugins();
-const cleanCss = require('gulp-clean-css');
+//const cleanCss = require('gulp-clean-css');
 
 const processors = [
   autoprefixer({
-    browsers: BROWSER_LIST
+    browsers: Config.BROWSER_LIST
   })
 ];
 
-const isProd = ENV === 'prod';
+const isProd = Config.BUILD_TYPE === 'prod';
 
 if (isProd) {
   processors.push(
@@ -30,8 +30,8 @@ if (isProd) {
  * Copies all HTML files in `src/client` over to the `dist/tmp` directory.
  */
 function prepareTemplates() {
-  return gulp.src(join(APP_SRC, '**', '*.html'))
-    .pipe(gulp.dest(TMP_DIR));
+  return gulp.src(join(Config.APP_SRC, '**', '*.html'))
+    .pipe(gulp.dest(Config.TMP_DIR));
 }
 
 /**
@@ -40,8 +40,8 @@ function prepareTemplates() {
  */
 function processComponentScss() {
   return gulp.src([
-    join(APP_SRC, '**', '*.scss'),
-    '!' + join(APP_SRC, 'assets', '**', '*.scss')
+    join(Config.APP_SRC, '**', '*.scss'),
+    '!' + join(Config.APP_SRC, 'assets', '**', '*.scss')
   ])
     .pipe(isProd ? plugins.cached('process-component-scss') : plugins.util.noop())
     .pipe(isProd ? plugins.progeny() : plugins.util.noop())
@@ -49,7 +49,7 @@ function processComponentScss() {
     .pipe(plugins.sass({includePaths: ['./node_modules/']}).on('error', plugins.sass.logError))
     .pipe(plugins.postcss(processors))
     .pipe(plugins.sourcemaps.write(isProd ? '.' : ''))
-    .pipe(gulp.dest(isProd ? TMP_DIR: APP_DEST));
+    .pipe(gulp.dest(isProd ? Config.TMP_DIR : Config.APP_DEST));
 }
 
 function processExternalScss() {
@@ -60,11 +60,11 @@ function processExternalScss() {
     .pipe(plugins.sass({includePaths: ['./node_modules/']}).on('error', plugins.sass.logError))
     .pipe(plugins.postcss(processors))
     .pipe(plugins.sourcemaps.write(isProd ? '.' : ''))
-    .pipe(gulp.dest(CSS_DEST));
+    .pipe(gulp.dest(Config.CSS_DEST));
 }
 
 function getExternalScss() {
-  return DEPENDENCIES.filter(d => /\.scss$/.test(d.src));
+  return Config.DEPENDENCIES.filter(d => /\.scss$/.test(d.src));
 }
 
 

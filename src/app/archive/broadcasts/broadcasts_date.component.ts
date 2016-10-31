@@ -1,21 +1,16 @@
 import {Component} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {ISubscription} from 'rxjs/Subscription';
 import {BroadcastModel} from '../../shared/models/broadcast.model';
 import {BroadcastsService} from '../../shared/services/broadcasts.service';
 import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
-import {BroadcastComponent} from './broadcast.component';
-import {DateStringPipe} from '../../shared/pipes/date_string.pipe';
-import {ISubscription} from 'rxjs/Subscription';
 import * as moment from 'moment/moment';
 
 @Component({
   moduleId: module.id,
   selector: 'sd-broadcasts-date',
-  templateUrl: 'broadcasts_date.html',
-  providers: [],
-  directives: [BroadcastComponent],
-  pipes: [DateStringPipe]
+  templateUrl: 'broadcasts_date.html'
 })
 export class BroadcastsDateComponent {
 

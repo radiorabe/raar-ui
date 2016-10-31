@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/forms';
 import { Router } from '@angular/router';
-import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap';
 import {ISubscription} from 'rxjs/Subscription';
 
 
@@ -9,7 +7,6 @@ import {ISubscription} from 'rxjs/Subscription';
   moduleId: module.id,
   selector: 'sd-datepicker',
   templateUrl: 'datepicker.html',
-  directives: [FORM_DIRECTIVES, DATEPICKER_DIRECTIVES]
 })
 export class DatepickerComponent  {
 

@@ -1,9 +1,8 @@
 import {Component, Input} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {ISubscription} from 'rxjs/Subscription';
 import {BroadcastModel, AudioFileModel} from '../../shared/models/index';
-import {BroadcastTimePipe} from '../../shared/pipes/broadcast_time.pipe';
 import {AudioFilesService, DateParamsService} from '../../shared/services/index';
 import {AudioPlayerService} from '../player/audio_player.service';
 
@@ -12,9 +11,6 @@ import {AudioPlayerService} from '../player/audio_player.service';
   moduleId: module.id,
   selector: 'sd-broadcast',
   templateUrl: 'broadcast.html',
-  providers: [],
-  directives: [],
-  pipes: [BroadcastTimePipe]
 })
 export class BroadcastComponent {
 
@@ -63,6 +59,7 @@ export class BroadcastComponent {
   private navigateToSelf(queryParams: any = {}) {
     if (!this.broadcastRoute) return;
     const url = this.broadcastRoute.snapshot.url.map(e => e.path);
+    console.log(url);
     const date = this.broadcast.attributes.started_at;
     queryParams['time'] = DateParamsService.convertTimeToParam(date);
     if (url[0] === 'show') {
@@ -82,7 +79,7 @@ export class BroadcastComponent {
   }
 
   private get broadcastRoute(): ActivatedRoute {
-    const state = this.router.routerState;
+    var state = this.router.routerState;
     return state.firstChild(state.firstChild(state.root));
   }
 
