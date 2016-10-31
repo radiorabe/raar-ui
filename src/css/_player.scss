@@ -52,51 +52,14 @@ sd-player {
     line-height: 16px;
   }
 
-  .slider {
-    position: relative;
-    cursor: pointer;
-
-    * {
-      position: absolute;
-    }
-
-    .background {
-      width: 100%;
-      height: 2px;
-      background-color: white;
-    }
-
-    .handle {
-      border: 1px solid $brand-primary;
-      border-radius: 100%;
-      height: 8px;
-      width: 8px;
-      background-color: $brand-primary;
-      box-sizing: border-box;
-      top: 50%;
-      margin-left: -4px;
-      margin-top: -3px;
-      transition: left 50ms;
-    }
-
-    .current {
-      height: 2px;
-      background-color: $brand-primary;
-      transition: width 50ms;
-    }
-  }
-
   .time-progress {
-    padding: 4px 0;
-    margin: 3px 10px 0 10px;
+    margin: 1px 10px 0 10px;
     width: 35%;
   }
 
   .volume-slider {
-    padding: 4px 0;
-    margin: 3px 10px 0 10px;
+    margin: 1px 0px 0 10px;
     width: 40px;
-    margin-right: 0;
   }
 
   .time-total {
@@ -126,8 +89,7 @@ sd-player {
       min-width: 50px;
     }
     .time-progress, .volume-slider {
-      padding: 10px 0;
-      margin-top: 13px;
+      margin-top: 16px;
     }
     .time-progress {
       width: 21%;

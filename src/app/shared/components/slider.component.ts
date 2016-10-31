@@ -1,5 +1,5 @@
 import {Component, Input, Output, Renderer, ElementRef, EventEmitter, ContentChildren,
-        QueryList, ViewContainerRef} from '@angular/core'
+        ViewChild, QueryList, ViewContainerRef} from '@angular/core'
 import {ISubscription} from 'rxjs/Subscription';
 
 
@@ -16,17 +16,13 @@ export class SliderComponent {
   @Output('sliding') slidingEvent = new EventEmitter<number>();
   @Output('slidingStop') stopSlidingEvent = new EventEmitter<number>();
 
+  @ViewChild('handle') handleElement: ElementRef;
+  @ViewChild('current') currentElement: ElementRef;
+
   private lastMove: number = new Date().getTime();
   private dragTimer: number;
-  private sliding: boolean = false;
 
-  constructor(private el: ElementRef,
-              private renderer: Renderer) {
-  }
-
-  // TODO update slider when input value changes
-
-  ngAfterViewInit() {
+  constructor(private el: ElementRef, private renderer: Renderer) {
   }
 
   startSliding(e: any) {
@@ -39,7 +35,6 @@ export class SliderComponent {
     document.onmouseup = this.stopSliding.bind(this);
     document.ontouchend = this.stopSliding.bind(this);
 
-    this.sliding = true;
     this.startSlidingEvent.emit(this.updateValue(e));
 
     return this.stopEvent(e);
@@ -76,16 +71,15 @@ export class SliderComponent {
     document.onmouseup = null;
     document.ontouchend = null;
 
-    this.sliding = false;
-    // TODO for handle
-    //this.renderer.setElementStyle(this.el.nativeElement, 'left', this.value + '%');
     this.stopSlidingEvent.emit(this.updateValue(e));
 
     return this.stopEvent(e);
   }
 
   private updateValue(e: any): number {
-    return this.value = this.calculatePercent(e);
+    this.value = this.calculatePercent(e);
+    this.updateView();
+    return this.value;
   }
 
   private calculatePercent(e: any): number {
@@ -107,6 +101,11 @@ export class SliderComponent {
       curleft += element.x;
     }
     return curleft;
+  }
+
+  private updateView() {
+    this.renderer.setElementStyle(this.handleElement.nativeElement, 'left', this.value + '%');
+    this.renderer.setElementStyle(this.currentElement.nativeElement, 'width', this.value + '%');
   }
 
   private stopEvent(e: any) {

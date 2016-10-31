@@ -2,8 +2,9 @@
      (click)="onClick($event)"
      (touch)="onClick($event)">
   <span class="background"></span>
-  <span class="current" [style.width]="value + '%'"></span>
-  <span class="handle"
+  <span #current class="current" [style.width]="value + '%'"></span>
+  <span #handle
+        class="handle"
         [style.left]="value + '%'"
         [ngClass]="{ sliding: sliding }"
         (mousedown)="startSliding($event)"
