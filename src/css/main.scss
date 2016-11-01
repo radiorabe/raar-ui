@@ -94,8 +94,13 @@ sd-shows {
   }
 
   .list-group {
-    margin-bottom: 80px;
+    margin-bottom: 110px;
   }
+}
+
+sd-broadcasts-show, sd-broadcasts-date {
+  display: block;
+  margin-bottom: 110px;
 }
 
 sd-broadcast {

@@ -59,7 +59,6 @@ export class BroadcastComponent {
   private navigateToSelf(queryParams: any = {}) {
     if (!this.broadcastRoute) return;
     const url = this.broadcastRoute.snapshot.url.map(e => e.path);
-    console.log(url);
     const date = this.broadcast.attributes.started_at;
     queryParams['time'] = DateParamsService.convertTimeToParam(date);
     if (url[0] === 'show') {

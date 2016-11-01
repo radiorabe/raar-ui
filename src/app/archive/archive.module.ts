@@ -16,13 +16,31 @@ import {PlayerComponent} from './player/player.component';
 import {BroadcastTimePipe} from '../shared/pipes/broadcast_time.pipe';
 import {DateStringPipe} from '../shared/pipes/date_string.pipe';
 import {SliderComponent} from '../shared/components/slider.component';
+import {PreventDefaultLinkDirective} from '../shared/directives/prevent_default_link_directive';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, DatepickerModule, InfiniteScrollModule],
-  declarations: [ArchiveComponent, DatepickerComponent, ShowsComponent, BroadcastsShowComponent,
-                 BroadcastsDateComponent, PlayerComponent, DateStringPipe, BroadcastTimePipe, BroadcastComponent,
-                 SliderComponent],
+  imports: [
+    CommonModule,
+    SharedModule,
+    DatepickerModule,
+    InfiniteScrollModule],
+  declarations: [
+    ArchiveComponent,
+    DatepickerComponent,
+    ShowsComponent,
+    BroadcastsShowComponent,
+    BroadcastsDateComponent,
+    BroadcastComponent,
+    PlayerComponent,
+    DateStringPipe,
+    BroadcastTimePipe,
+    SliderComponent,
+    PreventDefaultLinkDirective],
   exports: [ArchiveComponent],
-  providers: [BroadcastsService, ShowsService, AudioFilesService, AudioPlayerService]
+  providers: [
+    BroadcastsService,
+    ShowsService,
+    AudioFilesService,
+    AudioPlayerService]
 })
 export class ArchiveModule { }

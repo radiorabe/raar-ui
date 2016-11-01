@@ -50,16 +50,16 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      { src: 'moment/min/moment.min.js', inject: 'libs' },
-      { src: 'moment/locale/de.js', inject: 'libs' },
-      { src: 'ng2-bootstrap/bundles/ng2-bootstrap.umd.js', inject: 'libs' },
+      //{ src: 'moment/min/moment.min.js', inject: 'libs' },
+      //{ src: 'moment/locale/de.js', inject: 'libs' },
+      //{ src: 'ng2-bootstrap/bundles/ng2-bootstrap.umd.js', inject: 'libs' },
       { src: 'soundmanager2/script/soundmanager2.js', inject: 'libs' }
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
 
-    this.SYSTEM_CONFIG_DEV.paths['moment'] = 'node_modules/moment/min/moment.min.js';
-    this.SYSTEM_CONFIG_DEV.paths['ng2-bootstrap'] = 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js';
+    this.SYSTEM_CONFIG_DEV.paths['moment'] = 'node_modules/moment/moment.js';
+    //this.SYSTEM_CONFIG_DEV.paths['ng2-bootstrap'] = 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js';
 
     this.CSS_PROD_BUNDLE = 'main.css';
     this.APP_ASSETS = [

@@ -9,10 +9,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // Load i18n providers
 // import { TranslationProviders } from './i18n.providers';
 
-import * as moment from 'moment';
-import 'moment/locale/de';
-moment.locale('de');
-
 // The app module
 import { AppModule } from './app.module';
 

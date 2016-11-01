@@ -5,10 +5,6 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowser } from '@angular/platform-browser';
 
-import * as moment from 'moment';
-import 'moment/locale/de';
-moment.locale('de');
-
 import { AppModuleNgFactory } from './app.module.ngfactory';
 
 enableProdMode();
