@@ -78,7 +78,7 @@ export class BroadcastComponent {
   }
 
   private get broadcastRoute(): ActivatedRoute {
-    var state = this.router.routerState;
+    var state = <any>this.router.routerState;
     return state.firstChild(state.firstChild(state.root));
   }
 

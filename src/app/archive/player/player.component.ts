@@ -14,25 +14,29 @@ export class PlayerComponent {
 
   private paramsSub: ISubscription;
 
-  constructor(private player: AudioPlayerService,
+  constructor(private _player: AudioPlayerService,
               private audioFilesService: AudioFilesService,
               private broadcastsService: BroadcastsService,
               private route: ActivatedRoute,
               private router: Router) {}
 
   ngOnInit() {
-    const state = this.router.routerState;
+    const state = <any>this.router.routerState;
     const broadcastRoute = state.firstChild(state.firstChild(state.root));
     if (!broadcastRoute) return;
     this.paramsSub = broadcastRoute.params
       .distinctUntilChanged()
-      .subscribe(params => this.handleRouteParams(params));
+      .subscribe((params: any) => this.handleRouteParams(params));
   }
 
   ngDestroy() {
     if (this.paramsSub) {
       this.paramsSub.unsubscribe();
     }
+  }
+
+  get player(): AudioPlayerService {
+    return this._player;
   }
 
   get audioFile(): AudioFileModel {

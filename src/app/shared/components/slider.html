@@ -6,7 +6,6 @@
   <span #handle
         class="handle"
         [style.left]="value + '%'"
-        [ngClass]="{ sliding: sliding }"
         (mousedown)="startSliding($event)"
         (touchstart)="startSliding($event)"></span>
 </div>

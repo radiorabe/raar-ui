@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Config } from './shared/config/env.config';
-import { ArchiveComponent } from './archive/archive.component';
+//import { Config } from './shared/config/env.config';
 import './operators';
 
 @Component({
@@ -9,6 +8,5 @@ import './operators';
   templateUrl: 'app.html'
 })
 export class AppComponent {
-  constructor() {
-  }
+  constructor() {  }
 }

@@ -17,11 +17,11 @@ export class DatepickerComponent  {
   }
 
   ngOnInit() {
-    const state = this.router.routerState;
+    const state = <any>this.router.routerState;
     const dateRoute = state.firstChild(state.firstChild(state.root));
     if (dateRoute === null) return;
     this.sub = dateRoute.params
-      .subscribe(params => {
+      .subscribe((params: any) => {
         let year = params['year'];
         let month = params['month'];
         let day = params['day'];

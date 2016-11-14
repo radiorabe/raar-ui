@@ -23,7 +23,7 @@ moment.locale('de');
   providers: [{
     provide: APP_BASE_HREF,
     useValue: '<%= APP_BASE %>'
-  }]
+  }],
   bootstrap: [AppComponent]
 
 })

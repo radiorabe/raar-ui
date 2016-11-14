@@ -10,11 +10,15 @@ const proxy = require('proxy-middleware');
 export class ProjectConfig extends SeedConfig {
 
   APP_SRC = `src`;
+  ASSETS_SRC = `${this.APP_SRC}/assets`;
+  CSS_SRC = `${this.APP_SRC}/css`;
+  SCSS_SRC = `${this.APP_SRC}/scss`;
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
   FONTS_DEST = `${this.APP_DEST}/fonts`;
   FONTS_SRC = [
     'node_modules/bootstrap-sass/assets/fonts/**'
   ];
+  ARTIFACT_DEST = 'dist'
 
   constructor() {
     super();
@@ -47,6 +51,8 @@ export class ProjectConfig extends SeedConfig {
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     // this.TYPED_COMPILE_INTERVAL = 5;
 
+    this.ENABLE_SCSS = true;
+
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
@@ -61,10 +67,8 @@ export class ProjectConfig extends SeedConfig {
     this.SYSTEM_CONFIG_DEV.paths['moment'] = 'node_modules/moment/moment.js';
     //this.SYSTEM_CONFIG_DEV.paths['ng2-bootstrap'] = 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js';
 
-    this.CSS_PROD_BUNDLE = 'main.css';
     this.APP_ASSETS = [
-      { src: `${this.ASSETS_SRC}/main.scss`, inject: true }, // renamed SASS file
+      { src: `${this.CSS_SRC}/main.${this.getInjectableStyleExtension()}`, inject: true, vendor: false },
     ];
   }
-
 }

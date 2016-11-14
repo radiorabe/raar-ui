@@ -9,16 +9,20 @@ import {Router, NavigationEnd} from '@angular/router';
 })
 export class ArchiveComponent {
 
-  private showNav: boolean = false;
+  private _showNav: boolean = false;
 
   constructor(private router: Router) {
     router.events.subscribe(e => {
-      if (e instanceof NavigationEnd) this.showNav = false
+      if (e instanceof NavigationEnd) this._showNav = false
     });
   }
 
+  get showNav(): boolean {
+    return this._showNav;
+  }
+
   toggleNav() {
-    this.showNav = !this.showNav;
+    this._showNav = !this._showNav;
   }
 
 }

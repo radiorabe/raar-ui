@@ -632,4 +632,3 @@ function getBuildType() {
     return BUILD_TYPES.DEVELOPMENT;
   }
 }
-

@@ -17,7 +17,7 @@ gulp.task('build.dev', (done: any) =>
 //              'tslint',
               //'scss-lint',
               'build.assets.dev',
-              'build.html_scss',
+              'build.html_css',
               'build.fonts',
               'build.js.dev',
               'build.index.dev',
@@ -46,16 +46,17 @@ gulp.task('build.prod', (done: any) =>
   runSequence('check.tools',
               'clean.prod',
               'tslint',
-              'scss-lint',
+              //'scss-lint',
               'build.assets.prod',
+              'build.html_css',
               'build.fonts',
-              'build.html_scss',
               'copy.prod',
               'build.js.prod',
               'build.bundles',
               'build.bundles.app',
               'minify.bundles',
               'build.index.prod',
+              'build.artifact',
               done));
 
 // --------------
@@ -66,6 +67,7 @@ gulp.task('build.prod.exp', (done: any) =>
               'tslint',
               'build.assets.prod',
               'build.html_css',
+              'build.fonts',
               'copy.prod',
               'compile.ahead.prod',
               'build.js.prod.exp',
@@ -73,6 +75,7 @@ gulp.task('build.prod.exp', (done: any) =>
               'build.bundles.app.exp',
               'minify.bundles',
               'build.index.prod',
+              'build.artifact',
               done));
 
 // --------------
