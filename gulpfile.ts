@@ -56,6 +56,7 @@ gulp.task('build.prod', (done: any) =>
               'build.bundles.app',
               'minify.bundles',
               'build.index.prod',
+              'prepare.for_apache',
               'build.artifact',
               done));
 
@@ -75,6 +76,7 @@ gulp.task('build.prod.exp', (done: any) =>
               'build.bundles.app.exp',
               'minify.bundles',
               'build.index.prod',
+              'prepare.for_apache',
               'build.artifact',
               done));
 
