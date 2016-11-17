@@ -84,7 +84,7 @@ gulp.task('build.prod.exp', (done: any) =>
 // Build test.
 gulp.task('build.test', (done: any) =>
   runSequence('clean.once',
-              'tslint',
+              //'tslint',
               'build.assets.dev',
               'build.fonts',
               'build.html_css',
