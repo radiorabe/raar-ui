@@ -31,7 +31,7 @@ cache:
   directories: node_modules
 
 script:
-  - npm run tests && npm run build.prod.exp
+  - npm run test && npm run build.prod.exp
 
 deploy:
   provider: releases
