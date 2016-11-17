@@ -1,5 +1,7 @@
 # RAAR-UI
 
+[![Build Status](https://travis-ci.org/radiorabe/raar-ui.svg)](https://travis-ci.org/radiorabe/raar-ui)
+
 An Angular2 web client for the Radio Archive [RAAR](https://github.com/radiorabe/raar).
 
 ## Development
@@ -28,7 +30,7 @@ $ npm run build.dev
 # prod build
 $ npm run build.prod
 # prod build with AoT compilation
-$ npm run build.prod.exp 
+$ npm run build.prod.exp
 ```
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).
