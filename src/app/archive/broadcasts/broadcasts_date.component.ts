@@ -16,10 +16,11 @@ export class BroadcastsDateComponent {
 
   date: Date;
   dateWithTime: Date;
-  broadcasts: Observable<BroadcastModel[]>;
+  broadcasts: BroadcastModel[] = [];
 
   private dateSub: ISubscription;
   private dateWithTimeSub: ISubscription;
+  private broadcastsSub: ISubscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,22 +28,24 @@ export class BroadcastsDateComponent {
   }
 
   ngOnInit() {
-    const paramsObservable = this.route.params.distinctUntilChanged();
+    const paramsObservable = this.route.params;
     const dateObservable = paramsObservable.map(params => this.getDate(params));
 
     this.dateSub = dateObservable.subscribe(date => this.date = date);
     this.dateWithTimeSub = paramsObservable
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
-    this.broadcasts = dateObservable
-      .map(date => date.getTime()) // required to test date changes
-      .distinctUntilChanged()
-      .flatMap(date => this.broadcastsService.getListForDate(new Date(date)))
-      .map(list => list.entries);
+    this.broadcastsSub = dateObservable
+      .debounceTime(200)
+      .distinctUntilChanged(null, date => date.getTime())
+      .flatMap(date => this.broadcastsService.getListForDate(date))
+      .map(list => list.entries)
+      .subscribe(list => this.broadcasts = list);
   }
 
   ngOnDestroy() {
     this.dateSub.unsubscribe();
     this.dateWithTimeSub.unsubscribe();
+    this.broadcastsSub.unsubscribe();
   }
 
   prevDate() {
@@ -75,7 +78,7 @@ export class BroadcastsDateComponent {
     if (params['year']) {
       return DateParamsService.dateFromParams(params);
     } else {
-      return new Date();
+      return new Date(new Date().setHours(0, 0, 0, 0));
     }
   }
 

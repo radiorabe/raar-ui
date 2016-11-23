@@ -20,29 +20,31 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 })
 export class BroadcastsShowComponent {
 
-  title: string;
   dateWithTime: Date;
-  show: Observable<ShowModel>;
+  title: string;
+  show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
 
   private fetchMore: Subject<boolean> = new Subject<boolean>();
+  private showSub: ISubscription;
   private listSub: ISubscription;
   private monthlySub: ISubscription;
-  private titleSub: ISubscription;
   private dateWithTimeSub: ISubscription;
+  private titleSub: ISubscription;
 
   constructor(private route: ActivatedRoute,
               private showsService: ShowsService,
               private broadcastsService: BroadcastsService) {
-    this.show = this.route.params
-          .distinctUntilChanged()
-          .map(params => +params['id'])
-          .distinctUntilChanged()
-          .flatMap(id => this.showsService.get(id));
   }
 
   ngOnInit() {
+    this.showSub = this.route.params
+      .map(params => +params['id'])
+      .distinctUntilChanged()
+      .flatMap(id => this.showsService.get(id))
+      .subscribe(this.show);
+
     this.listSub = this.broadcastShowObservable()
       .merge(this.broadcastMoreObservable())
       .subscribe(this.broadcastList);
@@ -52,21 +54,22 @@ export class BroadcastsShowComponent {
       .map(broadcasts => this.buildMonthlyBroadcasts(broadcasts))
       .subscribe(this.monthlyBroadcasts);
 
+    this.dateWithTimeSub = this.route.params
+      .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
+
     this.titleSub = this.show
       .subscribe(show => {
         this.title = show.attributes.name;
         window.scrollTo(0, 0);
-      });
-
-    this.dateWithTimeSub = this.route.params.distinctUntilChanged()
-      .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
+      })
   }
 
   ngOnDestroy() {
-    this.titleSub.unsubscribe();
     this.monthlySub.unsubscribe();
     this.listSub.unsubscribe();
     this.dateWithTimeSub.unsubscribe();
+    this.titleSub.unsubscribe();
+    this.showSub.unsubscribe();
   }
 
   buildMonthlyBroadcasts(broadcasts: BroadcastModel[]): MonthlyBroadcasts {
@@ -106,8 +109,8 @@ export class BroadcastsShowComponent {
 
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
     return this.fetchMore
-      .debounceTime(300)
       .withLatestFrom(this.broadcastList, (_, list) => list)
+      .distinctUntilChanged(null, list => list.links.next)
       .flatMap(list => this.broadcastsService.getNextEntries(list));
   }
 

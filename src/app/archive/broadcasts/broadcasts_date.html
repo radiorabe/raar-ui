@@ -10,13 +10,13 @@
 <h2 class="title">{{date | dateString: 'date'}}</h2>
 
 <div class="list-group">
-  <sd-broadcast *ngFor="let broadcast of broadcasts | async, trackBy: getCrudIdentifier"
+  <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier"
                 [broadcast]="broadcast"
                 [dateFormat]="'time'"
                 [expanded]="isExpanded(broadcast)">
   </sd-broadcast>
 </div>
 
-<p *ngIf="(broadcasts | async)?.length === 0">
+<p *ngIf="broadcasts.length === 0">
   Keine aufgenommenen Sendungen vorhanden.
 </p>
