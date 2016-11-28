@@ -1,7 +1,7 @@
 <nav class="pull-right">
   <ul class="pager" style="margin-top: 0;">
-    <li><a href="#" (click)="prevDate()"><span aria-hidden="true">&lt;</span></a></li>
-    <li><a href="#" (click)="nextDate()" [ngClass]="{disabled: nextDateDisabled()}">
+    <li><a (click)="prevDate()"><span aria-hidden="true">&lt;</span></a></li>
+    <li><a (click)="nextDate()" [ngClass]="{disabled: nextDateDisabled()}">
       <span aria-hidden="true">&gt;</span>
     </a></li>
   </ul>

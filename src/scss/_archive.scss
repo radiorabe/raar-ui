@@ -1,0 +1,70 @@
+
+daypicker {
+  th {
+    color: white;
+  }
+
+  .btn-default.active {
+    background-color: $brand-primary !important;
+  }
+}
+
+
+sd-shows {
+  #show_query {
+    margin-bottom: 5px;
+  }
+
+  .list-group {
+    margin-bottom: 110px;
+  }
+}
+
+sd-broadcasts-show, sd-broadcasts-date {
+  display: block;
+  margin-bottom: 110px;
+}
+
+sd-broadcast {
+
+  .list-group-item {
+    border: 0;
+
+    &.title {
+      font-size: 16px;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 1.25%;
+      bottom: 0;
+      height: 1px;
+      width: 97.5%;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  &:last-child .list-group-item:before {
+    border-bottom: none;
+    height: 0px;
+  }
+
+  .list-group-item-heading {
+    &> a {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+
+  .list-group-item-text {
+    &.fixclear:before, &.fixclear:after {
+      content: " ";
+      display: table;
+    }
+    &.fixclear:after {
+      clear: right;
+    }
+  }
+
+}

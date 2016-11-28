@@ -1,12 +1,12 @@
 <div class="list-group-item">
   <h4 class="list-group-item-heading title" (click)="toggle()">
-    <a href="#">{{broadcast | broadcastTime: dateFormat}} &nbsp; {{broadcast.attributes.label}}</a>
+    <a>{{broadcast | broadcastTime: dateFormat}} &nbsp; {{broadcast.attributes.label}}</a>
   </h4>
 
   <div class="list-group-item-text fixclear" *ngIf="expanded">
     <ul class="list-unstyled pull-right">
       <li *ngFor="let audio of audioFiles">
-        <a href="#" (click)="play(audio)">
+        <a (click)="play(audio)">
           <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
           {{audio.attributes.codec | uppercase}}
           {{audio.attributes.playback_format}}
