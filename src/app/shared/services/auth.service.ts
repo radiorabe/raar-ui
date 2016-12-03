@@ -1,4 +1,4 @@
-import {UserModel} from '../models/index.ts';
+import {UserModel} from '../models/index';
 
 export class AuthService {
 

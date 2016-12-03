@@ -1,6 +1,5 @@
 ## Next steps
 
-* nice loading page
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 * add loading spinner for infinite scroll

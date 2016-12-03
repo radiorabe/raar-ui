@@ -1,4 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
+import {ModalDirective} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   moduleId: module.id,

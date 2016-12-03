@@ -9,7 +9,7 @@ export class UserModel extends CrudModel {
     groups: string[];
     api_token: string;
     api_key_expires_at: Date;
-    admin: boolean = false;
+    admin: boolean;
   }
 
 }
