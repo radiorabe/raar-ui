@@ -12,4 +12,9 @@ export class UserModel extends CrudModel {
     admin: boolean;
   }
 
+  toString(): string {
+    return this.attributes.first_name || 
+           this.attributes.last_name || 
+           this.attributes.username;
+  }
 }

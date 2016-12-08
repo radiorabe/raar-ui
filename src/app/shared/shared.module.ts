@@ -6,7 +6,7 @@ import { ModalModule } from 'ng2-bootstrap/components/modal';
 import { LayoutComponent } from './components/layout.component';
 import { SmallModalComponent } from './components/small-modal.component';
 import { LoginComponent } from './components/login.component';
-import { AuthService } from './services/auth.service';
+import { LoginService, AuthService } from './services/index';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -15,6 +15,8 @@ import { AuthService } from './services/auth.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     ModalModule
   ],
@@ -38,7 +40,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [AuthService]
+      providers: [LoginService, AuthService]
     };
   }
 }

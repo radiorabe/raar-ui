@@ -1,13 +1,14 @@
 import {Http, Headers, RequestOptions, Response, URLSearchParams} from '@angular/http';
 import {Observable} from "rxjs/Observable";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/map';
 import {CrudModel} from '../models/crud.model';
 import {CrudList} from '../models/crud_list';
+import 'rxjs/add/operator/map';
 
 export class CrudService<T extends CrudModel> {
-  headers = new Headers({'Content-Type': 'application/json'});
-  options = new RequestOptions({headers: this.headers});
+
+  protected headers = new Headers({'Content-Type': 'application/vnd.api+json'});
+  protected options = new RequestOptions({headers: this.headers});
 
   constructor(protected http: Http, public baseUrl: string) {}
 

@@ -15,4 +15,9 @@ export class SmallModalComponent {
   show() {
     this.modal.show();
   }
+
+  hide() {
+    this.modal.hide();
+  }
+  
 }

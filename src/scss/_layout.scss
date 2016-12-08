@@ -26,9 +26,14 @@ sd-app {
   }
 }
 
-.navbar-nav li a {
-  padding-top: 22px;
-  padding-bottom: 0;
+.navbar-nav li small {
+  padding-top: 8px;
+  display: inline-block;
+
+  &.user {
+    padding-top: 12px;
+    font-weight: 500;
+  }
 }
 
 .navbar-right {
