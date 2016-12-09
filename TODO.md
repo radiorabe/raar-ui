@@ -6,9 +6,9 @@
 
 ## Future steps
 
-* add login
 * add download links
 * add admin interface
+* add search box for broadcast search
 * add podcast links
 
 ## To discuss
