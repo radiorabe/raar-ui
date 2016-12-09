@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import {ISubscription} from 'rxjs/Subscription';
+import { Router, NavigationEnd } from '@angular/router';
+import { ISubscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -17,20 +17,11 @@ export class DatepickerComponent  {
   }
 
   ngOnInit() {
-    const state = <any>this.router.routerState;
-    const dateRoute = state.firstChild(state.firstChild(state.root));
-    if (dateRoute === null) return;
-    this.sub = dateRoute.params
-      .subscribe((params: any) => {
-        let year = params['year'];
-        let month = params['month'];
-        let day = params['day'];
-        if (year && month && day) {
-          this._date = new Date(+year, +month - 1, +day);
-        } else {
-          this._date = undefined;
-        }
-      });
+    this.sub = this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        this.setDateFromRoute();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -44,7 +35,8 @@ export class DatepickerComponent  {
   }
 
   public set date(date: Date) {
-    this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()])
+    this._date = date;
+    this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
   }
 
   public getMode(): string {
@@ -54,5 +46,25 @@ export class DatepickerComponent  {
   public today(): Date {
     return new Date();
   }
+
+  private setDateFromRoute() {
+    const state = <any>this.router.routerState;
+    const dateRoute = state.firstChild(state.firstChild(state.root));
+    if (dateRoute && dateRoute.component.name == 'BroadcastsDateComponent') {
+      this.setDateFromParams(dateRoute.snapshot.params);
+    }
+  }
+
+  private setDateFromParams(params: any) {
+    let year = params['year'];
+    let month = params['month'];
+    let day = params['day'];
+    if (year && month && day) {
+      this._date = new Date(+year, +month - 1, +day);
+    } else {
+      this._date = undefined;
+    }
+  }
+
 
 }
