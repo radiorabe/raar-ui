@@ -17,6 +17,7 @@ export class BroadcastsDateComponent {
   date: Date;
   dateWithTime: Date;
   broadcasts: BroadcastModel[] = [];
+  loading: boolean = false;
 
   private dateSub: ISubscription;
   private dateWithTimeSub: ISubscription;
@@ -35,10 +36,12 @@ export class BroadcastsDateComponent {
     this.dateWithTimeSub = paramsObservable
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
     this.broadcastsSub = dateObservable
-      .debounceTime(200)
       .distinctUntilChanged(null, date => date.getTime())
+      .do(_ => this.loading = true)
+      .debounceTime(200)
       .flatMap(date => this.broadcastsService.getListForDate(date))
       .map(list => list.entries)
+      .do(_ => this.loading = false)
       .subscribe(list => this.broadcasts = list);
   }
 

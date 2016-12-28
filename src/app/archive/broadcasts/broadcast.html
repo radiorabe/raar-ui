@@ -14,6 +14,9 @@
           </a>
       </li>
     </ul>
+    <div class="pull-right" *ngIf="loading">
+      <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
+    </div>
     <div class="pull-right"
          *ngIf="audioFiles && audioFiles.length == 0">
       Keine Aufnahme vorhanden

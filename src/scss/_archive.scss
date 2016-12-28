@@ -68,3 +68,15 @@ sd-broadcast {
   }
 
 }
+
+.loading {
+  color: gray;
+
+  sd-broadcast {
+    .list-group-item-heading {
+      &> a {
+        color: gray;
+      }
+    }
+  }
+}

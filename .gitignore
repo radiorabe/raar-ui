@@ -51,3 +51,5 @@ gulpfile.js.map
 .DS_Store
 src/app/shared/config/env.config.js
 src/app/shared/config/env.config.js.map
+
+deploy.sh

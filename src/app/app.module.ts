@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import * as moment from 'moment';
 import 'moment/locale/de';
 moment.locale('de');
+soundManager.setup({ debugMode: false });
 
 @NgModule({
   imports: [

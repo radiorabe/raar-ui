@@ -9,7 +9,7 @@
 
 <h2 class="title">{{date | dateString: 'date'}}</h2>
 
-<div class="list-group">
+<div class="list-group" [ngClass]="{ loading: loading }">
   <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier"
                 [broadcast]="broadcast"
                 [dateFormat]="'time'"
@@ -17,6 +17,6 @@
   </sd-broadcast>
 </div>
 
-<p *ngIf="broadcasts.length === 0">
+<p *ngIf="broadcasts.length === 0" [ngClass]="{ loading: loading }">
   Keine aufgenommenen Sendungen vorhanden.
 </p>

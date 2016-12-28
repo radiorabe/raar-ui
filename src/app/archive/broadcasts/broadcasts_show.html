@@ -1,6 +1,6 @@
 <h2 class="title">{{title}}</h2>
 
-<div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()">
+<div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()" [ngClass]="{ loading: loading }">
   <div *ngFor="let month of months | async, trackBy: getMonthIdentifier">
     <h3 class="title">{{month}}</h3>
     <div class="list-group">
@@ -10,4 +10,12 @@
       </sd-broadcast>
     </div>
   </div>
+</div>
+
+<div class="text-center" *ngIf="fetchingMore">
+  <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
+</div>
+
+<div *ngIf="hasMore && !fetchingMore">
+  <a (click)="onScroll()">Weitere laden</a>
 </div>

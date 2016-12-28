@@ -18,6 +18,8 @@ export class BroadcastComponent {
   @Input() dateFormat: string;
   @Input() expanded: boolean;
 
+  loading: boolean = false;
+
   constructor(private audioFilesService: AudioFilesService,
               public audioPlayer: AudioPlayerService,
               private router: Router) {
@@ -48,10 +50,12 @@ export class BroadcastComponent {
 
   private fetchAudioFiles() {
     if (!this.audioFiles) {
+      this.loading = true;
       this.audioFilesService.getListForBroadcast(this.broadcast)
         .subscribe(list => {
           this.broadcast.relationships.audio_files = list.entries;
           for (const a of list.entries) a.relationships.broadcast = this.broadcast;
+          this.loading = false;
         });
     }
   }

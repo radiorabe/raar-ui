@@ -25,6 +25,9 @@ export class BroadcastsShowComponent {
   show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
+  loading: boolean = false;
+  hasMore: boolean = false;
+  fetchingMore: boolean = false;
 
   private fetchMore: Subject<boolean> = new Subject<boolean>();
   private showSub: ISubscription;
@@ -42,6 +45,7 @@ export class BroadcastsShowComponent {
     this.showSub = this.route.params
       .map(params => +params['id'])
       .distinctUntilChanged()
+      .do(_ => this.loading = true)
       .flatMap(id => this.showsService.get(id))
       .subscribe(this.show);
 
@@ -50,8 +54,10 @@ export class BroadcastsShowComponent {
       .subscribe(this.broadcastList);
 
     this.monthlySub = this.broadcastList
+      .do(list => this.hasMore = !!list.links.next)
       .map(list => list.entries)
       .map(broadcasts => this.buildMonthlyBroadcasts(broadcasts))
+      .do(_ => { this.loading = false; this.fetchingMore = false })
       .subscribe(this.monthlyBroadcasts);
 
     this.dateWithTimeSub = this.route.params
@@ -111,6 +117,7 @@ export class BroadcastsShowComponent {
     return this.fetchMore
       .withLatestFrom(this.broadcastList, (_, list) => list)
       .distinctUntilChanged(null, list => list.links.next)
+      .do(_ => this.fetchingMore = true)
       .flatMap(list => this.broadcastsService.getNextEntries(list));
   }
 
