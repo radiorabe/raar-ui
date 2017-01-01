@@ -39,7 +39,7 @@ export class BroadcastsDateComponent {
       .distinctUntilChanged(null, date => date.getTime())
       .do(_ => this.loading = true)
       .debounceTime(200)
-      .flatMap(date => this.broadcastsService.getListForDate(date))
+      .switchMap(date => this.broadcastsService.getListForDate(date))
       .map(list => list.entries)
       .do(_ => this.loading = false)
       .subscribe(list => this.broadcasts = list);

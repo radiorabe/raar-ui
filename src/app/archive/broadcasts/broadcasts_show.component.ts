@@ -46,7 +46,7 @@ export class BroadcastsShowComponent {
       .map(params => +params['id'])
       .distinctUntilChanged()
       .do(_ => this.loading = true)
-      .flatMap(id => this.showsService.get(id))
+      .switchMap(id => this.showsService.get(id))
       .subscribe(this.show);
 
     this.listSub = this.broadcastShowObservable()
@@ -118,7 +118,7 @@ export class BroadcastsShowComponent {
       .withLatestFrom(this.broadcastList, (_, list) => list)
       .distinctUntilChanged(null, list => list.links.next)
       .do(_ => this.fetchingMore = true)
-      .flatMap(list => this.broadcastsService.getNextEntries(list));
+      .switchMap(list => this.broadcastsService.getNextEntries(list));
   }
 
   private getDateWithTime(params: RouteParams): Date {
