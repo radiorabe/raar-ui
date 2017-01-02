@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {ISubscription} from 'rxjs/Subscription';
+import {CrudList} from '../../shared/models/crud_list';
 import {BroadcastModel} from '../../shared/models/broadcast.model';
 import {BroadcastsService} from '../../shared/services/broadcasts.service';
 import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
@@ -18,6 +19,7 @@ export class BroadcastsDateComponent {
   dateWithTime: Date;
   broadcasts: BroadcastModel[] = [];
   loading: boolean = false;
+  errorMessage: string;
 
   private dateSub: ISubscription;
   private dateWithTimeSub: ISubscription;
@@ -39,8 +41,12 @@ export class BroadcastsDateComponent {
       .distinctUntilChanged(null, date => date.getTime())
       .do(_ => this.loading = true)
       .debounceTime(200)
-      .switchMap(date => this.broadcastsService.getListForDate(date))
-      .map(list => list.entries)
+      .switchMap(date =>
+        this.broadcastsService
+          .getListForDate(date)
+          .do(_ => this.errorMessage = undefined)
+          .catch(this.handleHttpError.bind(this)))
+      .map((list: CrudList<BroadcastModel>) => list.entries)
       .do(_ => this.loading = false)
       .subscribe(list => this.broadcasts = list);
   }
@@ -91,5 +97,10 @@ export class BroadcastsDateComponent {
     } else {
       return undefined;
     }
+  }
+
+  private handleHttpError(message: string): Observable<CrudList<BroadcastModel>> {
+    this.errorMessage = message;
+    return Observable.of(new CrudList<BroadcastModel>());
   }
 }

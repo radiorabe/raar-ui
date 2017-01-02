@@ -38,7 +38,8 @@ export class ShowsComponent {
   private fetchShows(q: string): Observable<ShowModel[]> {
     let observable = this.showService
       .getList(this.fetchParams(q))
-      .map(list => list.entries);
+      .map(list => list.entries)
+      .catch(_ => Observable.of([]))
     if (q.length === 0) {
       // sort shows by name as we get them ordered by last_broadcast_at.
       observable = observable.map(this.sortByName.bind(this));

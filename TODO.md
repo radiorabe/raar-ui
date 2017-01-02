@@ -2,7 +2,6 @@
 
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
-* handle http errors
 
 ## Future steps
 

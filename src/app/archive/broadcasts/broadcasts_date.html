@@ -17,6 +17,10 @@
   </sd-broadcast>
 </div>
 
-<p *ngIf="broadcasts.length === 0" [ngClass]="{ loading: loading }">
+<p *ngIf="errorMessage" [ngClass]="{ loading: loading }">
+  Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
+</p>
+
+<p *ngIf="!errorMessage && broadcasts.length === 0" [ngClass]="{ loading: loading }">
   Keine aufgenommenen Sendungen vorhanden.
 </p>

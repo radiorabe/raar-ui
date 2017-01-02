@@ -28,6 +28,7 @@ export class BroadcastsShowComponent {
   loading: boolean = false;
   hasMore: boolean = false;
   fetchingMore: boolean = false;
+  errorMessage: string;
 
   private fetchMore: Subject<boolean> = new Subject<boolean>();
   private showSub: ISubscription;
@@ -46,7 +47,11 @@ export class BroadcastsShowComponent {
       .map(params => +params['id'])
       .distinctUntilChanged()
       .do(_ => this.loading = true)
-      .switchMap(id => this.showsService.get(id))
+      .switchMap(id =>
+        this.showsService
+          .get(id)
+          .do(_ => this.errorMessage = undefined)
+          .catch(this.handleShowError.bind(this)))
       .subscribe(this.show);
 
     this.listSub = this.broadcastShowObservable()
@@ -110,7 +115,11 @@ export class BroadcastsShowComponent {
 
   private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
     return this.show
-      .flatMap(show => this.broadcastsService.getListForShow(show));
+      .flatMap(show =>
+        this.broadcastsService
+          .getListForShow(show)
+          .do(_ => this.errorMessage = undefined)
+          .catch(this.handleListError.bind(this)));
   }
 
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
@@ -118,7 +127,11 @@ export class BroadcastsShowComponent {
       .withLatestFrom(this.broadcastList, (_, list) => list)
       .distinctUntilChanged(null, list => list.links.next)
       .do(_ => this.fetchingMore = true)
-      .switchMap(list => this.broadcastsService.getNextEntries(list));
+      .switchMap(list =>
+        this.broadcastsService
+          .getNextEntries(list)
+          .do(_ => this.errorMessage = undefined)
+          .catch(this.handleListError.bind(this)));
   }
 
   private getDateWithTime(params: RouteParams): Date {
@@ -128,4 +141,15 @@ export class BroadcastsShowComponent {
       return undefined;
     }
   }
+
+  private handleListError(message: string): Observable<CrudList<BroadcastModel>> {
+    this.errorMessage = message;
+    return Observable.of(new CrudList<BroadcastModel>());
+  }
+
+  private handleShowError(message: string): Observable<ShowModel> {
+    this.errorMessage = message;
+    return Observable.of(new ShowModel());
+  }
+
 }

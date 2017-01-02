@@ -1,5 +1,9 @@
 <h2 class="title">{{title}}</h2>
 
+<p *ngIf="errorMessage" [ngClass]="{ loading: loading }">
+  Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
+</p>
+
 <div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()" [ngClass]="{ loading: loading }">
   <div *ngFor="let month of months | async, trackBy: getMonthIdentifier">
     <h3 class="title">{{month}}</h3>

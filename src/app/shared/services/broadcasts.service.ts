@@ -18,12 +18,14 @@ export class BroadcastsService extends CrudService<BroadcastModel> {
 
   getListForDate(date: Date): Observable<CrudList<BroadcastModel>> {
     return this.http.get(this.baseUrl + DateParamsService.convertDateToPath(date), this.options)
-      .map(res => this.buildListFromResponse(res, this.buildEntity));
+      .map(res => this.buildListFromResponse(res, this.buildEntity))
+      .catch(this.handleHttpError.bind(this));
   }
 
   getForTime(date: Date): Observable<BroadcastModel> {
     return this.http.get(this.baseUrl + DateParamsService.convertTimeToPath(date), this.options)
-      .map(res => this.buildBroadcastFromResponse(res));
+      .map(res => this.buildBroadcastFromResponse(res))
+      .catch(this.handleHttpError.bind(this));
   }
 
   protected buildEntity(): BroadcastModel {

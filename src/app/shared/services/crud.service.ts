@@ -14,7 +14,8 @@ export class CrudService<T extends CrudModel> {
 
   getList(params?: any): Observable<CrudList<T>> {
     return this.http.get(this.baseUrl, this.buildUrlOptions(params))
-      .map(res => this.buildListFromResponse(res, this.buildEntity));
+      .map(res => this.buildListFromResponse(res, this.buildEntity))
+      .catch(this.handleHttpError.bind(this));
   }
 
   getNextEntries(list: CrudList<T>): Observable<CrudList<T>> {
@@ -27,7 +28,8 @@ export class CrudService<T extends CrudModel> {
         res.entries = list.entries.concat(res.entries);
         res.included = list.included.concat(res.included);
         return res;
-      });
+      })
+      .catch(this.handleHttpError.bind(this));
   }
 
   // load a new entity by id or reload an existing one
@@ -42,24 +44,28 @@ export class CrudService<T extends CrudModel> {
       id = entity.id;
     }
     return this.http.get(`${this.baseUrl}/${id}`, this.options)
-      .map(res => this.updateEntityFromResponse(res, entity));
+      .map(res => this.updateEntityFromResponse(res, entity))
+      .catch(this.handleHttpError.bind(this));
   }
 
   create(entity: T, entityToUpdate?: T): Observable<T> {
     if (entityToUpdate === undefined) entityToUpdate = entity;
     return this.http.post(this.baseUrl, this.rootedJson(entity), this.options)
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate))
+      .catch(this.handleHttpError.bind(this));
   }
 
   update(entity: T, entityToUpdate?: T): Observable<T> {
     if (entityToUpdate === undefined) entityToUpdate = entity;
     return this.http.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity), this.options)
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate))
+      .catch(this.handleHttpError.bind(this));
   }
 
   remove(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`, this.options)
-      .map(res => res);
+      .map(res => res)
+      .catch(this.handleHttpError.bind(this));
   }
 
   protected rootedJson(entity: T): string {
@@ -88,6 +94,13 @@ export class CrudService<T extends CrudModel> {
   }
 
   protected buildEntity(): T { return null; }
+
+  protected handleHttpError(res: Response): Observable<string> {
+    let json: any = {};
+    try { json = res.json(); } catch (e) { }
+    const message = json.error || json.errors || res.status;
+    return Observable.throw(message);
+  }
 
   private buildUrlOptions(params?: any): RequestOptions {
     const search = new URLSearchParams();

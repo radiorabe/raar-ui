@@ -30,7 +30,7 @@ export class AuthService {
       this._initialized = true;
       this.login.get().subscribe(
         user => this._user = user,
-        err => undefined,
+        err => this._initialized = true,
         () => this._initialized = true)
     }
   }
