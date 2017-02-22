@@ -22,6 +22,7 @@ export class BroadcastsShowComponent {
 
   dateWithTime: Date;
   title: string;
+  details: string;
   show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
@@ -71,6 +72,7 @@ export class BroadcastsShowComponent {
     this.titleSub = this.show
       .subscribe(show => {
         this.title = show.attributes.name;
+        this.details = show.attributes.details;
         window.scrollTo(0, 0);
       })
   }
