@@ -11,7 +11,6 @@ This project requires node v4.x.x or higher and npm 2.14.7.
 In order to start developing use:
 
 ```bash
-
 # install the project's dependencies
 $ npm install
 # fast install (via Yarn, https://yarnpkg.com)

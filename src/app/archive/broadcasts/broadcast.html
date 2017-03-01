@@ -11,7 +11,12 @@
           {{audio.attributes.codec | uppercase}}
           {{audio.attributes.playback_format}}
           ({{audio.attributes.bitrate}}k {{audio.attributes.channels == 2 ? 'stereo' : 'mono'}})
-          </a>
+        </a>
+        &nbsp;
+        <a *ngIf="auth.isLoggedIn" (click)="download(audio)">
+          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+          Download
+        </a>
       </li>
     </ul>
     <div class="pull-right" *ngIf="loading">

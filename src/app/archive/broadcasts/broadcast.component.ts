@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {ISubscription} from 'rxjs/Subscription';
 import {BroadcastModel, AudioFileModel} from '../../shared/models/index';
-import {AudioFilesService, DateParamsService} from '../../shared/services/index';
+import {AudioFilesService, AuthService, DateParamsService} from '../../shared/services/index';
 import {AudioPlayerService} from '../player/audio_player.service';
 
 
@@ -20,8 +20,9 @@ export class BroadcastComponent {
 
   loading: boolean = false;
 
-  constructor(private audioFilesService: AudioFilesService,
-              public audioPlayer: AudioPlayerService,
+  constructor(public audioPlayer: AudioPlayerService,
+              public auth: AuthService,
+              private audioFilesService: AudioFilesService,
               private router: Router) {
   }
 
@@ -42,6 +43,10 @@ export class BroadcastComponent {
   play(audio: AudioFileModel) {
     this.audioPlayer.play(audio);
     this.navigateToPlay(audio);
+  }
+
+  download(audio: AudioFileModel) {
+    (<any>window).location = audio.attributes.url + '?download=true';
   }
 
   get audioFiles(): AudioFileModel[] {
