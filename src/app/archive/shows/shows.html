@@ -1,12 +1,15 @@
 <h3>oder Sendung</h3>
 
-<input type="text"
+<a *ngIf="screenWidth < 768" (click)="toggleShows()">Sendungen anzeigen / verbergen</a>
+
+<input *ngIf="!hideShows"
+       type="text"
        id="show_query"
        class="form-control"
        placeholder="Suchen... "
        [formControl]="query" />
 
-<div class="list-group">
+<div *ngIf="!hideShows" class="list-group">
   <a *ngFor="let show of shows | async"
      [routerLink]="['/show', show.id]"
      routerLinkActive="active"

@@ -18,12 +18,20 @@ export class ShowsComponent {
   // list shows back to the beginning of this year (relative to today).
   private static RELATIVE_INITIAL_YEAR = -1;
 
+  private screenWidth: number;
+
+  private hideShows: boolean = false;
+
   public shows: Observable<ShowModel[]>;
 
   public query: FormControl = new FormControl();
 
   constructor(private showService: ShowsService) {
     this.shows = this.showObservable();
+    this.screenWidth = (window.screen.width);
+    if (this.screenWidth < 768) {
+      this.hideShows = true;
+    }
   }
 
   private showObservable(): Observable<ShowModel[]> {
@@ -69,6 +77,14 @@ export class ShowsComponent {
       if (a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()) return 1;
       return 0;
     });
+  }
+
+  private toggleShows() {
+    if (this.hideShows) {
+      this.hideShows = false;
+    } else {
+      this.hideShows = true;
+    }
   }
 
 }
