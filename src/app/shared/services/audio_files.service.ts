@@ -9,11 +9,11 @@ import {Observable} from "rxjs/Observable";
 export class AudioFilesService extends CrudService<AudioFileModel> {
 
   constructor(http: Http) {
-    super(http, '/api/v1/audio_files')
+    super(http, '/api/audio_files')
   }
 
   getListForBroadcast(broadcast: BroadcastModel): Observable<CrudList<AudioFileModel>> {
-    return this.http.get('/api/v1/broadcasts/' + broadcast.id + '/audio_files', this.options)
+    return this.http.get('/api/broadcasts/' + broadcast.id + '/audio_files', this.options)
       .map(res => this.buildListFromResponse(res, this.buildEntity));
   }
 

@@ -9,7 +9,7 @@ import {Observable} from "rxjs/Observable";
 export class BroadcastsService extends CrudService<BroadcastModel> {
 
   constructor(http: Http) {
-    super(http, '/api/v1/broadcasts')
+    super(http, '/api/broadcasts')
   }
 
   getListForShow(show: ShowModel): Observable<CrudList<BroadcastModel>> {

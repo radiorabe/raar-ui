@@ -11,7 +11,7 @@ export class LoginService  {
 
   get(): Observable<UserModel> {
     const options = this.httpOptions({ 'Content-Type': 'application/vnd.api+json' });
-    return this.http.get('/api/v1/login', options)
+    return this.http.get('/api/login', options)
       .map(this.setUserFromResponse.bind(this));
   }
 
@@ -21,7 +21,7 @@ export class LoginService  {
     body.append('password', password);
     const options = this.httpOptions({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
-    return this.http.post('/api/v1/login', body.toString(), options)
+    return this.http.post('/api/login', body.toString(), options)
       .map(this.setUserFromResponse.bind(this));
   }
 

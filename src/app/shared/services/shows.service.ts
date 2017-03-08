@@ -7,7 +7,7 @@ import {ShowModel} from '../models/show.model';
 export class ShowsService extends CrudService<ShowModel> {
 
   constructor(http: Http) {
-    super(http, '/api/v1/shows')
+    super(http, '/api/shows')
   }
 
   protected buildEntity(): ShowModel {
