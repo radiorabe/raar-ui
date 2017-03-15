@@ -1,4 +1,4 @@
-import {EventEmitter} from '@angular/core';
+import {EventEmitter, isDevMode} from '@angular/core';
 import {AudioFileModel} from '../../shared/models/audio_file.model';
 import {PlayerEvents} from './player_events';
 
@@ -23,7 +23,7 @@ export class AudioPlayerService {
         position.getTime() - this._audioFile.relationships.broadcast.attributes.started_at.getTime() :
         0;
       this._audio = (<any>window).soundManager.createSound({
-        url: audioFile.attributes.url,
+        url: (isDevMode() ? '/api' : '') + audioFile.attributes.url,
         volume: this._volume,
         position: pos,
         autoLoad: true,
