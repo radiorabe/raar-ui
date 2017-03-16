@@ -59,7 +59,7 @@ sd-player {
 
   .volume-slider {
     margin: 1px 0px 0 10px;
-    width: 40px;
+    width: 30px;
   }
 
   .time-total {
@@ -96,6 +96,9 @@ sd-player {
     }
     .volume-icon {
       margin-top: 1px;
+    }
+    .volume-slider {
+      width: 40px;
     }
   }
 

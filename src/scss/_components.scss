@@ -1,0 +1,18 @@
+.pager a {
+
+  &:hover {
+    background-color: white;
+  }
+
+  &.disabled {
+
+    cursor: not-allowed;
+    border-color: lighten($gray-light, 30%);
+
+    > span {
+      background-color: transparent;
+      color: lighten($gray-light, 30%);
+    }
+  }
+
+}

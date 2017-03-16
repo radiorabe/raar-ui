@@ -50,7 +50,7 @@ export class DatepickerComponent  {
   private setDateFromRoute() {
     const state = <any>this.router.routerState;
     const dateRoute = state.firstChild(state.firstChild(state.root));
-    if (dateRoute && dateRoute.component.name == 'BroadcastsDateComponent') {
+    if (dateRoute && dateRoute.url.value[0] && dateRoute.url.value[0].path.match(/\d{4}/)) {
       this.setDateFromParams(dateRoute.snapshot.params);
     }
   }
