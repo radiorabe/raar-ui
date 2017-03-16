@@ -70,12 +70,12 @@ sd-broadcast {
 }
 
 .loading {
-  color: gray;
+  color: $brand-disabled;
 
   sd-broadcast {
     .list-group-item-heading {
       &> a {
-        color: gray;
+        color: $brand-disabled;
       }
     }
   }

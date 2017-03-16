@@ -7,11 +7,11 @@
   &.disabled {
 
     cursor: not-allowed;
-    border-color: lighten($gray-light, 30%);
+    border-color: $brand-disabled;
 
     > span {
       background-color: transparent;
-      color: lighten($gray-light, 30%);
+      color: $brand-disabled;
     }
   }
 
