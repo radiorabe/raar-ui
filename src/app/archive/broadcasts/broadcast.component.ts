@@ -17,6 +17,7 @@ export class BroadcastComponent {
   @Input() broadcast: BroadcastModel;
   @Input() dateFormat: string;
   @Input() expanded: boolean;
+  @Input() view: string;
 
   loading: boolean = false;
 

@@ -13,3 +13,4 @@
 
 * display time of day in player instead of time since start
 * continue playing the following broadcast when the current is finished in date view
+* add show name to url

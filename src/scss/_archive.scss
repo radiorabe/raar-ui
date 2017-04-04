@@ -9,7 +9,6 @@ daypicker {
   }
 }
 
-
 sd-shows {
   #show_query {
     margin-bottom: 5px;
@@ -23,6 +22,32 @@ sd-shows {
 sd-broadcasts-show, sd-broadcasts-date {
   display: block;
   margin-bottom: 110px;
+}
+
+sd-broadcasts-date {
+
+  .tablet {
+    display: none
+  }
+
+  @media (min-width: 565px) {
+    .mobile {
+      display: none;
+    }
+
+    .tablet {
+      display: initial;
+    }
+  }
+}
+
+sd-broadcasts-show {
+
+  .details {
+    white-space: pre-line;
+    padding-bottom: $padding-large-vertical;
+  }
+
 }
 
 sd-broadcast {
@@ -58,6 +83,9 @@ sd-broadcast {
   }
 
   .list-group-item-text {
+    margin-top: 10px;
+    padding-left: $padding-base-horizontal;
+
     &.fixclear:before, &.fixclear:after {
       content: " ";
       display: table;
@@ -65,6 +93,24 @@ sd-broadcast {
     &.fixclear:after {
       clear: right;
     }
+
+    p:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  .broadcast-date-standard, .broadcast-date-time {
+    margin-right: $padding-base-horizontal;
+    text-align: right;
+    display: inline-block;
+  }
+
+  .broadcast-date-standard {
+    min-width: 170px;
+  }
+
+  .broadcast-date-time {
+     min-width: 100px;
   }
 
 }

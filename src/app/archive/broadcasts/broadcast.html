@@ -1,6 +1,9 @@
 <div class="list-group-item">
   <h4 class="list-group-item-heading title" (click)="toggle()">
-    <a>{{broadcast | broadcastTime: dateFormat}} &nbsp; {{broadcast.attributes.label}}</a>
+    <a>
+      <span class="broadcast-date-{{dateFormat}}">{{broadcast | broadcastTime: dateFormat}}</span>
+      {{broadcast.attributes.label}}
+    </a>
   </h4>
 
   <div class="list-group-item-text fixclear" *ngIf="expanded">
@@ -27,7 +30,10 @@
       Keine Aufnahme vorhanden
     </div>
 
-    <div>{{broadcast.attributes.details}}</div>
-    <div>{{broadcast.attributes.people}}</div>
+    <p *ngIf="broadcast.attributes.details">{{broadcast.attributes.details}}</p>
+    <p *ngIf="broadcast.attributes.people">{{broadcast.attributes.people}}</p>
+    <p *ngIf="view == 'date'">
+      <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
+    </p>
   </div>
 </div>

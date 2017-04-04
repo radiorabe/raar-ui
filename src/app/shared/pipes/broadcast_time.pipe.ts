@@ -15,9 +15,9 @@ export class BroadcastTimePipe implements PipeTransform {
     if (format == 'time') {
       return 'HH:mm';
     } else if (format == 'full') {
-      return 'DD.MM.YYYY HH:mm';
+      return 'dd DD.MM.YYYY HH:mm';
     } else {
-      return 'DD.MM. HH:mm';
+      return 'dd DD.MM. HH:mm';
     }
   }
 }

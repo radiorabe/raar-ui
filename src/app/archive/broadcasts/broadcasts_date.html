@@ -7,12 +7,16 @@
   </ul>
 </nav>
 
-<h2 class="title">{{date | dateString: 'date'}}</h2>
+<h2 class="title">
+  <span class="mobile">{{date | dateString: 'short'}}</span>
+  <span class="tablet">{{date | dateString: 'date'}}</span>
+</h2>
 
 <div class="list-group" [ngClass]="{ loading: loading }">
   <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier"
                 [broadcast]="broadcast"
                 [dateFormat]="'time'"
+                [view]="'date'"
                 [expanded]="isExpanded(broadcast)">
   </sd-broadcast>
 </div>

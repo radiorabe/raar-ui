@@ -5,12 +5,20 @@ export class BroadcastModel extends CrudModel {
   public attributes: {
     label: string;
     details: string;
+    people: string;
     started_at: Date;
     finished_at: Date;
+    show_id: number;
   };
 
   public relationships: {
     audio_files?: AudioFileModel[];
+    show?: {
+      data: {
+        id: number;
+        type: string;
+      }
+    }
   } = {};
 
   init() {

@@ -8,6 +8,8 @@ export class DateStringPipe implements PipeTransform {
       return moment(value).format('HH:mm');
     } else if (format == 'date') {
       return moment(value).format('dddd D. MMMM YYYY');
+    } else if (format == 'short') {
+      return moment(value).format('dd, D. MMMM YYYY');
     } else {
       return moment(value).format('dd D.M.YYYY HH:mm');
     }
