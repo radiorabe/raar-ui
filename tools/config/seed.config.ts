@@ -607,7 +607,7 @@ function filterDependency(type: string, d: InjectableDependency): boolean {
   if (!(d.buildType instanceof Array)) {
     (<any>d).env = [d.buildType];
   }
-  return d.buildType.indexOf(type) >= 0;
+  return d.buildType!.indexOf(type) >= 0;
 }
 
 /**
