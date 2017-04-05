@@ -1,7 +1,7 @@
 <nav class="pull-right">
   <ul class="pager" style="margin-top: 0;">
     <li><a (click)="prevDate()"><span aria-hidden="true">&lt;</span></a></li>
-    <li><a (click)="nextDate()" [ngClass]="{disabled: nextDateDisabled()}">
+    <li><a (click)="nextDate()" [class.disabled]="nextDateDisabled()">
       <span aria-hidden="true">&gt;</span>
     </a></li>
   </ul>
@@ -12,7 +12,7 @@
   <span class="tablet">{{date | dateString: 'date'}}</span>
 </h2>
 
-<div class="list-group" [ngClass]="{ loading: loading }">
+<div class="list-group" [class.loading]="loading">
   <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier"
                 [broadcast]="broadcast"
                 [dateFormat]="'time'"
@@ -21,10 +21,10 @@
   </sd-broadcast>
 </div>
 
-<p *ngIf="errorMessage" [ngClass]="{ loading: loading }">
+<p *ngIf="errorMessage" [class.loading]="loading">
   Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
 </p>
 
-<p *ngIf="!errorMessage && broadcasts.length === 0" [ngClass]="{ loading: loading }">
+<p *ngIf="!errorMessage && broadcasts.length === 0" [class.loading]="loading">
   Keine aufgenommenen Sendungen vorhanden.
 </p>

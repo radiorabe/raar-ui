@@ -1,10 +1,11 @@
-<div class="well clearfix" [ngClass]="{'visible': !!audioFile}">
+<div class="well clearfix" [class.visible]="!!audioFile">
   <div class="container">
     <div class="controls pull-left">
-      <a class="btn circle-xl" href="#" (click)="togglePlay()" [ngClass]="{'disabled': !audioFile }">
+      <a class="btn circle-xl" href="#" (click)="togglePlay()" [class.disabled]="!audioFile">
         <span class="glyphicon"
               role="button"
-              [ngClass]="{ 'glyphicon-play': !player.playing, 'glyphicon-pause': player.playing }">
+              [class.glyphicon-play]="!player.playing"
+              [class.glyphicon-pause]="player.playing">
         </span>
       </a>
     </div>
@@ -27,9 +28,9 @@
       </div>
       <div class="volume-icon">
         <span class="glyphicon"
-              [ngClass]="{ 'glyphicon-volume-up': highVolume,
-                           'glyphicon-volume-down': lowVolume,
-                           'glyphicon-volume-off': mute }"
+              [class.glyphicon-volume-up]="highVolume"
+              [class.glyphicon-volume-down]="lowVolume"
+              [class.glyphicon-volume-off]="mute"
               (click)="player.toggleMute()"></span>
       </div>
       <sd-slider class="volume-slider"

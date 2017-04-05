@@ -2,11 +2,11 @@
 
 <div *ngIf="details" class="details" [innerHtml]="details"></div>
 
-<p *ngIf="errorMessage" [ngClass]="{ loading: loading }">
+<p *ngIf="errorMessage" [class.loading]="loading">
   Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
 </p>
 
-<div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()" [ngClass]="{ loading: loading }">
+<div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()" [class.loading]="loading">
   <div *ngFor="let month of months | async, trackBy: getMonthIdentifier">
     <h3 class="title">{{month}}</h3>
     <div class="list-group">
