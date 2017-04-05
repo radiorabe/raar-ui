@@ -89,20 +89,10 @@ footer {
   font-size: 32px;
   line-height: 14px;
   color: $gray;
-  -webkit-animation: icon-pulse 1s infinite linear;
   animation: icon-pulse 1s infinite linear;
 }
 
 @keyframes icon-pulse  {
-  0% { width: 11px; }
-  32% { width: 11px; }
-  33% { width: 22px; }
-  65% { width: 22px; }
-  66% { width: 32px; }
-  100% { width: 32px; }
-}
-
-@-webkit-keyframes icon-pulse {
   0% { width: 11px; }
   32% { width: 11px; }
   33% { width: 22px; }
