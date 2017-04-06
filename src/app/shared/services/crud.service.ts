@@ -48,17 +48,15 @@ export class CrudService<T extends CrudModel> {
       .catch(this.handleHttpError.bind(this));
   }
 
-  create(entity: T, entityToUpdate?: T): Observable<T> {
-    if (entityToUpdate === undefined) entityToUpdate = entity;
+  create(entity: T, entityToUpdate: T = entity): Observable<T> {
     return this.http.post(this.baseUrl, this.rootedJson(entity), this.options)
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate!))
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate))
       .catch(this.handleHttpError.bind(this));
   }
 
-  update(entity: T, entityToUpdate?: T): Observable<T> {
-    if (entityToUpdate === undefined) entityToUpdate = entity;
+  update(entity: T, entityToUpdate: T = entity): Observable<T> {
     return this.http.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity), this.options)
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate!))
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate))
       .catch(this.handleHttpError.bind(this));
   }
 
