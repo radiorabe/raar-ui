@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {ISubscription} from 'rxjs/Subscription';
-import {CrudList} from '../../shared/models/crud_list';
-import {BroadcastModel} from '../../shared/models/broadcast.model';
-import {BroadcastsService} from '../../shared/services/broadcasts.service';
-import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { ISubscription } from 'rxjs/Subscription';
+import { CrudList } from '../../shared/models/crud_list';
+import { BroadcastModel } from '../../shared/models/broadcast.model';
+import { BroadcastsService } from '../../shared/services/broadcasts.service';
+import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
 import * as moment from 'moment/moment';
 
 @Component({
@@ -13,7 +13,7 @@ import * as moment from 'moment/moment';
   selector: 'sd-broadcasts-date',
   templateUrl: 'broadcasts_date.html'
 })
-export class BroadcastsDateComponent {
+export class BroadcastsDateComponent implements OnInit, OnDestroy {
 
   date: Date;
   dateWithTime: Date;

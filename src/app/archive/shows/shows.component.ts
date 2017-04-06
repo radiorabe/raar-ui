@@ -1,10 +1,8 @@
-import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {ShowsService} from '../../shared/services/shows.service';
-import {ShowModel} from '../../shared/models/show.model';
-import {CrudList} from '../../shared/models/crud_list';
-
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { ShowsService } from '../../shared/services/shows.service';
+import { ShowModel } from '../../shared/models/show.model';
 
 @Component({
   moduleId: module.id,
@@ -39,7 +37,7 @@ export class ShowsComponent {
     let observable = this.showService
       .getList(this.fetchParams(q))
       .map(list => list.entries)
-      .catch(_ => Observable.of([]))
+      .catch(_ => Observable.of([]));
     if (q.length === 0) {
       // sort shows by name as we get them ordered by last_broadcast_at.
       observable = observable.map(this.sortByName.bind(this));

@@ -1,10 +1,8 @@
-import {Component, Input} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {ISubscription} from 'rxjs/Subscription';
-import {BroadcastModel, AudioFileModel} from '../../shared/models/index';
-import {AudioFilesService, AuthService, DateParamsService} from '../../shared/services/index';
-import {AudioPlayerService} from '../player/audio_player.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
+import { AudioFilesService, AuthService, DateParamsService } from '../../shared/services/index';
+import { AudioPlayerService } from '../player/audio_player.service';
 
 
 @Component({
@@ -12,7 +10,7 @@ import {AudioPlayerService} from '../player/audio_player.service';
   selector: 'sd-broadcast',
   templateUrl: 'broadcast.html',
 })
-export class BroadcastComponent {
+export class BroadcastComponent implements OnInit {
 
   @Input() broadcast: BroadcastModel;
   @Input() dateFormat: string;
@@ -75,11 +73,11 @@ export class BroadcastComponent {
       queryParams['year'] = date.getFullYear();
       queryParams['month'] = date.getMonth() + 1;
       queryParams['day'] = date.getDate();
-    } else if (url[url.length - 1] != date.getDate().toString()) {
+    } else if (url[url.length - 1] !== date.getDate().toString()) {
       // handle shows that begin before midnight and go on to the current day.
       queryParams['time'] = '0000';
     }
-    this.router.navigate([...url, queryParams])
+    this.router.navigate([...url, queryParams]);
   }
 
   private navigateToPlay(audio: AudioFileModel) {

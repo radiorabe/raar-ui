@@ -1,5 +1,5 @@
-import {CrudModel} from './crud.model';
-import {BroadcastModel} from './broadcast.model';
+import { CrudModel } from './crud.model';
+import { BroadcastModel } from './broadcast.model';
 
 export class AudioFileModel extends CrudModel {
   public attributes: {

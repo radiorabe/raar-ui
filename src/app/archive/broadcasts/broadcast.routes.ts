@@ -1,7 +1,7 @@
-import {Route} from '@angular/router';
+import { Route } from '@angular/router';
 
-import {BroadcastsShowComponent} from './broadcasts_show.component';
-import {BroadcastsDateComponent} from './broadcasts_date.component';
+import { BroadcastsShowComponent } from './broadcasts_show.component';
+import { BroadcastsDateComponent } from './broadcasts_date.component';
 
 export const BroadcastRoutes: Route[] = [
   {

@@ -1,16 +1,16 @@
-import {Component} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {ISubscription} from 'rxjs/Subscription';
-import {AudioPlayerService} from './audio_player.service';
-import {AudioFilesService, BroadcastsService, DateParamsService} from '../../shared/services/index';
-import {AudioFileModel, BroadcastModel} from '../../shared/models/index';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ISubscription } from 'rxjs/Subscription';
+import { AudioPlayerService } from './audio_player.service';
+import { AudioFilesService, BroadcastsService, DateParamsService } from '../../shared/services/index';
+import { AudioFileModel, BroadcastModel } from '../../shared/models/index';
 
 @Component({
   moduleId: module.id,
   selector: 'sd-player',
   templateUrl: 'player.html'
 })
-export class PlayerComponent {
+export class PlayerComponent implements OnInit {
 
   private paramsSub: ISubscription;
 
@@ -61,7 +61,7 @@ export class PlayerComponent {
   }
 
   get mute(): boolean {
-    return this.player.muted || this.player.volume == 0;
+    return this.player.muted || this.player.volume === 0;
   }
 
   togglePlay() {
@@ -90,7 +90,7 @@ export class PlayerComponent {
   private isCurrentBroadcast(date: Date): boolean {
     return this.broadcast &&
         this.broadcast.attributes.started_at <= date &&
-        this.broadcast.attributes.finished_at > date
+        this.broadcast.attributes.finished_at > date;
   }
 
   private isCurrentAudioFile(playbackFormat: string, codec: string): boolean {

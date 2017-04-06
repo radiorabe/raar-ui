@@ -28,5 +28,5 @@ function addHtaccesses() {
 
 function addHtaccess(source: string, dest: string) {
   return gulp.src(join(Config.APP_SRC, source, '.htaccess'))
-          .pipe(gulp.dest(join(Config.APP_DEST, dest)))
+          .pipe(gulp.dest(join(Config.APP_DEST, dest)));
 }

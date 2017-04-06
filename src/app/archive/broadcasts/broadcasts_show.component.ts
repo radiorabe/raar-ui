@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {ISubscription} from 'rxjs/Subscription';
-import {BroadcastModel, ShowModel, CrudList} from '../../shared/models/index';
-import {ShowsService} from '../../shared/services/shows.service';
-import {BroadcastsService} from '../../shared/services/broadcasts.service';
-import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ISubscription } from 'rxjs/Subscription';
+import { BroadcastModel, ShowModel, CrudList } from '../../shared/models/index';
+import { ShowsService } from '../../shared/services/shows.service';
+import { BroadcastsService } from '../../shared/services/broadcasts.service';
+import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
 
 import * as moment from 'moment';
 
@@ -18,7 +18,7 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
   selector: 'sd-broadcasts-show',
   templateUrl: 'broadcasts_show.html'
 })
-export class BroadcastsShowComponent {
+export class BroadcastsShowComponent implements OnInit, OnDestroy {
 
   dateWithTime: Date;
   title: string;
@@ -63,7 +63,7 @@ export class BroadcastsShowComponent {
       .do(list => this.hasMore = !!list.links.next)
       .map(list => list.entries)
       .map(broadcasts => this.buildMonthlyBroadcasts(broadcasts))
-      .do(_ => { this.loading = false; this.fetchingMore = false })
+      .do(_ => { this.loading = false; this.fetchingMore = false; })
       .subscribe(this.monthlyBroadcasts);
 
     this.dateWithTimeSub = this.route.params
@@ -74,7 +74,7 @@ export class BroadcastsShowComponent {
         this.title = show.attributes.name;
         this.details = show.attributes.details;
         window.scrollTo(0, 0);
-      })
+      });
   }
 
   ngOnDestroy() {

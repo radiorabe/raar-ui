@@ -1,5 +1,5 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import {ModalDirective} from 'ng2-bootstrap/ng2-bootstrap';
+import { Component, Input, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   moduleId: module.id,
@@ -19,5 +19,5 @@ export class SmallModalComponent {
   hide() {
     this.modal.hide();
   }
-  
+
 }

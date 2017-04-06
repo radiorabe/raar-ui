@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
-
 
 @Component({
   moduleId: module.id,
   selector: 'sd-datepicker',
   templateUrl: 'datepicker.html',
 })
-export class DatepickerComponent  {
+export class DatepickerComponent implements OnInit, OnDestroy  {
 
   private _date: Date;
   private sub: ISubscription;

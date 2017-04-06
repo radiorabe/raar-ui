@@ -18,7 +18,7 @@ export class ProjectConfig extends SeedConfig {
   FONTS_SRC = [
     'node_modules/bootstrap-sass/assets/fonts/**'
   ];
-  ARTIFACT_DEST = 'dist'
+  ARTIFACT_DEST = 'dist';
 
   constructor() {
     super();

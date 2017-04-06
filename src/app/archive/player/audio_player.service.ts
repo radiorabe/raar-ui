@@ -1,6 +1,6 @@
-import {EventEmitter, isDevMode} from '@angular/core';
-import {AudioFileModel} from '../../shared/models/audio_file.model';
-import {PlayerEvents} from './player_events';
+import { EventEmitter, isDevMode } from '@angular/core';
+import { AudioFileModel } from '../../shared/models/audio_file.model';
+import { PlayerEvents } from './player_events';
 
 export class AudioPlayerService {
 
@@ -8,8 +8,6 @@ export class AudioPlayerService {
   private _audioFile: AudioFileModel;
   private _volume: number = 100;
   private _events: EventEmitter<any> = new EventEmitter();
-
-  constructor() {  }
 
   get audioFile(): AudioFileModel {
     return this._audioFile;
@@ -71,7 +69,7 @@ export class AudioPlayerService {
   }
 
   get playing(): boolean {
-    return this._audio && this._audio.playState == 1 && !this._audio.paused;
+    return this._audio && this._audio.playState === 1 && !this._audio.paused;
   }
 
   get currentTime(): string {
@@ -85,7 +83,7 @@ export class AudioPlayerService {
 
   get duration(): number {
     if (!this._audio) return 0;
-    return this._audio.duration == 0 ? this._audio.durationEstimate : this._audio.duration;
+    return this._audio.duration === 0 ? this._audio.durationEstimate : this._audio.duration;
   }
 
   get percent(): number {
@@ -105,16 +103,17 @@ export class AudioPlayerService {
     let secs = Math.round(milis / 1000);
     let minutes = Math.floor(secs / 60);
     secs = secs % 60;
-    let hours = Math.floor(minutes / 60)
+    let hours = Math.floor(minutes / 60);
     minutes = minutes % 60;
     if (hours > 0) {
-      return hours + ":" + this.pad(minutes) + ":" + this.pad(secs);
+      return `${hours}:${this.pad(minutes)}:${this.pad(secs)}`;
     } else {
-      return this.pad(minutes) + ":" + this.pad(secs);
+      return `${this.pad(minutes)}:${this.pad(secs)}`;
     }
   }
 
   private pad(num: number): string {
-    return ("0" + num).slice(-2);
+    if (num < 10) return `0${num}`;
+    return String(num);
   }
 }
