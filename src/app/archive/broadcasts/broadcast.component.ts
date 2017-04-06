@@ -48,7 +48,7 @@ export class BroadcastComponent implements OnInit {
     (<any>window).location = audio.attributes.url + '?download=true';
   }
 
-  get audioFiles(): AudioFileModel[] {
+  get audioFiles(): AudioFileModel[] | void {
     return this.broadcast.relationships.audio_files;
   }
 

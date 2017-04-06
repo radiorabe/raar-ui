@@ -43,8 +43,8 @@ export class PlayerComponent implements OnInit {
     return this.player.audioFile;
   }
 
-  get broadcast(): BroadcastModel {
-    if (!this.audioFile) return undefined;
+  get broadcast(): BroadcastModel | void {
+    if (!this.audioFile) return;
     return this.audioFile.relationships.broadcast;
   }
 
@@ -88,9 +88,9 @@ export class PlayerComponent implements OnInit {
   }
 
   private isCurrentBroadcast(date: Date): boolean {
-    return this.broadcast &&
+    return this.broadcast ?
         this.broadcast.attributes.started_at <= date &&
-        this.broadcast.attributes.finished_at > date;
+        this.broadcast.attributes.finished_at > date : false;
   }
 
   private isCurrentAudioFile(playbackFormat: string, codec: string): boolean {

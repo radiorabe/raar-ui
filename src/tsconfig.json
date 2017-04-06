@@ -15,6 +15,7 @@
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
     "strictNullChecks": true,
     "typeRoots": [
       "../../node_modules/@types",

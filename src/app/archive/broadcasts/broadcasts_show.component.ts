@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
@@ -20,16 +21,16 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 })
 export class BroadcastsShowComponent implements OnInit, OnDestroy {
 
-  dateWithTime: Date;
-  title: string;
-  details: string;
+  dateWithTime: Date | void;
+  title: string | void;
+  details: string | void;
   show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
   loading: boolean = false;
   hasMore: boolean = false;
   fetchingMore: boolean = false;
-  errorMessage: string;
+  errorMessage: string | void;
 
   private fetchMore: Subject<boolean> = new Subject<boolean>();
   private showSub: ISubscription;
@@ -51,9 +52,9 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
       .switchMap(id =>
         this.showsService
           .get(id)
-          .do(_ => this.errorMessage = undefined)
+          .do(() => this.errorMessage = undefined)
           .catch(this.handleShowError.bind(this)))
-      .subscribe(this.show);
+      .subscribe(this.show as Observer<any>);
 
     this.listSub = this.broadcastShowObservable()
       .merge(this.broadcastMoreObservable())
@@ -112,7 +113,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   }
 
   isExpanded(broadcast: BroadcastModel): boolean {
-    return this.dateWithTime && broadcast.isCovering(this.dateWithTime);
+    return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
   }
 
   private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
@@ -127,20 +128,20 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
     return this.fetchMore
       .withLatestFrom(this.broadcastList, (_, list) => list)
-      .distinctUntilChanged(null, list => list.links.next)
-      .do(_ => this.fetchingMore = true)
-      .switchMap(list =>
+      .distinctUntilChanged(null, (list: CrudList<BroadcastModel>) =>
+        list.links.next
+      )
+      .do(() => this.fetchingMore = true)
+      .switchMap((list: CrudList<BroadcastModel>) =>
         this.broadcastsService
           .getNextEntries(list)
           .do(_ => this.errorMessage = undefined)
           .catch(this.handleListError.bind(this)));
   }
 
-  private getDateWithTime(params: RouteParams): Date {
+  private getDateWithTime(params: RouteParams): Date | void {
     if (params['time'] && params['time'].length >= 4) {
       return DateParamsService.timeFromParams(params);
-    } else {
-      return undefined;
     }
   }
 

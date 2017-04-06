@@ -9,7 +9,7 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class DatepickerComponent implements OnInit, OnDestroy  {
 
-  private _date: Date;
+  private _date: Date | void;
   private sub: ISubscription;
 
   public constructor(private router: Router) {
@@ -29,13 +29,16 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     }
   }
 
-  public get date() {
+  public get date(): Date | void {
     return this._date;
   }
 
-  public set date(date: Date) {
+  public set date(date: Date | void) {
     this._date = date;
-    this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+
+    if (date !== undefined) {
+      this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+    }
   }
 
   public getMode(): string {
@@ -64,6 +67,5 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
       this._date = undefined;
     }
   }
-
 
 }
