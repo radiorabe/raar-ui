@@ -38,7 +38,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     this.dateWithTimeSub = paramsObservable
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
     this.broadcastsSub = dateObservable
-      .distinctUntilChanged(null, (date: Date) => date.getTime())
+      .distinctUntilChanged((a: Date, b: Date) => a.getTime() === b.getTime())
       .do(() => this.loading = true)
       .debounceTime(200)
       .switchMap((date: Date) =>

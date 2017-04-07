@@ -93,12 +93,6 @@ export class PlayerComponent implements OnInit {
         this.broadcast.attributes.finished_at > date : false;
   }
 
-  private isCurrentAudioFile(playbackFormat: string, codec: string): boolean {
-    return this.audioFile &&
-      this.audioFile.attributes.codec === codec &&
-      this.audioFile.attributes.playback_format === playbackFormat;
-  }
-
   private buildAudioFile(broadcast: BroadcastModel,
                          time: Date,
                          playbackFormat: string,

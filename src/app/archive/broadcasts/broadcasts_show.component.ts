@@ -128,8 +128,8 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
     return this.fetchMore
       .withLatestFrom(this.broadcastList, (_, list) => list)
-      .distinctUntilChanged(null, (list: CrudList<BroadcastModel>) =>
-        list.links.next
+      .distinctUntilChanged((a: CrudList<BroadcastModel>, b: CrudList<BroadcastModel>) =>
+        a.links.next === b.links.next
       )
       .do(() => this.fetchingMore = true)
       .switchMap((list: CrudList<BroadcastModel>) =>
