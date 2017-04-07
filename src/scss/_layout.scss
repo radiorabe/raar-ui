@@ -71,7 +71,7 @@ sd-app {
   float: left;
 
   .well {
-    background-color: $brand-info;
+    background-color: transparentize($brand-info, 0.5);
     border: 0;
   }
 }
