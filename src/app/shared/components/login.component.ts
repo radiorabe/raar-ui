@@ -1,7 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
-import {SmallModalComponent} from './small-modal.component'
-import {LoginService} from '../services/login.service';
-import {AuthService} from '../services/auth.service';
+import { Component, ViewChild } from '@angular/core';
+import { SmallModalComponent } from './small-modal.component';
+import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   moduleId: module.id,

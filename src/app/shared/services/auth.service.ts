@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {LoginService} from './login.service';
-import {UserModel} from '../models/index';
+import { Injectable } from '@angular/core';
+import { LoginService } from './login.service';
+import { UserModel } from '../models/index';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private login: LoginService) {}
-
   private _user: UserModel;
 
   private _initialized: boolean = false;
+
+  constructor(private login: LoginService) {}
 
   get isLoggedIn(): boolean {
     this.checkAuth();
@@ -31,7 +31,7 @@ export class AuthService {
       this.login.get().subscribe(
         user => this._user = user,
         err => this._initialized = true,
-        () => this._initialized = true)
+        () => this._initialized = true);
     }
   }
 

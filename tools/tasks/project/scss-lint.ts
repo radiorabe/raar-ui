@@ -5,7 +5,7 @@ import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import * as reporter from 'postcss-reporter';
 import * as stylelint from 'stylelint';
-import { join} from 'path';
+import { join } from 'path';
 
 import Config from '../../config';
 

@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
-
 
 @Component({
   moduleId: module.id,
   selector: 'sd-datepicker',
   templateUrl: 'datepicker.html',
 })
-export class DatepickerComponent  {
+export class DatepickerComponent implements OnInit, OnDestroy  {
 
-  private _date: Date;
+  private _date: Date | void;
   private sub: ISubscription;
 
   public constructor(private router: Router) {
@@ -30,13 +29,16 @@ export class DatepickerComponent  {
     }
   }
 
-  public get date() {
+  public get date(): Date | void {
     return this._date;
   }
 
-  public set date(date: Date) {
+  public set date(date: Date | void) {
     this._date = date;
-    this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+
+    if (date !== undefined) {
+      this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+    }
   }
 
   public getMode(): string {
@@ -65,6 +67,5 @@ export class DatepickerComponent  {
       this._date = undefined;
     }
   }
-
 
 }

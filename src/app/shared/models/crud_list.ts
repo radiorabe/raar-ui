@@ -1,4 +1,4 @@
-import {CrudModel} from './crud.model';
+import { CrudModel } from './crud.model';
 
 export class CrudList<T extends CrudModel> {
   public entries: T[] = [];

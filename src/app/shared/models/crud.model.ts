@@ -3,5 +3,5 @@ export class CrudModel {
   type: string;
   attributes: any;
 
-  init() {}
+  init() {} // tslint:disable-line
 }

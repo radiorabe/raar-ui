@@ -1,5 +1,5 @@
-import {CrudModel} from './crud.model';
-import {AudioFileModel} from './audio_file.model';
+import { CrudModel } from './crud.model';
+import { AudioFileModel } from './audio_file.model';
 
 export class BroadcastModel extends CrudModel {
   public attributes: {
@@ -31,7 +31,7 @@ export class BroadcastModel extends CrudModel {
   }
 
   private convertToDate(key: string) {
-    if (typeof (<any>this.attributes)[key] == "string") {
+    if (typeof (<any>this.attributes)[key] === 'string') {
       (<any>this.attributes)[key] = new Date((<any>this.attributes)[key]);
     }
   }

@@ -1,13 +1,14 @@
-import {Component} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {ISubscription} from 'rxjs/Subscription';
-import {BroadcastModel, ShowModel, CrudList} from '../../shared/models/index';
-import {ShowsService} from '../../shared/services/shows.service';
-import {BroadcastsService} from '../../shared/services/broadcasts.service';
-import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ISubscription } from 'rxjs/Subscription';
+import { BroadcastModel, ShowModel, CrudList } from '../../shared/models/index';
+import { ShowsService } from '../../shared/services/shows.service';
+import { BroadcastsService } from '../../shared/services/broadcasts.service';
+import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
 
 import * as moment from 'moment';
 
@@ -18,18 +19,18 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
   selector: 'sd-broadcasts-show',
   templateUrl: 'broadcasts_show.html'
 })
-export class BroadcastsShowComponent {
+export class BroadcastsShowComponent implements OnInit, OnDestroy {
 
-  dateWithTime: Date;
-  title: string;
-  details: string;
+  dateWithTime: Date | void;
+  title: string | void;
+  details: string | void;
   show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<CrudList<BroadcastModel>>(1);
   monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<MonthlyBroadcasts>(1);
   loading: boolean = false;
   hasMore: boolean = false;
   fetchingMore: boolean = false;
-  errorMessage: string;
+  errorMessage: string | void;
 
   private fetchMore: Subject<boolean> = new Subject<boolean>();
   private showSub: ISubscription;
@@ -51,9 +52,9 @@ export class BroadcastsShowComponent {
       .switchMap(id =>
         this.showsService
           .get(id)
-          .do(_ => this.errorMessage = undefined)
+          .do(() => this.errorMessage = undefined)
           .catch(this.handleShowError.bind(this)))
-      .subscribe(this.show);
+      .subscribe(this.show as Observer<any>);
 
     this.listSub = this.broadcastShowObservable()
       .merge(this.broadcastMoreObservable())
@@ -63,7 +64,7 @@ export class BroadcastsShowComponent {
       .do(list => this.hasMore = !!list.links.next)
       .map(list => list.entries)
       .map(broadcasts => this.buildMonthlyBroadcasts(broadcasts))
-      .do(_ => { this.loading = false; this.fetchingMore = false })
+      .do(_ => { this.loading = false; this.fetchingMore = false; })
       .subscribe(this.monthlyBroadcasts);
 
     this.dateWithTimeSub = this.route.params
@@ -74,7 +75,7 @@ export class BroadcastsShowComponent {
         this.title = show.attributes.name;
         this.details = show.attributes.details;
         window.scrollTo(0, 0);
-      })
+      });
   }
 
   ngOnDestroy() {
@@ -112,7 +113,7 @@ export class BroadcastsShowComponent {
   }
 
   isExpanded(broadcast: BroadcastModel): boolean {
-    return this.dateWithTime && broadcast.isCovering(this.dateWithTime);
+    return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
   }
 
   private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
@@ -127,20 +128,20 @@ export class BroadcastsShowComponent {
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
     return this.fetchMore
       .withLatestFrom(this.broadcastList, (_, list) => list)
-      .distinctUntilChanged(null, list => list.links.next)
-      .do(_ => this.fetchingMore = true)
-      .switchMap(list =>
+      .distinctUntilChanged((a: CrudList<BroadcastModel>, b: CrudList<BroadcastModel>) =>
+        a.links.next === b.links.next
+      )
+      .do(() => this.fetchingMore = true)
+      .switchMap((list: CrudList<BroadcastModel>) =>
         this.broadcastsService
           .getNextEntries(list)
           .do(_ => this.errorMessage = undefined)
           .catch(this.handleListError.bind(this)));
   }
 
-  private getDateWithTime(params: RouteParams): Date {
+  private getDateWithTime(params: RouteParams): Date | void {
     if (params['time'] && params['time'].length >= 4) {
       return DateParamsService.timeFromParams(params);
-    } else {
-      return undefined;
     }
   }
 

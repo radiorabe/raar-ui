@@ -1,8 +1,8 @@
-import {Http, Headers, RequestOptions, Response, URLSearchParams} from '@angular/http';
-import {Observable} from "rxjs/Observable";
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {CrudModel} from '../models/crud.model';
-import {CrudList} from '../models/crud_list';
+import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { CrudModel } from '../models/crud.model';
+import { CrudList } from '../models/crud_list';
 import 'rxjs/add/operator/map';
 
 export class CrudService<T extends CrudModel> {
@@ -37,7 +37,7 @@ export class CrudService<T extends CrudModel> {
   get(entity: T): Observable<T>;
   get(entity: any): Observable<T> {
     let id: number;
-    if (typeof entity == "number") {
+    if (typeof entity === 'number') {
       id = entity;
       entity = this.buildEntity();
     } else {
@@ -48,15 +48,13 @@ export class CrudService<T extends CrudModel> {
       .catch(this.handleHttpError.bind(this));
   }
 
-  create(entity: T, entityToUpdate?: T): Observable<T> {
-    if (entityToUpdate === undefined) entityToUpdate = entity;
+  create(entity: T, entityToUpdate: T = entity): Observable<T> {
     return this.http.post(this.baseUrl, this.rootedJson(entity), this.options)
       .map(res => this.updateEntityFromResponse(res, entityToUpdate))
       .catch(this.handleHttpError.bind(this));
   }
 
-  update(entity: T, entityToUpdate?: T): Observable<T> {
-    if (entityToUpdate === undefined) entityToUpdate = entity;
+  update(entity: T, entityToUpdate: T = entity): Observable<T> {
     return this.http.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity), this.options)
       .map(res => this.updateEntityFromResponse(res, entityToUpdate))
       .catch(this.handleHttpError.bind(this));
@@ -71,7 +69,7 @@ export class CrudService<T extends CrudModel> {
   protected rootedJson(entity: T): string {
     let data: any = {};
     data['data'] = entity;
-    return JSON.stringify(data)
+    return JSON.stringify(data);
   }
 
   protected buildListFromResponse<R extends CrudModel>(res: Response, builder: () => R): CrudList<R> {
@@ -89,16 +87,22 @@ export class CrudService<T extends CrudModel> {
 
   protected copyAttributes<R extends CrudModel>(source: any, dest: R): R {
     Object.assign(dest, source);
-    dest.init()
+    dest.init();
     return dest;
   }
 
-  protected buildEntity(): T { return null; }
+  protected buildEntity(): T {
+    throw new Error(`${this.constructor.name}#buildEntity() is not implemented`);
+  }
 
   protected handleHttpError(res: Response): Observable<string> {
     let json: any = {};
-    try { json = res.json(); } catch (e) { }
-    const message = json.error || json.errors || res.status;
+    try {
+      json = res.json();
+    } catch (e) {
+      console.error(e);
+    }
+    const message = json.error || json.errors || res.status;
     return Observable.throw(message);
   }
 

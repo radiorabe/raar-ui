@@ -1,5 +1,4 @@
 import * as gulp from 'gulp';
-import * as merge from 'merge-stream';
 import { join } from 'path';
 
 var tar = require('gulp-tar');

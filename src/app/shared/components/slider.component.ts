@@ -1,7 +1,5 @@
-import {Component, Input, Output, Renderer, ElementRef, EventEmitter, ContentChildren,
-        ViewChild, QueryList, ViewContainerRef} from '@angular/core'
-import {ISubscription} from 'rxjs/Subscription';
-
+import { Component, Input, Output, Renderer, ElementRef, EventEmitter,
+         ViewChild } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -40,13 +38,13 @@ export class SliderComponent {
     return this.stopEvent(e);
   }
 
-  onClick(e: any) {
-    this.slidingEvent.emit(this.updateValue(e))
+  onClick(e: Event) {
+    this.slidingEvent.emit(this.updateValue(e));
     return this.stopEvent(e);
   }
 
-  private handleSliding(e: any) {
-    if (this.isTouchDevice() && e.touches) {
+  private handleSliding(e: Event | Touch) {
+    if (this.isTouchDevice() && e instanceof TouchEvent) {
       e = e.touches[0];
     }
 
@@ -57,7 +55,7 @@ export class SliderComponent {
     } else {
       window.clearTimeout(this.dragTimer);
       this.dragTimer = window.setTimeout(() => {
-        this.slidingEvent.emit(this.updateValue(e))
+        this.slidingEvent.emit(this.updateValue(e));
       }, 20);
     }
     this.lastMove = d;
@@ -65,18 +63,18 @@ export class SliderComponent {
     return this.stopEvent(e);
   }
 
-  private stopSliding(e: any) {
-    document.onmousemove = null;
-    document.ontouchmove = null;
-    document.onmouseup = null;
-    document.ontouchend = null;
+  private stopSliding(e: Event) {
+    document.onmousemove = () => {}; // tslint:disable-line
+    document.ontouchmove = () => {}; // tslint:disable-line
+    document.onmouseup = () => {}; // tslint:disable-line
+    document.ontouchend = () => {}; // tslint:disable-line
 
     this.stopSlidingEvent.emit(this.updateValue(e));
 
     return this.stopEvent(e);
   }
 
-  private updateValue(e: any): number {
+  private updateValue(e: Event | Touch): number {
     this.value = this.calculatePercent(e);
     this.updateView();
     return this.value;
@@ -94,10 +92,9 @@ export class SliderComponent {
     if (element.offsetParent) {
       while (element.offsetParent) {
         curleft += element.offsetLeft;
-        element = element.offsetParent;
+        element = element.offsetParent as HTMLElement;
       }
-    }
-    else if (element.x) {
+    } else if (element.x) {
       curleft += element.x;
     }
     return curleft;
@@ -119,6 +116,6 @@ export class SliderComponent {
   }
 
   private isTouchDevice(): boolean {
-    return !!navigator.userAgent.match(/ipad|ipod|iphone/i);
+    return /ipad|ipod|iphone/i.test(navigator.userAgent);
   }
 }
