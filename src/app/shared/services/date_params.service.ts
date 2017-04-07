@@ -26,7 +26,7 @@ export const DateParamsService = {
            '/' +
            this.zeroPad(date.getHours()) +
            this.zeroPad(date.getMinutes()) +
-           this.zeroPad(date.getSeconds())
+           this.zeroPad(date.getSeconds());
   },
 
   convertTimeToParam(date: Date): string {
@@ -38,4 +38,4 @@ export const DateParamsService = {
     return ('0' + n).slice(-2);
   },
 
-}
+};

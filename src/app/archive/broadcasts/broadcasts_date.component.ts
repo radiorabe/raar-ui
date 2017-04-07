@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {ISubscription} from 'rxjs/Subscription';
-import {CrudList} from '../../shared/models/crud_list';
-import {BroadcastModel} from '../../shared/models/broadcast.model';
-import {BroadcastsService} from '../../shared/services/broadcasts.service';
-import {DateParamsService, RouteParams} from '../../shared/services/date_params.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { ISubscription } from 'rxjs/Subscription';
+import { CrudList } from '../../shared/models/crud_list';
+import { BroadcastModel } from '../../shared/models/broadcast.model';
+import { BroadcastsService } from '../../shared/services/broadcasts.service';
+import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
 import * as moment from 'moment/moment';
 
 @Component({
@@ -13,13 +13,13 @@ import * as moment from 'moment/moment';
   selector: 'sd-broadcasts-date',
   templateUrl: 'broadcasts_date.html'
 })
-export class BroadcastsDateComponent {
+export class BroadcastsDateComponent implements OnInit, OnDestroy {
 
   date: Date;
-  dateWithTime: Date;
+  dateWithTime: Date | void;
   broadcasts: BroadcastModel[] = [];
   loading: boolean = false;
-  errorMessage: string;
+  errorMessage: string | void;
 
   private dateSub: ISubscription;
   private dateWithTimeSub: ISubscription;
@@ -38,17 +38,17 @@ export class BroadcastsDateComponent {
     this.dateWithTimeSub = paramsObservable
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
     this.broadcastsSub = dateObservable
-      .distinctUntilChanged(null, date => date.getTime())
-      .do(_ => this.loading = true)
+      .distinctUntilChanged(null, (date: Date) => date.getTime())
+      .do(() => this.loading = true)
       .debounceTime(200)
-      .switchMap(date =>
+      .switchMap((date: Date) =>
         this.broadcastsService
           .getListForDate(date)
           .do(_ => this.errorMessage = undefined)
           .catch(this.handleHttpError.bind(this)))
       .map((list: CrudList<BroadcastModel>) => list.entries)
-      .do(_ => this.loading = false)
-      .subscribe(list => this.broadcasts = list);
+      .do(() => this.loading = false)
+      .subscribe((list: BroadcastModel[]) => this.broadcasts = list);
   }
 
   ngOnDestroy() {
@@ -76,7 +76,7 @@ export class BroadcastsDateComponent {
   }
 
   isExpanded(broadcast: BroadcastModel): boolean {
-    return this.dateWithTime && broadcast.isCovering(this.dateWithTime);
+    return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
   }
 
   private navigateTo(date: Date) {
@@ -91,11 +91,9 @@ export class BroadcastsDateComponent {
     }
   }
 
-  private getDateWithTime(params: RouteParams): Date {
+  private getDateWithTime(params: RouteParams): Date | void {
     if (params['time'] && params['time'].length >= 4) {
       return DateParamsService.timeFromParams(params);
-    } else {
-      return undefined;
     }
   }
 

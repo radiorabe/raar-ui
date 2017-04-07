@@ -1,5 +1,6 @@
 {
   "extends": "./tools/config/seed.tslint.json",
   "rules": {
+    "no-output-rename": 0
   }
 }

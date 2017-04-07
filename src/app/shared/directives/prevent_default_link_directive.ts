@@ -1,4 +1,4 @@
-import {HostListener, Directive, Input} from '@angular/core';
+import { HostListener, Directive, Input } from '@angular/core';
 
 @Directive({
   selector: '[href]'

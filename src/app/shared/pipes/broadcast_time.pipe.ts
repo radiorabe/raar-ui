@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
-import {BroadcastModel} from '../models/broadcast.model';
+import { BroadcastModel } from '../models/broadcast.model';
 
 @Pipe({name: 'broadcastTime'})
 export class BroadcastTimePipe implements PipeTransform {
@@ -12,9 +12,9 @@ export class BroadcastTimePipe implements PipeTransform {
   }
 
   private startFormat(format: string): string {
-    if (format == 'time') {
+    if (format === 'time') {
       return 'HH:mm';
-    } else if (format == 'full') {
+    } else if (format === 'full') {
       return 'dd DD.MM.YYYY HH:mm';
     } else {
       return 'dd DD.MM. HH:mm';

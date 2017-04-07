@@ -1,4 +1,4 @@
-import {CrudModel} from './crud.model';
+import { CrudModel } from './crud.model';
 
 export class UserModel extends CrudModel {
 
@@ -10,11 +10,11 @@ export class UserModel extends CrudModel {
     api_token: string;
     api_key_expires_at: Date;
     admin: boolean;
-  }
+  };
 
   toString(): string {
-    return this.attributes.first_name || 
-           this.attributes.last_name || 
+    return this.attributes.first_name ||
+           this.attributes.last_name ||
            this.attributes.username;
   }
 }
