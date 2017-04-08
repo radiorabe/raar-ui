@@ -3,7 +3,7 @@
 <div style="display:inline-block;">
   <datepicker [(ngModel)]="date"
               [showWeeks]="false"
-              [maxDate]="today()"
+              [maxDate]="today$ | async"
               [startingDay]="1"
               [minMode]="getMode()">
   </datepicker>
