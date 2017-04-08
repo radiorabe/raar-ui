@@ -60,10 +60,6 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     return 'day';
   }
 
-  public today(): Date {
-    return new Date();
-  }
-
   private setDateFromRoute() {
     const state = <any>this.router.routerState;
     const dateRoute = state.firstChild(state.firstChild(state.root));
