@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
 import { AudioFilesService, AuthService, DateParamsService } from '../../shared/services/index';
@@ -45,7 +45,11 @@ export class BroadcastComponent implements OnInit {
   }
 
   download(audio: AudioFileModel) {
-    (<any>window).location = audio.attributes.url + '?download=true';
+    (<any>window).location =
+      (isDevMode() ? '/api' : '') +
+      audio.attributes.url +
+      '?download=true&api_token=' +
+       this.auth.apiToken;
   }
 
   get audioFiles(): AudioFileModel[] | void {

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
 import { CrudService } from './crud.service';
 import { DateParamsService } from './date_params.service';
 import { BroadcastModel, ShowModel, CrudList } from '../models/index';
 import { Observable } from 'rxjs/Observable';
+import { RemoteService } from './remote.service';
 
 @Injectable()
 export class BroadcastsService extends CrudService<BroadcastModel> {
 
-  constructor(http: Http) {
-    super(http, '/api/broadcasts');
+  constructor(remote: RemoteService) {
+    super(remote, '/api/broadcasts');
   }
 
   getListForShow(show: ShowModel): Observable<CrudList<BroadcastModel>> {
@@ -17,15 +18,13 @@ export class BroadcastsService extends CrudService<BroadcastModel> {
   }
 
   getListForDate(date: Date): Observable<CrudList<BroadcastModel>> {
-    return this.http.get(this.baseUrl + DateParamsService.convertDateToPath(date), this.options)
-      .map(res => this.buildListFromResponse(res, this.buildEntity))
-      .catch(this.handleHttpError.bind(this));
+    return this.remote.get(this.baseUrl + DateParamsService.convertDateToPath(date))
+      .map(res => this.buildListFromResponse(res, this.buildEntity));
   }
 
-  getForTime(date: Date): Observable<BroadcastModel> {
-    return this.http.get(this.baseUrl + DateParamsService.convertTimeToPath(date), this.options)
-      .map(res => this.buildBroadcastFromResponse(res))
-      .catch(this.handleHttpError.bind(this));
+  getForTime(date: Date): Observable<BroadcastModel | void> {
+    return this.remote.get(this.baseUrl + DateParamsService.convertTimeToPath(date))
+      .map(res => this.buildBroadcastFromResponse(res));
   }
 
   protected buildEntity(): BroadcastModel {

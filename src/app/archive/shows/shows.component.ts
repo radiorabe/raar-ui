@@ -30,17 +30,17 @@ export class ShowsComponent {
       .debounceTime(200)
       .filter((q: string) => q.length === 0 || q.length > 2)
       .distinctUntilChanged()
-      .switchMap(this.fetchShows.bind(this));
+      .switchMap(q => this.fetchShows(q));
   }
 
   private fetchShows(q: string): Observable<ShowModel[]> {
-    let observable = this.showService
+    let observable: Observable<ShowModel[]> = this.showService
       .getList(this.fetchParams(q))
       .map(list => list.entries)
       .catch(_ => Observable.of([]));
     if (q.length === 0) {
       // sort shows by name as we get them ordered by last_broadcast_at.
-      observable = observable.map(this.sortByName.bind(this));
+      observable = observable.map(list => this.sortByName(list));
     }
     return observable;
   }

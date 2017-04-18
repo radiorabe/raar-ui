@@ -15,7 +15,6 @@
 <div class="list-group" [class.loading]="loading">
   <sd-broadcast *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier"
                 [broadcast]="broadcast"
-                [dateFormat]="'time'"
                 [view]="'date'"
                 [expanded]="isExpanded(broadcast)">
   </sd-broadcast>

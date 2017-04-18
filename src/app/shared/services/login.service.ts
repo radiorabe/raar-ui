@@ -9,10 +9,13 @@ export class LoginService  {
 
   constructor(protected http: Http) {}
 
-  get(): Observable<UserModel> {
-    const options = this.httpOptions({ 'Content-Type': 'application/vnd.api+json' });
+  get(token: string): Observable<UserModel> {
+    const options = this.httpOptions({
+      'Content-Type': 'application/vnd.api+json',
+      'Authorization': 'Token token="' + token + '"'
+    });
     return this.http.get('/api/login', options)
-      .map(this.setUserFromResponse.bind(this));
+      .map(res => this.setUserFromResponse(res));
   }
 
   post(username: string, password: string): Observable<UserModel> {
@@ -22,7 +25,7 @@ export class LoginService  {
     const options = this.httpOptions({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
     return this.http.post('/api/login', body.toString(), options)
-      .map(this.setUserFromResponse.bind(this));
+      .map(res => this.setUserFromResponse(res));
   }
 
   private httpOptions(headers: any): RequestOptions {

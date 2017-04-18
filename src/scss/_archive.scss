@@ -97,20 +97,39 @@ sd-broadcast {
     p:last-child {
       margin-bottom: 0px;
     }
+
+    .table-condensed  tr > td {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
-  .broadcast-date-standard, .broadcast-date-time {
+  .broadcast-date, .broadcast-date {
     margin-right: $padding-base-horizontal;
     text-align: right;
     display: inline-block;
   }
 
-  .broadcast-date-standard {
-    min-width: 170px;
+  .view-date {
+    .list-group-item-heading {
+      padding-left: 116px;
+      text-indent: -116px;
+    }
+
+    .broadcast-date {
+      min-width: 100px;
+    }
   }
 
-  .broadcast-date-time {
-     min-width: 100px;
+  .view-show {
+    .list-group-item-heading {
+      padding-left: 186px;
+      text-indent: -186px;
+    }
+
+    .broadcast-date {
+      min-width: 170px;
+    }
   }
 
 }

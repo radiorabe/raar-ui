@@ -1,35 +1,31 @@
-import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CrudModel } from '../models/crud.model';
 import { CrudList } from '../models/crud_list';
+import { RemoteService } from './remote.service';
 import 'rxjs/add/operator/map';
 
 export class CrudService<T extends CrudModel> {
 
-  protected headers = new Headers({'Content-Type': 'application/vnd.api+json'});
-  protected options = new RequestOptions({headers: this.headers});
-
-  constructor(protected http: Http, public baseUrl: string) {}
+  constructor(protected remote: RemoteService, public baseUrl: string) {}
 
   getList(params?: any): Observable<CrudList<T>> {
-    return this.http.get(this.baseUrl, this.buildUrlOptions(params))
-      .map(res => this.buildListFromResponse(res, this.buildEntity))
-      .catch(this.handleHttpError.bind(this));
+    return this.remote.get(this.baseUrl, this.buildUrlOptions(params))
+      .map(res => this.buildListFromResponse(res, this.buildEntity));
   }
 
   getNextEntries(list: CrudList<T>): Observable<CrudList<T>> {
     if (list.links.next === undefined) return new BehaviorSubject<CrudList<T>>(list);
 
-    return this.http.get(list.links.next, this.options)
+    return this.remote.get(list.links.next)
       .map(res => this.buildListFromResponse(res, this.buildEntity))
       .map(res => {
         res.links.prev = list.links.prev;
         res.entries = list.entries.concat(res.entries);
         res.included = list.included.concat(res.included);
         return res;
-      })
-      .catch(this.handleHttpError.bind(this));
+      });
   }
 
   // load a new entity by id or reload an existing one
@@ -43,27 +39,23 @@ export class CrudService<T extends CrudModel> {
     } else {
       id = entity.id;
     }
-    return this.http.get(`${this.baseUrl}/${id}`, this.options)
-      .map(res => this.updateEntityFromResponse(res, entity))
-      .catch(this.handleHttpError.bind(this));
+    return this.remote.get(`${this.baseUrl}/${id}`)
+      .map(res => this.updateEntityFromResponse(res, entity));
   }
 
   create(entity: T, entityToUpdate: T = entity): Observable<T> {
-    return this.http.post(this.baseUrl, this.rootedJson(entity), this.options)
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate))
-      .catch(this.handleHttpError.bind(this));
+    return this.remote.post(this.baseUrl, this.rootedJson(entity))
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
   }
 
   update(entity: T, entityToUpdate: T = entity): Observable<T> {
-    return this.http.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity), this.options)
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate))
-      .catch(this.handleHttpError.bind(this));
+    return this.remote.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity))
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
   }
 
   remove(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`, this.options)
-      .map(res => res)
-      .catch(this.handleHttpError.bind(this));
+    return this.remote.delete(`${this.baseUrl}/${id}`)
+      .map(res => res);
   }
 
   protected rootedJson(entity: T): string {
@@ -95,21 +87,10 @@ export class CrudService<T extends CrudModel> {
     throw new Error(`${this.constructor.name}#buildEntity() is not implemented`);
   }
 
-  protected handleHttpError(res: Response): Observable<string> {
-    let json: any = {};
-    try {
-      json = res.json();
-    } catch (e) {
-      console.error(e);
-    }
-    const message = json.error || json.errors || res.status;
-    return Observable.throw(message);
-  }
-
   private buildUrlOptions(params?: any): RequestOptions {
     const search = new URLSearchParams();
     for (const k in params) search.append(k, params[k]);
-    return new RequestOptions({ search: search, headers: this.headers });
+    return new RequestOptions({ search: search });
   }
 
 }

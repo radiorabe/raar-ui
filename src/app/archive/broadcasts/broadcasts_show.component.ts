@@ -122,7 +122,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
         this.broadcastsService
           .getListForShow(show)
           .do(_ => this.errorMessage = undefined)
-          .catch(this.handleListError.bind(this)));
+          .catch(msg => this.handleListError(msg)));
   }
 
   private broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
@@ -136,7 +136,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
         this.broadcastsService
           .getNextEntries(list)
           .do(_ => this.errorMessage = undefined)
-          .catch(this.handleListError.bind(this)));
+          .catch(msg => this.handleListError(msg)));
   }
 
   private getDateWithTime(params: RouteParams): Date | void {

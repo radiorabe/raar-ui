@@ -1,27 +1,32 @@
-<div class="list-group-item">
+<div class="list-group-item view-{{view}}">
   <h4 class="list-group-item-heading title" (click)="toggle()">
     <a>
-      <span class="broadcast-date-{{dateFormat}}">{{broadcast | broadcastTime: dateFormat}}</span>
+      <span class="broadcast-date">
+        {{broadcast | broadcastTime: (view === 'show' ? 'standard' : 'time')}}
+      </span>
       {{broadcast.attributes.label}}
     </a>
   </h4>
 
   <div class="list-group-item-text fixclear" *ngIf="expanded">
-    <ul class="list-unstyled pull-right">
-      <li *ngFor="let audio of audioFiles">
-        <a (click)="play(audio)">
-          <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-          {{audio.attributes.codec | uppercase}}
-          {{audio.attributes.playback_format}}
-          ({{audio.attributes.bitrate}}k {{audio.attributes.channels == 2 ? 'stereo' : 'mono'}})
-        </a>
-        &nbsp;
-        <a *ngIf="auth.isLoggedIn" (click)="download(audio)">
-          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-          Download
-        </a>
-      </li>
-    </ul>
+    <table class="table-condensed pull-right">
+      <tr *ngFor="let audio of audioFiles">
+        <td>
+          <a (click)="play(audio)">
+            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+            {{audio.attributes.codec | uppercase}}
+            {{audio.attributes.playback_format}}
+            ({{audio.attributes.bitrate}}k {{audio.attributes.channels == 2 ? 'stereo' : 'mono'}})
+          </a>
+        </td>
+        <td>
+          <a *ngIf="auth.isLoggedIn" (click)="download(audio)">
+            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+            Download
+          </a>
+        </td>
+      </tr>
+    </table>
     <div class="pull-right" *ngIf="loading">
       <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
     </div>
@@ -30,8 +35,8 @@
       Keine Aufnahme vorhanden
     </div>
 
-    <p *ngIf="broadcast.attributes.details">{{broadcast.attributes.details}}</p>
-    <p *ngIf="broadcast.attributes.people">{{broadcast.attributes.people}}</p>
+    <p *ngIf="broadcast.attributes.details" [innerHtml]="broadcast.attributes.details"></p>
+    <p *ngIf="broadcast.attributes.people" [innerHtml]="broadcast.attributes.people"></p>
     <p *ngIf="view == 'date'">
       <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
     </p>

@@ -20,7 +20,7 @@
     <ng-content select="nav"></ng-content>
 
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!auth.isLoggedIn && false">
+      <li *ngIf="!auth.isLoggedIn">
         <a (click)="login.show()"><small>Login</small></a>
       </li>
       <li *ngIf="auth.isLoggedIn" class="navbar-text">
