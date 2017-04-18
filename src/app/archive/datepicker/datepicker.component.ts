@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-const TODAY_UPDATE_INTERVAL = 5000;
+const TODAY_UPDATE_INTERVAL = 60000;
 
 @Component({
   moduleId: module.id,
@@ -52,7 +52,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     this._date = date;
 
     if (date !== undefined) {
-      this.router.navigate([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+      this.navigateToDate(date);
     }
   }
 
@@ -77,6 +77,21 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     } else {
       this._date = undefined;
     }
+  }
+
+  private navigateToDate(date: Date) {
+    const url = this.dateRoute.snapshot.url.map(e => e.path);
+    const year = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString();
+    const day = date.getDate().toString();
+    if (url[0] !== year || url[1] !== month || url[2] !== day) {
+      this.router.navigate([year, month, day]);
+    }
+  }
+
+  private get dateRoute(): ActivatedRoute {
+    var state = <any>this.router.routerState;
+    return state.firstChild(state.firstChild(state.root));
   }
 
 }

@@ -70,10 +70,14 @@ export class BroadcastComponent implements OnInit {
 
   private navigateToSelf(queryParams: any = {}) {
     if (!this.broadcastRoute) return;
-    const url = this.broadcastRoute.snapshot.url.map(e => e.path);
+    let url = this.broadcastRoute.snapshot.url.map(e => e.path);
     const date = this.broadcast.attributes.started_at;
     queryParams['time'] = DateParamsService.convertTimeToParam(date);
-    if (url[0] === 'show') {
+    if (url.length === 0) { // root page
+      url = [date.getFullYear().toString(),
+             (date.getMonth() + 1).toString(),
+             date.getDate().toString()];
+    } else if (url[0] === 'show') {
       queryParams['year'] = date.getFullYear();
       queryParams['month'] = date.getMonth() + 1;
       queryParams['day'] = date.getDate();
