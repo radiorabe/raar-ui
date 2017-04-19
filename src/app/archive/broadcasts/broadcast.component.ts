@@ -73,11 +73,7 @@ export class BroadcastComponent implements OnInit {
     let url = this.broadcastRoute.snapshot.url.map(e => e.path);
     const date = this.broadcast.attributes.started_at;
     queryParams['time'] = DateParamsService.convertTimeToParam(date);
-    if (url.length === 0) { // root page
-      url = [date.getFullYear().toString(),
-             (date.getMonth() + 1).toString(),
-             date.getDate().toString()];
-    } else if (url[0] === 'show') {
+    if (url[0] === 'show') {
       queryParams['year'] = date.getFullYear();
       queryParams['month'] = date.getMonth() + 1;
       queryParams['day'] = date.getDate();

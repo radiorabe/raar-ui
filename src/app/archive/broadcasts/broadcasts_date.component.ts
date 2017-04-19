@@ -87,7 +87,9 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     if (params['year']) {
       return DateParamsService.dateFromParams(params);
     } else {
-      return new Date(new Date().setHours(0, 0, 0, 0));
+      const today = new Date(new Date().setHours(0, 0, 0, 0));
+      this.navigateTo(today);
+      return today;
     }
   }
 
