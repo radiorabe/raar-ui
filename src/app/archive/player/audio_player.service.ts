@@ -65,11 +65,14 @@ export class AudioPlayerService {
     if (this._audio) {
       this._audio.setVolume(vol);
     }
-    console.log(vol);
   }
 
   get playing(): boolean {
     return this._audio && this._audio.playState === 1 && !this._audio.paused;
+  }
+
+  get loading(): boolean {
+    return this._audio && this._audio.readyState === 1;
   }
 
   get currentTime(): string {

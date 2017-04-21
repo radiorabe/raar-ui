@@ -18,7 +18,7 @@ export class AudioFilesService extends CrudService<AudioFileModel> {
   }
 
   buildUrl(time: Date, playbackFormat: string, codec: string): string {
-    return this.baseUrl +
+    return '/audio_files' +
            DateParamsService.convertTimeToPath(time) +
            '_' + playbackFormat +
            '.' + codec;

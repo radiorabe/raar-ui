@@ -8,6 +8,15 @@
               [class.glyphicon-pause]="player.playing">
         </span>
       </a>
+
+      <div class="circle-loading" *ngIf="player.loading">
+        <div class="spinner">
+          <div class="mask">
+            <div class="maskedCircle">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div *ngIf="audioFile">
