@@ -100,7 +100,7 @@ export class PlayerComponent implements OnInit {
     const model = new AudioFileModel();
     model.attributes.codec = codec;
     model.attributes.playback_format = playbackFormat;
-    model.attributes.url = this.audioFilesService.buildUrl(time, playbackFormat, codec);
+    model.links.play = this.audioFilesService.buildUrl(time, playbackFormat, codec);
     model.relationships.broadcast = broadcast;
     return model;
   }

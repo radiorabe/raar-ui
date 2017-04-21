@@ -21,7 +21,7 @@ export class AudioPlayerService {
         position.getTime() - this._audioFile.relationships.broadcast!.attributes.started_at.getTime() :
         0;
       this._audio = (<any>window).soundManager.createSound({
-        url: (isDevMode() ? '/api' : '') + audioFile.attributes.url,
+        url: (isDevMode() ? '/api' : '') + audioFile.links.play,
         volume: this._volume,
         position: pos,
         autoLoad: true,

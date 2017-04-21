@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
-import { AudioFilesService, AuthService, DateParamsService } from '../../shared/services/index';
+import { AudioFilesService, DateParamsService } from '../../shared/services/index';
 import { AudioPlayerService } from '../player/audio_player.service';
 
 
@@ -20,7 +20,6 @@ export class BroadcastComponent implements OnInit {
   loading: boolean = false;
 
   constructor(public audioPlayer: AudioPlayerService,
-              public auth: AuthService,
               private audioFilesService: AudioFilesService,
               private router: Router) {
   }
@@ -45,11 +44,7 @@ export class BroadcastComponent implements OnInit {
   }
 
   download(audio: AudioFileModel) {
-    (<any>window).location =
-      (isDevMode() ? '/api' : '') +
-      audio.attributes.url +
-      '?download=true&api_token=' +
-       this.auth.apiToken;
+    (<any>window).location = (isDevMode() ? '/api' : '') + audio.links.download;
   }
 
   get audioFiles(): AudioFileModel[] | void {

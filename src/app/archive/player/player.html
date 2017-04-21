@@ -9,7 +9,7 @@
         </span>
       </a>
 
-      <div class="circle-loading" *ngIf="player.loading">
+      <div class="circle-loading" *ngIf="player.loading" (click)="togglePlay()">
         <div class="spinner">
           <div class="mask">
             <div class="maskedCircle">
