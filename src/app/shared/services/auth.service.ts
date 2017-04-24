@@ -3,7 +3,7 @@ import { Headers } from '@angular/http';
 import { LoginService } from './login.service';
 import { UserModel } from '../models/index';
 
-const API_TOKEN_KEY = 'api-token';
+const API_TOKEN_KEY = 'api_token';
 
 @Injectable()
 export class AuthService {
@@ -38,12 +38,24 @@ export class AuthService {
   }
 
   private getToken(key: string): string {
-    return window.localStorage.getItem(key) || '';
+    try {
+      return window.localStorage.getItem(key) || '';
+    } catch (e) {
+      if (this.user) {
+        return (<any>this.user.attributes)[key] || '';
+      } else {
+        return '';
+      }
+    }
   }
 
   private storeToken(key: string, value: string) {
     if (!value) return;
-    window.localStorage.setItem(key, value);
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (e) {
+      // no local storage, no problem
+    }
   }
 
   private checkAuth() {
