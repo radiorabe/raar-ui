@@ -18,18 +18,11 @@ $ yarn install  # or yarn
 
 # watches your files and uses livereload by default
 $ npm start
-# api document for the app
-npm run build.docs
 
-# to start deving with livereload site and coverage as well as continuous testing
-$ npm run start.deving
-
-# dev build
-$ npm run build.dev
 # prod build
 $ npm run build.prod
 # prod build with AoT compilation
-$ npm run build.prod.exp
+$ npm run build.prod.rollup.aot
 ```
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).
@@ -37,14 +30,13 @@ The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed
 To update from there:
 
 ```
-git remote add seed https://github.com/mgechev/angular2-seed.git
-git pull seed master
+$ ./upgrade-seed.sh
 ```
 
 ## License
 
-RAAR-UI is released under the terms of the GNU Affero General Public License.
-Copyright 2016 Radio Rabe.
+raar-ui is released under the terms of the GNU Affero General Public License.
+Copyright 2016-2017 Radio RaBe.
 See `LICENSE` for further information.
 
 angular-seed is licensed under MIT.

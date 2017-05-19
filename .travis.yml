@@ -4,22 +4,23 @@ node_js: stable
 
 sudo: false
 
+install: true  # yarn bug
+
 addons:
-  firefox: '39.0'
+  firefox: "45.0"
 
 os:
- - linux
+  - linux
+#  - osx
 
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
 
 before_script:
-  # rebuild native npm packages, in case the builder architecture
-  # or node version changed.
-  - npm rebuild
-  - sh -e /etc/init.d/xvfb start
-  - nohup bash -c "webdriver-manager start 2>&1 &"
+  - npm install
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then nohup bash -c "webdriver-manager start 2>&1 &"; fi  # Protractor CI
 
 after_failure:
   - cat /home/travis/build/radiorabe/raar-ui/npm-debug.log

@@ -2,10 +2,10 @@ import { CrudModel } from './crud.model';
 
 export class ShowModel extends CrudModel {
   public attributes: {
-    name: string | void;
+    name: string;
     details: string | void;
   } = {
-    name: undefined,
+    name: '',
     details: undefined
   };
 }

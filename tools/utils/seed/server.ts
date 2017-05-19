@@ -62,6 +62,10 @@ export function serveProd() {
   let root = resolve(process.cwd(), Config.PROD_DEST);
   let server = express();
 
+  for (let proxy of Config.PROXY_MIDDLEWARE) {
+    server.use(proxy);
+  }
+
   server.use(Config.APP_BASE, express.static(root));
 
   server.use(fallback('index.html', { root }));
@@ -69,4 +73,4 @@ export function serveProd() {
   server.listen(Config.PORT, () =>
     openResource('http://localhost:' + Config.PORT + Config.APP_BASE)
   );
-};
+}

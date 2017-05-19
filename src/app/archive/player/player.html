@@ -31,7 +31,7 @@
       </div>
       <sd-slider class="time-progress"
                  [value]="player.percent"
-                 (sliding)="player.seek($event)"></sd-slider>
+                 (slidingEvent)="player.seek($event)"></sd-slider>
       <div class="time-total">
         {{player.totalTime}}
       </div>

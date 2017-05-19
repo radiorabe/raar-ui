@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'moment';
 import { BroadcastModel } from '../models/broadcast.model';
+import * as moment from 'moment';
 
 @Pipe({name: 'broadcastTime'})
 export class BroadcastTimePipe implements PipeTransform {

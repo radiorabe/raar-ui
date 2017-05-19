@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
-import * as moment from 'moment';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
+import * as moment from 'moment';
 
 const TODAY_UPDATE_INTERVAL = 60000;
 
@@ -54,10 +53,6 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     if (date !== undefined) {
       this.navigateToDate(date);
     }
-  }
-
-  public getMode(): string {
-    return 'day';
   }
 
   private setDateFromRoute() {

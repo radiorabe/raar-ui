@@ -8,5 +8,4 @@ import './operators';
   templateUrl: 'app.html'
 })
 export class AppComponent {
-
 }

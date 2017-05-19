@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 
 import * as moment from 'moment';
 import 'moment/locale/de';
+
 moment.locale('de');
 (<any>window).soundManager.setup({ debugMode: false });
 
@@ -25,6 +26,5 @@ moment.locale('de');
     { provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>' }
   ],
   bootstrap: [AppComponent]
-
 })
 export class AppModule { }

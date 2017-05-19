@@ -10,9 +10,9 @@ import { Component, Input, Output, Renderer, ElementRef, EventEmitter,
 export class SliderComponent {
 
   @Input() value: number = 0;
-  @Output('slidingStart') startSlidingEvent = new EventEmitter<number>();
-  @Output('sliding') slidingEvent = new EventEmitter<number>();
-  @Output('slidingStop') stopSlidingEvent = new EventEmitter<number>();
+  @Output() startSlidingEvent = new EventEmitter<number>();
+  @Output() slidingEvent = new EventEmitter<number>();
+  @Output() stopSlidingEvent = new EventEmitter<number>();
 
   @ViewChild('handle') handleElement: ElementRef;
   @ViewChild('current') currentElement: ElementRef;

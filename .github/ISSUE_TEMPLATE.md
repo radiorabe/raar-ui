@@ -17,7 +17,7 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOU
 
 **Minimal reproduction of the problem with instructions**
 <!--
-If the current behavior is a bug or you can illustrate your feature request better with an example, 
+If the current behavior is a bug or you can illustrate your feature request better with an example,
 please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem.
 -->
 
@@ -27,7 +27,7 @@ please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the 
 **Please tell us about your environment:**
 <!-- Operating system, IDE, package manager, HTTP server, ... -->
 
-* **Angular Seed Version:** 2.0.X
+* **Angular Seed Version:** `aaaaf75`
 <!-- Check which is the hash of the last commit from angular-seed that you have locally -->
 
 * **Node:** `node --version` =

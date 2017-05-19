@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { SeedConfig } from './seed.config';
+import { ExtendPackages } from './seed.config.interfaces';
 
 const proxy = require('proxy-middleware');
 
@@ -20,31 +21,16 @@ export class ProjectConfig extends SeedConfig {
   ];
   ARTIFACT_DEST = 'dist';
 
+  PROXY_MIDDLEWARE = proxy({
+    protocol: 'http:',
+    hostname: 'localhost',
+    port: 3000,
+    pathname: '/',
+    route: '/api'
+  });
+
   constructor() {
     super();
-
-    this.PLUGIN_CONFIGS['browser-sync'] = {
-      port: this.PORT,
-      startPath: this.APP_BASE,
-      server: {
-        baseDir: `${this.DIST_DIR}/empty/`,
-        middleware: [
-          proxy({
-            protocol: 'http:',
-            hostname: 'localhost',
-            port: 3000,
-            pathname: '/',
-            route: '/api'
-          }),
-          require('connect-history-api-fallback')({index: `${this.APP_BASE}index.html`})
-        ],
-        routes: {
-          [`${this.APP_BASE}${this.APP_DEST}`]: this.APP_DEST,
-          [`${this.APP_BASE}node_modules`]: 'node_modules',
-          [`${this.APP_BASE.replace(/\/$/,'')}`]: this.APP_DEST
-        }
-      }
-    };
 
     this.APP_TITLE = 'RaBe Archiv';
 
@@ -70,5 +56,51 @@ export class ProjectConfig extends SeedConfig {
     this.APP_ASSETS = [
       { src: `${this.CSS_SRC}/main.${this.getInjectableStyleExtension()}`, inject: true, vendor: false },
     ];
+
+    this.ROLLUP_INCLUDE_DIR = [
+      ...this.ROLLUP_INCLUDE_DIR,
+      'node_modules/moment/**',
+      'node_modules/ngx-bootstrap/**'
+    ];
+
+    this.ROLLUP_NAMED_EXPORTS = [
+      ...this.ROLLUP_NAMED_EXPORTS,
+      //{'node_modules/immutable/dist/immutable.js': [ 'Map' ]},
+    ];
+
+    // Add packages (e.g. ng2-translate)
+    let additionalPackages: ExtendPackages[] = [
+      // required for dev build
+      {
+        name: 'ngx-bootstrap',
+        path: 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
+      },
+
+      // required for prod build
+      {
+        name: 'ngx-bootstrap/*',
+        path: 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
+      },
+
+      {
+        name: 'moment',
+        path: 'node_modules/moment/min/moment-with-locales.min.js'
+      },
+
+      {
+        name: 'ngx-infinite-scroll',
+        path: 'node_modules/ngx-infinite-scroll/bundles/ngx-infinite-scroll.umd.min.js'
+      }
+    ];
+
+    this.addPackagesBundles(additionalPackages);
+
+    /* Add proxy middleware */
+    // this.PROXY_MIDDLEWARE = [
+    //   require('http-proxy-middleware')('/api', { ws: false, target: 'http://localhost:3003' })
+    // ];
+
+    /* Add to or override NPM module configurations: */
+    // this.PLUGIN_CONFIGS['browser-sync'] = { ghostMode: false };
   }
 }
