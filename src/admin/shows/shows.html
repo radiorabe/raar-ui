@@ -1,0 +1,31 @@
+<sd-layout>
+  <nav>
+    <ul class="nav navbar-nav">
+      <li role="presentation" class="active">
+        <a [routerLink]="['/shows']">Sendungen</a>
+      </li>
+      <li role="presentation">
+        <a [routerLink]="['/profiles']">Profile</a>
+      </li>
+      <li role="presentation">
+        <a href="#">Wiedergabeformate</a>
+      </li>
+    </ul>
+  </nav>
+  <aside>
+    <input type="text"
+           id="query"
+           class="form-control"
+           placeholder="Suchen... "
+           [formControl]="query" />
+
+    <div class="list-group">
+      <a *ngFor="let show of shows | async"
+         [routerLink]="['/shows', show.id]"
+         routerLinkActive="active"
+         class="list-group-item title">
+        {{show.attributes.name}}
+      </a>
+    </div>
+  </aside>
+</sd-layout>
