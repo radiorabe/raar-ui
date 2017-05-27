@@ -5,6 +5,7 @@ import { LoginService } from './login.service';
 import { LoginWindowService } from './login-window.service';
 import { UserModel } from '../models/index';
 import { Observable } from 'rxjs/Observable';
+import { zip } from 'rxjs/observable/zip';
 
 const API_TOKEN_KEY = 'api_token';
 const ADMIN_TOKEN_KEY = 'admin_token';
@@ -67,23 +68,29 @@ export class AuthService {
     return this.getToken(ADMIN_TOKEN_KEY);
   }
 
-  public addAuthToken(headers: Headers) {
+  addAuthToken(headers: Headers) {
     if (!headers.get('Authorization')) {
       headers.set('Authorization', 'Token token="' + this.apiToken + '"');
     }
   }
 
-  public addAdminAuthToken(headers: Headers) {
+  addAdminAuthToken(headers: Headers) {
     if (!headers.get('Authorization')) {
       headers.set('Authorization', 'Token token="' + this.adminToken + '"');
     }
   }
 
-  public resetUser() {
+  resetUser() {
     this._initialized = false;
     this._initializedAdmin = false;
     this._user = undefined;
     this.loginWindow.show();
+  }
+
+  logout() {
+    this._user = undefined;
+    this.clearToken(API_TOKEN_KEY);
+    this.clearToken(ADMIN_TOKEN_KEY);
   }
 
   private getToken(key: string): string {
@@ -102,6 +109,14 @@ export class AuthService {
     if (!value) return;
     try {
       window.localStorage.setItem(key, value);
+    } catch (e) {
+      // no local storage, no problem
+    }
+  }
+
+  private clearToken(key: string) {
+    try {
+      window.localStorage.removeItem(key);
     } catch (e) {
       // no local storage, no problem
     }
