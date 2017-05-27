@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { ShowsService } from '../../app/shared/services/shows.service';
-import { ShowModel } from '../../app/shared/models/show.model';
+import { ShowsService } from '../services/shows.service';
+import { ShowModel } from '../models/show.model';
 
 @Component({
   moduleId: module.id,
   selector: 'sd-shows',
-  templateUrl: 'shows.html'
+  templateUrl: 'shows.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShowsComponent {
 
