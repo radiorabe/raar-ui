@@ -33,7 +33,12 @@ export class AuthService {
     return this.getToken(API_TOKEN_KEY);
   }
 
-  public addAuthToken(headers: Headers) {
+  logout() {
+    this._user = undefined;
+    this.clearToken(API_TOKEN_KEY);
+  }
+
+  addAuthToken(headers: Headers) {
     headers.set('Authorization', 'Token token="' + this.getToken(API_TOKEN_KEY) + '"');
   }
 
@@ -53,6 +58,14 @@ export class AuthService {
     if (!value) return;
     try {
       window.localStorage.setItem(key, value);
+    } catch (e) {
+      // no local storage, no problem
+    }
+  }
+
+  private clearToken(key: string) {
+    try {
+      window.localStorage.removeItem(key);
     } catch (e) {
       // no local storage, no problem
     }
