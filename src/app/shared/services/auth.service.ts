@@ -8,7 +8,7 @@ const API_TOKEN_KEY = 'api_token';
 @Injectable()
 export class AuthService {
 
-  private _user: UserModel;
+  private _user: UserModel | void;
 
   private _initialized: boolean = false;
 
@@ -19,12 +19,12 @@ export class AuthService {
     return !!this._user;
   }
 
-  get user(): UserModel {
+  get user(): UserModel | void {
     this.checkAuth();
     return this._user;
   }
 
-  set user(user: UserModel) {
+  set user(user: UserModel | void) {
     this._user = user;
     this.storeToken(API_TOKEN_KEY, user.attributes.api_token);
   }
