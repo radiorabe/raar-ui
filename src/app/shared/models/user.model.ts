@@ -10,6 +10,7 @@ export class UserModel extends CrudModel {
     api_token: string;
     api_key_expires_at: Date;
     admin: boolean;
+    admin_token?: string;
   };
 
   toString(): string {

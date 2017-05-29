@@ -21,7 +21,7 @@
 
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!auth.isLoggedIn">
-        <a (click)="login.show()"><small>Login</small></a>
+        <a (click)="showLogin()"><small>Login</small></a>
       </li>
       <li *ngIf="auth.isLoggedIn" class="navbar-text">
         <small class="user">{{auth.user.toString()}}</small>
@@ -56,5 +56,3 @@
   </div>
 
 </div>
-
-<sd-login #login></sd-login>

@@ -3,12 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CrudModel } from '../models/crud.model';
 import { CrudList } from '../../../app/shared/models/crud_list';
-import { RemoteService } from '../../../app/shared/services/remote.service';
+import { AdminRemoteService } from './admin-remote.service';
 import 'rxjs/add/operator/map';
 
 export class CrudService<T extends CrudModel> {
 
-  constructor(protected remote: RemoteService, public baseUrl: string) {}
+  constructor(protected remote: AdminRemoteService, public baseUrl: string) {}
 
   getList(params?: any): Observable<CrudList<T>> {
     return this.remote.get(this.baseUrl, this.buildUrlOptions(params))

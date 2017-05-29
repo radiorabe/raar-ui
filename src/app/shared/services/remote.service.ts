@@ -19,21 +19,6 @@ export class RemoteService {
       .catch(res => this.handleError(res)) as Observable<Response>;
   }
 
-  post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.post(url, body, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
-  }
-
-  patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.patch(url, body, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
-  }
-
-  delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.delete(url, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
-  }
-
   protected handleError(res: Response): Observable<Response> {
     let json: any = {};
     try {
@@ -49,8 +34,12 @@ export class RemoteService {
     options = options || new RequestOptions();
     if (!options.headers) options.headers = new Headers();
     options.headers.set('Content-Type', 'application/vnd.api+json');
-    this.auth.addAuthToken(options.headers);
+    this.addAuthToken(options.headers);
     return options;
+  }
+
+  protected addAuthToken(headers: Headers) {
+    this.auth.addAuthToken(headers);
   }
 
 }
