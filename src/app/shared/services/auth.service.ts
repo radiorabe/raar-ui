@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers } from '@angular/http';
+import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { UserModel } from '../models/index';
 
@@ -13,7 +14,9 @@ export class AuthService {
 
   private _initialized: boolean = false;
 
-  constructor(private login: LoginService) {}
+  private _redirectURL: string | void;
+
+  constructor(private login: LoginService, private router: Router) {}
 
   get isLoggedIn(): boolean {
     this.checkAuth();
@@ -35,6 +38,14 @@ export class AuthService {
     if (user.attributes.admin_token) {
       this.storeToken(ADMIN_TOKEN_KEY, user.attributes.admin_token);
     }
+    if (this._redirectUrl) {
+      this.router.navigate([this._redirectUrl]);
+      this._redirectUrl = undefined;
+    }
+  }
+
+  set redirectUrl(url: string) {
+    this._redirectUrl = url;
   }
 
   get apiToken(): string {
