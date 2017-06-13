@@ -15,19 +15,7 @@ export class RemoteService {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.get(url, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
-  }
-
-  protected handleError(res: Response): Observable<Response> {
-    let json: any = {};
-    try {
-      json = res.json();
-    } catch (e) {
-      console.error(e);
-    }
-    const message = json.error || json.errors || res.status;
-    return Observable.throw(message);
+    return this.http.get(url, this.addRemoteHeaders(options));
   }
 
   protected addRemoteHeaders(options?: RequestOptionsArgs): RequestOptionsArgs {

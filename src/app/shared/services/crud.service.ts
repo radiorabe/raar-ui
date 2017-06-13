@@ -12,6 +12,7 @@ export class CrudService<T extends CrudModel> {
 
   getList(params?: any): Observable<CrudList<T>> {
     return this.remote.get(this.baseUrl, this.buildUrlOptions(params))
+      .catch(res => this.handleError(res))
       .map(res => this.buildListFromResponse(res, this.buildEntity));
   }
 
@@ -19,6 +20,7 @@ export class CrudService<T extends CrudModel> {
     if (list.links.next === undefined) return new BehaviorSubject<CrudList<T>>(list);
 
     return this.remote.get(list.links.next)
+      .catch(res => this.handleError(res))
       .map(res => this.buildListFromResponse(res, this.buildEntity))
       .map(res => {
         res.links.prev = list.links.prev;
@@ -29,39 +31,19 @@ export class CrudService<T extends CrudModel> {
   }
 
   // load a new entity by id or reload an existing one
-  get(id: number): Observable<T>;
-  get(entity: T): Observable<T>;
-  get(entity: any): Observable<T> {
+  get(entityOrId: number | T): Observable<T> {
     let id: number;
-    if (typeof entity === 'number') {
-      id = entity;
+    let entity: T;
+    if (typeof entityOrId === 'number') {
+      id = entityOrId;
       entity = this.buildEntity();
     } else {
-      id = entity.id;
+      id = entityOrId.id;
+      entity = entityOrId;
     }
     return this.remote.get(`${this.baseUrl}/${id}`)
+      .catch(res => this.handleError(res))
       .map(res => this.updateEntityFromResponse(res, entity));
-  }
-
-  create(entity: T, entityToUpdate: T = entity): Observable<T> {
-    return this.remote.post(this.baseUrl, this.rootedJson(entity))
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
-  }
-
-  update(entity: T, entityToUpdate: T = entity): Observable<T> {
-    return this.remote.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity))
-      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
-  }
-
-  remove(id: number) {
-    return this.remote.delete(`${this.baseUrl}/${id}`)
-      .map(res => res);
-  }
-
-  protected rootedJson(entity: T): string {
-    let data: any = {};
-    data['data'] = entity;
-    return JSON.stringify(data);
   }
 
   protected buildListFromResponse<R extends CrudModel>(res: Response, builder: () => R): CrudList<R> {
@@ -91,6 +73,17 @@ export class CrudService<T extends CrudModel> {
     const search = new URLSearchParams();
     for (const k in params) search.append(k, params[k]);
     return new RequestOptions({ search: search });
+  }
+
+  protected handleError(res: Response): Observable<Response> {
+    let json: any = {};
+    try {
+      json = res.json();
+    } catch (e) {
+      console.error(e);
+    }
+    const message = json.error || json.errors || res.status;
+    return Observable.throw(message);
   }
 
 }

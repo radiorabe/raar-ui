@@ -16,18 +16,15 @@ export class AdminRemoteService extends RemoteService {
   }
 
   post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.post(url, body, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
+    return this.http.post(url, body, this.addRemoteHeaders(options));
   }
 
   patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.patch(url, body, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
+    return this.http.patch(url, body, this.addRemoteHeaders(options));
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.delete(url, this.addRemoteHeaders(options))
-      .catch(res => this.handleError(res)) as Observable<Response>;
+    return this.http.delete(url, this.addRemoteHeaders(options));
   }
 
   protected addAuthToken(headers: Headers) {

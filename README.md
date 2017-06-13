@@ -11,18 +11,22 @@ This project requires node v4.x.x or higher and npm 2.14.7.
 In order to start developing use:
 
 ```bash
-# install the project's dependencies
-$ npm install
-# fast install (via Yarn, https://yarnpkg.com)
+# install the project's dependencies (via Yarn, https://yarnpkg.com)
 $ yarn install  # or yarn
 
-# watches your files and uses livereload by default
-$ npm start
+# start the development server (watches your files and uses livereload by default)
+$ yarn start
+
+# start the admin app for Development
+$ yarn start -- --app admin
 
 # prod build
-$ npm run build.prod
+$ yarn run build.prod
 # prod build with AoT compilation
-$ npm run build.prod.rollup.aot
+$ yarn run build.prod.rollup.aot
+
+# prod build for admin app
+$ yarn run build.prod.rollup.aot -- --app admin
 ```
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).

@@ -11,6 +11,10 @@ export const ShowsRoutes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
+        path: 'new',
+        component: ShowFormComponent
+      },
+      {
         path: ':id',
         component: ShowFormComponent
       },

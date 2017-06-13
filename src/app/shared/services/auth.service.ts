@@ -14,7 +14,7 @@ export class AuthService {
 
   private _initialized: boolean = false;
 
-  private _redirectURL: string | void;
+  private _redirectUrl: string | void;
 
   constructor(private login: LoginService, private router: Router) {}
 
