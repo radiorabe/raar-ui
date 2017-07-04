@@ -12,4 +12,8 @@ export class ProfilesService extends ModelsService<ProfileModel> {
     super(rest);
   }
 
+  getDefaultEntry(): ProfileModel | undefined {
+    return this.entries.find(e => e.attributes.default);
+  }
+
 }

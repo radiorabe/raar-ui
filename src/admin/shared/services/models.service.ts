@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class ModelsService<T extends CrudModel> {
 
-  private entries: T[] = [];
+  protected entries: T[] = [];
 
   private entries$ = new BehaviorSubject<T[]>([]);
 

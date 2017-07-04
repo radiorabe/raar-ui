@@ -8,6 +8,16 @@ export class ShowModel extends CrudModel {
     name: '',
     details: undefined
   };
+  relationships: {
+    profile: {
+      data: {
+        id: number;
+        type: 'profiles'
+      }
+    } | void
+  } = {
+    profile: undefined
+  }
 
   toString(): string {
     return this.attributes.name;

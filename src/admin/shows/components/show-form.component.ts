@@ -8,6 +8,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ShowsService } from '../services/shows.service';
+import { ProfilesService } from '../../profiles/services/profiles.service';
 import { ShowModel } from '../models/show.model';
 
 @Component({
@@ -27,6 +28,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private showsService: ShowsService,
+              private profilesService: ProfilesService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
     super(changeDetector);
@@ -61,7 +63,8 @@ export class ShowFormComponent extends ValidatedFormComponent {
   reset() {
     this.form.reset({
       name: this.show.attributes.name,
-      details: this.show.attributes.details
+      details: this.show.attributes.details,
+      profileId: this.show.relationships.profile!.data.id
     });
   }
 
@@ -87,18 +90,23 @@ export class ShowFormComponent extends ValidatedFormComponent {
     const formModel = this.form.value;
     this.show.attributes.name = formModel.name
     this.show.attributes.details = formModel.details;
+    this.show.relationships.profile = { data: { id: formModel.profileId, type: 'profiles' } };
   }
 
   private createForm(fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
       details: '',
-      profile_id: ''
+      profileId: ''
     });
   }
 
   private newShow(): Observable<ShowModel> {
     const show = new ShowModel();
+    const defaultProfile = this.profilesService.getDefaultEntry();
+    if (defaultProfile) {
+      show.relationships.profile = { data: { id: defaultProfile.id, type: 'profiles' } };
+    }
     return Observable.of(show);
   }
 
