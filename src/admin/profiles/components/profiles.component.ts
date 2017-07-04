@@ -11,17 +11,8 @@ import { ProfileModel } from '../models/profile.model';
 })
 export class ProfilesComponent {
 
-  public profiles: Observable<ProfileModel[]>;
-
-  constructor(private profileService: ProfilesService) {
-    this.profiles = this.fetchProfiles();
-  }
-
-  private fetchProfiles(): Observable<ProfileModel[]> {
-    return this.profileService
-      .getList({ sort: 'name', 'page[size]': 500 })
-      .map(list => list.entries)
-      .catch(_ => Observable.of([]));
+  constructor(public profilesService: ProfilesService) {
+    profilesService.reload();
   }
 
 }

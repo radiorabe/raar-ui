@@ -17,23 +17,23 @@ export class ShowsComponent {
   public query: FormControl = new FormControl();
 
   constructor(private showService: ShowsService) {
+    showService.reload();
     this.shows = this.showObservable();
   }
 
   private showObservable(): Observable<ShowModel[]> {
     return this.query.valueChanges
       .startWith('')
-      .debounceTime(200)
+      .debounceTime(50)
       .filter((q: string) => q.length === 0 || q.length > 2)
       .distinctUntilChanged()
       .switchMap(q => this.fetchShows(q));
   }
 
   private fetchShows(q: string): Observable<ShowModel[]> {
-    return this.showService
-      .getList({ q: q, sort: 'name', 'page[size]': 500 })
-      .map(list => list.entries)
-      .catch(_ => Observable.of([]));
+    const regexp = new RegExp(q, "i");
+    return this.showService.getEntries()
+      .map(list => list.filter(e => e.toString().match(regexp)));
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Attribute, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../../../app/shared/services/auth.service';
 
 @Component({
@@ -8,8 +8,6 @@ import { AuthService } from '../../../app/shared/services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopNavComponent {
-
-  @Attribute('active') active: string;
 
   constructor(public auth: AuthService) {}
 

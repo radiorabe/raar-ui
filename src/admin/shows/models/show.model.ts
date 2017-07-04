@@ -8,4 +8,8 @@ export class ShowModel extends CrudModel {
     name: '',
     details: undefined
   };
+
+  toString(): string {
+    return this.attributes.name;
+  }
 }

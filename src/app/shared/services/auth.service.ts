@@ -123,10 +123,12 @@ export class AuthService {
 
   private checkAuth(key: string): Observable<void> {
     const token = this.getToken(key);
-    return this.login.get(token).map(user => {
-      this._user = user;
-      return undefined;
-    });
+    return this.login.get(token)
+      .map(user => {
+        this._user = user;
+        return undefined;
+      })
+      .catch(err => Observable.of(undefined));
   }
 
 }

@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CrudService } from '../../shared/services/crud.service';
+import { ModelsService } from '../../shared/services/models.service';
 import { ProfileModel } from '../models/profile.model';
-import { AdminRemoteService } from '../../shared/services/admin-remote.service';
+import { ProfilesRestService } from './profiles-rest.service';
 
 @Injectable()
-export class ProfilesService extends CrudService<ProfileModel> {
+export class ProfilesService extends ModelsService<ProfileModel> {
 
-  constructor(remote: AdminRemoteService) {
-    super(remote, '/api/admin/profiles');
-  }
+  protected sortAttr = 'name';
 
-  protected buildEntity(): ProfileModel {
-    return new ProfileModel();
+  constructor(rest: ProfilesRestService) {
+    super(rest);
   }
 
 }

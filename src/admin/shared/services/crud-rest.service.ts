@@ -7,7 +7,7 @@ import { AdminRemoteService } from './admin-remote.service';
 import 'rxjs/add/operator/map';
 
 
-export class CrudService<T extends CrudModel> {
+export class CrudRestService<T extends CrudModel> {
 
   constructor(protected remote: AdminRemoteService, public baseUrl: string) {}
 
@@ -59,10 +59,10 @@ export class CrudService<T extends CrudModel> {
       .map(res => this.updateEntityFromResponse(res, entityToUpdate));
   }
 
-  remove(id: number) {
+  remove(id: number): Observable<void> {
     return this.remote.delete(`${this.baseUrl}/${id}`)
       .catch(res => this.handleError(res))
-      .map(res => res);
+      .map(res => undefined);
   }
 
   protected rootedJson(entity: T): string {

@@ -37,7 +37,13 @@ export class ProfileFormComponent extends ValidatedFormComponent {
     this.profileSub = this.route.params
       .map(params => +params['id'])
       .distinctUntilChanged()
-      .switchMap(id => id > 0 ? this.profilesService.get(id) : this.newProfile())
+      .switchMap(id => {
+        if (id > 0) {
+          return this.profilesService.getEntry(id).catch(err => this.newProfile());
+        } else {
+          return this.newProfile();
+        }
+      })
       .do(_ => window.scrollTo(0, 0))
       .subscribe(profile => this.setProfile(profile));
   }
@@ -64,7 +70,7 @@ export class ProfileFormComponent extends ValidatedFormComponent {
     e.preventDefault();
     if (window.confirm('Willst du dieses Profil wirklich löschen?')) {
       this.submitted = true;
-      this.profilesService.remove(this.profile.id).subscribe(
+      this.profilesService.removeEntry(this.profile).subscribe(
         _ => this.router.navigate(['profiles']),
         err => this.handleSubmitError(err)
       );
@@ -99,13 +105,7 @@ export class ProfileFormComponent extends ValidatedFormComponent {
   }
 
   private saveProfile() {
-    let action: Observable<ProfileModel>;
-    if (this.profile.id) {
-      action = this.profilesService.update(this.profile);
-    } else {
-      action = this.profilesService.create(this.profile);
-    }
-    action.subscribe(
+    this.profilesService.storeEntry(this.profile).subscribe(
       profile => {
         this.router.navigate(['profiles', profile.id]);
         this.setProfile(profile);

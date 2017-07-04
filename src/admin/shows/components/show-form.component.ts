@@ -37,7 +37,13 @@ export class ShowFormComponent extends ValidatedFormComponent {
     this.showSub = this.route.params
       .map(params => +params['id'])
       .distinctUntilChanged()
-      .switchMap(id => id > 0 ? this.showsService.get(id) : this.newShow())
+      .switchMap(id => {
+        if (id > 0) {
+          return this.showsService.getEntry(id).catch(err => this.newShow());
+        } else {
+          return this.newShow();
+        }
+      })
       .do(_ => window.scrollTo(0, 0))
       .subscribe(show => this.setShow(show));
   }
@@ -63,7 +69,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
     e.preventDefault();
     if (window.confirm('Willst du diese Sendung wirklich löschen?')) {
       this.submitted = true;
-      this.showsService.remove(this.show.id).subscribe(
+      this.showsService.removeEntry(this.show).subscribe(
         _ => this.router.navigate(['shows']),
         err => this.handleSubmitError(err)
       );
@@ -97,13 +103,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
   }
 
   private saveShow() {
-    let action: Observable<ShowModel>;
-    if (this.show.id) {
-      action = this.showsService.update(this.show);
-    } else {
-      action = this.showsService.create(this.show);
-    }
-    action.subscribe(
+    this.showsService.storeEntry(this.show).subscribe(
       show => {
         this.router.navigate(['shows', show.id]);
         this.setShow(show);

@@ -29,7 +29,6 @@ export class ValidatedFormComponent {
 
   formErrors(): string[] | void {
     if (this.submitted && this.form.errors) {
-      console.log(this.form);
       return this.getErrors(this.form);
     } else {
       return undefined;
@@ -53,7 +52,6 @@ export class ValidatedFormComponent {
     if (error.status === 422) {
       const data = this.collectValidationErrors(error.json());
       Object.keys(data).forEach((field) => {
-        console.log(data[field]);
         this.findFieldControl(field).setErrors(data[field]);
       });
       this.changeDetector.markForCheck();

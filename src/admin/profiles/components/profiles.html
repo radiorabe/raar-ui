@@ -1,13 +1,13 @@
 <sd-layout>
   <nav>
-    <sd-admin-nav active="profiles"></sd-admin-nav>
+    <sd-admin-nav></sd-admin-nav>
   </nav>
 
   <aside>
     <sd-add-button [link]="['/profiles', 'new']">Profil erstellen</sd-add-button>
 
     <div class="list-group">
-      <a *ngFor="let profile of profiles | async"
+      <a *ngFor="let profile of profilesService.getEntries() | async"
          [routerLink]="['/profiles', profile.id]"
          routerLinkActive="active"
          class="list-group-item title">

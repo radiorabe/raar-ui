@@ -1,11 +1,12 @@
 <ul class="nav navbar-nav">
-  <li role="presentation" [class.active]="active === 'shows'">
+  <li>{{ active }}</li>
+  <li role="presentation" routerLinkActive="active">
     <a [routerLink]="['/shows']">Sendungen</a>
   </li>
-  <li role="presentation" [class.active]="active === 'profiles'">
+  <li role="presentation" routerLinkActive="active">
     <a [routerLink]="['/profiles']">Profile</a>
   </li>
-  <li role="presentation" [class.active]="active === 'playbackFormats'">
+  <li role="presentation" [class.active]="active == 'playbackFormats'">
     <a href="#">Wiedergabeformate</a>
   </li>
 </ul>

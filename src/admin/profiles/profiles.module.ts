@@ -6,7 +6,6 @@ import { ProfilesRoutes } from './profiles.routes';
 import { ProfilesComponent } from './components/profiles.component';
 import { ProfilesInitComponent } from './components/profiles-init.component';
 import { ProfileFormComponent } from './components/profile-form.component';
-import { ProfilesService } from './services/profiles.service';
 
 @NgModule({
   imports: [
@@ -19,9 +18,6 @@ import { ProfilesService } from './services/profiles.service';
     ProfilesInitComponent,
     ProfileFormComponent
   ],
-  exports: [],
-  providers: [
-    ProfilesService
-  ]
+  exports: []
 })
 export class ProfilesModule { }
