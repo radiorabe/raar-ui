@@ -59,6 +59,17 @@ export class ShowFormComponent extends ValidatedFormComponent {
     });
   }
 
+  remove(e: Event) {
+    e.preventDefault();
+    if (window.confirm('Willst du diese Sendung wirklich löschen?')) {
+      this.submitted = true;
+      this.showsService.remove(this.show.id).subscribe(
+        _ => this.router.navigate(['shows']),
+        err => this.handleSubmitError(err)
+      );
+    }
+  }
+
   private setShow(show: ShowModel) {
     this.show = show;
     this.title = show.id ? show.attributes.name : 'Neue Sendung';
@@ -93,7 +104,10 @@ export class ShowFormComponent extends ValidatedFormComponent {
       action = this.showsService.create(this.show);
     }
     action.subscribe(
-      show => this.router.navigate(['shows', show.id]),
+      show => {
+        this.router.navigate(['shows', show.id]);
+        this.setShow(show);
+      },
       err => this.handleSubmitError(err));
   }
 }

@@ -1,4 +1,15 @@
 <sd-layout>
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="!(auth.isLoggedIn | async)">
+        <a (click)="showLogin()"><small>Login</small></a>
+      </li>
+      <li *ngIf="auth.isLoggedIn | async" class="navbar-text">
+        <small class="user">{{auth.user.toString()}}</small>
+      </li>
+    </ul>
+  </nav>
+
   <aside>
     <sd-datepicker></sd-datepicker>
     <sd-shows></sd-shows>

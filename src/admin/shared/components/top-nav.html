@@ -1,0 +1,20 @@
+<ul class="nav navbar-nav">
+  <li role="presentation" [class.active]="active === 'shows'">
+    <a [routerLink]="['/shows']">Sendungen</a>
+  </li>
+  <li role="presentation" [class.active]="active === 'profiles'">
+    <a [routerLink]="['/profiles']">Profile</a>
+  </li>
+  <li role="presentation" [class.active]="active === 'playbackFormats'">
+    <a href="#">Wiedergabeformate</a>
+  </li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+  <li *ngIf="!(auth.isAdminLoggedIn | async)">
+    <a (click)="showLogin()"><small>Login</small></a>
+  </li>
+  <li *ngIf="auth.isAdminLoggedIn | async" class="navbar-text">
+    <small class="user">{{auth.user.toString()}}</small>
+  </li>
+</ul>

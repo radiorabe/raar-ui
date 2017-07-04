@@ -3,6 +3,7 @@ import { Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { UserModel } from '../models/index';
+import { Observable } from 'rxjs/Observable';
 
 const API_TOKEN_KEY = 'api_token';
 const ADMIN_TOKEN_KEY = 'admin_token';
@@ -10,33 +11,40 @@ const ADMIN_TOKEN_KEY = 'admin_token';
 @Injectable()
 export class AuthService {
 
-  private _user: UserModel;
+  private _user: UserModel | void;
 
   private _initialized: boolean = false;
+
+  private _initializedAdmin: boolean = false;
 
   private _redirectUrl: string | void;
 
   constructor(private login: LoginService, private router: Router) {}
 
-  get isLoggedIn(): boolean {
-    this.checkAuth();
-    return !!this._user;
+  get isLoggedIn(): Observable<boolean> {
+    return this.checkUserAuth().map(_ => !!this._user);
   }
 
-  get isAdmin(): boolean {
+  get isAdminLoggedIn(): Observable<boolean> {
+    return this.checkAdminAuth().map(_ => !!this._user && this.hasAdminToken);
+  }
+
+  get hasAdminToken(): boolean {
     return !!this.adminToken;
   }
 
-  get user(): UserModel {
-    this.checkAuth();
+  get user(): UserModel | void {
+    this.checkUserAuth();
     return this._user;
   }
 
-  set user(user: UserModel) {
+  set user(user: UserModel | void) {
     this._user = user;
-    this.storeToken(API_TOKEN_KEY, user.attributes.api_token);
-    if (user.attributes.admin_token) {
-      this.storeToken(ADMIN_TOKEN_KEY, user.attributes.admin_token);
+    if (user) {
+      this.storeToken(API_TOKEN_KEY, user.attributes.api_token);
+      if (user.attributes.admin_token) {
+        this.storeToken(ADMIN_TOKEN_KEY, user.attributes.admin_token);
+      }
     }
     if (this._redirectUrl) {
       this.router.navigate([this._redirectUrl]);
@@ -68,6 +76,12 @@ export class AuthService {
     }
   }
 
+  public resetUser() {
+    this._initialized = false;
+    this._initializedAdmin = false;
+    this._user = undefined;
+  }
+
   private getToken(key: string): string {
     try {
       return window.localStorage.getItem(key) || '';
@@ -89,15 +103,30 @@ export class AuthService {
     }
   }
 
-  private checkAuth() {
+  private checkUserAuth(): Observable<void> {
     if (!this._initialized) {
       this._initialized = true;
-      const token = this.getToken(API_TOKEN_KEY);
-      this.login.get(token).subscribe(
-        user => this._user = user,
-        err => this._initialized = true,
-        () => this._initialized = true);
+      return this.checkAuth(API_TOKEN_KEY);
+    } else {
+      return Observable.of(undefined);
     }
+  }
+
+  private checkAdminAuth(): Observable<void> {
+    if (!this._initializedAdmin) {
+      this._initializedAdmin = true;
+      return this.checkAuth(ADMIN_TOKEN_KEY);
+    } else {
+      return Observable.of(undefined);
+    }
+  }
+
+  private checkAuth(key: string): Observable<void> {
+    const token = this.getToken(key);
+    return this.login.get(token).map(user => {
+      this._user = user;
+      return undefined;
+    });
   }
 
 }

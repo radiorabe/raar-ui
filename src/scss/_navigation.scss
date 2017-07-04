@@ -6,7 +6,7 @@
   }
 }
 
-.navbar nav .navbar-nav li {
+.navbar nav .navbar-nav:not(.navbar-right) li {
   font-size: 22px;
   font-family: "Fjalla One", sans-serif;
   text-transform: uppercase;

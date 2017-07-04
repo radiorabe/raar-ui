@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'sd-form-errors',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-  <div *ngFor="let e of errors" class="notification is-danger">
+  <div *ngFor="let e of errors" class="alert alert-danger">
     {{ e }}
   </div>
   `

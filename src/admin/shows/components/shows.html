@@ -1,26 +1,10 @@
 <sd-layout>
   <nav>
-    <ul class="nav navbar-nav">
-      <li role="presentation" class="active">
-        <a [routerLink]="['/shows']">Sendungen</a>
-      </li>
-      <li role="presentation">
-        <a [routerLink]="['/profiles']">Profile</a>
-      </li>
-      <li role="presentation">
-        <a href="#">Wiedergabeformate</a>
-      </li>
-    </ul>
+    <sd-admin-nav active="shows"></sd-admin-nav>
   </nav>
   <aside>
 
-    <div class="paragraph">
-      <div class="btn-group btn-group-justified">
-        <a class="btn btn-default title" [routerLink]="['/shows', 'new']">
-          <span class="glyphicon glyphicon-plus"></span> Sendung erstellen
-        </a>
-      </div>
-    </div>
+    <sd-add-button [link]="['/shows', 'new']">Sendung erstellen</sd-add-button>
 
     <input type="text"
            id="query"

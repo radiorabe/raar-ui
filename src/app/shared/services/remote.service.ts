@@ -7,6 +7,9 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
 import 'rxjs/Rx';
 
+export const MEDIA_TYPE_JSON_API = 'application/vnd.api+json';
+export const HTTP_UNAUTHORIZED = 401;
+
 @Injectable()
 export class RemoteService {
 
@@ -15,19 +18,27 @@ export class RemoteService {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.get(url, this.addRemoteHeaders(options));
+    return this.http.get(url, this.addRemoteHeaders(options))
+      .catch(err => this.handleUnauthorized(err));
   }
 
   protected addRemoteHeaders(options?: RequestOptionsArgs): RequestOptionsArgs {
     options = options || new RequestOptions();
     if (!options.headers) options.headers = new Headers();
-    options.headers.set('Content-Type', 'application/vnd.api+json');
+    options.headers.set('Content-Type', MEDIA_TYPE_JSON_API);
     this.addAuthToken(options.headers);
     return options;
   }
 
   protected addAuthToken(headers: Headers) {
     this.auth.addAuthToken(headers);
+  }
+
+  protected handleUnauthorized(error: any): any {
+    if (error.status === HTTP_UNAUTHORIZED) {
+      this.auth.resetUser();
+    }
+    return Observable.throw(error);
   }
 
 }

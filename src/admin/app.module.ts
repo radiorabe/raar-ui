@@ -8,6 +8,7 @@ import { SharedAdminModule } from './shared/shared-admin.module';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { ShowsModule } from './shows/shows.module';
+import { ProfilesModule } from './profiles/profiles.module';
 
 import * as moment from 'moment';
 import 'moment/locale/de';
@@ -20,6 +21,7 @@ moment.locale('de');
     HttpModule,
     SharedModule,
     ShowsModule,
+    ProfilesModule,
     RouterModule.forRoot(AppRoutes),
     SharedModule.forRoot(),
     SharedAdminModule.forRoot()

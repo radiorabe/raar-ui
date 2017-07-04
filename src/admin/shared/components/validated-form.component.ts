@@ -11,6 +11,11 @@ interface ValidationError {
 const MESSAGES: any = {
   'required': 'Erforderlich',
   'has already been taken': 'Wird bereits verwendet',
+  'must be defined': 'muss gesetzt sein',
+  'Cannot delete record because dependent broadcasts exist':
+    'Diese Sendung kann nicht gelöscht werden, da sie bereits ausgestrahlt wurde.',
+  'Cannot delete record because dependent shows exist':
+    'Dieses Profil kann nicht gelöscht werden, da es von Sendungen verwendet wird',
 }
 
 export class ValidatedFormComponent {
@@ -24,6 +29,7 @@ export class ValidatedFormComponent {
 
   formErrors(): string[] | void {
     if (this.submitted && this.form.errors) {
+      console.log(this.form);
       return this.getErrors(this.form);
     } else {
       return undefined;
@@ -47,6 +53,7 @@ export class ValidatedFormComponent {
     if (error.status === 422) {
       const data = this.collectValidationErrors(error.json());
       Object.keys(data).forEach((field) => {
+        console.log(data[field]);
         this.findFieldControl(field).setErrors(data[field]);
       });
       this.changeDetector.markForCheck();
@@ -70,7 +77,7 @@ export class ValidatedFormComponent {
   protected getErrors(control: AbstractControl): string[] {
     return Object.keys(control.errors || {})
       .filter(error => control.errors && control.errors[error])
-      .map(error => MESSAGES[error]);
+      .map(error => MESSAGES[error] || error);
   }
 
   protected findFieldControl(field: string): AbstractControl {
