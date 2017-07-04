@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
+import { LoginWindowService } from '../shared/services/login-window.service';
 
 @Component({
   moduleId: module.id,
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: 'archive.html',
 })
 export class ArchiveComponent {
+
+  constructor(public auth: AuthService,
+              private loginWindow: LoginWindowService) {}
+
+  showLogin() {
+    this.loginWindow.show();
+  }
 
 }

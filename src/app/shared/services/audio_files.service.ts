@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CrudService } from './crud.service';
+import { ReadRestService } from './read-rest.service';
 import { DateParamsService } from './date_params.service';
 import { BroadcastModel, CrudList, AudioFileModel } from '../models/index';
 import { Observable } from 'rxjs/Observable';
 import { RemoteService } from './remote.service';
 
 @Injectable()
-export class AudioFilesService extends CrudService<AudioFileModel> {
+export class AudioFilesService extends ReadRestService<AudioFileModel> {
 
   constructor(remote: RemoteService) {
     super(remote, '/api/audio_files');

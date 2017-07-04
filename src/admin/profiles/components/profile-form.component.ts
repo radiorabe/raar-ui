@@ -8,25 +8,31 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ProfilesService } from '../services/profiles.service';
+import { ArchiveFormatsRestService } from '../services/archive-formats-rest.service';
 import { ProfileModel } from '../models/profile.model';
+import { ArchiveFormatModel } from '../models/archive-format.model';
 
 @Component({
   moduleId: module.id,
   selector: 'sd-profile-form',
   templateUrl: 'profile-form.html',
+  providers: [ArchiveFormatsRestService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileFormComponent extends ValidatedFormComponent {
+export class ProfileFormComponent extends ValidatedFormComponent implements OnInit, OnDestroy {
 
   profile: ProfileModel;
 
   title: string;
+
+  archiveFormats: ArchiveFormatModel[] = [];
 
   private profileSub: ISubscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private profilesService: ProfilesService,
+              public archiveFormatsRest: ArchiveFormatsRestService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
     super(changeDetector);
@@ -81,6 +87,15 @@ export class ProfileFormComponent extends ValidatedFormComponent {
     this.profile = profile;
     this.title = profile.id ? profile.toString() : 'Neues Profil';
     this.reset();
+    if (profile.id) {
+      this.archiveFormatsRest.profileId = profile.id;
+      this.archiveFormatsRest.getList().subscribe(list => {
+        this.archiveFormats = list.entries;
+        this.changeDetector.markForCheck();
+      });
+    } else {
+      this.archiveFormats = [];
+    }
     this.changeDetector.markForCheck();
   }
 

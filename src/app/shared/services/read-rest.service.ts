@@ -6,9 +6,9 @@ import { CrudList } from '../models/crud_list';
 import { RemoteService } from './remote.service';
 import 'rxjs/add/operator/map';
 
-export class CrudService<T extends CrudModel> {
+export class ReadRestService<T extends CrudModel> {
 
-  constructor(protected remote: RemoteService, public baseUrl: string) {}
+  constructor(protected remote: RemoteService, public baseUrlTemplate: string) {}
 
   getList(params?: any): Observable<CrudList<T>> {
     return this.remote.get(this.baseUrl, this.buildUrlOptions(params))
@@ -44,6 +44,10 @@ export class CrudService<T extends CrudModel> {
     return this.remote.get(`${this.baseUrl}/${id}`)
       .catch(res => this.handleError(res))
       .map(res => this.updateEntityFromResponse(res, entity));
+  }
+
+  protected get baseUrl(): string {
+    return this.baseUrlTemplate;
   }
 
   protected buildListFromResponse<R extends CrudModel>(res: Response, builder: () => R): CrudList<R> {

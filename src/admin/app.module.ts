@@ -9,6 +9,11 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { ShowsModule } from './shows/shows.module';
 import { ProfilesModule } from './profiles/profiles.module';
+import { ShowsService } from './shows/services/shows.service';
+import { ShowsRestService } from './shows/services/shows-rest.service';
+import { ProfilesService } from './profiles/services/profiles.service';
+import { ProfilesRestService } from './profiles/services/profiles-rest.service';
+import { AudioEncodingsService } from './profiles/services/audio-encodings.service';
 
 import * as moment from 'moment';
 import 'moment/locale/de';
@@ -28,7 +33,12 @@ moment.locale('de');
   ],
   declarations: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>' }
+    { provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>' },
+    ShowsRestService,
+    ProfilesRestService,
+    ShowsService,
+    ProfilesService,
+    AudioEncodingsService
   ],
   bootstrap: [AppComponent]
 })

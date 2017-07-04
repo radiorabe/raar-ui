@@ -7,10 +7,7 @@ import { FieldErrorsComponent } from './components/field-errors.component';
 import { FormErrorsComponent } from './components/form-errors.component';
 import { TopNavComponent } from './components/top-nav.component';
 import { AddButtonComponent } from './components/add-button.component';
-import { ShowsService } from '../shows/services/shows.service';
-import { ShowsRestService } from '../shows/services/shows-rest.service';
-import { ProfilesService } from '../profiles/services/profiles.service';
-import { ProfilesRestService } from '../profiles/services/profiles-rest.service';
+
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -31,12 +28,6 @@ import { ProfilesRestService } from '../profiles/services/profiles-rest.service'
     FormErrorsComponent,
     TopNavComponent,
     AddButtonComponent,
-  ],
-  providers: [
-    ShowsRestService,
-    ProfilesRestService,
-    ShowsService,
-    ProfilesService
   ]
 })
 export class SharedAdminModule {

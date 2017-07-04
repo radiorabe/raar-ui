@@ -18,12 +18,12 @@
 
   <div class="form-group" [class.has-error]="fieldErrors('profile_id')">
     <label for="profile_id" class="control-label">Profil</label>
-    <select id="profile_id" class="form-control" formControlName="profileId">
+    <select id="profile_id" class="form-control" formControlName="profile_id">
       <option *ngFor="let profile of (profilesService.getEntries() | async)" value="{{profile.id}}">
         {{ profile.toString() }}
       </option>
     </select>
-    <sd-field-errors [errors]="fieldErrors('profileId')"></sd-field-errors>
+    <sd-field-errors [errors]="fieldErrors('profile_id')"></sd-field-errors>
   </div>
 
   <div>

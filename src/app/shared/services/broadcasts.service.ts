@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
-import { CrudService } from './crud.service';
+import { ReadRestService } from './read-rest.service';
 import { DateParamsService } from './date_params.service';
 import { BroadcastModel, ShowModel, CrudList } from '../models/index';
 import { Observable } from 'rxjs/Observable';
 import { RemoteService } from './remote.service';
 
 @Injectable()
-export class BroadcastsService extends CrudService<BroadcastModel> {
+export class BroadcastsService extends ReadRestService<BroadcastModel> {
 
   constructor(remote: RemoteService) {
     super(remote, '/api/broadcasts');

@@ -45,3 +45,14 @@
     </button>
   </div>
 </form>
+
+<br/>
+
+<h3>Archivierungsformate</h3>
+
+<accordion>
+  <sd-archive-format-form *ngFor="let format of archiveFormats"
+                          [archiveFormat]="format"
+                          [restService]="archiveFormatsRest">
+  </sd-archive-format-form>
+</accordion>

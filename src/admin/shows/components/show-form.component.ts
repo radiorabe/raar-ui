@@ -64,7 +64,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
     this.form.reset({
       name: this.show.attributes.name,
       details: this.show.attributes.details,
-      profileId: this.show.relationships.profile!.data.id
+      profile_id: this.show.relationships.profile!.data.id
     });
   }
 
@@ -90,14 +90,14 @@ export class ShowFormComponent extends ValidatedFormComponent {
     const formModel = this.form.value;
     this.show.attributes.name = formModel.name
     this.show.attributes.details = formModel.details;
-    this.show.relationships.profile = { data: { id: formModel.profileId, type: 'profiles' } };
+    this.show.relationships.profile = { data: { id: formModel.profile_id, type: 'profiles' } };
   }
 
   private createForm(fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
       details: '',
-      profileId: ''
+      profile_id: ''
     });
   }
 

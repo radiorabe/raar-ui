@@ -1,0 +1,74 @@
+<accordion-group>
+  <div accordion-heading>
+    <h4>{{ archiveFormat.toString() }}</h4>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <sd-form-errors [errors]="formErrors()"></sd-form-errors>
+
+    <div class="form-group" [class.has-error]="fieldErrors('codec')" *ngIf="!archiveFormat.id">
+      <label for="codec" class="control-label">Codec</label>
+      <select id="codec" class="form-control" formControlName="codec">
+        <option *ngFor="let encoding of audioEncodingsService.getEntries() | async" value="{{encoding.id}}">
+          {{ encoding.toString() }}
+        </option>
+      </select>
+      <sd-field-errors [errors]="fieldErrors('codec')"></sd-field-errors>
+    </div>
+
+    <div class="form-group" [class.has-error]="fieldErrors('initial_bitrate')">
+      <label for="initial_bitrate" class="control-label">Initiale Bitrate (kbps)</label>
+      <select id="initial_bitrate" class="form-control" formControlName="initial_bitrate">
+        <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
+          {{ bitrate }}
+        </option>
+      </select>
+      <sd-field-errors [errors]="fieldErrors('initial_bitrate')"></sd-field-errors>
+    </div>
+
+    <div class="form-group" [class.has-error]="fieldErrors('initial_channels')">
+      <label for="initial_channels" class="control-label">Initiale Anzahl Kanäle</label>
+      <select id="initial_channels" class="form-control" formControlName="initial_channels">
+        <option *ngFor="let channel of audioEncoding.attributes.channels" value="{{channel}}">
+          {{ channel }}
+        </option>
+      </select>
+      <div class="help-block">1 = mono, 2 = stereo</div>
+      <sd-field-errors [errors]="fieldErrors('initial_channels')"></sd-field-errors>
+    </div>
+
+    <div class="form-group" [class.has-error]="fieldErrors('max_public_bitrate')">
+      <label for="max_public_bitrate" class="control-label">Maximale öffentliche Bitrate (kbps)</label>
+      <select id="max_public_bitrate" class="form-control" formControlName="max_public_bitrate">
+        <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
+          {{ bitrate }}
+        </option>
+        <option value="0">0</option>
+      </select>
+      <div class="help-block">Wähle 0, falls dieses Format nicht öffentlich verfügbar sein soll.</div>
+      <sd-field-errors [errors]="fieldErrors('max_public_bitrate')"></sd-field-errors>
+    </div>
+
+    <div>
+      <button type="submit"
+              [disabled]="form.pristine"
+              class="btn btn-primary title">
+        Speichern
+      </button>
+      &nbsp;
+      <button type="reset"
+              (click)="reset()"
+              [disabled]="form.pristine"
+              class="btn">
+        Zurücksetzen
+      </button>
+      &nbsp;
+      <button *ngIf="archiveFormat && archiveFormat.id"
+              (click)="remove($event)"
+              class="btn btn-danger pull-right">
+        Löschen
+      </button>
+    </div>
+  </form>
+
+</accordion-group>
