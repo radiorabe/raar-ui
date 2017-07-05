@@ -12,7 +12,6 @@ import { DowngradeActionComponent } from './components/downgrade-action.componen
 import { DowngradeActionFormComponent } from './components/downgrade-action-form.component';
 import { ProfilesService } from './services/profiles.service';
 import { ProfilesRestService } from './services/profiles-rest.service';
-import { AudioEncodingsService } from './services/audio-encodings.service';
 
 @NgModule({
   imports: [
@@ -32,8 +31,7 @@ import { AudioEncodingsService } from './services/audio-encodings.service';
   exports: [],
   providers: [
     ProfilesRestService,
-    ProfilesService,
-    AudioEncodingsService
+    ProfilesService
   ]
 })
 export class ProfilesModule { }

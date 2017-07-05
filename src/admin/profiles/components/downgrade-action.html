@@ -4,9 +4,15 @@
     <span *ngIf="downgradeAction.attributes.bitrate">
       Reduziere nach
       <span class="downgrade-value" style="width: 25px;">{{ downgradeAction.attributes.months }}</span>
-      Monaten die Bitrate auf
-      <span class="downgrade-value" style="width: 60px;">{{ downgradeAction.attributes.bitrate }} kbps</span>
-      und die Känale auf
+      Monaten
+
+      <span *ngIf="downgradeAction.attributes.bitrate > 1">
+        die Bitrate auf
+        <span class="downgrade-value" style="width: 60px;">{{ downgradeAction.attributes.bitrate }} kbps</span>
+        und
+      </span>
+
+      die Känale auf
       <span class="downgrade-value" style="width: 10px;">{{ downgradeAction.attributes.channels }}</span>.
     </span>
 

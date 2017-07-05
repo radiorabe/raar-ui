@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CrudRestService } from '../services/crud-rest.service';
-import { CrudModel } from '../models/crud.model';
+import { CrudModel } from '../../../app/shared/models/crud.model';
 import { CrudList } from '../../../app/shared/models/crud_list';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -63,7 +63,6 @@ export class ModelsService<T extends CrudModel> {
   private updateListEntry(entry: T) {
     const result = this.entriesWithout(entry.id);
     result.push(entry);
-    result.sort((a: T, b: T) => a.toString().localeCompare(b.toString()));
     this.updateEntries(result);
   }
 
@@ -72,7 +71,7 @@ export class ModelsService<T extends CrudModel> {
   }
 
   private updateEntries(entries: T[]) {
-    this.entries = entries;
+    this.entries = entries.sort((a: T, b: T) => a.toString().localeCompare(b.toString()));
     this.entries$.next(entries);
   }
 

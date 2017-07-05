@@ -2,7 +2,7 @@ import { CrudModel } from './crud.model';
 
 export class UserModel extends CrudModel {
 
-  public attributes: {
+  attributes: {
     username: string;
     first_name: string;
     last_name: string;

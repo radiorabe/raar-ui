@@ -1,0 +1,18 @@
+<sd-layout>
+  <nav>
+    <sd-admin-nav></sd-admin-nav>
+  </nav>
+  <aside>
+
+    <sd-add-button [link]="['/playback_formats', 'new']">Wiedergabeformat erstellen</sd-add-button>
+
+    <div class="list-group">
+      <a *ngFor="let format of playbackFormatsService.getEntries() | async"
+         [routerLink]="['/playback_formats', format.id]"
+         routerLinkActive="active"
+         class="list-group-item title">
+        {{ format.toString() }}
+      </a>
+    </div>
+  </aside>
+</sd-layout>

@@ -2,7 +2,7 @@ import { CrudModel } from './crud.model';
 import { AudioFileModel } from './audio_file.model';
 
 export class BroadcastModel extends CrudModel {
-  public attributes: {
+  attributes: {
     label: string;
     details: string;
     people: string;
@@ -11,7 +11,7 @@ export class BroadcastModel extends CrudModel {
     show_id: number;
   };
 
-  public relationships: {
+  relationships: {
     audio_files?: AudioFileModel[];
     show?: {
       data: {

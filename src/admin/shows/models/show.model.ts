@@ -1,4 +1,4 @@
-import { CrudModel } from '../../shared/models/crud.model';
+import { CrudModel } from '../../../app/shared/models/crud.model';
 
 export class ShowModel extends CrudModel {
   attributes: {

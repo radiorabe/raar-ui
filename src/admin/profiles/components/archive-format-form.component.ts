@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ArchiveFormatModel } from '../models/archive-format.model';
-import { AudioEncodingModel } from '../models/audio-encoding.model';
+import { AudioEncodingModel } from '../../shared/models/audio-encoding.model';
 import { DowngradeActionModel } from '../models/downgrade-action.model';
 import { ArchiveFormatsRestService } from '../services/archive-formats-rest.service';
 import { DowngradeActionsRestService } from '../services/downgrade-actions-rest.service';
-import { AudioEncodingsService } from '../services/audio-encodings.service';
+import { AudioEncodingsService } from '../../shared/services/audio-encodings.service';
 
 @Component({
   moduleId: module.id,
@@ -90,6 +90,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     if (this.editedDowngradeAction) return;
     this.editedDowngradeAction = new DowngradeActionModel();
     this.editedDowngradeAction.ereasing = ereasing;
+    if (ereasing) {
+      this.editedDowngradeAction.attributes.bitrate = undefined;
+      this.editedDowngradeAction.attributes.channels = undefined;
+    }
   }
 
   editDowngradeAction(action: DowngradeActionModel) {

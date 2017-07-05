@@ -7,9 +7,10 @@
     <sd-form-errors [errors]="formErrors()"></sd-form-errors>
 
     <div class="form-group">
-      <div [class.has-error]="fieldErrors('initial_bitrate')">
-        <label for="initial_bitrate" class="col-sm-3 control-label">Initiale Bitrate</label>
-        <div class="col-sm-3">
+      <div *ngIf="audioEncoding.attributes.bitrates.length > 1"
+           [class.has-error]="fieldErrors('initial_bitrate')">
+        <label for="initial_bitrate" class="col-md-3 control-label">Anfängliche Bitrate</label>
+        <div class="col-md-3">
           <div class="input-group">
             <select id="initial_bitrate" class="form-control" formControlName="initial_bitrate">
               <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
@@ -23,8 +24,8 @@
       </div>
 
       <div [class.has-error]="fieldErrors('initial_channels')">
-        <label for="initial_channels" class="col-sm-3 control-label">Initiale Anzahl Kanäle</label>
-        <div class="col-sm-3">
+        <label for="initial_channels" class="col-md-3 control-label">Anfängliche Anzahl Kanäle</label>
+        <div class="col-md-3">
           <select id="initial_channels" class="form-control" formControlName="initial_channels">
             <option *ngFor="let channel of audioEncoding.attributes.channels" value="{{channel}}">
               {{ channel }}
@@ -36,8 +37,8 @@
     </div>
 
     <div class="form-group" [class.has-error]="fieldErrors('max_public_bitrate')">
-      <label for="max_public_bitrate" class="col-sm-3 control-label">Maximale öffentliche Bitrate</label>
-      <div class="col-sm-3">
+      <label for="max_public_bitrate" class="col-md-3 control-label">Maximale öffentliche Bitrate</label>
+      <div class="col-md-3">
         <div class="input-group">
           <select id="max_public_bitrate" class="form-control" formControlName="max_public_bitrate">
             <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
@@ -47,7 +48,7 @@
           </select>
           <div class="input-group-addon">kbps</div>
         </div>
-        <sd-field-errors [errors]="fieldErrors('max_public_bitrate')" class="col-sm-6"></sd-field-errors>
+        <sd-field-errors [errors]="fieldErrors('max_public_bitrate')" class="col-md-6"></sd-field-errors>
       </div>
     </div>
 

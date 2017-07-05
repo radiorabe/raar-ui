@@ -40,7 +40,7 @@
       Zurücksetzen
     </button>
     &nbsp;
-    <button *ngIf="show && show.id"
+    <button *ngIf="entry && entry.id"
             (click)="remove($event)"
             class="btn btn-danger pull-right">
       Löschen

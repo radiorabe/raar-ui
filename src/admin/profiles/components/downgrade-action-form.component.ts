@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { DowngradeActionModel } from '../models/downgrade-action.model';
-import { AudioEncodingModel } from '../models/audio-encoding.model';
+import { AudioEncodingModel } from '../../shared/models/audio-encoding.model';
 import { DowngradeActionsRestService } from '../services/downgrade-actions-rest.service';
 
 @Component({

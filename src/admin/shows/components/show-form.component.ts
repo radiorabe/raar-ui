@@ -6,7 +6,7 @@ import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
-import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
+import { MainFormComponent } from '../../shared/components/main-form.component';
 import { ShowsService } from '../services/shows.service';
 import { ProfilesService } from '../../profiles/services/profiles.service';
 import { ShowModel } from '../models/show.model';
@@ -17,83 +17,33 @@ import { ShowModel } from '../models/show.model';
   templateUrl: 'show-form.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShowFormComponent extends ValidatedFormComponent {
+export class ShowFormComponent extends MainFormComponent<ShowModel> {
 
-  show: ShowModel;
-
-  title: string;
-
-  private showSub: ISubscription;
-
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private showsService: ShowsService,
+  constructor(route: ActivatedRoute,
+              router: Router,
+              showsService: ShowsService,
               private profilesService: ProfilesService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(changeDetector);
-    this.createForm(fb);
-  }
-
-  ngOnInit() {
-    this.showSub = this.route.params
-      .map(params => +params['id'])
-      .distinctUntilChanged()
-      .switchMap(id => {
-        if (id > 0) {
-          return this.showsService.getEntry(id).catch(err => this.newShow());
-        } else {
-          return this.newShow();
-        }
-      })
-      .do(_ => window.scrollTo(0, 0))
-      .subscribe(show => this.setShow(show));
-  }
-
-  ngOnDestroy() {
-    this.showSub.unsubscribe();
-  }
-
-  onSubmit() {
-    this.submitted = true;
-    this.serialize();
-    this.persist();
+    super(route, router, showsService, changeDetector, fb);
   }
 
   reset() {
     this.form.reset({
-      name: this.show.attributes.name,
-      details: this.show.attributes.details,
-      profile_id: this.show.relationships.profile!.data.id
+      name: this.entry.attributes.name,
+      details: this.entry.attributes.details,
+      profile_id: this.entry.relationships.profile!.data.id
     });
   }
 
-  remove(e: Event) {
-    e.preventDefault();
-    if (window.confirm('Willst du diese Sendung wirklich löschen?')) {
-      this.submitted = true;
-      this.showsService.removeEntry(this.show).subscribe(
-        _ => this.router.navigate(['shows']),
-        err => this.handleSubmitError(err)
-      );
-    }
-  }
-
-  private setShow(show: ShowModel) {
-    this.show = show;
-    this.title = show.id ? show.attributes.name : 'Neue Sendung';
-    this.reset();
-    this.changeDetector.markForCheck();
-  }
-
-  private serialize() {
+  protected serialize() {
     const formModel = this.form.value;
-    this.show.attributes.name = formModel.name
-    this.show.attributes.details = formModel.details;
-    this.show.relationships.profile = { data: { id: formModel.profile_id, type: 'profiles' } };
+    this.entry.attributes.name = formModel.name
+    this.entry.attributes.details = formModel.details;
+    this.entry.relationships.profile = { data: { id: formModel.profile_id, type: 'profiles' } };
   }
 
-  private createForm(fb: FormBuilder) {
+  protected createForm(fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
       details: '',
@@ -101,7 +51,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
     });
   }
 
-  private newShow(): Observable<ShowModel> {
+  protected newEntry(): Observable<ShowModel> {
     const show = new ShowModel();
     const defaultProfile = this.profilesService.getDefaultEntry();
     if (defaultProfile) {
@@ -110,12 +60,16 @@ export class ShowFormComponent extends ValidatedFormComponent {
     return Observable.of(show);
   }
 
-  private persist() {
-    this.showsService.storeEntry(this.show).subscribe(
-      show => {
-        this.router.navigate(['shows', show.id]);
-        this.setShow(show);
-      },
-      err => this.handleSubmitError(err));
+  protected getRemoveQuestion(): string {
+    return 'Willst du diese Sendung wirklich löschen?';
   }
+
+  protected getTitleNew(): string {
+    return 'Neue Sendung';
+  }
+
+  protected getMainRoute(): string {
+    return 'shows';
+  }
+
 }

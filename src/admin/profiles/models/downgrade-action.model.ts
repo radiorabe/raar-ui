@@ -1,4 +1,4 @@
-import { CrudModel } from '../../shared/models/crud.model';
+import { CrudModel } from '../../../app/shared/models/crud.model';
 
 export class DowngradeActionModel extends CrudModel {
   attributes: {
@@ -7,8 +7,8 @@ export class DowngradeActionModel extends CrudModel {
     channels: number | void;
   } = {
     months: 12,
-    bitrate: undefined,
-    channels: undefined,
+    bitrate: 1,
+    channels: 2
   };
 
   ereasing: boolean = false;

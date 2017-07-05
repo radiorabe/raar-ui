@@ -17,6 +17,8 @@ const MESSAGES: any = {
   'must not be changed': 'darf nicht verändert werden',
   'must decrease over time': 'muss mit der Zeit kleiner werden',
   'delete must be the last action': 'Löschen muss die letzte Aktion sein.',
+  "may only contain a-z, 0-9 and '_'": "darf nur aus den Zeichen a-z, 0-9 und _ bestehen",
+  'must be less than or equal to 1': 'muss kleiner als die initiale Anzahl Kanäle sein',
   'Cannot delete record because dependent broadcasts exist':
     'Diese Sendung kann nicht gelöscht werden, da sie bereits ausgestrahlt wurde.',
   'Cannot delete record because dependent shows exist':

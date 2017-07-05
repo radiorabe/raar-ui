@@ -38,7 +38,7 @@
       Zurücksetzen
     </button>
     &nbsp;
-    <button *ngIf="profile && profile.id"
+    <button *ngIf="entry && entry.id"
             (click)="remove($event)"
             class="btn btn-danger pull-right">
       Löschen
@@ -46,7 +46,7 @@
   </div>
 </form>
 
-<div *ngIf="profile && profile.id">
+<div *ngIf="entry && entry.id">
   <br/>
 
   <h3>Archivierungsformate</h3>

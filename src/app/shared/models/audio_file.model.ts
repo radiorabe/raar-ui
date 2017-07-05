@@ -2,7 +2,7 @@ import { CrudModel } from './crud.model';
 import { BroadcastModel } from './broadcast.model';
 
 export class AudioFileModel extends CrudModel {
-  public attributes: {
+  attributes: {
     codec: string | void;
     bitrate: number | void;
     channels: number | void;
@@ -14,11 +14,11 @@ export class AudioFileModel extends CrudModel {
     playback_format: undefined
   };
 
-  public relationships: {
+  relationships: {
     broadcast?: BroadcastModel;
   } = {};
 
-  public links: {
+  links: {
     self: string | void;
     play: string | void;
     download?: string;
