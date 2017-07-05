@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -26,6 +26,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   @Input() restService: ArchiveFormatsRestService;
 
+  @Output() removed = new EventEmitter<void>();
+
+  expanded: boolean = false;
+
   audioEncoding: AudioEncodingModel = new AudioEncodingModel();
 
   constructor(public audioEncodingsService: AudioEncodingsService,
@@ -36,7 +40,13 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
   }
 
   ngOnInit() {
-    this.reset();
+    this.expanded = !this.archiveFormat.id;
+    this.audioEncodingsService.getEntries().subscribe(list => {
+      this.audioEncoding = list.find(e => e.attributes.codec === this.archiveFormat.attributes.codec) ||
+                           new AudioEncodingModel();
+      this.reset();
+      this.changeDetector.markForCheck();
+    });
   }
 
   onSubmit() {
@@ -47,7 +57,6 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   reset() {
     this.form.reset({
-      codec: this.archiveFormat.attributes.codec,
       initial_bitrate: this.archiveFormat.attributes.initial_bitrate,
       initial_channels: this.archiveFormat.attributes.initial_channels,
       max_public_bitrate: this.archiveFormat.attributes.max_public_bitrate
@@ -56,34 +65,29 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   remove(e: Event) {
     e.preventDefault();
-    if (window.confirm('Willst du dieses Profil wirklich löschen?')) {
-      this.submitted = true;
-      this.restService.remove(this.archiveFormat.id).subscribe(
-        _ => undefined,
-        err => this.handleSubmitError(err)
-      );
+    if (window.confirm('Willst du dieses Format wirklich löschen?')) {
+      if (this.archiveFormat.id) {
+        this.submitted = true;
+        this.restService.remove(this.archiveFormat.id).subscribe(
+          _ => this.removed.next(),
+          err => this.handleSubmitError(err)
+        );
+      } else {
+        this.removed.next();
+      }
     }
   }
 
   private createForm(fb: FormBuilder) {
     this.form = fb.group({
-      codec: ['', Validators.required],
       initial_bitrate: ['', Validators.required],
       initial_channels: ['', Validators.required],
       max_public_bitrate: ['', Validators.required]
-    });
-
-    this.form.controls['codec'].valueChanges.subscribe((value) => {
-      this.audioEncodingsService.getEntries().subscribe(list => {
-        this.audioEncoding = list.find(e => e.id === value) || new AudioEncodingModel();
-        this.changeDetector.markForCheck();
-      });
     });
   }
 
   private serializeArchiveFormat() {
     const formModel = this.form.value;
-    this.archiveFormat.attributes.codec = formModel.codec
     this.archiveFormat.attributes.initial_bitrate = formModel.initial_bitrate;
     this.archiveFormat.attributes.initial_channels = formModel.initial_channels;
     this.archiveFormat.attributes.max_public_bitrate = formModel.max_public_bitrate;
@@ -97,7 +101,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
   private saveArchiveFormat() {
     const action = this.archiveFormat.id ? 'update' : 'create';
     this.restService[action](this.archiveFormat).subscribe(
-      _ => this.reset(),
+      _ => {
+        this.expanded = true;
+        this.reset();
+      },
       err => this.handleSubmitError(err));
   }
 }

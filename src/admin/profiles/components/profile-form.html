@@ -11,7 +11,7 @@
 
   <div class="form-group" [class.has-error]="fieldErrors('description')">
     <label for="description" class="control-label">Details</label>
-    <textarea id="description" class="form-control" formControlName="description" rows="10">
+    <textarea id="description" class="form-control" formControlName="description" rows="5">
     </textarea>
     <sd-field-errors [errors]="fieldErrors('description')"></sd-field-errors>
   </div>
@@ -50,9 +50,20 @@
 
 <h3>Archivierungsformate</h3>
 
-<accordion>
+<accordion [closeOthers]="true">
   <sd-archive-format-form *ngFor="let format of archiveFormats"
                           [archiveFormat]="format"
-                          [restService]="archiveFormatsRest">
+                          [restService]="archiveFormatsRest"
+                          (removed)="removeArchiveFormat(format)">
   </sd-archive-format-form>
+  <div class="panel panel-default" *ngIf="availableCodecs.length">
+    <div class="panel-heading">
+      Weiteres Format hinzufügen:
+      &nbsp;
+      <select (change)="addArchiveFormat($event.target.value)">
+        <option></option>
+        <option *ngFor="let codec of availableCodecs" [value]="codec">{{ codec.toUpperCase() }}</option>
+      </select>
+    </div>
+  </div>
 </accordion>

@@ -9,6 +9,7 @@ import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ProfilesService } from '../services/profiles.service';
 import { ArchiveFormatsRestService } from '../services/archive-formats-rest.service';
+import { AudioEncodingsService } from '../services/audio-encodings.service';
 import { ProfileModel } from '../models/profile.model';
 import { ArchiveFormatModel } from '../models/archive-format.model';
 
@@ -27,12 +28,15 @@ export class ProfileFormComponent extends ValidatedFormComponent implements OnIn
 
   archiveFormats: ArchiveFormatModel[] = [];
 
+  availableCodecs: string[] = [];
+
   private profileSub: ISubscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private profilesService: ProfilesService,
               public archiveFormatsRest: ArchiveFormatsRestService,
+              private audioEncodingsService: AudioEncodingsService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
     super(changeDetector);
@@ -83,20 +87,38 @@ export class ProfileFormComponent extends ValidatedFormComponent implements OnIn
     }
   }
 
+  addArchiveFormat(codec: string) {
+    const newFormat = new ArchiveFormatModel();
+    newFormat.attributes.codec = codec;
+    this.setArchiveFormats(this.archiveFormats.concat([newFormat]));
+  }
+
+  removeArchiveFormat(format: ArchiveFormatModel) {
+    this.setArchiveFormats(
+      this.archiveFormats.filter(f => f.attributes.codec !== format.attributes.codec));
+  }
+
   private setProfile(profile: ProfileModel) {
     this.profile = profile;
     this.title = profile.id ? profile.toString() : 'Neues Profil';
     this.reset();
     if (profile.id) {
       this.archiveFormatsRest.profileId = profile.id;
-      this.archiveFormatsRest.getList().subscribe(list => {
-        this.archiveFormats = list.entries;
-        this.changeDetector.markForCheck();
-      });
+      this.archiveFormatsRest.getList().subscribe(list => this.setArchiveFormats(list.entries));
     } else {
-      this.archiveFormats = [];
+      this.setArchiveFormats([]);
     }
     this.changeDetector.markForCheck();
+  }
+
+  private setArchiveFormats(formats: ArchiveFormatModel[]) {
+    this.audioEncodingsService.getEntries().subscribe(encodings => {
+      this.archiveFormats = formats;
+      this.availableCodecs = encodings
+        .map(e => e.attributes.codec)
+        .filter(codec => !formats.find(f => f.attributes.codec === codec));
+      this.changeDetector.markForCheck();
+    });
   }
 
   private serializeProfile() {
