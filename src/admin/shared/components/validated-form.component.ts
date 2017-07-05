@@ -10,10 +10,13 @@ interface ValidationError {
 
 const MESSAGES: any = {
   'required': 'Erforderlich',
+  "can't be blank": 'Erforderlich',
   'has already been taken': 'Wird bereits verwendet',
   'must be defined': 'muss gesetzt sein',
   'is not included in the list': 'ist kein gültiger Wert',
   'must not be changed': 'darf nicht verändert werden',
+  'must decrease over time': 'muss mit der Zeit kleiner werden',
+  'delete must be the last action': 'Löschen muss die letzte Aktion sein.',
   'Cannot delete record because dependent broadcasts exist':
     'Diese Sendung kann nicht gelöscht werden, da sie bereits ausgestrahlt wurde.',
   'Cannot delete record because dependent shows exist':

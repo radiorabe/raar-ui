@@ -1,23 +1,18 @@
-import { Component, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { Subject } from 'rxjs/Subject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
-import { ProfilesService } from '../services/profiles.service';
-import { ProfileModel } from '../models/profile.model';
 import { ArchiveFormatModel } from '../models/archive-format.model';
 import { AudioEncodingModel } from '../models/audio-encoding.model';
+import { DowngradeActionModel } from '../models/downgrade-action.model';
 import { ArchiveFormatsRestService } from '../services/archive-formats-rest.service';
+import { DowngradeActionsRestService } from '../services/downgrade-actions-rest.service';
 import { AudioEncodingsService } from '../services/audio-encodings.service';
 
 @Component({
   moduleId: module.id,
   selector: 'sd-archive-format-form',
   templateUrl: 'archive-format-form.html',
+  providers: [DowngradeActionsRestService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArchiveFormatFormComponent extends ValidatedFormComponent implements OnInit {
@@ -32,7 +27,12 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   audioEncoding: AudioEncodingModel = new AudioEncodingModel();
 
+  downgradeActions: DowngradeActionModel[] = [];
+
+  editedDowngradeAction: DowngradeActionModel | void;
+
   constructor(public audioEncodingsService: AudioEncodingsService,
+              public downgradeActionsRest: DowngradeActionsRestService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
     super(changeDetector);
@@ -47,12 +47,17 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
       this.reset();
       this.changeDetector.markForCheck();
     });
+    if (this.archiveFormat.id) {
+      this.downgradeActionsRest.profileId = this.restService.profileId;
+      this.downgradeActionsRest.archiveFormatId = this.archiveFormat.id;
+      this.downgradeActionsRest.getList().subscribe(list => this.setDowngradeActions(list.entries));
+    }
   }
 
   onSubmit() {
     this.submitted = true;
-    this.serializeArchiveFormat();
-    this.saveArchiveFormat();
+    this.serialize();
+    this.persist();
   }
 
   reset() {
@@ -61,6 +66,9 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
       initial_channels: this.archiveFormat.attributes.initial_channels,
       max_public_bitrate: this.archiveFormat.attributes.max_public_bitrate
     });
+    if (!this.archiveFormat.id) {
+      this.form.markAsDirty();
+    }
   }
 
   remove(e: Event) {
@@ -78,6 +86,46 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     }
   }
 
+  addDowngradeAction(ereasing: boolean) {
+    if (this.editedDowngradeAction) return;
+    this.editedDowngradeAction = new DowngradeActionModel();
+    this.editedDowngradeAction.ereasing = ereasing;
+  }
+
+  editDowngradeAction(action: DowngradeActionModel) {
+    if (this.editedDowngradeAction) return;
+    this.editedDowngradeAction = action;
+  }
+
+  updateDowngradeAction(action: DowngradeActionModel) {
+    const list = this.downgradeActions
+      .filter(a => a.id !== action.id)
+      .concat([action])
+      .sort((a, b) => a.attributes.months - b.attributes.months);
+    this.editedDowngradeAction = undefined;
+    this.setDowngradeActions(list);
+  }
+
+  removeDowngradeAction(action: DowngradeActionModel) {
+    if (this.editedDowngradeAction) return;
+    if (window.confirm('Willst du diesen Schritt wirklich löschen?')) {
+      if (action.id) {
+        this.downgradeActionsRest.remove(action.id).subscribe(
+          _ => {
+            this.setDowngradeActions(this.downgradeActions.filter(a => a !== action));
+          },
+          err => this.handleSubmitError(err)
+        );
+      } else {
+        this.setDowngradeActions(this.downgradeActions.filter(a => a !== action));
+      }
+    }
+  }
+
+  hasEreasingDowngrade(): boolean {
+    return this.downgradeActions.some(a => a.ereasing);
+  }
+
   private createForm(fb: FormBuilder) {
     this.form = fb.group({
       initial_bitrate: ['', Validators.required],
@@ -86,25 +134,26 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     });
   }
 
-  private serializeArchiveFormat() {
+  private serialize() {
     const formModel = this.form.value;
     this.archiveFormat.attributes.initial_bitrate = formModel.initial_bitrate;
     this.archiveFormat.attributes.initial_channels = formModel.initial_channels;
     this.archiveFormat.attributes.max_public_bitrate = formModel.max_public_bitrate;
   }
 
-  private newArchiveFormat(): Observable<ArchiveFormatModel> {
-    const format = new ArchiveFormatModel();
-    return Observable.of(format);
-  }
-
-  private saveArchiveFormat() {
+  private persist() {
     const action = this.archiveFormat.id ? 'update' : 'create';
     this.restService[action](this.archiveFormat).subscribe(
       _ => {
         this.expanded = true;
         this.reset();
+        this.changeDetector.markForCheck();
       },
       err => this.handleSubmitError(err));
+  }
+
+  private setDowngradeActions(actions: DowngradeActionModel[]) {
+    this.downgradeActions = actions;
+    this.changeDetector.markForCheck();
   }
 }

@@ -1,6 +1,6 @@
 <h1>{{ title }}</h1>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <sd-form-errors [errors]="formErrors()"></sd-form-errors>
 
   <div class="form-group" [class.has-error]="fieldErrors('name')">
@@ -28,7 +28,7 @@
 
   <div>
     <button type="submit"
-            [disabled]="form.pristine"
+            [disabled]="form.pristine || !form.valid"
             class="btn btn-primary title">
       Speichern
     </button>

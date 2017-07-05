@@ -2,9 +2,6 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRe
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { Subject } from 'rxjs/Subject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ProfilesService } from '../services/profiles.service';
@@ -64,8 +61,8 @@ export class ProfileFormComponent extends ValidatedFormComponent implements OnIn
 
   onSubmit() {
     this.submitted = true;
-    this.serializeProfile();
-    this.saveProfile();
+    this.serialize();
+    this.persist();
   }
 
   reset() {
@@ -121,7 +118,7 @@ export class ProfileFormComponent extends ValidatedFormComponent implements OnIn
     });
   }
 
-  private serializeProfile() {
+  private serialize() {
     const formModel = this.form.value;
     this.profile.attributes.name = formModel.name
     this.profile.attributes.description = formModel.description;
@@ -141,7 +138,7 @@ export class ProfileFormComponent extends ValidatedFormComponent implements OnIn
     return Observable.of(profile);
   }
 
-  private saveProfile() {
+  private persist() {
     this.profilesService.storeEntry(this.profile).subscribe(
       profile => {
         this.router.navigate(['profiles', profile.id]);

@@ -1,1 +1,19 @@
+.downgrade-value {
+  font-weight: 500;
+  text-align: right;
+  display: inline-block;
+}
 
+.well:last-child {
+  margin-bottom: 0;
+}
+
+sd-downgrade-action {
+  &.disabled {
+    color: $brand-disabled;
+
+    .glyphicon {
+      color: $brand-disabled;
+    }
+  }
+}

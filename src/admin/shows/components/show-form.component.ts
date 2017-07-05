@@ -56,8 +56,8 @@ export class ShowFormComponent extends ValidatedFormComponent {
 
   onSubmit() {
     this.submitted = true;
-    this.serializeShow();
-    this.saveShow();
+    this.serialize();
+    this.persist();
   }
 
   reset() {
@@ -86,7 +86,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
     this.changeDetector.markForCheck();
   }
 
-  private serializeShow() {
+  private serialize() {
     const formModel = this.form.value;
     this.show.attributes.name = formModel.name
     this.show.attributes.details = formModel.details;
@@ -110,7 +110,7 @@ export class ShowFormComponent extends ValidatedFormComponent {
     return Observable.of(show);
   }
 
-  private saveShow() {
+  private persist() {
     this.showsService.storeEntry(this.show).subscribe(
       show => {
         this.router.navigate(['shows', show.id]);

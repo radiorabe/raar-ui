@@ -6,6 +6,10 @@ import { ShowsRoutes } from './shows.routes';
 import { ShowsComponent } from './components/shows.component';
 import { ShowsInitComponent } from './components/shows-init.component';
 import { ShowFormComponent } from './components/show-form.component';
+import { ShowsService } from './services/shows.service';
+import { ShowsRestService } from './services/shows-rest.service';
+import { ProfilesService } from '../profiles/services/profiles.service';
+import { ProfilesRestService } from '../profiles/services/profiles-rest.service';
 
 @NgModule({
   imports: [
@@ -18,6 +22,12 @@ import { ShowFormComponent } from './components/show-form.component';
     ShowsInitComponent,
     ShowFormComponent
   ],
-  exports: []
+  exports: [],
+  providers: [
+    ShowsRestService,
+    ShowsService,
+    ProfilesRestService,
+    ProfilesService
+  ]
 })
 export class ShowsModule { }

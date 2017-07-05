@@ -1,6 +1,6 @@
 <h1>{{ title }}</h1>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <sd-form-errors [errors]="formErrors()"></sd-form-errors>
 
   <div class="form-group" [class.has-error]="fieldErrors('name')">
@@ -26,7 +26,7 @@
 
   <div>
     <button type="submit"
-            [disabled]="form.pristine"
+            [disabled]="form.pristine || !form.valid"
             class="btn btn-primary title">
       Speichern
     </button>
@@ -46,24 +46,27 @@
   </div>
 </form>
 
-<br/>
+<div *ngIf="profile && profile.id">
+  <br/>
 
-<h3>Archivierungsformate</h3>
+  <h3>Archivierungsformate</h3>
 
-<accordion [closeOthers]="true">
-  <sd-archive-format-form *ngFor="let format of archiveFormats"
-                          [archiveFormat]="format"
-                          [restService]="archiveFormatsRest"
-                          (removed)="removeArchiveFormat(format)">
-  </sd-archive-format-form>
-  <div class="panel panel-default" *ngIf="availableCodecs.length">
-    <div class="panel-heading">
-      Weiteres Format hinzufügen:
-      &nbsp;
-      <select (change)="addArchiveFormat($event.target.value)">
-        <option></option>
-        <option *ngFor="let codec of availableCodecs" [value]="codec">{{ codec.toUpperCase() }}</option>
-      </select>
-    </div>
+  <accordion [closeOthers]="true">
+    <sd-archive-format-form *ngFor="let format of archiveFormats"
+                            [archiveFormat]="format"
+                            [restService]="archiveFormatsRest"
+                            (removed)="removeArchiveFormat(format)">
+    </sd-archive-format-form>
+  </accordion>
+
+  <div class="form-inline" *ngIf="availableCodecs.length">
+    <br/>
+    Format hinzufügen:
+    &nbsp;
+    <select (change)="addArchiveFormat($event.target.value)" class="form-control">
+      <option></option>
+      <option *ngFor="let codec of availableCodecs" [value]="codec">{{ codec.toUpperCase() }}</option>
+    </select>
   </div>
-</accordion>
+
+</div>
