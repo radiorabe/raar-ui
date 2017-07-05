@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { LoginWindowService } from './login-window.service';
 import { UserModel } from '../models/index';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,7 +20,9 @@ export class AuthService {
 
   private _redirectUrl: string | void;
 
-  constructor(private login: LoginService, private router: Router) {}
+  constructor(private login: LoginService,
+              private router: Router,
+              private loginWindow: LoginWindowService) {}
 
   get isLoggedIn(): Observable<boolean> {
     return this.checkUserAuth().map(_ => !!this._user);
@@ -80,6 +83,7 @@ export class AuthService {
     this._initialized = false;
     this._initializedAdmin = false;
     this._user = undefined;
+    this.loginWindow.show();
   }
 
   private getToken(key: string): string {

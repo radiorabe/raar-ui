@@ -17,7 +17,9 @@
       <a class="navbar-brand" [routerLink]="['/']">RaBe Archiv</a>
     </div>
 
-    <ng-content select="nav"></ng-content>
+    <div class="collapse navbar-collapse" [class.in]="showNav">
+      <ng-content select="nav"></ng-content>
+    </div>
 
   </div>
 </nav>

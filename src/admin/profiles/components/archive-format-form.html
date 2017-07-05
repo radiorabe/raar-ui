@@ -102,4 +102,21 @@
     </div>
   </div>
 
+  <br/>
+
+  <div class="alert alert-warning" *ngIf="audioEncoding.attributes.bitrates.length > 1">
+    <p>
+    <strong>Vorsicht!</strong>
+    Änderungen an den Archivierungsformaten (ausser der maximalen öffentlichen Bitrate)
+    und den Datenreduktionsschritten werden beim nächsten Reduktionslauf
+    berücksichtigt und können ab dann nicht mehr rückgängig gemacht werden.
+    </p>
+    <p>
+    Dies betrifft insbesondere Verkleinerungen der Bitraten und der Anzahl Kanäle,
+    welche sich auf alle(!) archivierten Sendungen des entsprechenden Profils
+    auswirken und somit eine unwiederrufliche und rechenintensive
+    Reduktion der Qualität der archivierten Aufnahmen anstossen.
+    </p>
+  </div>
+
 </accordion-group>

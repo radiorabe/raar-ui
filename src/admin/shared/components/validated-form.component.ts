@@ -89,14 +89,14 @@ export class ValidatedFormComponent {
     let control: AbstractControl = this.form;
     if (field === 'base') {
       control = this.form;
-    } else if (this.form.contains(field)) {
+    } else if (this.form.get(field)) {
       control = this.form.get(field);
-    } else if (field.match(/_id$/) && this.form.contains(field.substring(0, field.length - 3))) {
+    } else if (field.match(/_id$/) && this.form.get(field.substring(0, field.length - 3))) {
       control = this.form.get(field.substring(0, field.length - 3));
     } else if (field.indexOf('.') > 0) {
       let group = this.form;
       field.split('.').forEach((f) => {
-        if (group.contains(f)) {
+        if (group.get(f)) {
           control = group.get(f);
           if (control instanceof FormGroup) group = control;
         } else {
