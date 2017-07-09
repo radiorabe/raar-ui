@@ -10,9 +10,9 @@ export class ModelsService<T extends CrudModel> {
 
   protected entries: T[] = [];
 
-  private entries$ = new BehaviorSubject<T[]>([]);
-
   protected readonly sortAttr: string;
+
+  private entries$ = new BehaviorSubject<T[]>([]);
 
   constructor(private crudRest: CrudRestService<T>) {
     this.reload();

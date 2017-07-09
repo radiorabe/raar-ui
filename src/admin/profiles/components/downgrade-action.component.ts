@@ -15,6 +15,4 @@ export class DowngradeActionComponent {
 
   @Output() remove = new EventEmitter<void>();
 
-  constructor() { }
-
 }

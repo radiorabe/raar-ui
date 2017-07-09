@@ -10,6 +10,4 @@ export class AddButtonComponent {
 
   @Input() link: string[];
 
-  constructor() {}
-
 }

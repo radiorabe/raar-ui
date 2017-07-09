@@ -10,7 +10,7 @@ import { ValidatedFormComponent } from '../../shared/components/validated-form.c
 import { ModelsService } from '../services/models.service';
 import { CrudModel } from '../../../app/shared/models/crud.model';
 
-export class MainFormComponent<T extends CrudModel> extends ValidatedFormComponent {
+export class MainFormComponent<T extends CrudModel> extends ValidatedFormComponent implements OnInit, OnDestroy {
 
   entry: T;
 
@@ -84,9 +84,11 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
   }
 
   protected serialize() {
+    // implement in subclass
   }
 
   protected createForm(fb: FormBuilder) {
+    // implement in subclass
   }
 
   protected newEntry(): Observable<T> {

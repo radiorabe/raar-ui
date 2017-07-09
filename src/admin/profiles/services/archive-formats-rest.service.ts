@@ -13,7 +13,7 @@ export class ArchiveFormatsRestService extends CrudRestService<ArchiveFormatMode
   }
 
   protected get baseUrl(): string {
-    return this.baseUrlTemplate.replace("{profileId}", this.profileId.toString());
+    return this.baseUrlTemplate.replace('{profileId}', this.profileId.toString());
   }
 
   protected buildEntity(): ArchiveFormatModel {

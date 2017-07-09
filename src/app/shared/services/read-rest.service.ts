@@ -73,12 +73,6 @@ export class ReadRestService<T extends CrudModel> {
     throw new Error(`${this.constructor.name}#buildEntity() is not implemented`);
   }
 
-  private buildUrlOptions(params?: any): RequestOptions {
-    const search = new URLSearchParams();
-    for (const k in params) search.append(k, params[k]);
-    return new RequestOptions({ search: search });
-  }
-
   protected handleError(res: Response): Observable<Response> {
     let json: any = {};
     try {
@@ -88,6 +82,12 @@ export class ReadRestService<T extends CrudModel> {
     }
     const message = json.error || json.errors || res.status;
     return Observable.throw(message);
+  }
+
+  private buildUrlOptions(params?: any): RequestOptions {
+    const search = new URLSearchParams();
+    for (const k in params) search.append(k, params[k]);
+    return new RequestOptions({ search: search });
   }
 
 }

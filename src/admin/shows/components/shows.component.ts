@@ -31,7 +31,7 @@ export class ShowsComponent {
   }
 
   private fetchShows(q: string): Observable<ShowModel[]> {
-    const regexp = new RegExp(q, "i");
+    const regexp = new RegExp(q, 'i');
     return this.showService.getEntries()
       .map(list => list.filter(e => e.toString().match(regexp)));
   }

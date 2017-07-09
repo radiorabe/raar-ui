@@ -63,19 +63,9 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
     };
   }
 
-  private setArchiveFormats(formats: ArchiveFormatModel[]) {
-    this.audioEncodingsService.getEntries().subscribe(encodings => {
-      this.archiveFormats = formats;
-      this.availableCodecs = encodings
-        .map(e => e.attributes.codec)
-        .filter(codec => !formats.find(f => f.attributes.codec === codec));
-      this.changeDetector.markForCheck();
-    });
-  }
-
   protected serialize() {
     const formModel = this.form.value;
-    this.entry.attributes.name = formModel.name
+    this.entry.attributes.name = formModel.name;
     this.entry.attributes.description = formModel.description;
     this.entry.attributes.default = formModel.default;
   }
@@ -103,6 +93,16 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
 
   protected getMainRoute(): string {
     return 'profiles';
+  }
+
+  private setArchiveFormats(formats: ArchiveFormatModel[]) {
+    this.audioEncodingsService.getEntries().subscribe(encodings => {
+      this.archiveFormats = formats;
+      this.availableCodecs = encodings
+        .map(e => e.attributes.codec)
+        .filter(codec => !formats.find(f => f.attributes.codec === codec));
+      this.changeDetector.markForCheck();
+    });
   }
 
 }

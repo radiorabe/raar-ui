@@ -17,7 +17,7 @@ export class ShowModel extends CrudModel {
     } | void
   } = {
     profile: undefined
-  }
+  };
 
   toString(): string {
     return this.attributes.name;

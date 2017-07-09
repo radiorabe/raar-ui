@@ -38,7 +38,7 @@ export class ShowFormComponent extends MainFormComponent<ShowModel> {
 
   protected serialize() {
     const formModel = this.form.value;
-    this.entry.attributes.name = formModel.name
+    this.entry.attributes.name = formModel.name;
     this.entry.attributes.details = formModel.details;
     this.entry.relationships.profile = { data: { id: formModel.profile_id, type: 'profiles' } };
   }

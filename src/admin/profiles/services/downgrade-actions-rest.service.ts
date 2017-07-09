@@ -15,8 +15,8 @@ export class DowngradeActionsRestService extends CrudRestService<DowngradeAction
 
   protected get baseUrl(): string {
     return this.baseUrlTemplate
-      .replace("{profileId}", this.profileId.toString())
-      .replace("{archiveFormatId}", this.archiveFormatId.toString());
+      .replace('{profileId}', this.profileId.toString())
+      .replace('{archiveFormatId}', this.archiveFormatId.toString());
   }
 
   protected buildEntity(): DowngradeActionModel {

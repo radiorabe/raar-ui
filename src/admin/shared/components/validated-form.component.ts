@@ -2,37 +2,37 @@ import { Component, Output, EventEmitter, ChangeDetectorRef } from '@angular/cor
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
 interface ValidationError {
-  detail: string,
+  detail: string;
   source: {
     pointer: string
-  }
+  };
 }
 
 const MESSAGES: any = {
   'required': 'Erforderlich',
-  "can't be blank": 'Erforderlich',
+  'can\'t be blank': 'Erforderlich',
   'has already been taken': 'Wird bereits verwendet',
   'must be defined': 'muss gesetzt sein',
   'is not included in the list': 'ist kein gültiger Wert',
   'must not be changed': 'darf nicht verändert werden',
   'must decrease over time': 'muss mit der Zeit kleiner werden',
   'delete must be the last action': 'Löschen muss die letzte Aktion sein.',
-  "may only contain a-z, 0-9 and '_'": "darf nur aus den Zeichen a-z, 0-9 und _ bestehen",
+  'may only contain a-z, 0-9 and \'_\'': 'darf nur aus den Zeichen a-z, 0-9 und _ bestehen',
   'must be less than or equal to 1': 'muss kleiner als die initiale Anzahl Kanäle sein',
   'Cannot delete record because dependent broadcasts exist':
     'Diese Sendung kann nicht gelöscht werden, da sie bereits ausgestrahlt wurde.',
   'Cannot delete record because dependent shows exist':
     'Dieses Profil kann nicht gelöscht werden, da es von Sendungen verwendet wird',
-}
+};
 
 export class ValidatedFormComponent {
-
-  constructor(protected changeDetector: ChangeDetectorRef) {
-  }
 
   form: FormGroup;
 
   submitted: boolean = false;
+
+  constructor(protected changeDetector: ChangeDetectorRef) {
+  }
 
   formErrors(): string[] | void {
     if (this.submitted && this.form.errors) {
@@ -65,20 +65,6 @@ export class ValidatedFormComponent {
     }
   }
 
-  private collectValidationErrors(res: any): any {
-    let errors: any = {};
-    res.errors.forEach((e: ValidationError) => {
-      const attr = e.source.pointer.split('/').pop();
-      if (attr) {
-        if (!errors.hasOwnProperty(attr)) {
-          errors[attr] = {};
-        }
-        errors[attr][e.detail] = true;
-      }
-    });
-    return errors;
-  }
-
   protected getErrors(control: AbstractControl): string[] {
     return Object.keys(control.errors || {})
       .filter(error => control.errors && control.errors[error])
@@ -102,12 +88,26 @@ export class ValidatedFormComponent {
         } else {
           control = group;
         }
-      })
+      });
     } else {
       // Field is not defined in form but there is a validation error for it, set it globally
       control = this.form;
     }
     return control;
+  }
+
+  private collectValidationErrors(res: any): any {
+    let errors: any = {};
+    res.errors.forEach((e: ValidationError) => {
+      const attr = e.source.pointer.split('/').pop();
+      if (attr) {
+        if (!errors.hasOwnProperty(attr)) {
+          errors[attr] = {};
+        }
+        errors[attr][e.detail] = true;
+      }
+    });
+    return errors;
   }
 
 }

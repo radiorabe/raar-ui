@@ -13,6 +13,4 @@ export class FormErrorsComponent {
 
   @Input() errors: string[];
 
-  constructor() {}
-
 }
