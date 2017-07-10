@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   moduleId: module.id,

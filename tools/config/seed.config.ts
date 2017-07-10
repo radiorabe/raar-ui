@@ -241,6 +241,12 @@ export class SeedConfig {
   E2E_DEST = `${this.DIST_DIR}/e2e`;
 
   /**
+   * The folder for the built translation file.
+   * @type {string}
+   */
+  LOCALE_DEST = `${this.DIST_DIR}/locale`;
+
+  /**
    * The folder for temporary files.
    * @type {string}
    */
@@ -374,7 +380,6 @@ export class SeedConfig {
    * @type {any}
    */
   SYSTEM_CONFIG_DEV: any = {
-    defaultJSExtensions: true,
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
       '@angular/animations': 'node_modules/@angular/animations/bundles/animations.umd.js',
@@ -399,12 +404,15 @@ export class SeedConfig {
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
-      'app/*': '/app/*',
+      'app/': `${this.APP_BASE}app/`,
       // For test config
-      'dist/dev/*': '/base/dist/dev/*',
-      '*': 'node_modules/*'
+      'dist/dev/': '/base/dist/dev/',
+      '': 'node_modules/'
     },
     packages: {
+      [this.BOOTSTRAP_DIR]: {
+        defaultExtension: 'js'
+      }
     }
   };
 

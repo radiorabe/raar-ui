@@ -26,7 +26,7 @@ export class PlaybackFormatFormComponent extends MainFormComponent<PlaybackForma
   constructor(route: ActivatedRoute,
               router: Router,
               playbackFormatsService: PlaybackFormatsService,
-              private audioEncodingsService: AudioEncodingsService,
+              public audioEncodingsService: AudioEncodingsService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
     super(route, router, playbackFormatsService, changeDetector, fb);

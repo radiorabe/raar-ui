@@ -42,20 +42,17 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      //{ src: 'moment/min/moment.min.js', inject: 'libs' },
-      //{ src: 'moment/locale/de.js', inject: 'libs' },
-      //{ src: 'ng2-bootstrap/bundles/ng2-bootstrap.umd.js', inject: 'libs' },
       { src: 'soundmanager2/script/soundmanager2.js', inject: 'libs' }
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
 
-    this.SYSTEM_CONFIG_DEV.paths['moment'] = 'node_modules/moment/moment.js';
-    //this.SYSTEM_CONFIG_DEV.paths['ng2-bootstrap'] = 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js';
-
     this.APP_ASSETS = [
       { src: `${this.CSS_SRC}/main.${this.getInjectableStyleExtension()}`, inject: true, vendor: false },
     ];
+
+    this.SYSTEM_BUILDER_CONFIG.paths['dist/tmp/app/*'] = 'dist/tmp/app/*';
+    this.SYSTEM_CONFIG_DEV.packages['/app'] = { defaultExtension: 'js' };
 
     this.ROLLUP_INCLUDE_DIR = [
       ...this.ROLLUP_INCLUDE_DIR,
@@ -82,9 +79,14 @@ export class ProjectConfig extends SeedConfig {
         path: 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
       },
 
+      // mandatory dependency for ngx-bootstrap datepicker
       {
-        name: 'moment',
-        path: 'node_modules/moment/min/moment-with-locales.min.js'
+        name:'moment',
+        path:'node_modules/moment',
+        packageMeta:{
+          main: 'moment.js',
+          defaultExtension: 'js'
+        }
       },
 
       {

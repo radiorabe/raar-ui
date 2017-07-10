@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { AccordionModule } from 'ngx-bootstrap';
 import { SharedModule } from '../../app/shared/shared.module';
 import { SharedAdminModule } from '../shared/shared-admin.module';
 import { ProfilesRoutes } from './profiles.routes';

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DatepickerModule } from 'ngx-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SharedModule } from '../shared/shared.module';
 import { ArchiveComponent } from './archive.component';

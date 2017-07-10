@@ -50,7 +50,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
   public set date(date: Date | void) {
     this._date = date;
 
-    if (date !== undefined) {
+    if (date) {
       this.navigateToDate(date);
     }
   }

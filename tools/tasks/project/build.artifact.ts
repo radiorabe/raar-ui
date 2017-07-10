@@ -8,7 +8,7 @@ import Config from '../../config';
 
 export = () => {
   return gulp.src(join(Config.APP_DEST, '**'), { dot: true })
-          .pipe(tar('raar-ui.tar'))
+          .pipe(tar(`raar-ui-${Config.BOOTSTRAP_DIR}.tar`))
           .pipe(gzip())
           .pipe(gulp.dest(Config.ARTIFACT_DEST));
 };

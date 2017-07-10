@@ -60,7 +60,7 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
       this.archiveFormatsRest.getList().subscribe(list => this.setArchiveFormats(list.entries));
     } else {
       this.setArchiveFormats([]);
-    };
+    }
   }
 
   protected serialize() {

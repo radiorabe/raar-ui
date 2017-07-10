@@ -22,7 +22,7 @@ export class ShowFormComponent extends MainFormComponent<ShowModel> {
   constructor(route: ActivatedRoute,
               router: Router,
               showsService: ShowsService,
-              private profilesService: ProfilesService,
+              public profilesService: ProfilesService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
     super(route, router, showsService, changeDetector, fb);
@@ -32,7 +32,7 @@ export class ShowFormComponent extends MainFormComponent<ShowModel> {
     this.form.reset({
       name: this.entry.attributes.name,
       details: this.entry.attributes.details,
-      profile_id: this.entry.relationships.profile!.data.id
+      profile_id: this.entry.relationships.profile && this.entry.relationships.profile.data.id
     });
   }
 
