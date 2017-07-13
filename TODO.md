@@ -1,5 +1,9 @@
 ## Next steps
 
+* Expand/Collapse Issue Archive Formats, Animation, Expand Last
+* Access Codes Frontend
+* Initial Bitrate must be changed before create issue
+* Rebase, Logout
 * add possibility to merge shows
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)

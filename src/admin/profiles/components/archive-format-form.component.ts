@@ -164,7 +164,6 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
         this.expanded = true;
         this.reset();
         if (action === 'create') {
-          console.log(this.archiveFormat.id)
           this.downgradeActionsRest.archiveFormatId = this.archiveFormat.id;
         }
         this.changeDetector.markForCheck();
