@@ -47,8 +47,8 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
       this.reset();
       this.changeDetector.markForCheck();
     });
+    this.downgradeActionsRest.profileId = this.restService.profileId;
     if (this.archiveFormat.id) {
-      this.downgradeActionsRest.profileId = this.restService.profileId;
       this.downgradeActionsRest.archiveFormatId = this.archiveFormat.id;
       this.downgradeActionsRest.getList().subscribe(list => this.setDowngradeActions(list.entries));
     }
@@ -64,7 +64,11 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     this.form.reset({
       initial_bitrate: this.archiveFormat.attributes.initial_bitrate,
       initial_channels: this.archiveFormat.attributes.initial_channels,
-      max_public_bitrate: this.archiveFormat.attributes.max_public_bitrate
+      max_public_bitrate: this.archiveFormat.attributes.max_public_bitrate,
+      max_logged_in_bitrate: this.archiveFormat.attributes.max_logged_in_bitrate,
+      max_priviledged_bitrate: this.archiveFormat.attributes.max_priviledged_bitrate,
+      priviledged_groups: this.archiveFormat.attributes.priviledged_groups.join(', '),
+      download_permission: this.archiveFormat.attributes.download_permission,
     });
     if (!this.archiveFormat.id) {
       this.form.markAsDirty();
@@ -134,7 +138,11 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     this.form = fb.group({
       initial_bitrate: ['', Validators.required],
       initial_channels: ['', Validators.required],
-      max_public_bitrate: ['', Validators.required]
+      max_public_bitrate: [''],
+      max_logged_in_bitrate: [''],
+      max_priviledged_bitrate: [''],
+      priviledged_groups: [''],
+      download_permission: ['', Validators.required]
     });
   }
 
@@ -142,7 +150,11 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     const formModel = this.form.value;
     this.archiveFormat.attributes.initial_bitrate = formModel.initial_bitrate;
     this.archiveFormat.attributes.initial_channels = formModel.initial_channels;
-    this.archiveFormat.attributes.max_public_bitrate = formModel.max_public_bitrate;
+    this.archiveFormat.attributes.max_public_bitrate = this.nullOrNumber(formModel.max_public_bitrate);
+    this.archiveFormat.attributes.max_logged_in_bitrate = this.nullOrNumber(formModel.max_logged_in_bitrate);
+    this.archiveFormat.attributes.max_priviledged_bitrate = this.nullOrNumber(formModel.max_priviledged_bitrate);
+    this.archiveFormat.attributes.priviledged_groups = formModel.priviledged_groups.split(',');
+    this.archiveFormat.attributes.download_permission = formModel.download_permission;
   }
 
   private persist() {
@@ -151,6 +163,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
       _ => {
         this.expanded = true;
         this.reset();
+        if (action === 'create') {
+          console.log(this.archiveFormat.id)
+          this.downgradeActionsRest.archiveFormatId = this.archiveFormat.id;
+        }
         this.changeDetector.markForCheck();
       },
       err => this.handleSubmitError(err));
@@ -160,4 +176,13 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     this.downgradeActions = actions;
     this.changeDetector.markForCheck();
   }
+
+  private nullOrNumber(value: any): number | null {
+    if (value === undefined || value === null || value === 'null') {
+      return null;
+    } else {
+      return Number(value);
+    }
+  }
+
 }

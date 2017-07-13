@@ -11,6 +11,7 @@ interface ValidationError {
 const MESSAGES: any = {
   'required': 'Erforderlich',
   'can\'t be blank': 'Erforderlich',
+  'must be blank': 'Muss Voller Zugriff sein',
   'has already been taken': 'Wird bereits verwendet',
   'must be defined': 'muss gesetzt sein',
   'is not included in the list': 'ist kein gültiger Wert',

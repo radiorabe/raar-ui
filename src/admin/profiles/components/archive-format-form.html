@@ -3,14 +3,110 @@
     <h4>{{ archiveFormat.toString() }}</h4>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
     <sd-form-errors [errors]="formErrors()"></sd-form-errors>
 
-    <div class="form-group">
+    <div class="form-horizontal">
+      <h4>Zugriffsberechtigungen</h4>
+
+      <div class="form-group" [class.has-error]="fieldErrors('max_public_bitrate')">
+        <label for="max_public_bitrate" class="col-md-6 control-label">
+          Maximale Bitrate für nicht eingeloggte Benutzende
+        </label>
+        <div class="col-md-6">
+          <div class="input-group">
+            <select id="max_public_bitrate" class="form-control" formControlName="max_public_bitrate">
+              <option [value]="null">Voller Zugriff</option>
+              <ng-container *ngIf="audioEncoding.attributes.bitrates.length > 1">
+                <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
+                  {{ bitrate }}
+                </option>
+              </ng-container>
+              <option value="0">Kein Zugriff</option>
+            </select>
+            <div class="input-group-addon">kbps</div>
+          </div>
+          <sd-field-errors [errors]="fieldErrors('max_public_bitrate')"></sd-field-errors>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="fieldErrors('max_logged_in_bitrate')">
+        <label for="max_logged_in_bitrate" class="col-md-6 control-label">
+          Maximale Bitrate für eingeloggte Benutzende/Gäste
+        </label>
+        <div class="col-md-6">
+          <div class="input-group">
+            <select id="max_logged_in_bitrate" class="form-control" formControlName="max_logged_in_bitrate">
+              <option [value]="null">Voller Zugriff</option>
+              <ng-container *ngIf="audioEncoding.attributes.bitrates.length > 1">
+                <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
+                  {{ bitrate }}
+                </option>
+              </ng-container>
+              <option value="0">Kein Zugriff</option>
+            </select>
+            <div class="input-group-addon">kbps</div>
+          </div>
+          <sd-field-errors [errors]="fieldErrors('max_logged_in_bitrate')"></sd-field-errors>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="fieldErrors('max_priviledged_bitrate')">
+        <label for="max_priviledged_bitrate" class="col-md-6 control-label">
+          Maximale Bitrate für privilegierte Gruppen
+        </label>
+        <div class="col-md-6">
+          <div class="input-group">
+            <select id="max_priviledged_bitrate" class="form-control" formControlName="max_priviledged_bitrate">
+              <option [value]="null">Voller Zugriff</option>
+              <ng-container *ngIf="audioEncoding.attributes.bitrates.length > 1">
+                <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
+                  {{ bitrate }}
+                </option>
+              </ng-container>
+              <option value="0">Kein Zugriff</option>
+            </select>
+            <div class="input-group-addon">kbps</div>
+          </div>
+          <sd-field-errors [errors]="fieldErrors('max_priviledged_bitrate')"></sd-field-errors>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="fieldErrors('priviledged_groups')">
+        <label for="priviledged_groups" class="col-md-6 control-label">
+          Privilegierte Gruppen (Komma getrennt)
+        </label>
+        <div class="col-md-6">
+          <input id="priviledged_groups" type="text" class="form-control" formControlName="priviledged_groups">
+          <sd-field-errors [errors]="fieldErrors('priviledged_groups')"></sd-field-errors>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="fieldErrors('download_permission')">
+        <label for="download_permission" class="col-md-6 control-label">
+          Download erlaubt für
+        </label>
+        <div class="col-md-6">
+          <select id="download_permission" class="form-control" formControlName="download_permission">
+            <option value="public">Alle</option>
+            <option value="logged_in">Eingeloggte Benutzende/Gäste</option>
+            <option value="priviledged">Privilegierte Gruppen</option>
+            <option value="admin">Administratoren</option>
+          </select>
+          <sd-field-errors [errors]="fieldErrors('download_permission')"></sd-field-errors>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-horizontal">
+      <h4>Initialer Import</h4>
+
       <div *ngIf="audioEncoding.attributes.bitrates.length > 1"
+           class="form-group"
            [class.has-error]="fieldErrors('initial_bitrate')">
-        <label for="initial_bitrate" class="col-md-3 control-label">Anfängliche Bitrate</label>
-        <div class="col-md-3">
+        <label for="initial_bitrate" class="col-md-2 control-label">Bitrate</label>
+        <div class="col-md-4">
           <div class="input-group">
             <select id="initial_bitrate" class="form-control" formControlName="initial_bitrate">
               <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
@@ -23,36 +119,49 @@
         </div>
       </div>
 
-      <div [class.has-error]="fieldErrors('initial_channels')">
-        <label for="initial_channels" class="col-md-3 control-label">Anfängliche Anzahl Kanäle</label>
-        <div class="col-md-3">
-          <select id="initial_channels" class="form-control" formControlName="initial_channels">
-            <option *ngFor="let channel of audioEncoding.attributes.channels" value="{{channel}}">
-              {{ channel }}
-            </option>
-          </select>
-          <sd-field-errors [errors]="fieldErrors('initial_channels')"></sd-field-errors>
-        </div>
+      <div class="form-group" [class.has-error]="fieldErrors('initial_channels')">
+          <label for="initial_channels" class="col-md-2 control-label">Anzahl Kanäle</label>
+          <div class="col-md-4">
+            <select id="initial_channels" class="form-control" formControlName="initial_channels">
+              <option *ngFor="let channel of audioEncoding.attributes.channels" value="{{channel}}">
+                {{ channel }}
+              </option>
+            </select>
+            <sd-field-errors [errors]="fieldErrors('initial_channels')"></sd-field-errors>
+          </div>
       </div>
     </div>
 
-    <div class="form-group" [class.has-error]="fieldErrors('max_public_bitrate')">
-      <label for="max_public_bitrate" class="col-md-3 control-label">Maximale öffentliche Bitrate</label>
-      <div class="col-md-3">
-        <div class="input-group">
-          <select id="max_public_bitrate" class="form-control" formControlName="max_public_bitrate">
-            <option *ngFor="let bitrate of audioEncoding.attributes.bitrates" value="{{bitrate}}">
-              {{ bitrate }}
-            </option>
-            <option value="0">Nicht öffentlich</option>
-          </select>
-          <div class="input-group-addon">kbps</div>
-        </div>
-        <sd-field-errors [errors]="fieldErrors('max_public_bitrate')" class="col-md-6"></sd-field-errors>
-      </div>
+    <div *ngIf="archiveFormat.id">
+      <h4>Datenreduktion</h4>
+
+      <ul class="list-group" style="margin-bottom: 10px;">
+        <sd-downgrade-action *ngFor="let action of downgradeActions"
+                             [class.disabled]="!!editedDowngradeAction"
+                             [downgradeAction]="action"
+                             (edit)="editDowngradeAction(action)"
+                             (remove)="removeDowngradeAction(action)">
+        </sd-downgrade-action>
+      </ul>
+
+      <sd-downgrade-action-form *ngIf="editedDowngradeAction"
+                                [downgradeAction]="editedDowngradeAction"
+                                [audioEncoding]="audioEncoding"
+                                [restService]="downgradeActionsRest"
+                                (saved)="updateDowngradeAction($event)"
+                                (canceled)="editedDowngradeAction = undefined">
+      </sd-downgrade-action-form>
+
+      <p *ngIf="!hasEreasingDowngrade() && !editedDowngradeAction">
+        <a (click)="addDowngradeAction(false)">Reduktionsschritt hinzufügen</a>
+        /
+        <a (click)="addDowngradeAction(true)">Löschzeitpunkt hinzufügen</a>
+      </p>
+
     </div>
 
     <div>
+      <br/>
       <button type="submit"
               [disabled]="form.pristine || !form.valid"
               class="btn btn-primary title">
@@ -73,41 +182,13 @@
     </div>
   </form>
 
-  <div *ngIf="archiveFormat.id">
-    <br/>
+  <br *ngIf="archiveFormat.id && audioEncoding.attributes.bitrates.length > 1" />
 
-    <h4>Datenreduktion</h4>
-
-    <sd-downgrade-action *ngFor="let action of downgradeActions"
-                         [class.disabled]="!!editedDowngradeAction"
-                         [downgradeAction]="action"
-                         (edit)="editDowngradeAction(action)"
-                         (remove)="removeDowngradeAction(action)">
-    </sd-downgrade-action>
-
-    <br/>
-
-    <sd-downgrade-action-form *ngIf="editedDowngradeAction"
-                              [downgradeAction]="editedDowngradeAction"
-                              [audioEncoding]="audioEncoding"
-                              [restService]="downgradeActionsRest"
-                              (saved)="updateDowngradeAction($event)"
-                              (canceled)="editedDowngradeAction = undefined">
-    </sd-downgrade-action-form>
-
-    <div *ngIf="!hasEreasingDowngrade() && !editedDowngradeAction">
-      <a (click)="addDowngradeAction(false)">Reduktionsschritt hinzufügen</a>
-      /
-      <a (click)="addDowngradeAction(true)">Löschzeitpunkt hinzufügen</a>
-    </div>
-  </div>
-
-  <br/>
-
-  <div class="alert alert-warning" *ngIf="audioEncoding.attributes.bitrates.length > 1">
+  <div class="alert alert-warning"
+      *ngIf="archiveFormat.id && audioEncoding.attributes.bitrates.length > 1">
     <p>
     <strong>Vorsicht!</strong>
-    Änderungen an den Archivierungsformaten (ausser der maximalen öffentlichen Bitrate)
+    Änderungen an den Archivierungsformaten (ausser den Zugriffsberechtigungen)
     und den Datenreduktionsschritten werden beim nächsten Reduktionslauf
     berücksichtigt und können ab dann nicht mehr rückgängig gemacht werden.
     </p>
@@ -116,6 +197,10 @@
     welche sich auf alle(!) archivierten Sendungen des entsprechenden Profils
     auswirken und somit eine unwiederrufliche und rechenintensive
     Reduktion der Qualität der archivierten Aufnahmen anstossen.
+    </p>
+    <p>
+    Das Löschen eines Archivierungsformates löscht die entsprechenden Audio Dateien nicht.
+    Der Zugriff darauf ist jedoch nur noch für Administratoren möglich.
     </p>
   </div>
 
