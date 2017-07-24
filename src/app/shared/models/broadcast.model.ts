@@ -9,6 +9,7 @@ export class BroadcastModel extends CrudModel {
     started_at: Date;
     finished_at: Date;
     show_id: number;
+    audio_access: boolean;
   };
 
   relationships: {
