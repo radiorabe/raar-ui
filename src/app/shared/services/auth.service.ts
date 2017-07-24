@@ -3,6 +3,7 @@ import { Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { LoginWindowService } from './login-window.service';
+import { RefreshService } from './refresh.service';
 import { UserModel } from '../models/index';
 import { Observable } from 'rxjs/Observable';
 import { zip } from 'rxjs/observable/zip';
@@ -22,6 +23,7 @@ export class AuthService {
   private _redirectUrl: string | void;
 
   constructor(private login: LoginService,
+              private refresh: RefreshService,
               private router: Router,
               private loginWindow: LoginWindowService) {}
 
@@ -53,6 +55,8 @@ export class AuthService {
     if (this._redirectUrl) {
       this.router.navigate([this._redirectUrl]);
       this._redirectUrl = undefined;
+    } else {
+      this.refresh.next(undefined);
     }
   }
 
@@ -66,6 +70,13 @@ export class AuthService {
 
   get adminToken(): string {
     return this.getToken(ADMIN_TOKEN_KEY);
+  }
+
+  logout() {
+    this._user = undefined;
+    this.clearToken(API_TOKEN_KEY);
+    this.clearToken(ADMIN_TOKEN_KEY);
+    this.refresh.next(undefined);
   }
 
   addAuthToken(headers: Headers) {
@@ -85,12 +96,6 @@ export class AuthService {
     this._initializedAdmin = false;
     this._user = undefined;
     this.loginWindow.show();
-  }
-
-  logout() {
-    this._user = undefined;
-    this.clearToken(API_TOKEN_KEY);
-    this.clearToken(ADMIN_TOKEN_KEY);
   }
 
   private getToken(key: string): string {

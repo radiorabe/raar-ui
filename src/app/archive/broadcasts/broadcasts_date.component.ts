@@ -6,6 +6,7 @@ import { CrudList } from '../../shared/models/crud_list';
 import { BroadcastModel } from '../../shared/models/broadcast.model';
 import { BroadcastsService } from '../../shared/services/broadcasts.service';
 import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
+import { RefreshService } from '../../shared/services/refresh.service';
 import * as moment from 'moment';
 
 @Component({
@@ -27,7 +28,8 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private broadcastsService: BroadcastsService) {
+              private broadcastsService: BroadcastsService,
+              private refreshService: RefreshService) {
   }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
     this.broadcastsSub = dateObservable
       .distinctUntilChanged((a: Date, b: Date) => a.getTime() === b.getTime())
+      .merge(this.refreshService.asObservable().withLatestFrom(dateObservable, (_, date) => date))
       .do(() => this.loading = true)
       .debounceTime(200)
       .switchMap((date: Date) =>

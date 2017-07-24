@@ -9,6 +9,7 @@ import { BroadcastModel, ShowModel, CrudList } from '../../shared/models/index';
 import { ShowsService } from '../../shared/services/shows.service';
 import { BroadcastsService } from '../../shared/services/broadcasts.service';
 import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
+import { RefreshService } from '../../shared/services/refresh.service';
 
 import * as moment from 'moment';
 
@@ -32,7 +33,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   fetchingMore: boolean = false;
   errorMessage: string | void;
 
-  private fetchMore: Subject<boolean> = new Subject<boolean>();
+  private fetchMore: Subject<void> = new Subject<void>();
   private showSub: ISubscription;
   private listSub: ISubscription;
   private monthlySub: ISubscription;
@@ -41,7 +42,8 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private showsService: ShowsService,
-              private broadcastsService: BroadcastsService) {
+              private broadcastsService: BroadcastsService,
+              private refreshService: RefreshService) {
   }
 
   ngOnInit() {
@@ -109,7 +111,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    this.fetchMore.next(true);
+    this.fetchMore.next();
   }
 
   isExpanded(broadcast: BroadcastModel): boolean {
@@ -118,6 +120,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
 
   private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
     return this.show
+      .merge(this.refreshService.asObservable().withLatestFrom(this.show, (_, show) => show))
       .flatMap(show =>
         this.broadcastsService
           .getListForShow(show)
