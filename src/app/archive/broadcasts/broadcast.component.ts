@@ -52,7 +52,7 @@ export class BroadcastComponent implements OnInit {
   }
 
   private fetchAudioFiles() {
-    if (!this.audioFiles) {
+    if (!this.audioFiles && this.broadcast.attributes.audio_access) {
       this.loading = true;
       this.audioFilesService.getListForBroadcast(this.broadcast)
         .subscribe(list => {

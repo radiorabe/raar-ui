@@ -98,6 +98,10 @@ sd-broadcast {
       margin-bottom: 0px;
     }
 
+    table {
+      margin-bottom: 10px;
+    }
+
     .table-condensed  tr > td {
       padding-top: 0;
       padding-bottom: 0;
@@ -114,6 +118,10 @@ sd-broadcast {
     .list-group-item-heading {
       padding-left: 116px;
       text-indent: -116px;
+
+      .pull-right {
+        text-indent: 0;
+      }
     }
 
     .broadcast-date {
@@ -125,6 +133,10 @@ sd-broadcast {
     .list-group-item-heading {
       padding-left: 186px;
       text-indent: -186px;
+
+      .pull-right {
+        text-indent: 0;
+      }
     }
 
     .broadcast-date {
@@ -142,6 +154,16 @@ sd-broadcast {
       &> a {
         color: $brand-disabled;
       }
+    }
+  }
+}
+
+.access-denied {
+  .list-group-item-heading {
+    color: $brand-disabled;
+
+    &> a {
+      color: $brand-no-access;
     }
   }
 }

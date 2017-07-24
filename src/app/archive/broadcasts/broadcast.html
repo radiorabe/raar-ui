@@ -1,5 +1,8 @@
-<div class="list-group-item view-{{view}}">
+<div class="list-group-item view-{{view}}" [class.access-denied]="!broadcast.attributes.audio_access">
   <h4 class="list-group-item-heading title" (click)="toggle()">
+    <div *ngIf="!broadcast.attributes.audio_access" class="pull-right">
+      <span class="glyphicon glyphicon-lock"></span>
+    </div>
     <a>
       <span class="broadcast-date">
         {{broadcast | broadcastTime: (view === 'show' ? 'standard' : 'time')}}
@@ -9,6 +12,7 @@
   </h4>
 
   <div class="list-group-item-text fixclear" *ngIf="expanded">
+
     <table class="table-condensed pull-right">
       <tr *ngFor="let audio of audioFiles">
         <td>
@@ -40,6 +44,12 @@
     <p *ngIf="broadcast.attributes.people" [innerHtml]="broadcast.attributes.people"></p>
     <p *ngIf="view == 'date'">
       <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
+    </p>
+    <p class="pull-right"
+         *ngIf="!broadcast.attributes.audio_access">
+      Du hast keinen Zugriff auf diese Aufnahme.
+      Bitte melde dich mit deinem neuen RaBe Login
+      oder dem Zugangscode aus dem StattRadio an.
     </p>
   </div>
 </div>
