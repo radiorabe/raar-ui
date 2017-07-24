@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, isDevMode } from '@angular/core';
+import { Component, Input, OnChanges, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
 import { AudioFilesService, DateParamsService } from '../../shared/services/index';
@@ -10,7 +10,7 @@ import { AudioPlayerService } from '../player/audio_player.service';
   selector: 'sd-broadcast',
   templateUrl: 'broadcast.html',
 })
-export class BroadcastComponent implements OnInit {
+export class BroadcastComponent implements OnChanges {
 
   @Input() broadcast: BroadcastModel;
   @Input() dateFormat: string;
@@ -24,8 +24,8 @@ export class BroadcastComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit() {
-    if (this.expanded)  {
+  ngOnChanges(changes: any) {
+    if (changes.broadcast && this.expanded) {
       this.fetchAudioFiles();
     }
   }

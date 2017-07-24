@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers } from '@angular/http';
 import { LoginService } from './login.service';
+import { RefreshService } from './refresh.service';
 import { UserModel } from '../models/index';
 
 const API_TOKEN_KEY = 'api_token';
@@ -12,7 +13,8 @@ export class AuthService {
 
   private _initialized: boolean = false;
 
-  constructor(private login: LoginService) {}
+  constructor(private login: LoginService,
+              private refresh: RefreshService) {}
 
   get isLoggedIn(): boolean {
     this.checkAuth();
@@ -27,6 +29,7 @@ export class AuthService {
   set user(user: UserModel | void) {
     this._user = user;
     this.storeToken(API_TOKEN_KEY, user.attributes.api_token);
+    this.refresh.next(undefined);
   }
 
   get apiToken(): string {
@@ -36,6 +39,7 @@ export class AuthService {
   logout() {
     this._user = undefined;
     this.clearToken(API_TOKEN_KEY);
+    this.refresh.next(undefined);
   }
 
   addAuthToken(headers: Headers) {
