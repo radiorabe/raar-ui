@@ -1,5 +1,7 @@
-<div class="list-group-item view-{{view}}" [class.access-denied]="!broadcast.attributes.audio_access">
-  <h4 class="list-group-item-heading title" (click)="toggle()">
+<div class="list-group-item view-{{view}}">
+  <h4 class="list-group-item-heading title"
+      [class.access-denied]="!broadcast.attributes.audio_access"
+      (click)="toggle()">
     <div *ngIf="!broadcast.attributes.audio_access" class="pull-right">
       <span class="glyphicon glyphicon-lock"></span>
     </div>
@@ -48,8 +50,8 @@
     <p class="pull-right"
          *ngIf="!broadcast.attributes.audio_access">
       Du hast keinen Zugriff auf diese Aufnahme.
-      Bitte melde dich mit deinem neuen RaBe Login
-      oder dem Zugangscode aus dem StattRadio an.
+      Bitte <a (click)="loginWindow.show(false)">gib den Zugangscode</a> aus dem StattRadio ein
+      oder melde dich mit deinem neuen RaBe <a (click)="loginWindow.show(true)">Login</a> an.
     </p>
   </div>
 </div>

@@ -31,6 +31,12 @@ a {
     line-height: 20px;
   }
 
+  .navbar-user {
+    a {
+      display: inline-block;
+    }
+  }
+
   li a {
     padding-top: 10px;
     padding-bottom: 10px;

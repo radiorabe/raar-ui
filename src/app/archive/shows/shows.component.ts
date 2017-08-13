@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { ShowsService } from '../../shared/services/shows.service';
 import { ShowModel } from '../../shared/models/show.model';
+import { RefreshService } from '../../shared/services/refresh.service';
 
 @Component({
   moduleId: module.id,
@@ -20,7 +21,8 @@ export class ShowsComponent {
 
   public query: FormControl = new FormControl();
 
-  constructor(private showService: ShowsService) {
+  constructor(private showService: ShowsService,
+              private refreshService: RefreshService) {
     this.shows = this.showObservable();
   }
 
@@ -30,6 +32,7 @@ export class ShowsComponent {
       .debounceTime(200)
       .filter((q: string) => q.length === 0 || q.length > 2)
       .distinctUntilChanged()
+      .merge(this.refreshService.asObservable().map(_ => ''))
       .switchMap(q => this.fetchShows(q));
   }
 
@@ -62,11 +65,7 @@ export class ShowsComponent {
   }
 
   private sortByName(entries: ShowModel[]): ShowModel[] {
-    return entries.sort((a, b) => {
-      if (a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase()) return -1;
-      if (a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()) return 1;
-      return 0;
-    });
+    return entries.sort((a, b) => a.attributes.name.localeCompare(b.attributes.name));
   }
 
 }

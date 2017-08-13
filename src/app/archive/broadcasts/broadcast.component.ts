@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
-import { AudioFilesService, DateParamsService } from '../../shared/services/index';
+import { AudioFilesService, DateParamsService, LoginWindowService } from '../../shared/services/index';
 import { AudioPlayerService } from '../player/audio_player.service';
 
 
@@ -20,6 +20,7 @@ export class BroadcastComponent implements OnChanges {
   loading: boolean = false;
 
   constructor(public audioPlayer: AudioPlayerService,
+              public loginWindow: LoginWindowService,
               private audioFilesService: AudioFilesService,
               private router: Router) {
   }

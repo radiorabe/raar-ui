@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { SmallModalComponent } from './small-modal.component';
 import { LoginService } from '../services/login.service';
+import { LoginWindowService } from '../services/login-window.service';
 import { AuthService } from '../services/auth.service';
 import { UserModel } from '../models/user.model';
 
@@ -21,10 +22,13 @@ export class LoginComponent {
   userLogin: boolean = true;
 
   constructor(private login: LoginService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private loginWindow: LoginWindowService) {
+    this.loginWindow.show$.subscribe(this.show.bind(this));
   }
 
-  show() {
+  show(userLogin: boolean = true) {
+    this.userLogin = userLogin;
     this.modal.show();
   }
 

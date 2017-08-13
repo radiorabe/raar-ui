@@ -10,7 +10,11 @@
   <a *ngFor="let show of shows | async"
      [routerLink]="['/show', show.id]"
      routerLinkActive="active"
-     class="list-group-item title">
+     class="list-group-item title"
+      [class.access-denied]="!show.attributes.audio_access">
+    <div *ngIf="!show.attributes.audio_access" class="pull-right">
+      <span class="glyphicon glyphicon-lock"></span>
+    </div>
     {{show.attributes.name}}
   </a>
 </div>
