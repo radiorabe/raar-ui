@@ -25,10 +25,8 @@
       <li *ngIf="!auth.isLoggedIn">
         <a (click)="login.show()"><small>Login</small></a>
       </li>
-      <li *ngIf="auth.isLoggedIn" class="navbar-text">
+      <li *ngIf="auth.isLoggedIn" class="navbar-user">
         <small class="user">{{auth.user.toString()}}</small>
-      </li>
-      <li *ngIf="auth.isLoggedIn">
         <a (click)="auth.logout()"><small>Logout</small></a>
       </li>
     </ul>

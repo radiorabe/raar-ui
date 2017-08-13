@@ -2,11 +2,11 @@ import { EventEmitter } from '@angular/core';
 
 export class LoginWindowService {
 
-  show$ = new EventEmitter<void>();
-  closed$ = new EventEmitter<void>();
+  show$ = new EventEmitter<boolean>();
+  closed$ = new EventEmitter<boolean>();
 
-  show() {
-    this.show$.emit();
+  show(userLogin: boolean = true) {
+    this.show$.emit(userLogin);
   }
 
   closed() {

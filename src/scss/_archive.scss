@@ -155,11 +155,15 @@ sd-broadcast {
 }
 
 .access-denied {
-  .list-group-item-heading {
-    color: $brand-disabled;
+  &.title {
+    color: $brand-no-access;
 
-    &> a {
+    a {
       color: $brand-no-access;
+    }
+
+    .glyphicon {
+      color: $brand-disabled;
     }
   }
 }
