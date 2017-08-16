@@ -19,7 +19,7 @@ export class LoginComponent {
   accessCode: string;
   checking: boolean = false;
   failure: boolean = false;
-  userLogin: boolean = true;
+  userLogin: boolean = false;
 
   constructor(private login: LoginService,
               private auth: AuthService,
@@ -27,7 +27,7 @@ export class LoginComponent {
     this.loginWindow.show$.subscribe(this.show.bind(this));
   }
 
-  show(userLogin: boolean = true) {
+  show(userLogin: boolean = false) {
     this.userLogin = userLogin;
     this.modal.show();
   }
