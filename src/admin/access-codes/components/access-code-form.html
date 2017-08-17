@@ -1,0 +1,36 @@
+<h1>{{ title }}</h1>
+
+<div class="well" *ngIf="entry && entry.attributes.code">
+  {{ entry.attributes.code }}
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <sd-form-errors [errors]="formErrors()"></sd-form-errors>
+
+  <div class="form-group" [class.has-error]="fieldErrors('expires_at')">
+    <label for="expires_at" class="control-label">Gültig bis</label>
+    <input id="expires_at" class="form-control" formControlName="expires_at" type="date" />
+    <sd-field-errors [errors]="fieldErrors('expires_at')"></sd-field-errors>
+  </div>
+
+  <div>
+    <button type="submit"
+            [disabled]="form.pristine || !form.valid"
+            class="btn btn-primary title">
+      Speichern
+    </button>
+    &nbsp;
+    <button type="reset"
+            (click)="reset()"
+            [disabled]="form.pristine"
+            class="btn">
+      Zurücksetzen
+    </button>
+    &nbsp;
+    <button *ngIf="entry && entry.id"
+            (click)="remove($event)"
+            class="btn btn-danger pull-right">
+      Löschen
+    </button>
+  </div>
+</form>

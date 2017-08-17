@@ -44,6 +44,10 @@ export class ModelsService<T extends CrudModel> {
     this.loadEntries().subscribe(list => this.updateEntries(list));
   }
 
+  protected sortEntries(entries: T[]): T[] {
+    return entries.sort((a: T, b: T) => a.toString().localeCompare(b.toString()));
+  }
+
   private loadEntries(): Observable<T[]> {
     return this.crudRest
      .getList({ sort: this.sortAttr, 'page[size]': 500 })
@@ -71,8 +75,8 @@ export class ModelsService<T extends CrudModel> {
   }
 
   private updateEntries(entries: T[]) {
-    this.entries = entries.sort((a: T, b: T) => a.toString().localeCompare(b.toString()));
-    this.entries$.next(entries);
+    this.entries = this.sortEntries(entries);
+    this.entries$.next(this.entries);
   }
 
 }
