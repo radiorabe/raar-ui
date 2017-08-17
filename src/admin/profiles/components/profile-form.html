@@ -52,15 +52,18 @@
   <h3>Archivierungsformate</h3>
 
   <accordion [closeOthers]="true">
-    <sd-archive-format-form *ngFor="let format of archiveFormats"
-                            [archiveFormat]="format"
-                            [restService]="archiveFormatsRest"
-                            (removed)="removeArchiveFormat(format)">
-    </sd-archive-format-form>
+    <accordion-group *ngFor="let format of archiveFormats">
+      <div accordion-heading>
+        <h4>{{ format.toString() }}</h4>
+      </div>
+      <sd-archive-format-form [archiveFormat]="format"
+                              [restService]="archiveFormatsRest"
+                              (removed)="removeArchiveFormat(format)">
+      </sd-archive-format-form>
+    </accordion-group>
   </accordion>
 
   <div class="form-inline" *ngIf="availableCodecs.length">
-    <br/>
     Format hinzufügen:
     &nbsp;
     <select (change)="addArchiveFormat($event.target.value)" class="form-control">

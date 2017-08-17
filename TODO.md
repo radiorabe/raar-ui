@@ -1,8 +1,6 @@
 ## Next steps
 
-* Expand/Collapse Issue Archive Formats, Animation, Expand Last
 * Access Codes Frontend
-* Initial Bitrate must be changed before create issue
 * Rebase, Logout
 * add possibility to merge shows
 * check permission for requested audio
@@ -10,12 +8,11 @@
 
 ## Future steps
 
-* add admin interface
 * add search box for broadcast search
 * add podcast links
 
 ## To discuss
 
+* continue playing the following broadcast when the current is finished (only in date view?)
 * display time of day in player instead of time since start
-* continue playing the following broadcast when the current is finished in date view
 * add show name to url

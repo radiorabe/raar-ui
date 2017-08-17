@@ -23,8 +23,6 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   @Output() removed = new EventEmitter<void>();
 
-  expanded: boolean = false;
-
   audioEncoding: AudioEncodingModel = new AudioEncodingModel();
 
   downgradeActions: DowngradeActionModel[] = [];
@@ -40,7 +38,6 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
   }
 
   ngOnInit() {
-    this.expanded = !this.archiveFormat.id;
     this.audioEncodingsService.getEntries().subscribe(list => {
       this.audioEncoding = list.find(e => e.attributes.codec === this.archiveFormat.attributes.codec) ||
                            new AudioEncodingModel();
@@ -62,7 +59,9 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   reset() {
     this.form.reset({
-      initial_bitrate: this.archiveFormat.attributes.initial_bitrate,
+      initial_bitrate: this.archiveFormat.id ?
+                         this.archiveFormat.attributes.initial_bitrate :
+                         this.audioEncoding.attributes.bitrates[0],
       initial_channels: this.archiveFormat.attributes.initial_channels,
       max_public_bitrate: this.archiveFormat.attributes.max_public_bitrate,
       max_logged_in_bitrate: this.archiveFormat.attributes.max_logged_in_bitrate,
@@ -161,7 +160,6 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     const action = this.archiveFormat.id ? 'update' : 'create';
     this.restService[action](this.archiveFormat).subscribe(
       _ => {
-        this.expanded = true;
         this.reset();
         if (action === 'create') {
           this.downgradeActionsRest.archiveFormatId = this.archiveFormat.id;
