@@ -11,7 +11,7 @@ export class AccessCodeModel extends CrudModel {
   };
 
   toString(): string {
-    return 'Bis ' + this.expires_at_string
+    return 'Bis ' + this.expires_at_string;
   }
 
   get expires_at_string(): string | void {

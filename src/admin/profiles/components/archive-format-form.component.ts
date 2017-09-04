@@ -33,8 +33,7 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
               public downgradeActionsRest: DowngradeActionsRestService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(changeDetector);
-    this.createForm(fb);
+    super(fb, changeDetector);
   }
 
   ngOnInit() {
@@ -133,7 +132,7 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     return this.downgradeActions.some(a => a.ereasing);
   }
 
-  private createForm(fb: FormBuilder) {
+  protected createForm(fb: FormBuilder) {
     this.form = fb.group({
       initial_bitrate: ['', Validators.required],
       initial_channels: ['', Validators.required],

@@ -14,7 +14,7 @@ export class ModelsService<T extends CrudModel> {
 
   private entries$ = new BehaviorSubject<T[]>([]);
 
-  constructor(private crudRest: CrudRestService<T>) {
+  constructor(protected crudRest: CrudRestService<T>) {
     this.reload();
   }
 
@@ -48,6 +48,15 @@ export class ModelsService<T extends CrudModel> {
     return entries.sort((a: T, b: T) => a.toString().localeCompare(b.toString()));
   }
 
+  protected entriesWithout(id: number) {
+    return this.entries.filter(e => e.id !== id);
+  }
+
+  protected updateEntries(entries: T[]) {
+    this.entries = this.sortEntries(entries);
+    this.entries$.next(this.entries);
+  }
+
   private loadEntries(): Observable<T[]> {
     return this.crudRest
      .getList({ sort: this.sortAttr, 'page[size]': 500 })
@@ -68,15 +77,6 @@ export class ModelsService<T extends CrudModel> {
     const result = this.entriesWithout(entry.id);
     result.push(entry);
     this.updateEntries(result);
-  }
-
-  private entriesWithout(id: number) {
-    return this.entries.filter(e => e.id !== id);
-  }
-
-  private updateEntries(entries: T[]) {
-    this.entries = this.sortEntries(entries);
-    this.entries$.next(this.entries);
   }
 
 }

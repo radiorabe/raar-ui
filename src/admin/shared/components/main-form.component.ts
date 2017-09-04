@@ -23,8 +23,7 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
               protected modelsService: ModelsService<T>,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(changeDetector);
-    this.createForm(fb);
+    super(fb, changeDetector);
   }
 
   ngOnInit() {
@@ -63,10 +62,6 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
     }
   }
 
-  reset() {
-    this.form.reset();
-  }
-
   protected setEntry(entry: T) {
     this.entry = entry;
     this.title = entry.id ? entry.toString() : this.getTitleNew();
@@ -84,10 +79,6 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
   }
 
   protected serialize() {
-    // implement in subclass
-  }
-
-  protected createForm(fb: FormBuilder) {
     // implement in subclass
   }
 

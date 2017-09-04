@@ -9,14 +9,14 @@
 
   <div class="form-group" [class.has-error]="fieldErrors('expires_at')">
     <label for="expires_at" class="control-label">Gültig bis</label>
-    <input id="expires_at" class="form-control" formControlName="expires_at" type="date" />
+    <input id="expires_at" class="form-control" formControlName="expires_at" type="text" />
     <sd-field-errors [errors]="fieldErrors('expires_at')"></sd-field-errors>
   </div>
 
   <div>
     <button type="submit"
             [disabled]="form.pristine || !form.valid"
-            class="btn btn-primary title">
+            class="btn btn-primary">
       Speichern
     </button>
     &nbsp;

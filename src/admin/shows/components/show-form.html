@@ -29,7 +29,7 @@
   <div>
     <button type="submit"
             [disabled]="form.pristine || !form.valid"
-            class="btn btn-primary title">
+            class="btn btn-primary">
       Speichern
     </button>
     &nbsp;
@@ -47,3 +47,9 @@
     </button>
   </div>
 </form>
+
+<br/>
+<br/>
+
+<sd-show-merge [show]="entry" *ngIf="entry && entry.id">
+</sd-show-merge>

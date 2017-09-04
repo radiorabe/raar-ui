@@ -26,7 +26,7 @@ $ yarn run build.prod
 $ yarn run build.prod.rollup.aot
 
 # prod build for admin app
-$ yarn run build.prod.rollup.aot -- --app admin -- base /admin/
+$ yarn run build.prod.rollup.aot -- --app admin --base /admin/
 ```
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).

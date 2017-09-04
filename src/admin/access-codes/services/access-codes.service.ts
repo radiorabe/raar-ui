@@ -15,7 +15,7 @@ export class AccessCodesService extends ModelsService<AccessCodeModel> {
 
   protected sortEntries(entries: AccessCodeModel[]): AccessCodeModel[] {
     return entries.sort((a: AccessCodeModel, b: AccessCodeModel) => {
-      return moment.utc(a.attributes.expires_at).diff(moment.utc(b.attributes.expires_at))
+      return moment.utc(a.attributes.expires_at).diff(moment.utc(b.attributes.expires_at));
     });
   }
 

@@ -25,8 +25,7 @@ export class DowngradeActionFormComponent extends ValidatedFormComponent impleme
 
   constructor(changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(changeDetector);
-    this.createForm(fb);
+    super(fb, changeDetector);
   }
 
   ngOnInit() {
@@ -54,7 +53,7 @@ export class DowngradeActionFormComponent extends ValidatedFormComponent impleme
     }
   }
 
-  private createForm(fb: FormBuilder) {
+  protected createForm(fb: FormBuilder) {
     this.form = fb.group({
       months: ['', Validators.required],
       bitrate: [''],

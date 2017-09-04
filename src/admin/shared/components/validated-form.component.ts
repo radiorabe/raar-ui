@@ -32,7 +32,8 @@ export class ValidatedFormComponent {
 
   submitted: boolean = false;
 
-  constructor(protected changeDetector: ChangeDetectorRef) {
+  constructor(fb: FormBuilder, protected changeDetector: ChangeDetectorRef) {
+    this.createForm(fb);
   }
 
   formErrors(): string[] | void {
@@ -54,6 +55,10 @@ export class ValidatedFormComponent {
 
   resetFieldErrors(name: string): void {
     this.form.get(name).setErrors(null);
+  }
+
+  reset() {
+    this.form.reset();
   }
 
   protected handleSubmitError(error: any) {
@@ -95,6 +100,10 @@ export class ValidatedFormComponent {
       control = this.form;
     }
     return control;
+  }
+
+  protected createForm(fb: FormBuilder): void {
+    // implement in subclass
   }
 
   private collectValidationErrors(res: any): any {

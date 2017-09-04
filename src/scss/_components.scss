@@ -17,6 +17,10 @@
 
 }
 
-.panel {
-  border: none;
+accordion-group.panel {
+  border: 0;
+}
+
+.panel-warning .panel-body:after {
+  clear: right;
 }
