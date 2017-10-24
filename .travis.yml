@@ -1,5 +1,4 @@
 language: node_js
-
 node_js: stable
 
 sudo: false
@@ -7,18 +6,25 @@ sudo: false
 install: true  # yarn bug
 
 addons:
-  firefox: "45.0"
+  firefox: latest
+  chrome: stable
 
 os:
   - linux
 #  - osx
 
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated xctool || brew upgrade xctool; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CHROME_BIN=chromium-browser; fi  # Karma CI
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cask install google-chrome; fi  # Karma CI
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
 
 before_script:
+  - npm i -g npm@^5.3.0 && npm --version
+  - npm install webdriver-manager
   - npm install
+  - npm run webdriver-update
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then nohup bash -c "webdriver-manager start 2>&1 &"; fi  # Protractor CI
 
@@ -35,7 +41,7 @@ cache:
   directories: node_modules
 
 script:
-  - npm run test && npm run build.prod.exp
+  - npm run test && npm run build.prod.rollup.aot
 
 deploy:
   provider: releases

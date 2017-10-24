@@ -1,6 +1,9 @@
 ## Next steps
 
-* Rebase, Logout
+* BsDatepicker
+* Rebase, Logout admin
+* combine app & admin
+
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 

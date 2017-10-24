@@ -14,6 +14,9 @@ lib-cov
 coverage
 coverage_js
 
+# Directory for source-map-explorer reports
+sme
+
 # ignore documentation
 documentation
 
@@ -52,8 +55,8 @@ gulpfile.js.map
 
 # OS X trash files
 .DS_Store
-
-src/app/shared/config/env.config.js
-src/app/shared/config/env.config.js.map
+src/client/app/shared/config/env.config.js
+src/client/app/shared/config/env.config.js.map
 
 deploy.sh
+deploy_admin.sh

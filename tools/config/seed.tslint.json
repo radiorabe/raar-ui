@@ -29,7 +29,8 @@
     "trailing-comma": true,
     "triple-equals": true,
     "variable-name": false,
-    "angular-whitespace": [true, "check-semicolon"],
+
+    "angular-whitespace": [true, "check-semicolon", "check-interpolation"],
     "banana-in-box": true,
     "directive-selector": [true, ["attribute"], [], "camelCase"],
     "component-selector": [true, ["element"], [], "kebab-case"],
@@ -44,7 +45,7 @@
     "directive-class-suffix": true,
     "import-destructuring-spacing": true,
     "templates-use-public": true,
-    "no-access-missing-member": false,
+    "no-access-missing-member": true,
     "invoke-injectable": true
   }
 }

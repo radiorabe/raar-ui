@@ -34,10 +34,11 @@ export class RemoteService {
     this.auth.addAuthToken(headers);
   }
 
-  protected handleUnauthorized(error: any): any {
+  protected handleUnauthorized(error: Response): Observable<Response> {
     if (error.status === HTTP_UNAUTHORIZED) {
       this.auth.resetUser();
     }
+
     return Observable.throw(error);
   }
 

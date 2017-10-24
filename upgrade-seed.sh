@@ -25,7 +25,17 @@ cp upstream-seed/tools/env/*.* tools/env/
 # stage seed original files
 git add tools/tasks/seed
 git add tools/utils/seed
+git add tools/utils/seed.utils.ts
 git add tools/manual_typings/seed
+git add tools/debug.ts
+git add tools/README.md
+git add tools/config/seed.*
+
+git add docker-compose.*
+git add .docker/
+git add .dockerignore
+git add appveyor.yml
+
 git co -- README.md LICENSE
 
 echo "Upgraded files from upstream seed!"
