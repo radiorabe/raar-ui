@@ -20,6 +20,10 @@
       <label for="username">Zugangscode</label>
       <input type="string" class="form-control" name="accessCode" [(ngModel)]="accessCode">
     </div>
+    <div class="form-group" *ngIf="!userLogin">
+        Du hast keinen Zugangscode? Werde <a href="http://www.rabe.ch/mitgliedschaft">RaBe-Mitglied</a>
+        und erhalte den Zugang zum Archiv.
+    </div>
     <div class="form-group">
       <a *ngIf="userLogin" (click)="userLogin = false; failure = false">Du hast einen Zugangscode?</a>
       <a *ngIf="!userLogin" (click)="userLogin = true; failure = false">Du hast ein RaBe Login?</a>

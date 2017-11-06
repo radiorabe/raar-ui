@@ -43,7 +43,6 @@ a {
   }
 
   li small {
-    padding-top: 10px;
     display: inline-block;
 
     &.user {
@@ -53,6 +52,10 @@ a {
 }
 .navbar-right {
   float: right;
+  li {
+
+    padding-top: 10px;
+  }
 }
 
 .navbar-brand {
