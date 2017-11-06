@@ -21,9 +21,9 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     .startWith(0)
     .map(() => moment().format('YYYY-MM-DD'))
     .distinctUntilChanged()
-    .map(dateStr => new Date(dateStr));
+    .map(dateStr => moment(dateStr));
 
-  private _date: Date | void;
+  private _date: moment.Moment | void;
   private sub: ISubscription;
 
   public constructor(private router: Router) {
@@ -43,16 +43,30 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     }
   }
 
-  public get date(): Date | void {
+  public get date(): moment.Moment | void {
     return this._date;
   }
 
-  public set date(date: Date | void) {
+  public set date(date: moment.Moment | void) {
     this._date = date;
 
     if (date) {
       this.navigateToDate(date);
     }
+  }
+
+  public get dayPickerConfig(): Observable<any> {
+    return this.today$.map(date => {
+      return {
+        firstDayOfWeek: 'mo',
+        locale: 'de',
+        max: date,
+        theme: 'dp-material',
+        monthFormat: 'MMMM YYYY',
+        weekdayFormat: 'dd',
+        showGoToCurrent: false
+      }
+    });
   }
 
   private setDateFromRoute() {
@@ -68,17 +82,17 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     let month = params['month'];
     let day = params['day'];
     if (year && month && day) {
-      this._date = new Date(+year, +month - 1, +day);
+      this._date = moment({ year: +year, month: +month - 1, day: +day });
     } else {
       this._date = undefined;
     }
   }
 
-  private navigateToDate(date: Date) {
+  private navigateToDate(date: moment.Moment) {
     const url = this.dateRoute.snapshot.url.map(e => e.path);
-    const year = date.getFullYear().toString();
-    const month = (date.getMonth() + 1).toString();
-    const day = date.getDate().toString();
+    const year = date.year().toString();
+    const month = (date.month() + 1).toString();
+    const day = date.date().toString();
     if (url[0] !== year || url[1] !== month || url[2] !== day) {
       this.router.navigate([year, month, day]);
     }

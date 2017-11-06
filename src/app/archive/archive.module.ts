@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DatepickerModule } from 'ngx-bootstrap';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SharedModule } from '../shared/shared.module';
 import { ArchiveComponent } from './archive.component';
@@ -22,7 +22,7 @@ import { PreventDefaultLinkDirective } from '../shared/directives/prevent_defaul
   imports: [
     CommonModule,
     SharedModule,
-    DatepickerModule.forRoot(),
+    DpDatePickerModule,
     InfiniteScrollModule],
   declarations: [
     ArchiveComponent,

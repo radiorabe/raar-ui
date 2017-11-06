@@ -79,11 +79,20 @@ export class ProjectConfig extends SeedConfig {
         path: 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
       },
 
+      {
+        name: 'ng2-date-picker',
+        path: 'node_modules/ng2-date-picker',
+        packageMeta: {
+          main: 'index.js',
+          defaultExtension: 'js'
+        }
+      },
+
       // mandatory dependency for ngx-bootstrap datepicker
       {
         name:'moment',
         path:'node_modules/moment',
-        packageMeta:{
+        packageMeta: {
           main: 'moment.js',
           defaultExtension: 'js'
         }

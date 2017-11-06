@@ -1,10 +1,7 @@
 <h3>nach Datum</h3>
 
-<div style="display:inline-block;">
-  <datepicker [(ngModel)]="date"
-              [showWeeks]="false"
-              [maxDate]="today$ | async"
-              [startingDay]="1"
-              [minMode]="'day'">
-  </datepicker>
+<div class="well well-sm">
+  <dp-day-calendar [(ngModel)]="date"
+                  [config]="dayPickerConfig | async">
+  </dp-day-calendar>
 </div>

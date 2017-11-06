@@ -1,6 +1,6 @@
 ## Next steps
 
-* BsDatepicker
+* BsDatepicker / https://github.com/vlio20/angular-datepicker
 * Rebase, Logout admin
 * combine app & admin
 

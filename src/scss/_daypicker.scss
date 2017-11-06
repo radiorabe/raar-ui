@@ -1,0 +1,81 @@
+
+dp-day-calendar {
+  display: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  .dp-day-calendar-container {
+    background-color: transparent !important;
+  }
+
+  .dp-calendar-wrapper {
+    border: 0 !important;
+  }
+
+
+  dp-calendar-nav {
+    .dp-calendar-nav-container {
+      border: 0 !important;
+      height: 36px;
+    }
+
+    .dp-nav-header {
+      font-size: inherit;
+      font-weight: inherit;
+      left: 0;
+      top: 0;
+      transform: none;
+    }
+
+    .dp-nav-btns-container {
+      top: 0;
+      right: 0;
+      transform: none;
+    }
+
+    .dp-nav-header-btn {
+      padding: 6px;
+      width: 180px;
+    }
+
+    .dp-calendar-nav-left, .dp-calendar-nav-right {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .dp-weekdays {
+    font-size: 12px !important;
+    font-weight: inherit;
+    margin-bottom: 0 !important;
+    color: white;
+  }
+
+  .dp-calendar-weekday {
+    border: none !important;
+    width: 36px !important;
+  }
+
+  .dp-calendar-day {
+    width: 36px !important;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.65 !important;
+    }
+
+    &.dp-prev-month {
+      opacity: 1;
+      color: #888
+    }
+
+    &.dp-next-month {
+      opacity: 1;
+      color: #888
+    }
+  }
+
+}
