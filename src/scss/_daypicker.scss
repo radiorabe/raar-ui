@@ -23,14 +23,16 @@ dp-day-calendar {
     .dp-nav-header {
       font-size: inherit;
       font-weight: inherit;
-      left: 0;
+      left: 36px;
       top: 0;
       transform: none;
+      z-index: 50;
     }
 
     .dp-nav-btns-container {
       top: 0;
-      right: 0;
+      right: inherit;
+      width: 100%;
       transform: none;
     }
 
@@ -39,8 +41,14 @@ dp-day-calendar {
       width: 180px;
     }
 
+    .dp-calendar-nav-container-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
     .dp-calendar-nav-left, .dp-calendar-nav-right {
-      width: 30px;
+      width: 35px;
       height: 30px;
     }
   }
@@ -69,13 +77,28 @@ dp-day-calendar {
 
     &.dp-prev-month {
       opacity: 1;
-      color: #888
+      color: $text-muted;
     }
 
     &.dp-next-month {
       opacity: 1;
-      color: #888
+      color: $text-muted;
+    }
+
+    &.dp-selected {
+      background-color: $brand-primary !important;
     }
   }
 
+}
+
+dp-month-calendar {
+  .dp-month-calendar-container {
+    background-color: transparent !important;
+  }
+
+  .dp-calendar-month {
+    width: 63px !important;
+    height: 66px !important;
+  }
 }

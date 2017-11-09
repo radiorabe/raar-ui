@@ -23,6 +23,17 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     .distinctUntilChanged()
     .map(dateStr => moment(dateStr));
 
+  public dayPickerConfig$ = this.today$.map(date => {
+    return {
+      firstDayOfWeek: 'mo',
+      locale: 'de',
+      max: date,
+      monthFormat: 'MMMM YYYY',
+      weekdayFormat: 'dd',
+      showGoToCurrent: false
+    }
+  });
+
   private _date: moment.Moment | void;
   private sub: ISubscription;
 
@@ -35,6 +46,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
         this.setDateFromRoute();
       }
     });
+    this.setDateFromRoute();
   }
 
   ngOnDestroy() {
@@ -53,20 +65,6 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
     if (date) {
       this.navigateToDate(date);
     }
-  }
-
-  public get dayPickerConfig(): Observable<any> {
-    return this.today$.map(date => {
-      return {
-        firstDayOfWeek: 'mo',
-        locale: 'de',
-        max: date,
-        theme: 'dp-material',
-        monthFormat: 'MMMM YYYY',
-        weekdayFormat: 'dd',
-        showGoToCurrent: false
-      }
-    });
   }
 
   private setDateFromRoute() {

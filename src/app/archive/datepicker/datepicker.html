@@ -1,7 +1,10 @@
 <h3>nach Datum</h3>
 
 <div class="well well-sm">
-  <dp-day-calendar [(ngModel)]="date"
-                  [config]="dayPickerConfig | async">
+  <!-- [(ngModel)] would not work together with [displayDate] -->
+  <dp-day-calendar (onSelect)="date = $event.date"
+                   [ngModel]="date"
+                   [displayDate]="date"
+                   [config]="dayPickerConfig$ | async">
   </dp-day-calendar>
 </div>
