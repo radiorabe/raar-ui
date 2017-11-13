@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
@@ -10,14 +10,33 @@ export class SmallModalComponent {
 
   @Input() title: string;
 
-  @ViewChild('modal') public modal: ModalDirective;
+  public visible = false;
+  public visibleAnimate = false;
 
-  show() {
-    this.modal.show();
+  constructor(private cd: ChangeDetectorRef) {}
+
+  show(): void {
+    this.visible = true;
+    this.cd.markForCheck();
+    setTimeout(() => {
+      this.visibleAnimate = true;
+      this.cd.markForCheck();
+    }, 100);
   }
 
-  hide() {
-    this.modal.hide();
+  hide(): void {
+    this.visibleAnimate = false;
+    this.cd.markForCheck();
+    setTimeout(() => {
+      this.visible = false;
+      this.cd.markForCheck();
+    }, 300);
+  }
+
+  onContainerClicked(event: MouseEvent): void {
+    if ((<HTMLElement>event.target).classList.contains('modal')) {
+      this.hide();
+    }
   }
 
 }

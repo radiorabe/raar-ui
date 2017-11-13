@@ -1,8 +1,14 @@
-<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true"
+     (click)="onContainerClicked($event)"
+     [ngClass]="{ 'in': visibleAnimate }"
+     [ngStyle]="{ 'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0 }">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" aria-label="Close" (click)="modal.hide()">
+        <button type="button" class="close" aria-label="Close" (click)="hide()">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title">{{ title }}</h4>

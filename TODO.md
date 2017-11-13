@@ -1,6 +1,5 @@
 ## Next steps
 
-* Modal (https://www.npmjs.com/package/ng2-bootstrap-modal)
 * Accordion
 * Rebase, Logout admin
 * combine app & admin

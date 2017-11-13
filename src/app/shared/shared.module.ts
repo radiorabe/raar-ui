@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap';
 import { LayoutComponent } from './components/layout.component';
 import { SmallModalComponent } from './components/small-modal.component';
 import { LoginComponent } from './components/login.component';
@@ -17,8 +16,7 @@ import { LoginService, AuthService, RemoteService, LoginWindowService } from './
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
-    ModalModule.forRoot()
+    RouterModule
   ],
   declarations: [
     LayoutComponent,
@@ -30,7 +28,6 @@ import { LoginService, AuthService, RemoteService, LoginWindowService } from './
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    ModalModule,
     LayoutComponent,
     SmallModalComponent,
     LoginComponent,
