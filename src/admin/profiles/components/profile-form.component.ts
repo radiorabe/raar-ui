@@ -23,6 +23,8 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
 
   availableCodecs: string[] = [];
 
+  shownArchiveFormat: ArchiveFormatModel | void;
+
   constructor(route: ActivatedRoute,
               router: Router,
               profilesService: ProfilesService,
@@ -45,11 +47,20 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
     const newFormat = new ArchiveFormatModel();
     newFormat.attributes.codec = codec;
     this.setArchiveFormats(this.archiveFormats.concat([newFormat]));
+    this.shownArchiveFormat = newFormat;
   }
 
   removeArchiveFormat(format: ArchiveFormatModel) {
     this.setArchiveFormats(
       this.archiveFormats.filter(f => f.attributes.codec !== format.attributes.codec));
+  }
+
+  toggleArchiveFormat(format: ArchiveFormatModel) {
+    if (format === this.shownArchiveFormat) {
+      this.shownArchiveFormat = undefined;
+    } else {
+      this.shownArchiveFormat = format;
+    }
   }
 
   protected setEntry(profile: ProfileModel) {

@@ -4566,10 +4566,6 @@ ng2-date-picker@^2.6.1:
   dependencies:
     moment "^2.17.1"
 
-ngx-bootstrap@^1.8.1:
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-1.9.3.tgz#28e75d14fb1beaee609383d7694de4eb3ba03b26"
-
 ngx-infinite-scroll@^0.5.1:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-0.5.2.tgz#f31aefc5e78e6b352e68f286f16c4dead180d43c"

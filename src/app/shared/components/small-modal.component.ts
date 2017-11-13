@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   moduleId: module.id,

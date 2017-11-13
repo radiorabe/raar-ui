@@ -51,17 +51,36 @@
 
   <h3>Archivierungsformate</h3>
 
-  <accordion [closeOthers]="true">
-    <accordion-group *ngFor="let format of archiveFormats">
-      <div accordion-heading>
-        <h4>{{ format.toString() }}</h4>
+  <div class="accordion panel-group" role="tablist" aria-multiselectable="true">
+    <div *ngFor="let format of archiveFormats"
+         class="accordion-group panel"
+         [class.panel-open]="shownArchiveFormat === format">
+      <div class="panel card panel-default">
+        <div class="panel-heading card-header" role="tab">
+          <div class="panel-title"
+               role="button"
+               (click)="toggleArchiveFormat(format)"
+               [attr.aria-expanded]="shownArchiveFormat === format">
+            <h4>{{ format.toString() }}</h4>
+          </div>
+        </div>
+        <div class="panel-collapse collapse"
+             [class.in]="shownArchiveFormat === format"
+             role="tabpanel"
+             [attr.aria-expanded]="shownArchiveFormat === format"
+             [attr.aria-hidden]="shownArchiveFormat !== format"
+             [ngStyle]="{ 'display': shownArchiveFormat === format ? 'block' : 'none' }"
+             style="overflow: visible; height: auto;">
+          <div class="panel-body card-block card-body">
+            <sd-archive-format-form [archiveFormat]="format"
+                                    [restService]="archiveFormatsRest"
+                                    (removed)="removeArchiveFormat(format)">
+            </sd-archive-format-form>
+          </div>
+        </div>
       </div>
-      <sd-archive-format-form [archiveFormat]="format"
-                              [restService]="archiveFormatsRest"
-                              (removed)="removeArchiveFormat(format)">
-      </sd-archive-format-form>
-    </accordion-group>
-  </accordion>
+    </div>
+  </div>
 
   <div class="form-inline" *ngIf="availableCodecs.length">
     Format hinzufügen:

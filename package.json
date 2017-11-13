@@ -164,7 +164,6 @@
     "intl": "^1.2.5",
     "moment": "^2.18.1",
     "ng2-date-picker": "^2.6.1",
-    "ngx-bootstrap": "^1.8.1",
     "ngx-infinite-scroll": "^0.5.1",
     "rxjs": "^5.5.0",
     "soundmanager2": "^2.97.20170602",

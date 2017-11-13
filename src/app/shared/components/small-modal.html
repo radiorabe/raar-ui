@@ -3,7 +3,7 @@
      role="dialog"
      aria-hidden="true"
      (click)="onContainerClicked($event)"
-     [ngClass]="{ 'in': visibleAnimate }"
+     [class.in]="visibleAnimate"
      [ngStyle]="{ 'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0 }">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">

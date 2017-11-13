@@ -1,11 +1,12 @@
 ## Next steps
 
-* Accordion
-* Rebase, Logout admin
+* Rebase
 * combine app & admin
 
+* zugangscodes auflisten
 * hinweis show profile change
 * save/delete notifications
+* logout button for admin
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 

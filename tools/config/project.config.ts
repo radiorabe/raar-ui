@@ -56,8 +56,7 @@ export class ProjectConfig extends SeedConfig {
 
     this.ROLLUP_INCLUDE_DIR = [
       ...this.ROLLUP_INCLUDE_DIR,
-      'node_modules/moment/**',
-      'node_modules/ngx-bootstrap/**'
+      'node_modules/moment/**'
     ];
 
     this.ROLLUP_NAMED_EXPORTS = [
@@ -68,18 +67,6 @@ export class ProjectConfig extends SeedConfig {
 
     // Add packages (e.g. ng2-translate)
     let additionalPackages: ExtendPackages[] = [
-      // required for dev build
-      {
-        name: 'ngx-bootstrap',
-        path: 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
-      },
-
-      // required for prod build
-      {
-        name: 'ngx-bootstrap/*',
-        path: 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
-      },
-
       {
         name: 'ng2-date-picker',
         path: 'node_modules/ng2-date-picker',
@@ -89,7 +76,6 @@ export class ProjectConfig extends SeedConfig {
         }
       },
 
-      // mandatory dependency for ngx-bootstrap datepicker
       {
         name:'moment',
         path:'node_modules/moment',

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AccordionModule } from 'ngx-bootstrap';
 import { SharedModule } from '../../app/shared/shared.module';
 import { SharedAdminModule } from '../shared/shared-admin.module';
 import { ProfilesRoutes } from './profiles.routes';
@@ -17,8 +16,7 @@ import { ProfilesRestService } from './services/profiles-rest.service';
   imports: [
     SharedModule,
     SharedAdminModule,
-    RouterModule.forChild(ProfilesRoutes),
-    AccordionModule.forRoot()
+    RouterModule.forChild(ProfilesRoutes)
   ],
   declarations: [
     ProfilesComponent,
