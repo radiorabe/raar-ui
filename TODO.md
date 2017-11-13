@@ -1,9 +1,12 @@
 ## Next steps
 
-* BsDatepicker / https://github.com/vlio20/angular-datepicker
+* Modal (https://www.npmjs.com/package/ng2-bootstrap-modal)
+* Accordion
 * Rebase, Logout admin
 * combine app & admin
 
+* hinweis show profile change
+* save/delete notifications
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 

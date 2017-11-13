@@ -63,6 +63,7 @@ export class ProjectConfig extends SeedConfig {
     this.ROLLUP_NAMED_EXPORTS = [
       ...this.ROLLUP_NAMED_EXPORTS,
       //{'node_modules/immutable/dist/immutable.js': [ 'Map' ]},
+      { 'node_modules/ng2-date-picker/index.js': [ 'DpDatePickerModule' ] }
     ];
 
     // Add packages (e.g. ng2-translate)
