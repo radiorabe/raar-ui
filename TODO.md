@@ -1,12 +1,17 @@
 ## Next steps
 
-* Rebase
+* logout in admin
+* kein zugangscode in admin login dialog
+* navbar css
+* css datepicker
 * combine app & admin
+* exchange master
 
 * zugangscodes auflisten
 * hinweis show profile change
 * save/delete notifications
 * logout button for admin
+* fix tslint issues
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 

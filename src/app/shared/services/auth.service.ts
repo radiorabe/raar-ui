@@ -25,7 +25,8 @@ export class AuthService {
   constructor(private login: LoginService,
               private refresh: RefreshService,
               private router: Router,
-              private loginWindow: LoginWindowService) {}
+              private loginWindow: LoginWindowService) {
+  }
 
   get isLoggedIn(): Observable<boolean> {
     return this.checkUserAuth().map(_ => !!this._user);
@@ -40,7 +41,6 @@ export class AuthService {
   }
 
   get user(): UserModel | void {
-    this.checkUserAuth();
     return this._user;
   }
 

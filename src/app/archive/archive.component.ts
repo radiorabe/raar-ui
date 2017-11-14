@@ -10,7 +10,9 @@ import { LoginWindowService } from '../shared/services/login-window.service';
 export class ArchiveComponent {
 
   constructor(public auth: AuthService,
-              private loginWindow: LoginWindowService) {}
+              private loginWindow: LoginWindowService) {
+    auth.isLoggedIn.subscribe();
+  }
 
   showLogin() {
     this.loginWindow.show();

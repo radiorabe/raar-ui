@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
-
+import { AuthService } from '../services/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -14,7 +14,7 @@ export class LayoutComponent implements OnDestroy {
 
   private routerSub: ISubscription;
 
-  constructor(private router: Router) {
+  constructor(public auth: AuthService, private router: Router) {
     this.routerSub = router.events.subscribe(e => {
       if (e instanceof NavigationEnd) this._showNav = false;
     });

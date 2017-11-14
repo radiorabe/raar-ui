@@ -3,7 +3,6 @@ import { SmallModalComponent } from './small-modal.component';
 import { LoginService } from '../services/login.service';
 import { LoginWindowService } from '../services/login-window.service';
 import { AuthService } from '../services/auth.service';
-import { LoginWindowService } from '../services/login-window.service';
 import { UserModel } from '../models/user.model';
 
 @Component({

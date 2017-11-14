@@ -17,7 +17,8 @@
   <li *ngIf="!(auth.isAdminLoggedIn | async)">
     <a (click)="showLogin()"><small>Login</small></a>
   </li>
-  <li *ngIf="auth.isAdminLoggedIn | async" class="navbar-text">
+  <li *ngIf="auth.isAdminLoggedIn | async" class="navbar-user">
     <small class="user">{{auth.user.toString()}}</small>
+    <a (click)="auth.logout()"><small>Logout</small></a>
   </li>
 </ul>
