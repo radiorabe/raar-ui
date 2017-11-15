@@ -2,8 +2,6 @@
 
 * logout in admin
 * kein zugangscode in admin login dialog
-* navbar css
-* css datepicker
 * combine app & admin
 * exchange master
 

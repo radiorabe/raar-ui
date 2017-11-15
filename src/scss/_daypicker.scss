@@ -38,6 +38,7 @@ dp-day-calendar {
 
     .dp-nav-header-btn {
       padding: 6px;
+      height: 30px;
       width: 180px;
     }
 
@@ -69,6 +70,7 @@ dp-day-calendar {
     width: 36px !important;
     background-color: #fff;
     border: 1px solid #ccc;
+    border-radius: 0;
 
     &[disabled] {
       cursor: not-allowed;
