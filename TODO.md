@@ -1,8 +1,7 @@
 ## Next steps
 
-* logout in admin
-* kein zugangscode in admin login dialog
 * combine app & admin
+* change subscriptions to takeUntil
 * exchange master
 
 * zugangscodes auflisten

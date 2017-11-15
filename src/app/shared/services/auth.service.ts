@@ -61,7 +61,9 @@ export class AuthService {
   }
 
   set redirectUrl(url: string) {
-    this._redirectUrl = url;
+    if (!this._redirectUrl) {
+      this._redirectUrl = url;
+    }
   }
 
   get apiToken(): string {

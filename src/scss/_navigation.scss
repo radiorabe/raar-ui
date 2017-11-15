@@ -95,5 +95,9 @@
   .navbar-collapse {
     box-shadow: none;
     padding-right: 0;
+
+    &.in {
+      clear: left;
+    }
   }
 }

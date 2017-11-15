@@ -15,6 +15,7 @@ import { AudioEncodingsService } from './shared/services/audio-encodings.service
 
 import * as moment from 'moment';
 import 'moment/locale/de';
+import { LoginModule } from './login/login.module';
 
 moment.locale('de');
 
@@ -23,6 +24,7 @@ moment.locale('de');
     BrowserModule,
     HttpModule,
     SharedModule,
+    LoginModule,
     ShowsModule,
     ProfilesModule,
     PlaybackFormatsModule,

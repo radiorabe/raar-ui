@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../app/shared/services/auth.service';
-import { LoginWindowService } from '../../../app/shared/services/index';
 
 @Component({
   moduleId: module.id,
@@ -10,12 +10,11 @@ import { LoginWindowService } from '../../../app/shared/services/index';
 })
 export class TopNavComponent {
 
-  constructor(public auth: AuthService, private loginWindow: LoginWindowService) {
-    auth.isAdminLoggedIn.subscribe();
-  }
+  constructor(public auth: AuthService, private router: Router) {}
 
-  showLogin() {
-    this.loginWindow.show();
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 
 }
