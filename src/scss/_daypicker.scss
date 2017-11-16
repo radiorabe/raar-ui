@@ -37,9 +37,14 @@ dp-day-calendar {
     }
 
     .dp-nav-header-btn {
+      font-weight: 600;
       padding: 6px;
       height: 30px;
       width: 180px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      user-select: none;
     }
 
     .dp-calendar-nav-container-right {
@@ -51,6 +56,10 @@ dp-day-calendar {
     .dp-calendar-nav-left, .dp-calendar-nav-right {
       width: 35px;
       height: 30px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      user-select: none;
     }
   }
 
@@ -71,6 +80,7 @@ dp-day-calendar {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 0;
+    user-select: none;
 
     &[disabled] {
       cursor: not-allowed;
@@ -102,5 +112,9 @@ dp-month-calendar {
   .dp-calendar-month {
     width: 63px !important;
     height: 66px !important;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    user-select: none;
   }
 }
