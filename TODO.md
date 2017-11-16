@@ -1,9 +1,9 @@
 ## Next steps
 
 * combine app & admin
-* change subscriptions to takeUntil
 * exchange master
 
+* change subscriptions to takeUntil
 * zugangscodes auflisten
 * hinweis show profile change
 * save/delete notifications

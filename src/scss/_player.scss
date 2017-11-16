@@ -35,10 +35,11 @@ sd-player {
   .show {
     font-size: 16px;
     margin-top: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 0px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    line-height: 1.4;
   }
 
   .time-passed, .time-progress, .time-total, .volume-icon, .volume-slider {
