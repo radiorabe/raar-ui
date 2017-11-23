@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReadRestService } from '../../../app/shared/services/read-rest.service';
+import { ReadRestService } from '../../../shared/services/read-rest.service';
 import { AdminRemoteService } from '../../shared/services/admin-remote.service';
 import { AudioEncodingModel } from '../models/audio-encoding.model';
 import { Observable } from 'rxjs/Observable';

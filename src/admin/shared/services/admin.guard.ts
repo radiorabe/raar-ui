@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../../../app/shared/services/auth.service';
-import { LoginWindowService } from '../../../app/shared/services/login-window.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { LoginWindowService } from '../../../shared/services/login-window.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

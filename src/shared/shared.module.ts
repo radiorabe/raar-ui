@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './components/layout.component';
-import { SmallModalComponent } from './components/small-modal.component';
-import { LoginComponent } from './components/login.component';
 import { LoginService, AuthService, RemoteService, LoginWindowService, RefreshService } from './services/index';
 
 /**
@@ -20,8 +18,6 @@ import { LoginService, AuthService, RemoteService, LoginWindowService, RefreshSe
   ],
   declarations: [
     LayoutComponent,
-    SmallModalComponent,
-    LoginComponent,
   ],
   exports: [
     CommonModule,
@@ -29,8 +25,6 @@ import { LoginService, AuthService, RemoteService, LoginWindowService, RefreshSe
     ReactiveFormsModule,
     RouterModule,
     LayoutComponent,
-    SmallModalComponent,
-    LoginComponent,
   ]
 })
 export class SharedModule {

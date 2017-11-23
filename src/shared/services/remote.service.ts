@@ -5,7 +5,6 @@ import {
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
-import 'rxjs/Rx';
 
 export const MEDIA_TYPE_JSON_API = 'application/vnd.api+json';
 export const HTTP_UNAUTHORIZED = 401;

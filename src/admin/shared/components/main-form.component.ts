@@ -8,7 +8,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ModelsService } from '../services/models.service';
-import { CrudModel } from '../../../app/shared/models/crud.model';
+import { CrudModel } from '../../../shared/models/crud.model';
 
 export class MainFormComponent<T extends CrudModel> extends ValidatedFormComponent implements OnInit, OnDestroy {
 

@@ -4,8 +4,8 @@ import {
   RequestOptionsArgs
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { RemoteService } from '../../../app/shared/services/remote.service';
-import { AuthService } from '../../../app/shared/services/auth.service';
+import { RemoteService } from '../../../shared/services/remote.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import 'rxjs/Rx';
 
 @Injectable()

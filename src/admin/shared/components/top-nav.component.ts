@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../app/shared/services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   moduleId: module.id,

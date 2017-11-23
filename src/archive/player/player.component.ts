@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import { AudioPlayerService } from './audio_player.service';
-import { AudioFilesService, BroadcastsService, DateParamsService } from '../../shared/services/index';
+import { BroadcastsService } from '../../shared/services/index';
 import { AudioFileModel, BroadcastModel } from '../../shared/models/index';
+import { AudioFilesService } from '../shared/services/audio_files.service';
+import { DateParamsService } from '../../shared/services/date_params.service';
 
 @Component({
   moduleId: module.id,
@@ -21,8 +23,10 @@ export class PlayerComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    const state = <any>this.router.routerState;
-    const broadcastRoute = state.firstChild(state.firstChild(state.root));
+    // TODO: player is loaded before routes are resolved
+    // try to subscribe at a later point
+    const state = (<any>this.route)._routerState;
+    const broadcastRoute = state.firstChild(state.root);
     if (!broadcastRoute) return;
     this.paramsSub = broadcastRoute.params
       .distinctUntilChanged()
@@ -74,6 +78,7 @@ export class PlayerComponent implements OnInit {
   }
 
   private handleRouteParams(params: { [key: string]: any }) {
+    console.log('handle params', params);
     if (params['time'] && params['play'] && params['format']) {
       const time = DateParamsService.timeFromParams(params);
       if (!this.isCurrentBroadcast(time)) {

@@ -68,8 +68,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
   }
 
   private setDateFromRoute() {
-    const state = <any>this.router.routerState;
-    const dateRoute = state.firstChild(state.firstChild(state.root));
+    const dateRoute = <any>this.dateRoute;
     if (dateRoute && dateRoute.url.value[0] && /\d{4}/.test(dateRoute.url.value[0].path)) {
       this.setDateFromParams(dateRoute.snapshot.params);
     }
@@ -98,7 +97,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
 
   private get dateRoute(): ActivatedRoute {
     var state = <any>this.router.routerState;
-    return state.firstChild(state.firstChild(state.root));
+    return state.firstChild(state.root);
   }
 
 }

@@ -1,9 +1,9 @@
 import { RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { CrudModel } from '../../../app/shared/models/crud.model';
-import { CrudList } from '../../../app/shared/models/crud_list';
-import { ReadRestService } from '../../../app/shared/services/read-rest.service';
+import { CrudModel } from '../../../shared/models/crud.model';
+import { CrudList } from '../../../shared/models/crud_list';
+import { ReadRestService } from '../../../shared/services/read-rest.service';
 import { AdminRemoteService } from './admin-remote.service';
 import 'rxjs/add/operator/map';
 

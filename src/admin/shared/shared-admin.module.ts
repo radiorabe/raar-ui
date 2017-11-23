@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { AdminRemoteService } from './services/admin-remote.service';
 import { AdminGuard } from './services/admin.guard';
 import { FieldErrorsComponent } from './components/field-errors.component';

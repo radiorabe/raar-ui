@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BroadcastModel } from '../models/broadcast.model';
+import { BroadcastModel } from '../../../shared/models/broadcast.model';
 import * as moment from 'moment';
 
 @Pipe({name: 'broadcastTime'})

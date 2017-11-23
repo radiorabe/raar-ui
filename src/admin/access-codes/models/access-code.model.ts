@@ -1,4 +1,4 @@
-import { CrudModel } from '../../../app/shared/models/crud.model';
+import { CrudModel } from '../../../shared/models/crud.model';
 import * as moment from 'moment';
 
 export class AccessCodeModel extends CrudModel {

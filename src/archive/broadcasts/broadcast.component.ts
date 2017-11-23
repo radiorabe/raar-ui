@@ -1,8 +1,10 @@
 import { Component, Input, OnChanges, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
-import { AudioFilesService, DateParamsService, LoginWindowService } from '../../shared/services/index';
+import { LoginWindowService } from '../../shared/services/index';
 import { AudioPlayerService } from '../player/audio_player.service';
+import { AudioFilesService } from '../shared/services/audio_files.service';
+import { DateParamsService } from '../../shared/services/date_params.service';
 
 
 @Component({
@@ -87,7 +89,7 @@ export class BroadcastComponent implements OnChanges {
 
   private get broadcastRoute(): ActivatedRoute {
     var state = <any>this.router.routerState;
-    return state.firstChild(state.firstChild(state.root));
+    return state.firstChild(state.root);
   }
 
 }

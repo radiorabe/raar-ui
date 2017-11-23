@@ -1,6 +1,6 @@
-import { LoginWindowService, LoginService, AuthService } from '../../../app/shared/services/index';
+import { LoginWindowService, LoginService, AuthService } from '../../../shared/services/index';
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
-import { UserModel } from '../../../app/shared/models/index';
+import { UserModel } from '../../../shared/models/index';
 
 @Component({
   moduleId: module.id,

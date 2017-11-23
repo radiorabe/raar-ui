@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrudRestService } from '../services/crud-rest.service';
-import { CrudModel } from '../../../app/shared/models/crud.model';
-import { CrudList } from '../../../app/shared/models/crud_list';
+import { CrudModel } from '../../../shared/models/crud.model';
+import { CrudList } from '../../../shared/models/crud_list';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 

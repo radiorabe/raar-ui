@@ -15,11 +15,11 @@ import {
 import { AppComponent } from './app.component';
 import { LoginComponent } from './shared/components/login.component';
 import { SmallModalComponent } from './shared/components/small-modal.component';
-import { LoginService } from './shared/services/index';
+import { LoginService } from '../shared/services/index';
 
 export function main() {
 
-  describe('App component', () => {
+  describe('Archive component', () => {
 
     let config: Route[] = [ ];
     beforeEach(() => {

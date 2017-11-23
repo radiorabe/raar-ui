@@ -1,7 +1,6 @@
 ## Next steps
 
 * combine app & admin
-* exchange master
 
 * change subscriptions to takeUntil
 * zugangscodes auflisten

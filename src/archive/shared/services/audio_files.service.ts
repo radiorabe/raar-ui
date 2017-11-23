@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ReadRestService } from './read-rest.service';
-import { DateParamsService } from './date_params.service';
-import { BroadcastModel, CrudList, AudioFileModel } from '../models/index';
+import { ReadRestService } from '../../../shared/services/read-rest.service';
+import { DateParamsService } from '../../../shared/services/date_params.service';
+import { BroadcastModel, CrudList, AudioFileModel } from '../../../shared/models/index';
 import { Observable } from 'rxjs/Observable';
-import { RemoteService } from './remote.service';
+import { RemoteService } from '../../../shared/services/remote.service';
 
 @Injectable()
 export class AudioFilesService extends ReadRestService<AudioFileModel> {

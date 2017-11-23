@@ -52,7 +52,9 @@ export class ProjectConfig extends SeedConfig {
     ];
 
     this.SYSTEM_BUILDER_CONFIG.paths['dist/tmp/app/*'] = 'dist/tmp/app/*';
+    this.SYSTEM_BUILDER_CONFIG.paths['dist/tmp/shared/*'] = 'dist/tmp/shared/*';
     this.SYSTEM_CONFIG_DEV.packages['/app'] = { defaultExtension: 'js' };
+    this.SYSTEM_CONFIG_DEV.packages['/shared'] = { defaultExtension: 'js' };
 
     this.ROLLUP_INCLUDE_DIR = [
       ...this.ROLLUP_INCLUDE_DIR,

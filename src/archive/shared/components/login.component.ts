@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { SmallModalComponent } from './small-modal.component';
-import { LoginService } from '../services/login.service';
-import { LoginWindowService } from '../services/login-window.service';
-import { AuthService } from '../services/auth.service';
-import { UserModel } from '../models/user.model';
+import { LoginService } from '../../../shared/services/login.service';
+import { LoginWindowService } from '../../../shared/services/login-window.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { UserModel } from '../../../shared/models/user.model';
 
 @Component({
   moduleId: module.id,

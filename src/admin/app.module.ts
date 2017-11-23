@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { SharedModule } from '../app/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { SharedAdminModule } from './shared/shared-admin.module';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
