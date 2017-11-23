@@ -31,7 +31,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
       monthFormat: 'MMMM YYYY',
       weekdayFormat: 'dd',
       showGoToCurrent: false
-    }
+    };
   });
 
   private _date: moment.Moment | void;

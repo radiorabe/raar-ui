@@ -7,9 +7,9 @@
     </div>
     <a>
       <span class="broadcast-date">
-        {{broadcast | broadcastTime: (view === 'show' ? 'standard' : 'time')}}
+        {{ broadcast | broadcastTime: (view === 'show' ? 'standard' : 'time') }}
       </span>
-      {{broadcast.attributes.label}}
+      {{ broadcast.attributes.label }}
     </a>
   </h4>
 
@@ -20,10 +20,10 @@
         <td>
           <a (click)="play(audio)">
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-            {{audio.attributes.codec | uppercase}}
-            {{audio.attributes.playback_format}}
-            (<span *ngIf="audio.attributes.bitrate > 1">{{audio.attributes.bitrate}}k
-             </span>{{audio.attributes.channels == 2 ? 'stereo' : 'mono'}})
+            {{ audio.attributes.codec | uppercase }}
+            {{ audio.attributes.playback_format }}
+            (<span *ngIf="audio.attributes.bitrate > 1">{{ audio.attributes.bitrate }}k
+             </span>{{ audio.attributes.channels == 2 ? 'stereo' : 'mono' }})
           </a>
         </td>
         <td>

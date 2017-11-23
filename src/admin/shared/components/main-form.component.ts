@@ -14,7 +14,7 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
 
   entry: T;
 
-  title: string;
+  public title: string;
 
   private entrySub: ISubscription;
 

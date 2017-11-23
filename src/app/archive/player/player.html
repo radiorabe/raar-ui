@@ -21,19 +21,19 @@
 
     <div *ngIf="audioFile">
       <div class="info pull-left">
-        <h4 class="show title">{{broadcast.attributes.label}}</h4>
+        <h4 class="show title">{{ broadcast.attributes.label }}</h4>
         <div>
-          {{broadcast | broadcastTime: 'full'}}
+          {{ broadcast | broadcastTime: 'full' }}
         </div>
       </div>
       <div class="time-passed">
-        {{player.currentTime}}
+        {{ player.currentTime }}
       </div>
       <sd-slider class="time-progress"
                  [value]="player.percent"
                  (slidingEvent)="player.seek($event)"></sd-slider>
       <div class="time-total">
-        {{player.totalTime}}
+        {{ player.totalTime }}
       </div>
       <div class="volume-icon">
         <span class="glyphicon"

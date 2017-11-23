@@ -5,7 +5,7 @@
         <a (click)="showLogin()"><small>Login</small></a>
       </li>
       <li *ngIf="auth.isLoggedIn | async" class="navbar-user">
-        <small class="user">{{auth.user.toString()}}</small>
+        <small class="user">{{ auth.user.toString() }}</small>
         <a (click)="auth.logout()"><small>Logout</small></a>
       </li>
       <li class="navbar-user hidden-xs">

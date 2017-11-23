@@ -23,6 +23,7 @@
     "gulp": "gulp",
     "i18n": "gulp i18n.build --build-type prod && ng-xi18n -p dist/tmp/tsconfig.json --i18nFormat xlf && gulp i18n.merge",
     "lint": "gulp tslint",
+    "lint-fix": "gulp tslint-fix",
     "karma": "karma",
     "karma.start": "karma start",
     "postinstall": "gulp check.versions && gulp build.bundle.rxjs && gulp webdriver && gulp print.banner",
