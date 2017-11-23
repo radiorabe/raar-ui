@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import { AuthService } from '../services/auth.service';
@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
   templateUrl: 'layout.html',
 })
 export class LayoutComponent implements OnDestroy {
+
+  @Input() collapsibleNav = true;
 
   private _showNav: boolean = false;
 

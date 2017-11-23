@@ -14,19 +14,16 @@ os:
 #  - osx
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated xctool || brew upgrade xctool; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CHROME_BIN=chromium-browser; fi  # Karma CI
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cask install google-chrome; fi  # Karma CI
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+  - export CHROME_BIN=chromium-browser  # Karma CI
+  - export DISPLAY=:99.0
 
 before_script:
   - npm i -g npm@^5.3.0 && npm --version
-  - npm install webdriver-manager
+#  - npm install webdriver-manager
   - npm install
-  - npm run webdriver-update
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then nohup bash -c "webdriver-manager start 2>&1 &"; fi  # Protractor CI
+#  - npm run webdriver-update
+  - sh -e /etc/init.d/xvfb start
+#  - nohup bash -c "webdriver-manager start 2>&1 &"  # Protractor CI
 
 after_failure:
   - cat /home/travis/build/radiorabe/raar-ui/npm-debug.log
@@ -41,7 +38,7 @@ cache:
   directories: node_modules
 
 script:
-  - npm run test && npm run build.prod.rollup.aot
+  - npm run build.prod.rollup.aot
 
 deploy:
   provider: releases

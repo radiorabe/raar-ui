@@ -7,7 +7,6 @@
 * zugangscodes auflisten
 * hinweis show profile change
 * save/delete notifications
-* logout button for admin
 * fix tslint issues
 * check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
