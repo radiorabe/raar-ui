@@ -1,12 +1,10 @@
 ## Next steps
 
-* combine app & admin
-
 * change subscriptions to takeUntil
 * zugangscodes auflisten
 * hinweis show profile change
 * save/delete notifications
-* fix tslint issues
+* combine deploy.sh
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 
 ## Future steps
