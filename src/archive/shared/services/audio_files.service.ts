@@ -14,7 +14,11 @@ export class AudioFilesService extends ReadRestService<AudioFileModel> {
 
   getListForBroadcast(broadcast: BroadcastModel): Observable<CrudList<AudioFileModel>> {
     return this.remote.get('/api/broadcasts/' + broadcast.id + '/audio_files')
-      .map(res => this.buildListFromResponse(res, this.buildEntity));
+      .map(res => {
+        const list = this.buildListFromResponse(res, this.buildEntity);
+        for (const a of list.entries) a.relationships.broadcast = broadcast;
+        return list;
+      });
   }
 
   buildUrl(time: Date, playbackFormat: string, codec: string): string {

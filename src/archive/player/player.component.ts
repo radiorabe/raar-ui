@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Params } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import { AudioPlayerService } from './audio_player.service';
 import { BroadcastsService } from '../../shared/services/index';
@@ -14,29 +14,12 @@ import { DateParamsService } from '../../shared/services/date_params.service';
 })
 export class PlayerComponent implements OnInit {
 
-  private paramsSub: ISubscription;
-
   constructor(private _player: AudioPlayerService,
               private audioFilesService: AudioFilesService,
-              private broadcastsService: BroadcastsService,
-              private route: ActivatedRoute,
-              private router: Router) {}
+              private broadcastsService: BroadcastsService) {}
 
   ngOnInit() {
-    // TODO: player is loaded before routes are resolved
-    // try to subscribe at a later point
-    const state = (<any>this.route)._routerState;
-    const broadcastRoute = state.firstChild(state.root);
-    if (!broadcastRoute) return;
-    this.paramsSub = broadcastRoute.params
-      .distinctUntilChanged()
-      .subscribe((params: any) => this.handleRouteParams(params));
-  }
-
-  ngDestroy() {
-    if (this.paramsSub) {
-      this.paramsSub.unsubscribe();
-    }
+    this.handleRouteParams(this.parsePlayerRouteParams());
   }
 
   get player(): AudioPlayerService {
@@ -77,37 +60,40 @@ export class PlayerComponent implements OnInit {
     }
   }
 
-  private handleRouteParams(params: { [key: string]: any }) {
-    console.log('handle params', params);
+  private parsePlayerRouteParams(): { [key: string]: any } {
+    const params: Params = {};
+    const exp = /(\w+)=(\w+)/g;
+    const path = window.location.pathname;
+    let match = exp.exec(path);
+    while(match !== null) {
+      params[match[1]] = match[2];
+      match = exp.exec(path);
+    }
+    return params;
+  }
+
+  private handleRouteParams(params: Params): void {
     if (params['time'] && params['play'] && params['format']) {
       const time = DateParamsService.timeFromParams(params);
-      if (!this.isCurrentBroadcast(time)) {
-        this.broadcastsService.getForTime(time).subscribe(broadcast => {
-          if (broadcast) {
-            const audio = this.buildAudioFile(broadcast, time, params['play'], params['format']);
-            this.player.play(audio, time);
-          }
-        });
-      }
+      this.broadcastsService.getForTime(time).subscribe(broadcast => {
+        if (broadcast) {
+          this.findAndPlayAudio(broadcast, params, time);
+        }
+      });
     }
   }
 
-  private isCurrentBroadcast(date: Date): boolean {
-    return this.broadcast ?
-        this.broadcast.attributes.started_at <= date &&
-        this.broadcast.attributes.finished_at > date : false;
-  }
-
-  private buildAudioFile(broadcast: BroadcastModel,
-                         time: Date,
-                         playbackFormat: string,
-                         codec: string): AudioFileModel {
-    const model = new AudioFileModel();
-    model.attributes.codec = codec;
-    model.attributes.playback_format = playbackFormat;
-    model.links.play = this.audioFilesService.buildUrl(time, playbackFormat, codec);
-    model.relationships.broadcast = broadcast;
-    return model;
+  private findAndPlayAudio(broadcast: BroadcastModel, params: Params, time: Date): void {
+    this.audioFilesService.getListForBroadcast(broadcast).subscribe(files => {
+      let audio = files.entries.find(file => {
+        return file.attributes.playback_format === params['play'] &&
+          file.attributes.codec === params['format'];
+      });
+      if (!audio) audio = files.entries[0];
+      if (audio) {
+        this.player.play(audio, time);
+      }
+    });
   }
 
 }

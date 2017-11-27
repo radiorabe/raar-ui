@@ -7,7 +7,6 @@
 * hinweis show profile change
 * save/delete notifications
 * fix tslint issues
-* check permission for requested audio
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 
 ## Future steps
