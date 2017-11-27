@@ -4,7 +4,6 @@
 * zugangscodes auflisten
 * hinweis show profile change
 * save/delete notifications
-* combine deploy.sh
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
 
 ## Future steps
