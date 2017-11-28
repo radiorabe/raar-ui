@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { AccessCodesService } from '../services/access-codes.service';
 
 @Component({
   moduleId: module.id,
@@ -7,4 +8,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccessCodesInitComponent {
+
+  constructor(public accessCodesService: AccessCodesService) {
+  }
+
 }

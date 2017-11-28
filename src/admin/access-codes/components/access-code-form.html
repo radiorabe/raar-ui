@@ -1,7 +1,7 @@
 <h1>{{ title }}</h1>
 
 <div class="well" *ngIf="entry && entry.attributes.code">
-  {{ entry.attributes.code }}
+  <strong>{{ entry.attributes.code }}</strong>
 </div>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">

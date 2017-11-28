@@ -54,6 +54,8 @@ of smoke tests to verify a basically correct behavior:
   Manually change the audio position and the volume.
 * Login with username/password or an access token reloads the broadcast list.
   Locked broadcasts should become available. Logout locks them again.
+* When the window size is decreased, the player still looks fine. The left
+  menu disappears and must be manually toggled for small sizes.
 * Searching for shows works.
 * Picking a date via months works.
 

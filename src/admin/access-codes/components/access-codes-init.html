@@ -8,3 +8,26 @@ gültig sind.
 <p>
 Bitte wähle links einen Zugangscode zum Bearbeiten.
 </p>
+
+<br/>
+
+<h4>Aktuelle Zugangscodes</h4>
+
+<div class="row">
+  <div class="col-sm-6">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Gültig bis</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let code of accessCodesService.getEntries() | async">
+          <td>{{ code.expires_at_string }}</td>
+          <td>{{ code.attributes.code }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
