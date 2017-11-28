@@ -9,6 +9,7 @@ import './operators';
   templateUrl: 'app.html'
 })
 export class AppComponent {
+
   constructor(public auth: AuthService,
               private loginWindow: LoginWindowService) {
     auth.isLoggedIn.subscribe();

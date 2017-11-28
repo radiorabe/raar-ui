@@ -12,7 +12,7 @@ import { UserModel } from '../../../shared/models/user.model';
 })
 export class LoginComponent {
 
-  @ViewChild('modal') public modal: SmallModalComponent;
+  @ViewChild('modal') modal: SmallModalComponent;
 
   username: string;
   password: string;

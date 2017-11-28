@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { ISubscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 import { CrudList } from '../../shared/models/crud_list';
 import { BroadcastModel } from '../../shared/models/broadcast.model';
 import { BroadcastsService } from '../../shared/services/broadcasts.service';
@@ -22,9 +22,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   errorMessage: string | void;
 
-  private dateSub: ISubscription;
-  private dateWithTimeSub: ISubscription;
-  private broadcastsSub: ISubscription;
+  private readonly destroy$ = new Subject();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -36,10 +34,14 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     const paramsObservable = this.route.params;
     const dateObservable = paramsObservable.map(params => this.getDate(params));
 
-    this.dateSub = dateObservable.subscribe(date => this.date = date);
-    this.dateWithTimeSub = paramsObservable
+    dateObservable.takeUntil(this.destroy$).subscribe(date => this.date = date);
+
+    paramsObservable
+      .takeUntil(this.destroy$)
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
-    this.broadcastsSub = dateObservable
+
+    dateObservable
+      .takeUntil(this.destroy$)
       .distinctUntilChanged((a: Date, b: Date) => a.getTime() === b.getTime())
       .merge(this.refreshService.asObservable().withLatestFrom(dateObservable, (_, date) => date))
       .do(() => this.loading = true)
@@ -55,9 +57,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.dateSub.unsubscribe();
-    this.dateWithTimeSub.unsubscribe();
-    this.broadcastsSub.unsubscribe();
+    this.destroy$.next();
   }
 
   prevDate() {

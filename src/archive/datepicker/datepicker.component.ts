@@ -6,6 +6,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { Subject } from 'rxjs/Subject';
 import * as moment from 'moment';
 
 const TODAY_UPDATE_INTERVAL = 60000;
@@ -17,13 +18,13 @@ const TODAY_UPDATE_INTERVAL = 60000;
 })
 export class DatepickerComponent implements OnInit, OnDestroy  {
 
-  public today$ = Observable.interval(TODAY_UPDATE_INTERVAL)
+  today$ = Observable.interval(TODAY_UPDATE_INTERVAL)
     .startWith(0)
     .map(() => moment().format('YYYY-MM-DD'))
     .distinctUntilChanged()
     .map(dateStr => moment(dateStr));
 
-  public dayPickerConfig$ = this.today$.map(date => {
+  dayPickerConfig$ = this.today$.map(date => {
     return {
       firstDayOfWeek: 'mo',
       locale: 'de',
@@ -35,31 +36,32 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
   });
 
   private _date: moment.Moment | void;
-  private sub: ISubscription;
 
-  public constructor(private router: Router) {
+  private readonly destroy$ = new Subject();
+
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
-    this.sub = this.router.events.subscribe(e => {
-      if (e instanceof NavigationEnd) {
-        this.setDateFromRoute();
-      }
-    });
+    this.router.events
+      .takeUntil(this.destroy$)
+      .subscribe(e => {
+        if (e instanceof NavigationEnd) {
+          this.setDateFromRoute();
+        }
+      });
     this.setDateFromRoute();
   }
 
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.destroy$.next();
   }
 
-  public get date(): moment.Moment | void {
+  get date(): moment.Moment | void {
     return this._date;
   }
 
-  public set date(date: moment.Moment | void) {
+  set date(date: moment.Moment | void) {
     this._date = date;
 
     if (date) {

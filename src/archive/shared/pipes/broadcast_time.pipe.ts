@@ -4,6 +4,7 @@ import * as moment from 'moment';
 
 @Pipe({name: 'broadcastTime'})
 export class BroadcastTimePipe implements PipeTransform {
+
   transform(broadcast: BroadcastModel, format: string): string {
     let output = moment(broadcast.attributes.started_at).format(this.startFormat(format));
     output += ' - ';

@@ -12,9 +12,9 @@ import { ShowModel } from '../models/show.model';
 })
 export class ShowsComponent {
 
-  public shows: Observable<ShowModel[]>;
+  shows: Observable<ShowModel[]>;
 
-  public query: FormControl = new FormControl();
+  query: FormControl = new FormControl();
 
   constructor(private showService: ShowsService) {
     showService.reload();

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { ISubscription } from 'rxjs/Subscription';
 import { BroadcastModel, ShowModel, CrudList } from '../../shared/models/index';
 import { ShowsService } from '../../shared/services/shows.service';
 import { BroadcastsService } from '../../shared/services/broadcasts.service';
@@ -34,11 +33,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   errorMessage: string | void;
 
   private fetchMore: Subject<void> = new Subject<void>();
-  private showSub: ISubscription;
-  private listSub: ISubscription;
-  private monthlySub: ISubscription;
-  private dateWithTimeSub: ISubscription;
-  private titleSub: ISubscription;
+  private readonly destroy$ = new Subject();
 
   constructor(private route: ActivatedRoute,
               private showsService: ShowsService,
@@ -47,7 +42,8 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.showSub = this.route.params
+    this.route.params
+      .takeUntil(this.destroy$)
       .map(params => +params['id'])
       .distinctUntilChanged()
       .do(_ => this.loading = true)
@@ -58,21 +54,25 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
           .catch(this.handleShowError.bind(this)))
       .subscribe(this.show as Observer<any>);
 
-    this.listSub = this.broadcastShowObservable()
+    this.broadcastShowObservable()
+      .takeUntil(this.destroy$)
       .merge(this.broadcastMoreObservable())
       .subscribe(this.broadcastList);
 
-    this.monthlySub = this.broadcastList
+    this.broadcastList
+      .takeUntil(this.destroy$)
       .do(list => this.hasMore = !!list.links.next)
       .map(list => list.entries)
       .map(broadcasts => this.buildMonthlyBroadcasts(broadcasts))
       .do(_ => { this.loading = false; this.fetchingMore = false; })
       .subscribe(this.monthlyBroadcasts);
 
-    this.dateWithTimeSub = this.route.params
+    this.route.params
+      .takeUntil(this.destroy$)
       .subscribe(params => this.dateWithTime = this.getDateWithTime(params));
 
-    this.titleSub = this.show
+    this.show
+      .takeUntil(this.destroy$)
       .subscribe(show => {
         this.title = show.attributes.name;
         this.details = show.attributes.details;
@@ -81,11 +81,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.monthlySub.unsubscribe();
-    this.listSub.unsubscribe();
-    this.dateWithTimeSub.unsubscribe();
-    this.titleSub.unsubscribe();
-    this.showSub.unsubscribe();
+    this.destroy$.next();
   }
 
   buildMonthlyBroadcasts(broadcasts: BroadcastModel[]): MonthlyBroadcasts {

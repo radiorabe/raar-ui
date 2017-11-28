@@ -9,8 +9,8 @@ export class SmallModalComponent {
 
   @Input() title: string;
 
-  public visible = false;
-  public visibleAnimate = false;
+  visible = false;
+  visibleAnimate = false;
 
   constructor(private cd: ChangeDetectorRef) {}
 

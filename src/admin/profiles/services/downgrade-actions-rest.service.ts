@@ -6,8 +6,8 @@ import { AdminRemoteService } from '../../shared/services/admin-remote.service';
 @Injectable()
 export class DowngradeActionsRestService extends CrudRestService<DowngradeActionModel> {
 
-  public profileId: number;
-  public archiveFormatId: number;
+  profileId: number;
+  archiveFormatId: number;
 
   constructor(remote: AdminRemoteService) {
     super(remote, '/api/admin/profiles/{profileId}/archive_formats/{archiveFormatId}/downgrade_actions');

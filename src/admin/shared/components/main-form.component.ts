@@ -16,7 +16,7 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
 
   public title: string;
 
-  private entrySub: ISubscription;
+  private readonly destroy$ = new Subject();
 
   constructor(protected route: ActivatedRoute,
               protected router: Router,
@@ -27,7 +27,8 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
   }
 
   ngOnInit() {
-    this.entrySub = this.route.params
+    this.route.params
+      .takeUntil(this.destroy$)
       .map(params => +params['id'])
       .distinctUntilChanged()
       .switchMap(id => {
@@ -42,7 +43,7 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
   }
 
   ngOnDestroy() {
-    this.entrySub.unsubscribe();
+    this.destroy$.next();
   }
 
   onSubmit() {

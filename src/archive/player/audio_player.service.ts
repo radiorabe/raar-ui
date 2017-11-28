@@ -17,25 +17,10 @@ export class AudioPlayerService {
     if (audioFile) {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
-      const pos: number = position ?
+      const pos = position ?
         position.getTime() - this._audioFile.relationships.broadcast!.attributes.started_at.getTime() :
         0;
-      this._audio = (<any>window).soundManager.createSound({
-        url: (isDevMode() ? '/api' : '') + audioFile.links.play,
-        volume: this._volume,
-        position: pos,
-        autoLoad: true,
-        autoPlay: true,
-        onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
-        ondataerror: () => this._events.emit(PlayerEvents.AudioError),
-        onfinish: () => this._events.emit(PlayerEvents.Finish),
-        onload: () => this._events.emit(PlayerEvents.BufferingStart),
-        onpause: () => this._events.emit(PlayerEvents.Pause),
-        onplay: () => this._events.emit(PlayerEvents.Play),
-        onresume: () => this._events.emit(PlayerEvents.PlayResume),
-        onstop: () => this._events.emit(PlayerEvents.Finish),
-        whileplaying: () => this._events.emit(PlayerEvents.Time)
-      });
+      this._audio = (<any>window).soundManager.createSound(this.getSoundOptions(audioFile.links.play, pos));
     } else if (this._audio) {
       this._audio.play();
     }
@@ -118,5 +103,24 @@ export class AudioPlayerService {
   private pad(num: number): string {
     if (num < 10) return `0${num}`;
     return String(num);
+  }
+
+  private getSoundOptions(url: string | void, position: number): any {
+    return {
+      url: (isDevMode() ? '/api' : '') + url,
+      volume: this._volume,
+      position: position,
+      autoLoad: true,
+      autoPlay: true,
+      onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
+      ondataerror: () => this._events.emit(PlayerEvents.AudioError),
+      onfinish: () => this._events.emit(PlayerEvents.Finish),
+      onload: () => this._events.emit(PlayerEvents.BufferingStart),
+      onpause: () => this._events.emit(PlayerEvents.Pause),
+      onplay: () => this._events.emit(PlayerEvents.Play),
+      onresume: () => this._events.emit(PlayerEvents.PlayResume),
+      onstop: () => this._events.emit(PlayerEvents.Finish),
+      whileplaying: () => this._events.emit(PlayerEvents.Time)
+    };
   }
 }

@@ -17,23 +17,19 @@ export class ShowsComponent {
   // list shows back to the beginning of this year (relative to today).
   private static RELATIVE_INITIAL_YEAR = -1;
 
-  public shows: Observable<ShowModel[]>;
+  query: FormControl = new FormControl();
 
-  public query: FormControl = new FormControl();
-
-  constructor(private showService: ShowsService,
-              private refreshService: RefreshService) {
-    this.shows = this.showObservable();
-  }
-
-  private showObservable(): Observable<ShowModel[]> {
-    return this.query.valueChanges
+  shows: Observable<ShowModel[]> =
+    this.query.valueChanges
       .startWith('')
       .debounceTime(200)
       .filter((q: string) => q.length === 0 || q.length > 2)
       .distinctUntilChanged()
       .merge(this.refreshService.asObservable().map(_ => ''))
       .switchMap(q => this.fetchShows(q));
+
+  constructor(private showService: ShowsService,
+              private refreshService: RefreshService) {
   }
 
   private fetchShows(q: string): Observable<ShowModel[]> {

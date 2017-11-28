@@ -1,6 +1,5 @@
 ## Next steps
 
-* change subscriptions to takeUntil
 * hinweis show profile change
 * save/delete notifications
 * check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)

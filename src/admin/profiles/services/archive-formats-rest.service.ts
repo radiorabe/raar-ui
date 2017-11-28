@@ -6,7 +6,7 @@ import { AdminRemoteService } from '../../shared/services/admin-remote.service';
 @Injectable()
 export class ArchiveFormatsRestService extends CrudRestService<ArchiveFormatModel> {
 
-  public profileId: number;
+  profileId: number;
 
   constructor(remote: AdminRemoteService) {
     super(remote, '/api/admin/profiles/{profileId}/archive_formats');
