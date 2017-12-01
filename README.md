@@ -2,12 +2,18 @@
 
 [![Build Status](https://travis-ci.org/radiorabe/raar-ui.svg)](https://travis-ci.org/radiorabe/raar-ui)
 
-An Angular2 web client for the Radio Archive [RAAR](https://github.com/radiorabe/raar).
+An Angular2 web client for the Radio Archive
+[RAAR](https://github.com/radiorabe/raar).
+
+This repository actually contains two applications: The public frontend of the
+archive for browsing and listening (`src/archive`), and an admin frontend to
+configure the archival (`src/admin`). Each application must be started and
+built independently, but they do share some code (`src/shared`, `src/scss`).
 
 
 ## Development
 
-This project requires node v4.x.x or higher and npm 2.14.7.
+This project requires node v4.x.x or higher and yarn >= 1.
 
 In order to start developing use:
 
@@ -15,26 +21,29 @@ In order to start developing use:
 # install the project's dependencies (via Yarn, https://yarnpkg.com)
 $ yarn install  # or yarn
 
-# start the development server (watches your files and uses livereload by default)
+# start the development server with the archive app
+# (watches your files and uses livereload by default)
 $ yarn start
 
-# start the admin app for Development
-$ yarn start -- --app admin
+# start the development server with the admin app
+$ yarn start --app admin
 
-# prod build
-$ yarn run build.prod
-# prod build with AoT compilation
+# prod build with AoT compilation for the archive app
 $ yarn run build.prod.rollup.aot
 
-# prod build for admin app
-$ yarn run build.prod.rollup.aot -- --app admin --base /admin/
+# prod build with AoT compilation for the admin app
+$ yarn run build.prod.rollup.aot --app admin --base /admin/
+
+# simple prod build
+$ yarn run build.prod
 ```
 
 The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).
+Please find additional documentation about the used setup there.
 
-To update from there:
+To update from angular2-seed:
 
-```
+```bash
 $ ./upgrade-seed.sh
 ```
 
@@ -62,12 +71,16 @@ of smoke tests to verify a basically correct behavior:
 
 ## Deployment
 
-Run the following command to build and deploy either the archive or the admin frontend.
-You need a correct SSH host alias called `archiv` pointing to your server.
+Run the following command to build and deploy either the archive or the admin
+frontend. You need a correct SSH host alias called `archiv` pointing to your
+server.
 
 ```bash
 $ ./deploy.sh [archive|admin]
 ```
+
+The archive app will be installed in a top-level path (`BASE = /`), the
+admin app in a subpath called `/admin/`.
 
 
 ## License
