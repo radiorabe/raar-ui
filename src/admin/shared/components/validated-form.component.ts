@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Response } from '@angular/http';
+import { NotificationService } from '../services/notification.service';
 
 interface ValidationError {
   detail: string;
@@ -32,7 +34,9 @@ export class ValidatedFormComponent {
 
   submitted: boolean = false;
 
-  constructor(fb: FormBuilder, protected changeDetector: ChangeDetectorRef) {
+  constructor(fb: FormBuilder,
+              protected changeDetector: ChangeDetectorRef,
+              protected notificationService: NotificationService) {
     this.createForm(fb);
   }
 
@@ -61,13 +65,15 @@ export class ValidatedFormComponent {
     this.form.reset();
   }
 
-  protected handleSubmitError(error: any) {
+  protected handleSubmitError(error: Response) {
     if (error.status === 422) {
       const data = this.collectValidationErrors(error.json());
       Object.keys(data).forEach((field) => {
         this.findFieldControl(field).setErrors(data[field]);
       });
       this.changeDetector.markForCheck();
+    } else {
+      this.notificationService.notify(false, this.extractResponseErrorMessage(error))
     }
   }
 
@@ -106,6 +112,14 @@ export class ValidatedFormComponent {
     // implement in subclass
   }
 
+  protected getSaveSuccessMessage(): string {
+    return 'Der Eintrag wurde erfolgreich gespeichert.';
+  }
+
+  protected getDeleteSuccessMessage(): string {
+    return 'Der Eintrag wurde gelöscht.';
+  }
+
   private collectValidationErrors(res: any): any {
     let errors: any = {};
     res.errors.forEach((e: ValidationError) => {
@@ -118,6 +132,21 @@ export class ValidatedFormComponent {
       }
     });
     return errors;
+  }
+
+  private extractResponseErrorMessage(error: Response): string {
+    try {
+      const json = error.json();
+      if (json.errors) {
+        return json.errors;
+      } else if (json.error) {
+        return json.error;
+      } else {
+        return json.toString();
+      }
+    } catch {
+      return error.text();
+    }
   }
 
 }

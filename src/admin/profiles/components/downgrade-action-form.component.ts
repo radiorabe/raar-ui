@@ -4,6 +4,7 @@ import { ValidatedFormComponent } from '../../shared/components/validated-form.c
 import { DowngradeActionModel } from '../models/downgrade-action.model';
 import { AudioEncodingModel } from '../../shared/models/audio-encoding.model';
 import { DowngradeActionsRestService } from '../services/downgrade-actions-rest.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -24,8 +25,9 @@ export class DowngradeActionFormComponent extends ValidatedFormComponent impleme
   @Output() canceled = new EventEmitter<void>();
 
   constructor(changeDetector: ChangeDetectorRef,
-              fb: FormBuilder) {
-    super(fb, changeDetector);
+              fb: FormBuilder,
+              notificationService: NotificationService) {
+    super(fb, changeDetector, notificationService);
   }
 
   ngOnInit() {

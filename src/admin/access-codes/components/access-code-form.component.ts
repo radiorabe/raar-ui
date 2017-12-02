@@ -9,6 +9,7 @@ import { ISubscription } from 'rxjs/Subscription';
 import { MainFormComponent } from '../../shared/components/main-form.component';
 import { AccessCodesService } from '../services/access-codes.service';
 import { AccessCodeModel } from '../models/access-code.model';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -21,9 +22,10 @@ export class AccessCodeFormComponent extends MainFormComponent<AccessCodeModel> 
   constructor(route: ActivatedRoute,
               router: Router,
               accessCodesService: AccessCodesService,
+              notificationService: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(route, router, accessCodesService, changeDetector, fb);
+    super(route, router, accessCodesService, notificationService, changeDetector, fb);
   }
 
   reset() {

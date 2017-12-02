@@ -24,3 +24,22 @@
 .panel-warning .panel-body:after {
   clear: right;
 }
+
+#notification {
+  opacity: 1;
+  position: fixed;
+  bottom: -100px;
+  right: $grid-gutter-width / 2;
+  width: 350px;
+  max-height: 200px;
+
+  &.display {
+    bottom: $grid-gutter-width / 2;
+    transition: bottom 0.5s;
+  }
+
+  &.remove {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+}

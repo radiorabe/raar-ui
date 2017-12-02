@@ -10,6 +10,7 @@ import { MainFormComponent } from '../../shared/components/main-form.component';
 import { ShowsService } from '../services/shows.service';
 import { ProfilesService } from '../../profiles/services/profiles.service';
 import { ShowModel } from '../models/show.model';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -23,9 +24,10 @@ export class ShowFormComponent extends MainFormComponent<ShowModel> {
               router: Router,
               showsService: ShowsService,
               public profilesService: ProfilesService,
+              notificationService: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(route, router, showsService, changeDetector, fb);
+    super(route, router, showsService, notificationService, changeDetector, fb);
   }
 
   reset() {
@@ -70,6 +72,10 @@ export class ShowFormComponent extends MainFormComponent<ShowModel> {
 
   protected getMainRoute(): string {
     return 'shows';
+  }
+
+  protected getDeleteSuccessMessage(): string {
+    return `Die Sendung ${this.entry} wurde gelöscht.`;
   }
 
 }

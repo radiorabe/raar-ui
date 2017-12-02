@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ShowModel } from '../models/show.model';
 import { ShowsService } from '../services/shows.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -17,9 +18,10 @@ export class ShowMergeComponent extends ValidatedFormComponent implements OnChan
 
   constructor(public showsService: ShowsService,
               private router: Router,
+              notificationService: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(fb, changeDetector);
+    super(fb, changeDetector, notificationService);
   }
 
   ngOnChanges() {
@@ -47,7 +49,13 @@ export class ShowMergeComponent extends ValidatedFormComponent implements OnChan
     this.showsService
       .mergeEntry(this.show, this.form.value.target_id)
       .subscribe(
-        show => this.router.navigate(['shows', show.id]),
+        show => {
+          this.router.navigate(['shows', show.id]);
+          this.notificationService.notify(
+            true,
+            `Die Sendung ${this.show.attributes.name} wurde mit ${show.attributes.name} zusammengeführt.`
+          );
+        },
         err => this.handleSubmitError(err));
   }
 }

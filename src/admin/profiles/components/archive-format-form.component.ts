@@ -7,6 +7,7 @@ import { DowngradeActionModel } from '../models/downgrade-action.model';
 import { ArchiveFormatsRestService } from '../services/archive-formats-rest.service';
 import { DowngradeActionsRestService } from '../services/downgrade-actions-rest.service';
 import { AudioEncodingsService } from '../../shared/services/audio-encodings.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -31,9 +32,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
 
   constructor(public audioEncodingsService: AudioEncodingsService,
               public downgradeActionsRest: DowngradeActionsRestService,
+              notificationService: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(fb, changeDetector);
+    super(fb, changeDetector, notificationService);
   }
 
   ngOnInit() {
@@ -79,7 +81,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
       if (this.archiveFormat.id) {
         this.submitted = true;
         this.restService.remove(this.archiveFormat.id).subscribe(
-          _ => this.removed.next(),
+          _ => {
+            this.removed.next();
+            this.notificationService.notify(true, this.getDeleteSuccessMessage());
+          },
           err => this.handleSubmitError(err)
         );
       } else {
@@ -144,6 +149,10 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
     });
   }
 
+  protected getDeleteSuccessMessage(): string {
+    return `Das Format ${this.archiveFormat} wurde gelöscht.`;
+  }
+
   private serialize() {
     const formModel = this.form.value;
     this.archiveFormat.attributes.initial_bitrate = formModel.initial_bitrate;
@@ -164,6 +173,7 @@ export class ArchiveFormatFormComponent extends ValidatedFormComponent implement
           this.downgradeActionsRest.archiveFormatId = this.archiveFormat.id;
         }
         this.changeDetector.markForCheck();
+        this.notificationService.notify(true, this.getSaveSuccessMessage());
       },
       err => this.handleSubmitError(err));
   }

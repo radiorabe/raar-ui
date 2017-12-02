@@ -16,6 +16,8 @@ import { AudioEncodingsService } from './shared/services/audio-encodings.service
 import * as moment from 'moment';
 import 'moment/locale/de';
 import { LoginModule } from './login/login.module';
+import { NotificationService } from './shared/services/notification.service';
+import { NotificationComponent } from './shared/components/notification.component';
 
 moment.locale('de');
 
@@ -33,10 +35,11 @@ moment.locale('de');
     SharedModule.forRoot(),
     SharedAdminModule.forRoot()
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotificationComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>' },
-    AudioEncodingsService
+    AudioEncodingsService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

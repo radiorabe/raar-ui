@@ -9,6 +9,7 @@ import { ISubscription } from 'rxjs/Subscription';
 import { ValidatedFormComponent } from '../../shared/components/validated-form.component';
 import { ModelsService } from '../services/models.service';
 import { CrudModel } from '../../../shared/models/crud.model';
+import { NotificationService } from '../services/notification.service';
 
 export class MainFormComponent<T extends CrudModel> extends ValidatedFormComponent implements OnInit, OnDestroy {
 
@@ -21,9 +22,10 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
   constructor(protected route: ActivatedRoute,
               protected router: Router,
               protected modelsService: ModelsService<T>,
+              notificationService: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(fb, changeDetector);
+    super(fb, changeDetector, notificationService);
   }
 
   ngOnInit() {
@@ -57,7 +59,10 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
     if (window.confirm(this.getRemoveQuestion())) {
       this.submitted = true;
       this.modelsService.removeEntry(this.entry).subscribe(
-        _ => this.router.navigate([this.getMainRoute()]),
+        _ => {
+          this.router.navigate([this.getMainRoute()]);
+          this.notificationService.notify(true, this.getDeleteSuccessMessage());
+        },
         err => this.handleSubmitError(err)
       );
     }
@@ -75,6 +80,7 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
       entry => {
         this.router.navigate([this.getMainRoute(), entry.id]);
         this.setEntry(entry);
+        this.notificationService.notify(true, this.getSaveSuccessMessage());
       },
       err => this.handleSubmitError(err));
   }

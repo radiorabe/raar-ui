@@ -12,6 +12,7 @@ import { ProfilesService } from '../../profiles/services/profiles.service';
 import { PlaybackFormatModel } from '../models/playback-format.model';
 import { AudioEncodingsService } from '../../shared/services/audio-encodings.service';
 import { AudioEncodingModel } from '../../shared/models/audio-encoding.model';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -27,9 +28,10 @@ export class PlaybackFormatFormComponent extends MainFormComponent<PlaybackForma
               router: Router,
               playbackFormatsService: PlaybackFormatsService,
               public audioEncodingsService: AudioEncodingsService,
+              notificationService: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(route, router, playbackFormatsService, changeDetector, fb);
+    super(route, router, playbackFormatsService, notificationService, changeDetector, fb);
   }
 
   reset() {
@@ -81,6 +83,10 @@ export class PlaybackFormatFormComponent extends MainFormComponent<PlaybackForma
 
   protected getMainRoute(): string {
     return 'playback_formats';
+  }
+
+  protected getDeleteSuccessMessage(): string {
+    return `Das Wiedergabeformat ${this.entry} wurde gelöscht.`;
   }
 
 }

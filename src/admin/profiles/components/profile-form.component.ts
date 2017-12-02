@@ -9,6 +9,7 @@ import { ArchiveFormatsRestService } from '../services/archive-formats-rest.serv
 import { AudioEncodingsService } from '../../shared/services/audio-encodings.service';
 import { ProfileModel } from '../models/profile.model';
 import { ArchiveFormatModel } from '../models/archive-format.model';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   moduleId: module.id,
@@ -30,9 +31,10 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
               profilesService: ProfilesService,
               public archiveFormatsRest: ArchiveFormatsRestService,
               private audioEncodingsService: AudioEncodingsService,
+              notificationSerivce: NotificationService,
               changeDetector: ChangeDetectorRef,
               fb: FormBuilder) {
-    super(route, router, profilesService, changeDetector, fb);
+    super(route, router, profilesService, notificationSerivce, changeDetector, fb);
   }
 
   reset() {
@@ -104,6 +106,10 @@ export class ProfileFormComponent extends MainFormComponent<ProfileModel> implem
 
   protected getMainRoute(): string {
     return 'profiles';
+  }
+
+  protected getDeleteSuccessMessage(): string {
+    return `Das Profil ${this.entry} wurde gelöscht.`;
   }
 
   private setArchiveFormats(formats: ArchiveFormatModel[]) {

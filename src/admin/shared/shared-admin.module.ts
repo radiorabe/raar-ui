@@ -21,13 +21,13 @@ import { AddButtonComponent } from './components/add-button.component';
     FieldErrorsComponent,
     FormErrorsComponent,
     TopNavComponent,
-    AddButtonComponent,
+    AddButtonComponent
   ],
   exports: [
     FieldErrorsComponent,
     FormErrorsComponent,
     TopNavComponent,
-    AddButtonComponent,
+    AddButtonComponent
   ]
 })
 export class SharedAdminModule {
