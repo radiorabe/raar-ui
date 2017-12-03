@@ -19,6 +19,7 @@
   <div class="form-group" [class.has-error]="fieldErrors('codec')">
     <label for="codec" class="control-label">Codec</label>
     <select id="codec" class="form-control" formControlName="codec">
+      <option *ngIf="entry && !entry.attributes.codec.length"></option>
       <option *ngFor="let encoding of this.audioEncodingsService.getEntries() | async" value="{{encoding.attributes.codec}}">
         {{ encoding.toString() }}
       </option>
