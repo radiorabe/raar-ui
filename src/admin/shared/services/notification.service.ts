@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ReplaySubject } from "rxjs/ReplaySubject";
+import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 export class Notification {
   constructor(public success: boolean,

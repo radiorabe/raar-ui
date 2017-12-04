@@ -39,6 +39,7 @@ cache:
 
 script:
   - npm run build.prod.rollup.aot
+  - npm run build.prod.rollup.aot --app admin --base /admin/
 
 deploy:
   provider: releases
