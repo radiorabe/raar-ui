@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
-import { LoginWindowService } from '../../shared/services/index';
+import { LoginWindowService } from '../shared/services/login-window.service';
 import { AudioPlayerService } from '../player/audio_player.service';
 import { AudioFilesService } from '../shared/services/audio_files.service';
 import { DateParamsService } from '../../shared/services/date_params.service';

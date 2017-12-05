@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { SmallModalComponent } from './small-modal.component';
 import { LoginService } from '../../../shared/services/login.service';
-import { LoginWindowService } from '../../../shared/services/login-window.service';
-import { AuthService } from '../../../shared/services/auth.service';
+import { LoginWindowService } from '../../shared/services/login-window.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { UserModel } from '../../../shared/models/user.model';
 
 @Component({
@@ -70,7 +70,7 @@ export class LoginComponent {
   }
 
   private loginSuccess(user: UserModel) {
-    this.auth.user = user;
+    this.auth.setUser(user);
     this.close();
   }
 

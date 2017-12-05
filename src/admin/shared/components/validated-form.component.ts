@@ -73,7 +73,7 @@ export class ValidatedFormComponent {
       });
       this.changeDetector.markForCheck();
     } else {
-      this.notificationService.notify(false, this.extractResponseErrorMessage(error))
+      this.notificationService.notify(false, this.extractResponseErrorMessage(error));
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
-import { LoginWindowService } from '../shared/services/login-window.service';
+import { AuthService } from './shared/services/auth.service';
+import { LoginWindowService } from './shared/services/login-window.service';
 import './operators';
 
 @Component({

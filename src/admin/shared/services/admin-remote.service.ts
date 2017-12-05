@@ -5,13 +5,12 @@ import {
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { RemoteService } from '../../../shared/services/remote.service';
-import { AuthService } from '../../../shared/services/auth.service';
-import 'rxjs/Rx';
+import { AdminAuthService } from './admin-auth.service';
 
 @Injectable()
 export class AdminRemoteService extends RemoteService {
 
-  constructor(http: Http, auth: AuthService) {
+  constructor(http: Http, auth: AdminAuthService) {
     super(http, auth);
   }
 
@@ -28,10 +27,6 @@ export class AdminRemoteService extends RemoteService {
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
     return this.http.delete(url, this.addRemoteHeaders(options))
       .catch(err => this.handleUnauthorized(err));
-  }
-
-  protected addAuthToken(headers: Headers) {
-    this.auth.addAdminAuthToken(headers);
   }
 
 }

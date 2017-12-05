@@ -1,6 +1,7 @@
-import { LoginWindowService, LoginService, AuthService } from '../../../shared/services/index';
+import { LoginService } from '../../../shared/services/index';
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UserModel } from '../../../shared/models/index';
+import { AdminAuthService } from '../../shared/services/admin-auth.service';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +17,7 @@ export class LoginPageComponent {
   failure: boolean = false;
 
   constructor(private login: LoginService,
-              private auth: AuthService,
+              private auth: AdminAuthService,
               private cd: ChangeDetectorRef) {
   }
 
@@ -35,7 +36,7 @@ export class LoginPageComponent {
 
   private loginSuccess(user: UserModel) {
     this.auth.redirectUrl = '/';
-    this.auth.user = user;
+    this.auth.setUser(user);
   }
 
   private loginFailed() {

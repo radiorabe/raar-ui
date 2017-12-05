@@ -7,6 +7,7 @@ import { FieldErrorsComponent } from './components/field-errors.component';
 import { FormErrorsComponent } from './components/form-errors.component';
 import { TopNavComponent } from './components/top-nav.component';
 import { AddButtonComponent } from './components/add-button.component';
+import { AdminAuthService } from './services/admin-auth.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -34,7 +35,11 @@ export class SharedAdminModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedAdminModule,
-      providers: [AdminRemoteService, AdminGuard]
+      providers: [
+        AdminRemoteService,
+        AdminGuard,
+        AdminAuthService
+      ]
     };
   }
 }

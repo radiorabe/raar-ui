@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../shared/services/auth.service';
+import { AdminAuthService } from '../services/admin-auth.service';
 
 @Component({
   moduleId: module.id,
@@ -10,7 +10,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 })
 export class TopNavComponent {
 
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(public auth: AdminAuthService, private router: Router) {}
 
   logout() {
     this.auth.logout();

@@ -4,7 +4,7 @@ import {
   RequestOptionsArgs
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from './auth.service';
+import { TokenAuthService } from './token-auth.service';
 
 export const MEDIA_TYPE_JSON_API = 'application/vnd.api+json';
 export const HTTP_UNAUTHORIZED = 401;
@@ -13,7 +13,7 @@ export const HTTP_UNAUTHORIZED = 401;
 export class RemoteService {
 
   constructor(protected http: Http,
-              protected auth: AuthService) {
+              protected auth: TokenAuthService) {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { ShowsService } from '../../shared/services/shows.service';
 import { ShowModel } from '../../shared/models/show.model';
-import { RefreshService } from '../../shared/services/refresh.service';
+import { RefreshService } from '../shared/services/refresh.service';
 
 @Component({
   moduleId: module.id,

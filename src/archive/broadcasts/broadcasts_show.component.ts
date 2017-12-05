@@ -7,7 +7,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { BroadcastModel, ShowModel, CrudList } from '../../shared/models/index';
 import { ShowsService } from '../../shared/services/shows.service';
 import { BroadcastsService } from '../../shared/services/broadcasts.service';
-import { RefreshService } from '../../shared/services/refresh.service';
+import { RefreshService } from '../shared/services/refresh.service';
 import { DateParamsService, RouteParams } from '../../shared/services/date_params.service';
 
 import * as moment from 'moment';
