@@ -15,6 +15,7 @@ export class NotificationComponent {
   current: Notification | undefined;
   show = false;
 
+  private timer: any;
   private readonly destroy$ = new Subject();
 
   constructor(private notifications: NotificationService,
@@ -24,8 +25,9 @@ export class NotificationComponent {
       .subscribe(n => {
         this.current = n;
         this.show = true;
+        this.clearTimer();
+        this.timer = setTimeout(() => this.close(), NOTIFICATION_DURATION);
         this.cd.markForCheck();
-        setTimeout(() => this.close(), NOTIFICATION_DURATION);
       });
   }
 
@@ -35,7 +37,13 @@ export class NotificationComponent {
 
   close() {
     this.show = false;
+    this.clearTimer();
+    this.timer = undefined;
     this.cd.markForCheck();
+  }
+
+  private clearTimer(): void {
+    if (this.timer) clearTimeout(this.timer);
   }
 
 }

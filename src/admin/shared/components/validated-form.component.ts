@@ -108,6 +108,14 @@ export class ValidatedFormComponent {
     return control;
   }
 
+  protected notifySaved(): void {
+    this.notificationService.notify(true, this.getSaveSuccessMessage());
+  }
+
+  protected notifyDeleted(): void {
+    this.notificationService.notify(true, this.getDeleteSuccessMessage());
+  }
+
   protected createForm(fb: FormBuilder): void {
     // implement in subclass
   }
