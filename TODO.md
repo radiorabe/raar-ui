@@ -9,6 +9,5 @@
 
 ## To discuss
 
-* continue playing the following broadcast when the current is finished (only in date view?)
 * display time of day in player instead of time since start
 * add show name to url

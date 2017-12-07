@@ -1,13 +1,14 @@
 import { EventEmitter, isDevMode } from '@angular/core';
 import { AudioFileModel } from '../../shared/models/audio_file.model';
 import { PlayerEvents } from './player_events';
+import { Observable } from 'rxjs/Observable';
 
 export class AudioPlayerService {
 
   private _audio: any;
   private _audioFile: AudioFileModel;
   private _volume: number = 100;
-  private _events: EventEmitter<any> = new EventEmitter();
+  private _events: EventEmitter<number> = new EventEmitter();
 
   get audioFile(): AudioFileModel {
     return this._audioFile;
@@ -87,6 +88,10 @@ export class AudioPlayerService {
     return !!this._audio && this._audio.muted;
   }
 
+  get events(): Observable<number> {
+    return this._events.asObservable();
+  }
+
   private durationAsString(milis: number): string {
     let secs = Math.round(milis / 1000);
     let minutes = Math.floor(secs / 60);
@@ -112,15 +117,15 @@ export class AudioPlayerService {
       position: position,
       autoLoad: true,
       autoPlay: true,
-      onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
-      ondataerror: () => this._events.emit(PlayerEvents.AudioError),
       onfinish: () => this._events.emit(PlayerEvents.Finish),
-      onload: () => this._events.emit(PlayerEvents.BufferingStart),
       onpause: () => this._events.emit(PlayerEvents.Pause),
       onplay: () => this._events.emit(PlayerEvents.Play),
       onresume: () => this._events.emit(PlayerEvents.PlayResume),
-      onstop: () => this._events.emit(PlayerEvents.Finish),
-      whileplaying: () => this._events.emit(PlayerEvents.Time)
+      onstop: () => this._events.emit(PlayerEvents.Stop),
+      //onload: () => this._events.emit(PlayerEvents.BufferingStart),
+      //onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
+      //ondataerror: () => this._events.emit(PlayerEvents.AudioError),
+      //whileplaying: () => this._events.emit(PlayerEvents.Time)
     };
   }
 }

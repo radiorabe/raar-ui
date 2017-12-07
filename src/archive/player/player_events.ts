@@ -1,5 +1,5 @@
 export class PlayerEvents {
-  public static ChangeSong = 1;
+  public static Stop = 1;
   public static Play = 2;
   public static PlayStart = 3;
   public static PlayResume =4;
