@@ -24,6 +24,13 @@
       </option>
     </select>
     <sd-field-errors [errors]="fieldErrors('profile_id')"></sd-field-errors>
+    <div class="help-block" *ngIf="entry && entry.id">
+      <strong>Vorsicht!</strong> Eine Änderung des Profils wird beim nächsten Reduktionslauf
+      berücksichtigt und kann danach nicht mehr rückgängig gemacht werden, falls
+      das neue Profil tiefere Bitraten und/oder kürzere Aufbewahrungszeiten
+      definiert. In diesem Fall werden ältere Ausstrahlungen dieser Sendung
+      gemäss den Profileinstellungen reduziert bzw. gelöscht.
+    </div>
   </div>
 
   <div>
