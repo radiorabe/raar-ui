@@ -8,7 +8,7 @@
 
 <div class="list-group">
   <a *ngFor="let show of shows | async"
-     [routerLink]="['/show', show.id]"
+     [routerLink]="getShowLink(show)"
      routerLinkActive="active"
      class="list-group-item title"
       [class.access-denied]="!show.attributes.audio_access">

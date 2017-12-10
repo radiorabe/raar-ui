@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ShowsService } from '../../shared/services/shows.service';
 import { ShowModel } from '../../shared/models/show.model';
 import { RefreshService } from '../shared/services/refresh.service';
+import { UrlSlugService } from '../../shared/services/url-slug.service';
 
 @Component({
   moduleId: module.id,
@@ -30,6 +31,10 @@ export class ShowsComponent {
 
   constructor(private showService: ShowsService,
               private refreshService: RefreshService) {
+  }
+
+  getShowLink(show: ShowModel): string[] {
+    return ['/show', show.id + '-' + UrlSlugService.escape(show.attributes.name)];
   }
 
   private fetchShows(q: string): Observable<ShowModel[]> {

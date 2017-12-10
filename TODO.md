@@ -10,4 +10,3 @@
 ## To discuss
 
 * display time of day in player instead of time since start
-* add show name to url

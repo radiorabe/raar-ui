@@ -44,7 +44,7 @@ export class BroadcastsShowComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params
       .takeUntil(this.destroy$)
-      .map(params => +params['id'])
+      .map(params => parseInt(params['id']))
       .distinctUntilChanged()
       .do(_ => this.loading = true)
       .switchMap(id =>
