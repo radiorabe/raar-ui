@@ -2,3 +2,26 @@
   font-size: 80%;
   margin-left: $padding-base-horizontal;
 }
+
+.has-clear {
+  input::-ms-clear { display: none; }
+
+  .form-control-feedback.clear {
+    top: 10px;
+    right: 10px;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    color: #ccc;
+    cursor: pointer;
+    pointer-events: auto;
+
+    &:hover {
+      color: #777;
+    }
+  }
+
+  &.has-empty-value {
+    .form-control-feedback.clear { display: none; }
+  }
+}
