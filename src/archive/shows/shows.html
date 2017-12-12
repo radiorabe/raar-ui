@@ -7,7 +7,7 @@
         class="form-control"
         placeholder="Suchen... "
         [formControl]="query" />
-  <span class="form-control-feedback clear" (click)="query.setValue('', { emitChange: true })">
+  <span class="form-control-feedback clear" (click)="query.setValue('', { emitEvent: true })">
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </span>
 </div>
