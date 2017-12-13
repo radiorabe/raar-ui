@@ -14,16 +14,22 @@ export class BroadcastsService extends ReadRestService<BroadcastModel> {
   }
 
   getListForShow(show: ShowModel): Observable<CrudList<BroadcastModel>> {
-    return this.getList({show_id: show.id, sort: '-started_at'});
+    return this.getList({ show_id: show.id, sort: '-started_at' });
   }
 
   getListForDate(date: Date): Observable<CrudList<BroadcastModel>> {
     return this.remote.get(this.baseUrl + DateParamsService.convertDateToPath(date))
+      .catch(res => this.handleError(res))
       .map(res => this.buildListFromResponse(res, this.buildEntity));
+  }
+
+  getListForQuery(query: string): Observable<CrudList<BroadcastModel>> {
+    return this.getList({ q: query, sort: '-started_at' });
   }
 
   getForTime(date: Date): Observable<BroadcastModel | void> {
     return this.remote.get(this.baseUrl + DateParamsService.convertTimeToPath(date))
+      .catch(res => this.handleError(res))
       .map(res => this.buildBroadcastFromResponse(res));
   }
 
