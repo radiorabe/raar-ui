@@ -2,15 +2,21 @@
   <nav>
     <sd-admin-nav></sd-admin-nav>
   </nav>
-  <aside>
 
+  <aside>
     <sd-add-button [link]="['/shows', 'new']">Sendung erstellen</sd-add-button>
 
-    <input type="text"
-           id="query"
-           class="form-control"
-           placeholder="Suchen... "
-           [formControl]="query" />
+    <div class="form-search has-feedback has-clear"
+         [class.has-empty-value]="!query.value || query.value.trim() === ''">
+      <input type="text"
+            id="query"
+            class="form-control"
+            placeholder="Suchen... "
+            [formControl]="query" />
+      <span class="form-control-feedback clear" (click)="query.setValue('', { emitEvent: true })">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </span>
+    </div>
 
     <div class="list-group">
       <a *ngFor="let show of shows | async"
