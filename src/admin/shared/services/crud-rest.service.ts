@@ -1,4 +1,4 @@
-import { RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CrudModel } from '../../../shared/models/crud.model';

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { UserModel } from '../models/user.model';
+import { PatchedQueryEncoder } from './patched-query-encoder';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -19,7 +20,7 @@ export class LoginService  {
   }
 
   post(username: string, password: string): Observable<UserModel> {
-    const body = new URLSearchParams();
+    const body = new URLSearchParams('', new PatchedQueryEncoder());
     body.append('username', username);
     body.append('password', password);
     const options = this.httpOptions({ 'Content-Type': 'application/x-www-form-urlencoded' });
