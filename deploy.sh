@@ -14,7 +14,7 @@ else
 fi
 
 # compile code
-npm run build.prod.rollup.aot -- --app $NAME --base $BASE || exit 1
+npm run build.prod.aot -- --app $NAME --base $BASE || exit 1
 
 # upload archive
 scp dist/raar-ui-$NAME.tar.gz raar@archiv:/var/www/raar-ui${BASE}raar-ui-$NAME.new.tar.gz

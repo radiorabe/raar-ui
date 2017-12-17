@@ -63,12 +63,20 @@ export class ProjectConfig extends SeedConfig {
 
     this.ROLLUP_NAMED_EXPORTS = [
       ...this.ROLLUP_NAMED_EXPORTS,
-      //{'node_modules/immutable/dist/immutable.js': [ 'Map' ]},
+      // {'node_modules/immutable/dist/immutable.js': [ 'Map' ]},
       { 'node_modules/ng2-date-picker/index.js': [ 'DpDatePickerModule' ] }
     ];
 
     // Add packages (e.g. ng2-translate)
     let additionalPackages: ExtendPackages[] = [
+      {
+        name: 'moment',
+        path: 'node_modules/moment',
+        packageMeta: {
+          main: 'moment.js',
+          defaultExtension: 'js'
+        }
+      },
       {
         name: 'ng2-date-picker',
         path: 'node_modules/ng2-date-picker',
@@ -77,16 +85,6 @@ export class ProjectConfig extends SeedConfig {
           defaultExtension: 'js'
         }
       },
-
-      {
-        name:'moment',
-        path:'node_modules/moment',
-        packageMeta: {
-          main: 'moment.js',
-          defaultExtension: 'js'
-        }
-      },
-
       {
         name: 'ngx-infinite-scroll',
         path: 'node_modules/ngx-infinite-scroll/bundles/ngx-infinite-scroll.umd.min.js'

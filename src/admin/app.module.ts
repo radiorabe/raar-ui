@@ -12,12 +12,12 @@ import { ProfilesModule } from './profiles/profiles.module';
 import { PlaybackFormatsModule } from './playback-formats/playback-formats.module';
 import { AccessCodesModule } from './access-codes/access-codes.module';
 import { AudioEncodingsService } from './shared/services/audio-encodings.service';
-
-import * as moment from 'moment';
-import 'moment/locale/de';
 import { LoginModule } from './login/login.module';
 import { NotificationService } from './shared/services/notification.service';
 import { NotificationComponent } from './shared/components/notification.component';
+
+import * as moment from 'moment';
+import 'moment/locale/de';
 
 moment.locale('de');
 
