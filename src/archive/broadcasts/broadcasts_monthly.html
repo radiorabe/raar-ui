@@ -1,10 +1,14 @@
-<h2 class="title">{{ title }}</h2>
+<h2 class="title">{{ title$ | async }}</h2>
 
-<div *ngIf="details" class="details" [innerHtml]="details"></div>
+<div *ngIf="details$ | async as details" class="details" [innerHtml]="details"></div>
 
 <p *ngIf="errorMessage" [class.loading]="loading">
   Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
 </p>
+
+<div *ngIf="((months | async) || []).length === 0" [class.loading]="loading">
+  {{ noBroadcastsMessage }}
+</div>
 
 <div infinite-scroll [infiniteScrollDistance]="1" (scrolled)="onScroll()" [class.loading]="loading">
   <div *ngFor="let month of months | async, trackBy: getMonthIdentifier">

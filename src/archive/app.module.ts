@@ -22,6 +22,7 @@ import { PlayerComponent } from './player/player.component';
 import { BroadcastTimePipe } from './shared/pipes/broadcast_time.pipe';
 import { DateStringPipe } from '../shared/pipes/date_string.pipe';
 import { PreventDefaultLinkDirective } from '../shared/directives/prevent_default_link_directive';
+import { BroadcastsSearchComponent } from './broadcasts/broadcasts_search.component';
 
 import * as moment from 'moment';
 import 'moment/locale/de';
@@ -46,6 +47,7 @@ moment.locale('de');
     ShowsComponent,
     BroadcastsShowComponent,
     BroadcastsDateComponent,
+    BroadcastsSearchComponent,
     BroadcastComponent,
     PlayerComponent,
     DateStringPipe,

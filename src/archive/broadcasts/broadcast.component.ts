@@ -70,7 +70,7 @@ export class BroadcastComponent implements OnChanges {
     let url = this.broadcastRoute.snapshot.url.map(e => e.path);
     const date = this.broadcast.attributes.started_at;
     queryParams['time'] = DateParamsService.convertTimeToParam(date);
-    if (url[0] === 'show') {
+    if (url[0] === 'show' || url[0] === 'search') {
       queryParams['year'] = date.getFullYear();
       queryParams['month'] = date.getMonth() + 1;
       queryParams['day'] = date.getDate();

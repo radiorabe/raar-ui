@@ -12,20 +12,21 @@ import { BroadcastsMonthlyComponent } from './broadcasts_monthly.component';
 
 import * as moment from 'moment';
 
+
 @Component({
   moduleId: module.id,
-  selector: 'sd-broadcasts-show',
+  selector: 'sd-broadcasts-search',
   templateUrl: 'broadcasts_monthly.html'
 })
-export class BroadcastsShowComponent extends BroadcastsMonthlyComponent implements OnInit {
+export class BroadcastsSearchComponent extends BroadcastsMonthlyComponent implements OnInit {
 
-  show: Subject<ShowModel> = new ReplaySubject<ShowModel>(1);
-  details$ = this.show.map(show => show.attributes.details);
-  title$ = this.show.map(show => show.attributes.name);
-  noBroadcastsMessage = 'Für diese Sendung existieren keine Ausstrahlungen.';
+  query: Subject<string> = new ReplaySubject<string>(1);
+
+  title$: Observable<string> = this.query.map(q => `Suchresultate für «${q}»`);
+
+  noBroadcastsMessage = 'Für diesen Begriff konnten keine Resultate gefunden werden.';
 
   constructor(route: ActivatedRoute,
-              private showsService: ShowsService,
               broadcastsService: BroadcastsService,
               refreshService: RefreshService) {
     super(route, broadcastsService, refreshService);
@@ -36,39 +37,25 @@ export class BroadcastsShowComponent extends BroadcastsMonthlyComponent implemen
 
     this.route.params
       .takeUntil(this.destroy$)
-      .map(params => parseInt(params['id']))
+      .map(params => params['query'])
+      .filter((q: string) => q.length > 2)
       .distinctUntilChanged()
-      .do(_ => this.loading = true)
-      .switchMap(id =>
-        this.showsService
-          .get(id)
-          .do(() => this.errorMessage = undefined)
-          .catch(this.handleShowError.bind(this)))
-      .subscribe(this.show as Observer<any>);
+      .subscribe(this.query as Observer<any>);
 
-    this.broadcastShowObservable()
+    this.broadcastQueryObservable()
       .takeUntil(this.destroy$)
       .merge(this.broadcastMoreObservable())
       .subscribe(this.broadcastList);
-
-    this.show
-      .takeUntil(this.destroy$)
-      .subscribe(show => window.scrollTo(0, 0));
   }
 
-  private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
-    return this.show
-      .merge(this.refreshService.asObservable().withLatestFrom(this.show, (_, show) => show))
-      .flatMap(show =>
+  private broadcastQueryObservable(): Observable<CrudList<BroadcastModel>> {
+    return this.query
+      .merge(this.refreshService.asObservable().withLatestFrom(this.query, (_, query) => query))
+      .flatMap(query =>
         this.broadcastsService
-          .getListForShow(show)
+          .getListForQuery(query)
           .do(_ => this.errorMessage = undefined)
           .catch(msg => this.handleListError(msg)));
-  }
-
-  private handleShowError(message: string): Observable<ShowModel> {
-    this.errorMessage = message;
-    return Observable.of(new ShowModel());
   }
 
 }
