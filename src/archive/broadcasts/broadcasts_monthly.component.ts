@@ -37,6 +37,11 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.broadcastLoadObservable()
+      .takeUntil(this.destroy$)
+      .merge(this.broadcastMoreObservable())
+      .subscribe(this.broadcastList);
+
     this.broadcastList
       .takeUntil(this.destroy$)
       .do(list => this.hasMore = !!list.links.next)
@@ -82,6 +87,10 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
 
   isExpanded(broadcast: BroadcastModel): boolean {
     return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
+  }
+
+  protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
+    return Observable.of(undefined);
   }
 
   protected broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {

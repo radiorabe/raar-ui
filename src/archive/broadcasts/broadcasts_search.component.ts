@@ -40,18 +40,14 @@ export class BroadcastsSearchComponent extends BroadcastsMonthlyComponent implem
       .map(params => params['query'])
       .filter((q: string) => q.length > 2)
       .distinctUntilChanged()
+      .do(_ => this.loading = true)
       .subscribe(this.query as Observer<any>);
-
-    this.broadcastQueryObservable()
-      .takeUntil(this.destroy$)
-      .merge(this.broadcastMoreObservable())
-      .subscribe(this.broadcastList);
   }
 
-  private broadcastQueryObservable(): Observable<CrudList<BroadcastModel>> {
+  protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
     return this.query
       .merge(this.refreshService.asObservable().withLatestFrom(this.query, (_, query) => query))
-      .flatMap(query =>
+      .switchMap(query =>
         this.broadcastsService
           .getListForQuery(query)
           .do(_ => this.errorMessage = undefined)

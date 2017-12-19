@@ -7,7 +7,7 @@
     </div>
     <a>
       <span class="broadcast-date">
-        {{ broadcast | broadcastTime: (view === 'show' ? 'standard' : 'time') }}
+        {{ broadcast | broadcastTime: (view === 'month' ? 'standard' : 'time') }}
       </span>
       {{ broadcast.attributes.label }}
     </a>
@@ -44,7 +44,7 @@
 
     <p *ngIf="broadcast.attributes.details" [innerHtml]="broadcast.attributes.details"></p>
     <p *ngIf="broadcast.attributes.people" [innerHtml]="broadcast.attributes.people"></p>
-    <p *ngIf="view == 'date'">
+    <p *ngIf="view == 'day'">
       <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
     </p>
     <p class="pull-right"

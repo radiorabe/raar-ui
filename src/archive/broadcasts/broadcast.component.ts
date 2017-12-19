@@ -17,7 +17,7 @@ export class BroadcastComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;
   @Input() dateFormat: string;
   @Input() expanded: boolean;
-  @Input() view: string;
+  @Input() view: 'month' | 'day';
 
   loading: boolean = false;
 

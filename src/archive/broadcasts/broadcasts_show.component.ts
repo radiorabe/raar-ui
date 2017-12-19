@@ -44,22 +44,14 @@ export class BroadcastsShowComponent extends BroadcastsMonthlyComponent implemen
           .get(id)
           .do(() => this.errorMessage = undefined)
           .catch(this.handleShowError.bind(this)))
+      .do(_ => window.scrollTo(0, 0))
       .subscribe(this.show as Observer<any>);
-
-    this.broadcastShowObservable()
-      .takeUntil(this.destroy$)
-      .merge(this.broadcastMoreObservable())
-      .subscribe(this.broadcastList);
-
-    this.show
-      .takeUntil(this.destroy$)
-      .subscribe(show => window.scrollTo(0, 0));
   }
 
-  private broadcastShowObservable(): Observable<CrudList<BroadcastModel>> {
+  protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
     return this.show
       .merge(this.refreshService.asObservable().withLatestFrom(this.show, (_, show) => show))
-      .flatMap(show =>
+      .switchMap(show =>
         this.broadcastsService
           .getListForShow(show)
           .do(_ => this.errorMessage = undefined)

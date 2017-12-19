@@ -16,7 +16,7 @@
     <div class="list-group">
       <sd-broadcast *ngFor="let broadcast of (monthlyBroadcasts | async)[month], trackBy: getCrudIdentifier"
                     [broadcast]="broadcast"
-                    [view]="'show'"
+                    [view]="'month'"
                     [expanded]="isExpanded(broadcast)">
       </sd-broadcast>
     </div>
