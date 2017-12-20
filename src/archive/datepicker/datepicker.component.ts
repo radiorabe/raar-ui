@@ -45,12 +45,8 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
   ngOnInit() {
     this.router.events
       .takeUntil(this.destroy$)
-      .subscribe(e => {
-        if (e instanceof NavigationEnd) {
-          this.setDateFromRoute();
-        }
-      });
-    this.setDateFromRoute();
+      .filter(e => e instanceof NavigationEnd)
+      .subscribe(_ => this.setDateFromRoute());
   }
 
   ngOnDestroy() {
@@ -77,9 +73,9 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
   }
 
   private setDateFromParams(params: any) {
-    let year = params['year'];
-    let month = params['month'];
-    let day = params['day'];
+    const year = params['year'];
+    const month = params['month'];
+    const day = params['day'];
     if (year && month && day) {
       this._date = moment({ year: +year, month: +month - 1, day: +day });
     } else {
@@ -98,7 +94,7 @@ export class DatepickerComponent implements OnInit, OnDestroy  {
   }
 
   private get dateRoute(): ActivatedRoute {
-    var state = <any>this.router.routerState;
+    const state = <any>this.router.routerState;
     return state.firstChild(state.root);
   }
 

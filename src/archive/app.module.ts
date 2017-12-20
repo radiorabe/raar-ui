@@ -26,6 +26,7 @@ import { BroadcastsSearchComponent } from './broadcasts/broadcasts_search.compon
 
 import * as moment from 'moment';
 import 'moment/locale/de';
+import { SearchComponent } from './search/search.component';
 
 moment.locale('de');
 (<any>window).soundManager.setup({ debugMode: false });
@@ -44,6 +45,7 @@ moment.locale('de');
   declarations: [
     AppComponent,
     DatepickerComponent,
+    SearchComponent,
     ShowsComponent,
     BroadcastsShowComponent,
     BroadcastsDateComponent,
