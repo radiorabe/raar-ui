@@ -17,7 +17,9 @@ export class ReadRestService<T extends CrudModel> {
   }
 
   getNextEntries(list: CrudList<T>): Observable<CrudList<T>> {
-    if (list.links.next === undefined) return new BehaviorSubject<CrudList<T>>(list);
+    if (list.links.next === undefined || list.links.next === null) {
+      return new BehaviorSubject<CrudList<T>>(list);
+    }
 
     return this.remote.get(list.links.next)
       .catch(res => this.handleError(res))
