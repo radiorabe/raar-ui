@@ -15,7 +15,7 @@ export class MainFormComponent<T extends CrudModel> extends ValidatedFormCompone
 
   entry: T;
 
-  public title: string;
+  title: string;
 
   private readonly destroy$ = new Subject();
 

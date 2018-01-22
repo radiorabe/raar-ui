@@ -19,11 +19,6 @@ export class AdminRemoteService extends RemoteService {
       .catch(err => this.handleUnauthorized(err));
   }
 
-  patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.patch(url, body, this.addRemoteHeaders(options))
-      .catch(err => this.handleUnauthorized(err));
-  }
-
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
     return this.http.delete(url, this.addRemoteHeaders(options))
       .catch(err => this.handleUnauthorized(err));

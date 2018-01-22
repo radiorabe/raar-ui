@@ -33,6 +33,12 @@ export class BroadcastsService extends ReadRestService<BroadcastModel> {
       .map(res => this.buildBroadcastFromResponse(res));
   }
 
+  update(entity: BroadcastModel, entityToUpdate: BroadcastModel = entity): Observable<BroadcastModel> {
+    return this.remote.patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity))
+      .catch(res => this.handleError(res))
+      .map(res => this.updateEntityFromResponse(res, entityToUpdate));
+  }
+
   protected buildEntity(): BroadcastModel {
     return new BroadcastModel();
   }
@@ -44,6 +50,12 @@ export class BroadcastsService extends ReadRestService<BroadcastModel> {
     } else {
       return this.copyAttributes(data[0], this.buildEntity());
     }
+  }
+
+  private rootedJson(entity: BroadcastModel): string {
+    let data: any = {};
+    data['data'] = entity;
+    return JSON.stringify(data);
   }
 
 }

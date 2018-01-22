@@ -21,6 +21,11 @@ export class RemoteService {
       .catch(err => this.handleUnauthorized(err));
   }
 
+  patch(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
+    return this.http.patch(url, body, this.addRemoteHeaders(options))
+      .catch(err => this.handleUnauthorized(err));
+  }
+
   protected addRemoteHeaders(options?: RequestOptionsArgs): RequestOptionsArgs {
     options = options || new RequestOptions();
     if (!options.headers) options.headers = new Headers();

@@ -106,6 +106,15 @@ sd-broadcast {
     }
   }
 
+  .details {
+    white-space: pre-line;
+    padding-bottom: 0;
+  }
+
+  textarea {
+    margin-bottom: 5px;
+  }
+
   .broadcast-date, .broadcast-date {
     margin-right: $padding-base-horizontal;
     text-align: right;

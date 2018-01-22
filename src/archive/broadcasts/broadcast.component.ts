@@ -5,6 +5,9 @@ import { LoginWindowService } from '../shared/services/login-window.service';
 import { AudioPlayerService } from '../player/audio_player.service';
 import { AudioFilesService } from '../shared/services/audio_files.service';
 import { DateParamsService } from '../../shared/services/date_params.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { BroadcastsService } from '../../shared/services/index';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -19,17 +22,28 @@ export class BroadcastComponent implements OnChanges {
   @Input() expanded: boolean;
   @Input() view: 'month' | 'day';
 
+  form: FormGroup;
+
   loading: boolean = false;
+  editing: boolean = false;
 
   constructor(public audioPlayer: AudioPlayerService,
               public loginWindow: LoginWindowService,
+              private broadcastsService: BroadcastsService,
               private audioFilesService: AudioFilesService,
-              private router: Router) {
+              private router: Router,
+              private fb: FormBuilder) {
+    this.form = fb.group({
+      details: ''
+    });
   }
 
   ngOnChanges(changes: any) {
-    if (changes.broadcast && this.expanded) {
-      this.fetchAudioFiles();
+    if (changes.broadcast) {
+      this.cancelEditing();
+      if (this.expanded) {
+        this.fetchAudioFiles();
+      }
     }
   }
 
@@ -48,6 +62,24 @@ export class BroadcastComponent implements OnChanges {
 
   download(audio: AudioFileModel) {
     (<any>window).location = (isDevMode() ? '/api' : '') + audio.links.download;
+  }
+
+  onSubmit() {
+    const model = this.serializeForm();
+    this.broadcastsService.update(model)
+      .finally(() => this.cancelEditing())
+      .subscribe(entry => {
+        this.broadcast.attributes.details = model.attributes.details;
+      });
+  }
+
+  startEditing() {
+    this.editing = true;
+  }
+
+  cancelEditing() {
+    this.editing = false;
+    this.resetForm();
   }
 
   get audioFiles(): AudioFileModel[] | void {
@@ -89,6 +121,22 @@ export class BroadcastComponent implements OnChanges {
   private get broadcastRoute(): ActivatedRoute {
     var state = <any>this.router.routerState;
     return state.firstChild(state.root);
+  }
+
+  private resetForm() {
+    this.form.reset({
+      details: this.broadcast.attributes.details
+    });
+  }
+
+  private serializeForm(): BroadcastModel {
+    const formModel = this.form.value;
+    const model = new BroadcastModel();
+    model.id = this.broadcast.id;
+    model.type = this.broadcast.type;
+    model.attributes = Object.assign({}, this.broadcast.attributes);
+    model.attributes.details = formModel.details.trim();
+    return model;
   }
 
 }

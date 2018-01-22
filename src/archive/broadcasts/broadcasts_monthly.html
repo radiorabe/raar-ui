@@ -1,6 +1,6 @@
 <h2 class="title">{{ title$ | async }}</h2>
 
-<div *ngIf="details$ | async as details" class="details" [innerHtml]="details"></div>
+<div *ngIf="details$ | async as details" class="details" [innerHtml]="details.trim()"></div>
 
 <p *ngIf="errorMessage" [class.loading]="loading">
   Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).

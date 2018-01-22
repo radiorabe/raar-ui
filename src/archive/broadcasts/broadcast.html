@@ -42,11 +42,37 @@
       Kein Zugriff oder keine Aufnahme vorhanden
     </div>
 
-    <p *ngIf="broadcast.attributes.details" [innerHtml]="broadcast.attributes.details"></p>
-    <p *ngIf="broadcast.attributes.people" [innerHtml]="broadcast.attributes.people"></p>
+    <p *ngIf="!editing && (broadcast.attributes.details || broadcast.links.update)">
+      <span *ngIf="broadcast.attributes.details" class="details" [innerHtml]="broadcast.attributes.details.trim()"></span>
+      &nbsp;
+      <a *ngIf="broadcast.links.update" href="#" (click)="startEditing()">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </a>
+    </p>
+
     <p *ngIf="view == 'day'">
       <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
     </p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="editing">
+      <textarea class="form-control"
+                placeholder="Schwerpunkte, Gäste, Themen usw. dieser Sendung"
+                formControlName="details"
+                rows="5"></textarea>
+      <div>
+        <button type="submit"
+                [disabled]="form.pristine || !form.valid"
+                class="btn btn-primary">
+          Speichern
+        </button>
+        <button type="reset"
+                (click)="cancelEditing()"
+                class="btn btn-link">
+          Abbrechen
+        </button>
+      </div>
+    </form>
+
     <p class="pull-right"
          *ngIf="!broadcast.attributes.audio_access">
       Du hast keinen Zugriff auf diese Aufnahme.

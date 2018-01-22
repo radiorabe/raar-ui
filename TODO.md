@@ -4,7 +4,6 @@
 
 ## Future steps
 
-* add search box for broadcast search
 * add podcast links
 
 ## To discuss
