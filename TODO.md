@@ -1,6 +1,6 @@
 ## Next steps
 
-* check audio play in various systems (android, ios, windows) and browsers (ff, ie, chrome, safari)
+* Admin: List shows by profile
 
 ## Future steps
 
