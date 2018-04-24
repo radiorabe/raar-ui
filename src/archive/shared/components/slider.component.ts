@@ -43,6 +43,10 @@ export class SliderComponent {
     return this.stopEvent(e);
   }
 
+  get percent(): number {
+    return Math.max(0, Math.min(100, this.value));
+  }
+
   private handleSliding(e: Event | Touch) {
     if (this.isTouchDevice() && e instanceof TouchEvent) {
       e = e.touches[0];
@@ -101,8 +105,8 @@ export class SliderComponent {
   }
 
   private updateView() {
-    this.renderer.setElementStyle(this.handleElement.nativeElement, 'left', this.value + '%');
-    this.renderer.setElementStyle(this.currentElement.nativeElement, 'width', this.value + '%');
+    this.renderer.setElementStyle(this.handleElement.nativeElement, 'left', this.percent + '%');
+    this.renderer.setElementStyle(this.currentElement.nativeElement, 'width', this.percent + '%');
   }
 
   private stopEvent(e: any) {
