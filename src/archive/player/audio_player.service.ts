@@ -2,6 +2,8 @@ import { EventEmitter, isDevMode } from '@angular/core';
 import { AudioFileModel } from '../../shared/models/audio_file.model';
 import { PlayerEvents } from './player_events';
 import { Observable } from 'rxjs/Observable';
+import { BroadcastModel } from '../../shared/models/broadcast.model';
+import * as moment from 'moment';
 
 export class AudioPlayerService {
 
@@ -19,9 +21,10 @@ export class AudioPlayerService {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
       const pos = position ?
-        position.getTime() - this._audioFile.relationships.broadcast!.attributes.started_at.getTime() :
+        position.getTime() - this.broadcastAttrs.started_at.getTime() :
         0;
-      this._audio = (<any>window).soundManager.createSound(this.getSoundOptions(audioFile.links.play, pos));
+      this._audio = (<any>window).soundManager.createSound(
+        this.getSoundOptions(audioFile.links.play, pos));
     } else if (this._audio) {
       this._audio.play();
     }
@@ -35,7 +38,7 @@ export class AudioPlayerService {
 
   seek(percent: number) {
     if (this._audio) {
-      var time = this._audio.duration * percent / 100;
+      var time = this.duration * percent / 100;
       this._audio.setPosition(time);
     }
   }
@@ -72,7 +75,10 @@ export class AudioPlayerService {
 
   get duration(): number {
     if (!this._audio) return 0;
-    return this._audio.duration === 0 ? this._audio.durationEstimate : this._audio.duration;
+
+    return this._audio.duration ||
+      this._audio.durationEstimate ||
+      moment(this.broadcastAttrs.finished_at).diff(this.broadcastAttrs.started_at);
   }
 
   get percent(): number {
@@ -108,6 +114,10 @@ export class AudioPlayerService {
   private pad(num: number): string {
     if (num < 10) return `0${num}`;
     return String(num);
+  }
+
+  private get broadcastAttrs(): BroadcastModel['attributes'] {
+    return this._audioFile.relationships.broadcast!.attributes;
   }
 
   private getSoundOptions(url: string | void, position: number): any {
