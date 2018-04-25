@@ -2,10 +2,10 @@
      (click)="onClick($event)"
      (touch)="onClick($event)">
   <span class="background"></span>
-  <span #current class="current" [style.width]="value + '%'"></span>
+  <span #current class="current" [style.width]="percent + '%'"></span>
   <span #handle
         class="handle"
-        [style.left]="value + '%'"
+        [style.left]="percent + '%'"
         (mousedown)="startSliding($event)"
         (touchstart)="startSliding($event)"></span>
 </div>
