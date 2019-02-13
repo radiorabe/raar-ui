@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, isDevMode } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BroadcastModel, AudioFileModel } from '../../shared/models/index';
+import { BroadcastModel, AudioFileModel, TrackModel } from '../../shared/models/index';
 import { LoginWindowService } from '../shared/services/login-window.service';
 import { AudioPlayerService } from '../player/audio_player.service';
 import { AudioFilesService } from '../shared/services/audio_files.service';
@@ -8,6 +8,7 @@ import { DateParamsService } from '../../shared/services/date_params.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BroadcastsService } from '../../shared/services/index';
 import { Observable } from 'rxjs/Observable';
+import { TracksService } from '../shared/services/tracks.service';
 
 
 @Component({
@@ -24,15 +25,19 @@ export class BroadcastComponent implements OnChanges {
 
   form: FormGroup;
 
-  loading: boolean = false;
+  loadingAudio: boolean = false;
+  loadingTracks: boolean = false;
   editing: boolean = false;
+
+  tracks: TrackModel[] = [];
 
   constructor(public audioPlayer: AudioPlayerService,
               public loginWindow: LoginWindowService,
               private broadcastsService: BroadcastsService,
               private audioFilesService: AudioFilesService,
+              private tracksService: TracksService,
               private router: Router,
-              private fb: FormBuilder) {
+              fb: FormBuilder) {
     this.form = fb.group({
       details: ''
     });
@@ -41,8 +46,10 @@ export class BroadcastComponent implements OnChanges {
   ngOnChanges(changes: any) {
     if (changes.broadcast) {
       this.cancelEditing();
+      this.tracks = [];
       if (this.expanded) {
         this.fetchAudioFiles();
+        this.fetchTracks();
       }
     }
   }
@@ -51,6 +58,7 @@ export class BroadcastComponent implements OnChanges {
     this.expanded = !this.expanded;
     if (this.expanded)  {
       this.fetchAudioFiles();
+      this.fetchTracks();
       this.navigateToSelf();
     }
   }
@@ -88,12 +96,19 @@ export class BroadcastComponent implements OnChanges {
 
   private fetchAudioFiles() {
     if (!this.audioFiles && this.broadcast.attributes.audio_access) {
-      this.loading = true;
+      this.loadingAudio = true;
       this.audioFilesService.getListForBroadcast(this.broadcast)
-        .subscribe(list => {
-          this.broadcast.relationships.audio_files = list.entries;
-          this.loading = false;
-        });
+        .finally(() => this.loadingAudio = false)
+        .subscribe(list => this.broadcast.relationships.audio_files = list.entries);
+    }
+  }
+
+  private fetchTracks() {
+    if (!this.tracks.length) {
+      this.loadingTracks = true;
+      this.tracksService.getListForBroadcast(this.broadcast)
+        .finally(() => this.loadingTracks = false)
+        .subscribe(list => this.tracks = list.entries);
     }
   }
 

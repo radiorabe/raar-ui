@@ -34,12 +34,12 @@
         </td>
       </tr>
     </table>
-    <div class="pull-right" *ngIf="loading">
+    <div class="pull-right" *ngIf="loadingAudio">
       <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
     </div>
     <div class="pull-right"
          *ngIf="audioFiles && audioFiles.length == 0">
-      Kein Zugriff oder keine Aufnahme vorhanden
+      <em>Kein Zugriff oder keine Aufnahme vorhanden</em>
     </div>
 
     <p *ngIf="!editing && (broadcast.attributes.details || broadcast.links.update)">
@@ -48,10 +48,6 @@
       <a *ngIf="broadcast.links.update" href="#" (click)="startEditing()">
         <span class="glyphicon glyphicon-pencil"></span>
       </a>
-    </p>
-
-    <p *ngIf="view == 'day'">
-      <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
     </p>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="editing">
@@ -73,11 +69,33 @@
       </div>
     </form>
 
-    <p class="pull-right"
-         *ngIf="!broadcast.attributes.audio_access">
+    <p *ngIf="view == 'day'">
+      <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
+    </p>
+
+    <p *ngIf="!broadcast.attributes.audio_access">
       Du hast keinen Zugriff auf diese Aufnahme.
       Bitte <a (click)="loginWindow.show(false)">gib den Zugangscode</a> aus dem StattRadio ein
       oder melde dich mit deinem neuen RaBe <a (click)="loginWindow.show(true)">Login</a> an.
     </p>
+
+    <div *ngIf="tracks.length">
+      <strong>Playlist</strong>
+      <br/>
+      <ul class="tracklist">
+        <li *ngFor="let track of tracks">
+          <span class="track-time">
+            {{ track.attributes.started_at | dateString: 'time' }}
+          </span>
+          <span class="track-info">
+            <span *ngIf="track.attributes.artist">
+              {{ track.attributes.artist }} –
+            </span>
+            {{ track.attributes.title }}
+          </span>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </div>

@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 import { RefreshService } from './services/refresh.service';
 import { RemoteService } from '../../shared/services/index';
 import { TokenAuthService } from '../../shared/services/token-auth.service';
+import { TracksService } from './services/tracks.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -40,6 +41,7 @@ export class SharedArchiveModule {
       ngModule: SharedArchiveModule,
       providers: [
         AudioFilesService,
+        TracksService,
         AuthService,
         { provide: TokenAuthService, useExisting: AuthService },
         LoginWindowService,

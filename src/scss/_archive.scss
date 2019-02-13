@@ -50,6 +50,7 @@ sd-broadcast {
 
   .list-group-item {
     border: 0;
+    padding: 0;
 
     &.title {
       font-size: 16px;
@@ -73,6 +74,7 @@ sd-broadcast {
 
   .list-group-item-heading {
     margin-bottom: 0;
+    padding: 10px 15px;
 
     &> a {
       color: #000;
@@ -81,8 +83,11 @@ sd-broadcast {
   }
 
   .list-group-item-text {
-    margin-top: 10px;
-    padding-left: $padding-base-horizontal;
+    padding: 0px 15px 10px 15px + $padding-base-horizontal;
+    //margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    //padding-left: $padding-base-horizontal;
 
     &.fixclear:before, &.fixclear:after {
       content: " ";
@@ -111,6 +116,10 @@ sd-broadcast {
     padding-bottom: 0;
   }
 
+  form {
+    margin-bottom: 10px;
+  }
+
   textarea {
     margin-bottom: 5px;
   }
@@ -123,7 +132,7 @@ sd-broadcast {
 
   .view-day {
     .list-group-item-heading {
-      padding-left: 116px;
+      padding-left: 131px;
       text-indent: -116px;
 
       .pull-right {
@@ -138,7 +147,7 @@ sd-broadcast {
 
   .view-month {
     .list-group-item-heading {
-      padding-left: 186px;
+      padding-left: 201px;
       text-indent: -186px;
 
       .pull-right {
@@ -149,6 +158,22 @@ sd-broadcast {
     .broadcast-date {
       min-width: 170px;
     }
+  }
+
+  .tracklist {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+      padding-left: 48px;
+    }
+
+    .track-time {
+      display: inline-block;
+      margin-right: 10px;
+      margin-left: -48px;
+    }
+
   }
 
 }
