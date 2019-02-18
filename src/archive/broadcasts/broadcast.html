@@ -34,10 +34,10 @@
         </td>
       </tr>
     </table>
-    <div class="pull-right" *ngIf="loadingAudio">
+    <div class="pull-right placeholder" *ngIf="loadingAudio">
       <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
     </div>
-    <div class="pull-right"
+    <div class="pull-right placeholder"
          *ngIf="audioFiles && audioFiles.length == 0">
       <em>Kein Zugriff oder keine Aufnahme vorhanden</em>
     </div>
