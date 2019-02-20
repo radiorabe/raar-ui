@@ -84,10 +84,8 @@ sd-broadcast {
 
   .list-group-item-text {
     padding: 0px 15px 10px 15px + $padding-base-horizontal;
-    //margin-top: 10px;
     max-height: 300px;
     overflow-y: auto;
-    //padding-left: $padding-base-horizontal;
 
     &.fixclear:before, &.fixclear:after {
       content: " ";
@@ -179,6 +177,45 @@ sd-broadcast {
       display: inline-block;
       margin-right: 10px;
       margin-left: -48px;
+    }
+
+    .glyphicon {
+      display: none;
+    }
+
+    a:hover, a.active {
+      .glyphicon {
+        color: $link-hover-color;
+        display: inline-block;
+        margin-right: 5px;
+        margin-left: -67px;
+      }
+
+      .track-time {
+        margin-left: 0;
+      }
+    }
+
+    &.non-playable {
+      a {
+        color: inherit;
+        font-weight: inherit;
+        cursor: inherit;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      a:hover {
+        .glyphicon {
+          display: none;
+        }
+
+        .track-time {
+          margin-left: -48px;
+        }
+      }
     }
 
   }

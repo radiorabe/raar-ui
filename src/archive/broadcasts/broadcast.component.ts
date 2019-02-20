@@ -63,9 +63,9 @@ export class BroadcastComponent implements OnChanges {
     }
   }
 
-  play(audio: AudioFileModel) {
-    this.audioPlayer.play(audio);
-    this.navigateToPlay(audio);
+  play(audio: AudioFileModel, time?: Date) {
+    this.audioPlayer.play(audio, time);
+    this.navigateToPlay(audio, time);
   }
 
   download(audio: AudioFileModel) {
@@ -94,6 +94,37 @@ export class BroadcastComponent implements OnChanges {
     return this.broadcast.relationships.audio_files;
   }
 
+  playTrack(track: TrackModel) {
+    const audio = this.isBroadcastPlaying() ?
+      this.audioPlayer.audioFile :
+      this.getFirstAudioFile();
+    this.play(audio, track.attributes.started_at);
+  }
+
+  isTracksPlayable(): boolean {
+    return this.audioFiles && this.audioFiles.length > 0;
+  }
+
+  isTrackPlaying(track: TrackModel): boolean {
+    const pos = this.audioPlayer.position;
+    return track.attributes.started_at <= pos && track.attributes.finished_at > pos;
+  }
+
+  private isBroadcastPlaying(): boolean {
+    return this.audioPlayer.audioFile &&
+      this.audioPlayer.audioFile.relationships.broadcast.id === this.broadcast.id;
+  }
+
+  private getFirstAudioFile(): AudioFileModel {
+    return (<AudioFileModel[]>this.audioFiles).sort((a, b) => {
+      if (a.attributes.codec === b.attributes.codec) {
+        return a.attributes.bitrate - b.attributes.bitrate;
+      } else {
+        return a.attributes.codec === 'mp3' ? -1 : 1;
+      }
+    })[0];
+  }
+
   private fetchAudioFiles() {
     if (!this.audioFiles && this.broadcast.attributes.audio_access) {
       this.loadingAudio = true;
@@ -112,10 +143,10 @@ export class BroadcastComponent implements OnChanges {
     }
   }
 
-  private navigateToSelf(queryParams: any = {}) {
+  private navigateToSelf(queryParams: any = {}, time?: Date) {
     if (!this.broadcastRoute) return;
     let url = this.broadcastRoute.snapshot.url.map(e => e.path);
-    const date = this.broadcast.attributes.started_at;
+    const date = time || this.broadcast.attributes.started_at;
     queryParams['time'] = DateParamsService.convertTimeToParam(date);
     if (url[0] === 'show' || url[0] === 'search') {
       queryParams['year'] = date.getFullYear();
@@ -128,9 +159,10 @@ export class BroadcastComponent implements OnChanges {
     this.router.navigate([...url, queryParams]);
   }
 
-  private navigateToPlay(audio: AudioFileModel) {
+  private navigateToPlay(audio: AudioFileModel, time?: Date) {
     this.navigateToSelf({ play: audio.attributes.playback_format,
-                          format: audio.attributes.codec });
+                          format: audio.attributes.codec },
+                        time);
   }
 
   private get broadcastRoute(): ActivatedRoute {

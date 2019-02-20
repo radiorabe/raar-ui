@@ -16,17 +16,16 @@ export class AudioPlayerService {
     return this._audioFile;
   }
 
-  play(audioFile?: AudioFileModel, position?: Date) {
-    if (audioFile) {
+  play(audioFile?: AudioFileModel, time?: Date) {
+    if (audioFile && audioFile !== this._audioFile) {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
-      const pos = position ?
-        position.getTime() - this.broadcastAttrs.started_at.getTime() :
-        0;
+      const pos = time ? this.timeToPosition(time) : 0;
       this._audio = (<any>window).soundManager.createSound(
         this.getSoundOptions(audioFile.links.play, pos));
     } else if (this._audio) {
-      this._audio.play();
+      if (time) this.setPosition(time);
+      if (!this.playing) this._audio.play();
     }
   }
 
@@ -38,8 +37,14 @@ export class AudioPlayerService {
 
   seek(percent: number) {
     if (this._audio) {
-      var time = this.duration * percent / 100;
-      this._audio.setPosition(time);
+      var position = this.duration * percent / 100;
+      this._audio.setPosition(position);
+    }
+  }
+
+  setPosition(time: Date): void {
+    if (this._audio) {
+      this._audio.setPosition(this.timeToPosition(time));
     }
   }
 
@@ -86,6 +91,11 @@ export class AudioPlayerService {
     return Math.round(this._audio.position / this.duration * 1000) / 10;
   }
 
+  get position(): Date {
+    if (!this._audio) return new Date(0);
+    return new Date(this.broadcastAttrs.started_at.getTime() + this._audio.position);
+  }
+
   get volume(): number {
     return this._volume;
   }
@@ -114,6 +124,10 @@ export class AudioPlayerService {
   private pad(num: number): string {
     if (num < 10) return `0${num}`;
     return String(num);
+  }
+
+  private timeToPosition(time: Date): number {
+    return time.getTime() - this.broadcastAttrs.started_at.getTime();
   }
 
   private get broadcastAttrs(): BroadcastModel['attributes'] {

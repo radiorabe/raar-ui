@@ -82,17 +82,20 @@
     <div *ngIf="tracks.length">
       <strong>Playlist</strong>
       <br/>
-      <ul class="tracklist">
+      <ul class="tracklist" [class.non-playable]="!isTracksPlayable()">
         <li *ngFor="let track of tracks">
-          <span class="track-time">
-            {{ track.attributes.started_at | dateString: 'time' }}
-          </span>
-          <span class="track-info">
-            <span *ngIf="track.attributes.artist">
-              {{ track.attributes.artist }} –
+          <a (click)="playTrack(track)" [class.active]="isTrackPlaying(track)">
+            <span class="glyphicon glyphicon-play-circle" aria-hidden="true">
+            </span><span class="track-time">
+              {{ track.attributes.started_at | dateString: 'time' }}
             </span>
-            {{ track.attributes.title }}
-          </span>
+            <span class="track-info">
+              <span *ngIf="track.attributes.artist">
+                {{ track.attributes.artist }} –
+              </span>
+              {{ track.attributes.title }}
+            </span>
+          </a>
         </li>
       </ul>
     </div>
