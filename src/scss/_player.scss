@@ -1,3 +1,5 @@
+
+
 sd-player {
   position: fixed;
   bottom: 0;
@@ -28,7 +30,7 @@ sd-player {
     margin-right: 15px;
 
     a {
-      color: rgb( 0, 225, 212 );
+      color: $link-hover-color;
     }
   }
 
@@ -42,25 +44,19 @@ sd-player {
     line-height: 1.4;
   }
 
-  .time-passed, .time-progress, .time-total, .volume-icon, .volume-slider {
+  .time-passed, .time-progress, .time-total, .forward, .backward, .volume-slider {
     float: left;
   }
 
   .time-passed {
-    clear: left;
     text-align: left;
-    margin-left: 65px;
+    margin-left: 8px;
     line-height: 16px;
   }
 
   .time-progress {
     margin: 1px 10px 0 10px;
-    width: 35%;
-  }
-
-  .volume-slider {
-    margin: 1px 0px 0 10px;
-    width: 30px;
+    width: 31%;
   }
 
   .time-total {
@@ -71,61 +67,130 @@ sd-player {
   .volume-icon {
     margin-left: 15px;
     font-size: 20px;
-    cursor: pointer;
     line-height: 12px;
     margin-top: -3px;
+    float: right;
+    display: none;
   }
 
+  .volume-slider {
+    margin: 1px 0px 0 10px;
+    width: 40px;
+    display: none;
+  }
+
+  .backward, .forward {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    color: $link-hover-color;
+    line-height: 16px;
+
+    .glyphicon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 20px;
+    }
+
+    .skip-time {
+      font-size: 8px;
+      position: absolute;
+      top: 2px;
+      left: 5px;
+    }
+  }
+
+  .backward {
+    .glyphicon-repeat {
+      transform: scaleX(-1);
+    }
+  }
+
+  .forward {
+    margin-left: 0;
+  }
+
+  @media (min-width: 360px) {
+    .volume-icon {
+      display: block;
+    }
+    .time-progress {
+      width: 37%;
+    }
+  }
+
+  // horizontal player layout
   @media (min-width: 565px) {
     .info {
-      width: 160px;
+      width: 180px;
+      float: left;
     }
     .time-passed, .time-total, .volume-icon {
       line-height: 46px;
     }
-    .time-passed {
+    .backward {
       clear: none;
       margin-left: 15px;
+    }
+    .time-passed {
       text-align: right;
-      min-width: 50px;
     }
     .time-progress, .volume-slider {
       margin-top: 16px;
     }
     .time-progress {
-      width: 21%;
+      width: 20%;
     }
     .volume-icon {
       margin-top: 1px;
     }
-    .volume-slider {
-      width: 40px;
+    .backward, .forward {
+      .glyphicon {
+        top: 13px;
+      }
+      .skip-time {
+        top: 15px;
+      }
     }
   }
 
+  @media (min-width: 600px) {
+    .time-progress { width: 25%; }
+  }
+
   @media (min-width: 640px) {
-    .time-progress { width: 31%; }
+    .time-progress { width: 27%; }
+    .info { width: 200px; }
+  }
+
+  @media (min-width: 700px) {
+    .time-progress { width: 34%; }
   }
 
   // sidebar is shown
   @media (min-width: $screen-sm-min) {
-    .time-progress { width: 200px; }
-    .time-passed, .volume-icon { margin-left: 30px; }
-    .time-total { display: block; }
+    .time-progress { width: 220px; }
+    .volume-icon { margin-left: 30px; float: left; }
+    .volume-slider { display: block; }
     .info { width: 200px; }
   }
 
   @media (min-width: $screen-md-min) {
-    .time-progress { width: 340px; }
+    .time-progress { width: 380px; }
     .controls { margin-right: 30px; }
-    .time-passed, .volume-icon { margin-left: 45px; }
+    .time-passed { margin-left: 15px; }
+    .volume-icon { margin-left: 45px; }
+    .time-total { display: block; }
+    .backward, .forward { display: none; }
     .info { width: 240px; }
   }
 
   @media (min-width: $screen-lg-min) {
-    .time-progress { width: 510px; }
+    .time-progress { width: 560px; }
     .controls { margin-right: 30px; }
-    .time-passed, .volume-icon { margin-left: 60px; }
+    .volume-icon { margin-left: 60px; }
   }
 }
 
@@ -137,7 +202,7 @@ sd-player {
   font-size: 30px;
   border-style: solid;
   border-width: 3px;
-  border-color: rgb( 0, 225, 212 );
+  border-color: $link-hover-color;
   padding: 0;
   width: 50px;
   height: 50px;
@@ -149,7 +214,7 @@ sd-player {
   }
 
   &:hover, &:focus {
-    color: rgb( 0, 225, 212 );
+    color: $link-hover-color;
   }
 
 }
@@ -187,3 +252,4 @@ sd-player {
   border-width: 5px;
   border-color: $brand-info;
 }
+

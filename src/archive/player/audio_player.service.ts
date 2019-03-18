@@ -48,6 +48,20 @@ export class AudioPlayerService {
     }
   }
 
+  forward(seconds: number) {
+    if (this._audio) {
+      const position = this._audio.position + seconds * 1000;
+      this._audio.setPosition(Math.min(position, this.duration));
+    }
+  }
+
+  backward(seconds: number) {
+    if (this._audio) {
+      const position = this._audio.position - seconds * 1000;
+      this._audio.setPosition(Math.max(position, 0));
+    }
+  }
+
   toggleMute() {
     if (this._audio) {
       this._audio.toggleMute();

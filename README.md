@@ -86,7 +86,7 @@ admin app in a subpath called `/admin/`.
 ## License
 
 raar-ui is released under the terms of the GNU Affero General Public License.
-Copyright 2016-2017 Radio RaBe.
+Copyright 2016-2019 Radio RaBe.
 See `LICENSE` for further information.
 
 angular-seed is licensed under MIT.
