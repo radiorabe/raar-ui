@@ -70,7 +70,7 @@
     </form>
 
     <p *ngIf="view == 'day'">
-      <a [routerLink]="['/show', broadcast.relationships.show.data.id]">Alle Sendungen</a>
+      <a [routerLink]="['/show', broadcast.relationships.show.data.id]" class="nowrap">Alle Sendungen</a>
     </p>
 
     <p *ngIf="!broadcast.attributes.audio_access">
