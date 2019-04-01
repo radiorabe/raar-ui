@@ -1,0 +1,30 @@
+$brand-primary:              rgb( 0, 201, 191 ) !default;
+//$brand-success:             #5cb85c !default;
+//$brand-info:                #68796f !default;
+$brand-info:                 #064c57 !default;
+//$brand-warning:             #f0ad4e !default;
+//$brand-danger:              #d9534f !default;
+$brand-disabled:             #c4c4c4 !default;
+$brand-no-access:            #848484 !default;
+
+$body-bg:                    #d8efdb !default;
+
+$icon-font-path:             'node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+$link-hover-color:           rgb( 0, 225, 212 );
+$font-family-sans-serif:     'Roboto', sans-serif !default;
+$headings-font-family:       'Fjalla One', sans-serif !default;
+$text-muted:                 #888888;
+$border-radius-base:         0;
+$border-radius-small:        0;
+$pagination-border:          rgb( 0, 225, 212);
+$font-size-h2: 30px;
+$font-size-h3: 20px;
+
+$navbar-default-bg:          $brand-primary;
+$navbar-default-color:       white;
+$navbar-default-border:      $navbar-default-bg;
+$navbar-default-link-color:  white;
+$navbar-default-link-hover-color:  rgb( 13, 75, 86 );
+$navbar-default-brand-hover-color: rgb( 13, 75, 86 );
+$navbar-default-link-active-color: rgb( 13, 75, 86 );
+$navbar-default-link-active-bg: $brand-primary;

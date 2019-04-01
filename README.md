@@ -1,92 +1,27 @@
-# RAAR-UI
+# RaarUi
 
-[![Build Status](https://travis-ci.org/radiorabe/raar-ui.svg)](https://travis-ci.org/radiorabe/raar-ui)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
-An Angular2 web client for the Radio Archive
-[RAAR](https://github.com/radiorabe/raar).
+## Development server
 
-This repository actually contains two applications: The public frontend of the
-archive for browsing and listening (`src/archive`), and an admin frontend to
-configure the archival (`src/admin`). Each application must be started and
-built independently, but they do share some code (`src/shared`, `src/scss`).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Code scaffolding
 
-## Development
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-This project requires node v4.x.x or higher and yarn >= 1.
+## Build
 
-In order to start developing use:
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-```bash
-# install the project's dependencies (via Yarn, https://yarnpkg.com)
-$ yarn install  # or yarn
+## Running unit tests
 
-# start the development server with the archive app
-# (watches your files and uses livereload by default)
-$ yarn start
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-# start the development server with the admin app
-$ yarn start --app admin
+## Running end-to-end tests
 
-# prod build with AoT compilation for the archive app
-$ yarn run build.prod.rollup.aot
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-# prod build with AoT compilation for the admin app
-$ yarn run build.prod.rollup.aot --app admin --base /admin/
+## Further help
 
-# simple prod build
-$ yarn run build.prod
-```
-
-The project is based on [angular2-seed](https://github.com/mgechev/angular2-seed).
-Please find additional documentation about the used setup there.
-
-To update from angular2-seed:
-
-```bash
-$ ./upgrade-seed.sh
-```
-
-
-## Smoke Tests
-
-So far, there is no automatic test suite for raar-ui. Use the following list
-of smoke tests to verify a basically correct behavior:
-
-* Load broadcasts for a show. Infinite scrolling should load more broadcasts
-  when the end of the page is reached. Reloading the page displays the
-  show's broadcasts again.
-* Load broadcasts for a day. Navigating back and forward should update the
-  broadcasts as well as the datepicker. Reloading the page displays the
-  last date's broadcasts and the correct datepicker selection again.
-* Listen to an audio file. Reloading the page plays the audio file again.
-  Manually change the audio position and the volume.
-* Login with username/password or an access token reloads the broadcast list.
-  Locked broadcasts should become available. Logout locks them again.
-* When the window size is decreased, the player still looks fine. The left
-  menu disappears and must be manually toggled for small sizes.
-* Searching for shows works.
-* Picking a date via months works.
-
-
-## Deployment
-
-Run the following command to build and deploy either the archive or the admin
-frontend. You need a correct SSH host alias called `archiv` pointing to your
-server.
-
-```bash
-$ ./deploy.sh [archive|admin]
-```
-
-The archive app will be installed in a top-level path (`BASE = /`), the
-admin app in a subpath called `/admin/`.
-
-
-## License
-
-raar-ui is released under the terms of the GNU Affero General Public License.
-Copyright 2016-2019 Radio RaBe.
-See `LICENSE` for further information.
-
-angular-seed is licensed under MIT.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

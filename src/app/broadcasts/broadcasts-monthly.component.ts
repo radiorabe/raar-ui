@@ -1,0 +1,149 @@
+import { OnInit, OnDestroy, Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Observable, Subject, ReplaySubject, of } from "rxjs";
+import {
+  tap,
+  map,
+  takeUntil,
+  merge,
+  switchMap,
+  withLatestFrom,
+  distinctUntilChanged,
+  catchError
+} from "rxjs/operators";
+import { BroadcastModel, CrudList } from "../shared/models/index";
+import { BroadcastsService } from "../shared/services/broadcasts.service";
+import { RefreshService } from "../shared/services/refresh.service";
+import {
+  DateParamsService,
+  RouteParams
+} from "../shared/services/date-params.service";
+
+import * as moment from "moment";
+
+type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
+
+@Component({
+  selector: "sd-broadcasts-monthly",
+  templateUrl: "broadcasts-monthly.html"
+})
+export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
+  dateWithTime: Date | void;
+  broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<
+    CrudList<BroadcastModel>
+  >(1);
+  monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<
+    MonthlyBroadcasts
+  >(1);
+  loading: boolean = false;
+  hasMore: boolean = false;
+  fetchingMore: boolean = false;
+  errorMessage: string | void;
+
+  title$: Observable<string> = of("");
+  details$: Observable<string | void> = of(undefined);
+  noBroadcastsMessage: string = "Keine Ausstrahlungen vorhanden.";
+
+  protected fetchMore: Subject<void> = new Subject<void>();
+  protected readonly destroy$ = new Subject();
+
+  constructor(
+    protected route: ActivatedRoute,
+    protected broadcastsService: BroadcastsService,
+    protected refreshService: RefreshService
+  ) {}
+
+  ngOnInit() {
+    this.broadcastLoadObservable()
+      .pipe(
+        takeUntil(this.destroy$),
+        merge(this.broadcastMoreObservable())
+      )
+      .subscribe(this.broadcastList);
+
+    this.broadcastList
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(list => (this.hasMore = !!list.links.next)),
+        map(list => list.entries),
+        map(broadcasts => this.buildMonthlyBroadcasts(broadcasts)),
+        tap(_ => {
+          this.loading = false;
+          this.fetchingMore = false;
+        })
+      )
+      .subscribe(this.monthlyBroadcasts);
+
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(params => (this.dateWithTime = this.getDateWithTime(params)));
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+  }
+
+  buildMonthlyBroadcasts(broadcasts: BroadcastModel[]): MonthlyBroadcasts {
+    const result: MonthlyBroadcasts = {};
+    for (const b of broadcasts) {
+      const label = moment(b.attributes.started_at).format("MMMM YYYY");
+      if (result[label] === undefined) result[label] = [];
+      result[label].push(b);
+    }
+    return result;
+  }
+
+  get months(): Observable<string[]> {
+    return this.monthlyBroadcasts.pipe(map(monthly => Object.keys(monthly)));
+  }
+
+  getMonthIdentifier(i: number, month: string): string {
+    return month;
+  }
+
+  getCrudIdentifier(i: number, model: BroadcastModel): number {
+    return model.id;
+  }
+
+  onScroll() {
+    this.fetchMore.next();
+  }
+
+  isExpanded(broadcast: BroadcastModel): boolean {
+    return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
+  }
+
+  protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
+    return of(undefined);
+  }
+
+  protected broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
+    return this.fetchMore.pipe(
+      withLatestFrom(this.broadcastList, (_, list) => list),
+      distinctUntilChanged(
+        (a: CrudList<BroadcastModel>, b: CrudList<BroadcastModel>) =>
+          a.links.next === b.links.next
+      ),
+      tap(() => (this.fetchingMore = true)),
+      switchMap((list: CrudList<BroadcastModel>) =>
+        this.broadcastsService.getNextEntries(list).pipe(
+          tap(_ => (this.errorMessage = undefined)),
+          catchError(msg => this.handleListError(msg))
+        )
+      )
+    );
+  }
+
+  protected handleListError(
+    message: string
+  ): Observable<CrudList<BroadcastModel>> {
+    this.errorMessage = message;
+    return of(new CrudList<BroadcastModel>());
+  }
+
+  private getDateWithTime(params: RouteParams): Date | void {
+    if (params["time"] && params["time"].length >= 4) {
+      return DateParamsService.timeFromParams(params);
+    }
+  }
+}
