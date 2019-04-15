@@ -50,8 +50,8 @@ sd-player {
 
   .time-passed {
     text-align: left;
-    margin-left: 8px;
     line-height: 16px;
+    min-width: 50px;
   }
 
   .time-progress {
@@ -103,6 +103,8 @@ sd-player {
   }
 
   .backward {
+    margin-left: 15px;
+
     .glyphicon-repeat {
       transform: scaleX(-1);
     }
@@ -132,16 +134,16 @@ sd-player {
     }
     .backward {
       clear: none;
-      margin-left: 15px;
     }
     .time-passed {
+      margin-left: 15px;
       text-align: right;
     }
     .time-progress, .volume-slider {
       margin-top: 16px;
     }
     .time-progress {
-      width: 20%;
+      width: 16%;
     }
     .volume-icon {
       margin-top: 1px;
@@ -157,30 +159,29 @@ sd-player {
   }
 
   @media (min-width: 600px) {
-    .time-progress { width: 25%; }
+    .time-progress { width: 21%; }
   }
 
   @media (min-width: 640px) {
-    .time-progress { width: 27%; }
+    .time-progress { width: 23%; }
     .info { width: 200px; }
   }
 
   @media (min-width: 700px) {
-    .time-progress { width: 34%; }
+    .time-progress { width: 30%; }
   }
 
   // sidebar is shown
   @media (min-width: $screen-sm-min) {
-    .time-progress { width: 220px; }
+    .time-progress { width: 210px; }
     .volume-icon { margin-left: 30px; float: left; }
     .volume-slider { display: block; }
     .info { width: 200px; }
   }
 
   @media (min-width: $screen-md-min) {
-    .time-progress { width: 380px; }
+    .time-progress { width: 365px; }
     .controls { margin-right: 30px; }
-    .time-passed { margin-left: 15px; }
     .volume-icon { margin-left: 45px; }
     .time-total { display: block; }
     .backward, .forward { display: none; }
@@ -188,7 +189,7 @@ sd-player {
   }
 
   @media (min-width: $screen-lg-min) {
-    .time-progress { width: 560px; }
+    .time-progress { width: 550px; }
     .controls { margin-right: 30px; }
     .volume-icon { margin-left: 60px; }
   }

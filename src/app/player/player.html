@@ -27,13 +27,13 @@
         </div>
       </div>
 
+      <div class="time-passed">
+        {{ player.currentTime }}
+      </div>
+
       <div class="backward" role="button" (click)="player.backward(15)">
         <span class="glyphicon glyphicon-repeat"></span>
         <span class="skip-time">15</span>
-      </div>
-
-      <div class="time-passed">
-        {{ player.currentTime }}
       </div>
 
       <sd-slider class="time-progress"

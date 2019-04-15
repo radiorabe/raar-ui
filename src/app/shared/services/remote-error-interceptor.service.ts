@@ -6,7 +6,7 @@ import {
   HttpHandler,
   HttpErrorResponse
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { AuthService } from "./auth.service";
 
@@ -22,7 +22,13 @@ export class RemoteErrorInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(res => this.handleError(res)));
+    if (req.headers.has("Skip-Error-Handling")) {
+      return next.handle(
+        req.clone({ headers: req.headers.delete("Skip-Error-Handling") })
+      );
+    } else {
+      return next.handle(req).pipe(catchError(res => this.handleError(res)));
+    }
   }
 
   private handleError(res: HttpErrorResponse): Observable<HttpEvent<any>> {
@@ -31,7 +37,7 @@ export class RemoteErrorInterceptor implements HttpInterceptor {
     } else {
       const json = res.error;
       const message = json.error || json.errors || res.message;
-      return Observable.throw(message);
+      return throwError(message);
     }
   }
 

@@ -80,7 +80,7 @@ export class BroadcastComponent implements OnChanges {
     this.broadcastsService
       .update(model)
       .pipe(finalize(() => this.cancelEditing()))
-      .subscribe(entry => {
+      .subscribe(_entry => {
         this.broadcast.attributes.details = model.attributes.details;
       });
   }

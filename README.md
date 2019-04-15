@@ -1,27 +1,54 @@
-# RaarUi
+# Raar-Ui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+[![Build Status](https://travis-ci.org/radiorabe/raar-ui.svg)](https://travis-ci.org/radiorabe/raar-ui)
 
-## Development server
+An Angular web client for the Radio Archive [RAAR](https://github.com/radiorabe/raar).
+
+## Development
+
+Run `npm install` to install all the dependencies.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Run `ng test` to run the unit tests of the project.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
+Run `ng build --prod` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Smoke Tests
+
+So far, there is no automatic test suite for raar-ui. Use the following list
+of smoke tests to verify a basically correct behavior:
+
+* Load broadcasts for a show. Infinite scrolling should load more broadcasts
+  when the end of the page is reached. Reloading the page displays the
+  show's broadcasts again.
+* Load broadcasts for a day. Navigating back and forward should update the
+  broadcasts as well as the datepicker. Reloading the page displays the
+  last date's broadcasts and the correct datepicker selection again.
+* Listen to an audio file. Reloading the page plays the audio file again.
+  Manually change the audio position and the volume.
+* Login with username/password or an access token reloads the broadcast list.
+  Locked broadcasts should become available. Logout locks them again.
+* When the window size is decreased, the player still looks fine. The left
+  menu disappears and must be manually toggled for small sizes.
+* Searching for shows and broadcasts works.
+* Picking a date via months works.
+
+
+## Deployment
+
+Run the following command to build and deploy the frontend. You need a correct
+SSH host alias called `archiv` pointing to your server.
+
+```bash
+$ ./deploy.sh
+```
+
+## License
+
+raar-ui is released under the terms of the GNU Affero General Public License.
+Copyright 2016-2019 Radio RaBe.
+See `LICENSE` for further information.

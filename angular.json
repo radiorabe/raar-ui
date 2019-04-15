@@ -80,7 +80,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": ["src/styles.scss"],
-            "scripts": [],
+            "scripts": ["node_modules/soundmanager2/script/soundmanager2.js"],
             "assets": ["src/favicon.ico", "src/assets"]
           }
         },

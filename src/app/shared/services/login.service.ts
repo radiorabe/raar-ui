@@ -17,7 +17,8 @@ export class LoginService {
   get(token: string): Observable<UserModel> {
     const headers = new HttpHeaders({
       "Content-Type": "application/vnd.api+json",
-      Authorization: 'Token token="' + token + '"'
+      Authorization: 'Token token="' + token + '"',
+      "Skip-Error-Handling": "true"
     });
     return this.http
       .get("/api/login", { headers, observe: "response" })
@@ -29,7 +30,8 @@ export class LoginService {
       .append("username", username)
       .append("password", password);
     const headers = new HttpHeaders({
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Skip-Error-Handling": "true"
     });
 
     return this.http
