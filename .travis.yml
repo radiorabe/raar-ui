@@ -6,9 +6,6 @@ sudo: false
 addons:
   chrome: stable
 
-os:
-  - linux
-
 notifications:
   email: true
 
@@ -16,15 +13,8 @@ cache:
   directories:
     - node_modules
 
-before_install:
-  - export CHROME_BIN=chromium-browser  # Karma CI
-  - export DISPLAY=:99.0
-
-after_failure:
-  - cat /home/travis/build/radiorabe/raar-ui/npm-debug.log
-
 script:
-  - ng test --watch=false
+  - ng test --watch=false --browsers=ChromeHeadlessNoSandbox
   - ng build --prod
 
 before_deploy:
