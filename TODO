@@ -1,0 +1,3 @@
+* Gzip JS Files, add rules to htaccess
+* add prettier dev dependency
+* add linter to travis
