@@ -1,2 +1,1 @@
-* add prettier dev dependency
-* add linter to travis
+* fix linting and add linter to travis

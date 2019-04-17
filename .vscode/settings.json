@@ -1,6 +1,4 @@
 {
   "editor.tabSize": 2,
-  "[typescript]": {
-    "editor.formatOnSave": true
-  }
+  "editor.formatOnSave": true
 }
