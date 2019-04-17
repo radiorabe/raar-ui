@@ -4,7 +4,9 @@
 }
 
 .has-clear {
-  input::-ms-clear { display: none; }
+  input::-ms-clear {
+    display: none;
+  }
 
   .form-control-feedback.clear {
     top: 10px;
@@ -22,6 +24,8 @@
   }
 
   &.has-empty-value {
-    .form-control-feedback.clear { display: none; }
+    .form-control-feedback.clear {
+      display: none;
+    }
   }
 }

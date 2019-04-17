@@ -1,4 +1,3 @@
-
 daypicker {
   th {
     color: white;
@@ -15,15 +14,15 @@ sd-shows {
   }
 }
 
-sd-broadcasts-show, sd-broadcasts-date {
+sd-broadcasts-show,
+sd-broadcasts-date {
   display: block;
   margin-bottom: 110px;
 }
 
 sd-broadcasts-date {
-
   .tablet {
-    display: none
+    display: none;
   }
 
   @media (min-width: 565px) {
@@ -38,16 +37,13 @@ sd-broadcasts-date {
 }
 
 sd-broadcasts-show {
-
   .details {
     white-space: pre-line;
     padding-bottom: $padding-large-vertical;
   }
-
 }
 
 sd-broadcast {
-
   .list-group-item {
     border: 0;
     padding: 0;
@@ -76,7 +72,7 @@ sd-broadcast {
     margin-bottom: 0;
     padding: 10px 15px;
 
-    &> a {
+    & > a {
       color: #000;
       text-decoration: none;
     }
@@ -87,7 +83,8 @@ sd-broadcast {
     max-height: 300px;
     overflow-y: auto;
 
-    &.fixclear:before, &.fixclear:after {
+    &.fixclear:before,
+    &.fixclear:after {
       content: " ";
       display: table;
     }
@@ -103,7 +100,7 @@ sd-broadcast {
       margin-bottom: 10px;
     }
 
-    .table-condensed  tr > td {
+    .table-condensed tr > td {
       padding-top: 0;
       padding-bottom: 0;
     }
@@ -129,7 +126,8 @@ sd-broadcast {
     margin-bottom: 5px;
   }
 
-  .broadcast-date, .broadcast-date {
+  .broadcast-date,
+  .broadcast-date {
     margin-right: $padding-base-horizontal;
     text-align: right;
     display: inline-block;
@@ -183,7 +181,8 @@ sd-broadcast {
       display: none;
     }
 
-    a:hover, a.active {
+    a:hover,
+    a.active {
       .glyphicon {
         color: $link-hover-color;
         display: inline-block;
@@ -217,9 +216,7 @@ sd-broadcast {
         }
       }
     }
-
   }
-
 }
 
 .loading {
@@ -227,7 +224,7 @@ sd-broadcast {
 
   sd-broadcast {
     .list-group-item-heading {
-      &> a {
+      & > a {
         color: $brand-disabled;
       }
     }

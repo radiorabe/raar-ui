@@ -1,23 +1,32 @@
 <h3>oder Sendung</h3>
 
-<div class="form-search has-feedback has-clear"
-     [class.has-empty-value]="!query.value || query.value.trim() === ''">
-  <input type="text"
-        id="show_query"
-        class="form-control"
-        placeholder="Suchen... "
-        [formControl]="query" />
-  <span class="form-control-feedback clear" (click)="query.setValue('', { emitEvent: true })">
+<div
+  class="form-search has-feedback has-clear"
+  [class.has-empty-value]="!query.value || query.value.trim() === ''"
+>
+  <input
+    type="text"
+    id="show_query"
+    class="form-control"
+    placeholder="Suchen... "
+    [formControl]="query"
+  />
+  <span
+    class="form-control-feedback clear"
+    (click)="query.setValue('', { emitEvent: true })"
+  >
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </span>
 </div>
 
 <div class="list-group">
-  <a *ngFor="let show of shows | async"
-     [routerLink]="getShowLink(show)"
-     routerLinkActive="active"
-     class="list-group-item title"
-      [class.access-denied]="!show.attributes.audio_access">
+  <a
+    *ngFor="let show of shows | async"
+    [routerLink]="getShowLink(show)"
+    routerLinkActive="active"
+    class="list-group-item title"
+    [class.access-denied]="!show.attributes.audio_access"
+  >
     <div *ngIf="!show.attributes.audio_access" class="pull-right">
       <span class="glyphicon glyphicon-lock"></span>
     </div>

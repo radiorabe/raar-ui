@@ -2,9 +2,11 @@
 
 <div class="well well-sm">
   <!-- [(ngModel)] would not work together with [displayDate] -->
-  <dp-day-calendar (onSelect)="date = $event.date"
-                   [ngModel]="date"
-                   [displayDate]="date"
-                   [config]="dayPickerConfig$ | async">
+  <dp-day-calendar
+    (onSelect)="date = $event.date"
+    [ngModel]="date"
+    [displayDate]="date"
+    [config]="dayPickerConfig$ | async"
+  >
   </dp-day-calendar>
 </div>

@@ -1,13 +1,20 @@
 <h3>nach Inhalt</h3>
 
-<div class="form-search has-feedback has-clear input-append"
-      [class.has-empty-value]="!query.value || query.value.trim() === ''">
-  <input type="text"
-        id="search_query"
-        class="form-control"
-        placeholder="Suchen... "
-        [formControl]="query" />
-  <span class="form-control-feedback clear" (click)="query.setValue('', { emitEvent: true })">
+<div
+  class="form-search has-feedback has-clear input-append"
+  [class.has-empty-value]="!query.value || query.value.trim() === ''"
+>
+  <input
+    type="text"
+    id="search_query"
+    class="form-control"
+    placeholder="Suchen... "
+    [formControl]="query"
+  />
+  <span
+    class="form-control-feedback clear"
+    (click)="query.setValue('', { emitEvent: true })"
+  >
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </span>
 </div>
