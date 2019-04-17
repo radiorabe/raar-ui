@@ -4,10 +4,10 @@
 ng build --prod --extra-webpack-config webpack.extra.js || exit 1
 
 # build tarball
-cd dist/raar-ui && tar czf raar-ui.tar.gz *
+cd dist/raar-ui && gzip -k *.{css,js} && tar czf ../raar-ui.tar.gz *
 
 # upload archive
-scp dist/raar-ui/raar-ui.tar.gz raar@archiv:/var/www/raar-ui/raar-ui.new.tar.gz
+scp dist/raar-ui.tar.gz raar@archiv:/var/www/raar-ui/raar-ui.new.tar.gz
 
 # install archive
 ssh raar@archiv /bin/bash << EOF

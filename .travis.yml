@@ -18,13 +18,13 @@ script:
   - ng build --prod --extra-webpack-config webpack.extra.js
 
 before_deploy:
-  - cd dist/raar-ui && tar czf raar-ui.tar.gz *
+  - cd dist/raar-ui && gzip -k *.{css,js} && tar czf ../raar-ui.tar.gz *
 
 deploy:
   provider: releases
   api_key:
     secure: WyfriNXocwzMoqhnStUu6wD26DCSjrhEU/yzs0rGWI6kprwimCKEAERWBamqMiwmniSKSsH+6czV5UjyuszshFUJBDWc23iEKiWkFO/4WpPmH45msce86JGbngvGoNXnjVYMgFeD9wt1aHCkbey3zXBPcEeV511/1oW6kH7/v07k0EIm1Z4iaodV1JQtB8J0WWrJboGijXI68vNTbBk210XYcJIfa6SIj3qPMEWY+9BXhtwPsD3vWNxbPaJ8YcJhfdr8l9px45nxzTQAgDh9HGBB6c6yRAAuCH/uf+tajCayC9gZ++t4UNwR2PO+lelH16h2ur15F4n/ABFOqHar2E/jXLfFWNWd7XMWq8ApeZutqS0V5AOaNeWmbfieG8ww5Ha7SxwUdNazq8rS7gyQMdNfOILNivAIX/IRa2rxmgty3WXjqxG/s6yEKiQ1HNdCRxb4zoan0P2n2naDsVScCq14DJYqjsSRWuNCBX9vl2T8Rb3IH/ZoSYd7rjJuSNLM02/bdoUDBYa3osGOpaQDmmrK82iEqazbB7ZVgEJxJeLc/jZXLvlV+Gcsq65V/T8+7Ifw/YOrEYdKOekkQRJBf0uX8SYM6uKpmpVaxZLYtonKT9gVlurKrLp1M+OSqUSODHTb37uot4qI0e5CM6QfAwVJi/eIUi09zi1ymP21T54=
-  file: dist/raar-ui/raar-ui.tar.gz
+  file: dist/raar-ui.tar.gz
   skip_cleanup: true
   on:
     tags: true
