@@ -15,7 +15,7 @@ cache:
 
 script:
   - ng test --watch=false --browsers=ChromeHeadlessNoSandbox
-  - ng build --prod
+  - ng build --prod --extra-webpack-config webpack.extra.js
 
 before_deploy:
   - cd dist/raar-ui && tar czf raar-ui.tar.gz *
