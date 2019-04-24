@@ -17,7 +17,4 @@ ssh raar@archiv /bin/bash << EOF
     mv raar-ui.tar.gz raar-ui.old.tar.gz
   fi
   mv raar-ui.new.tar.gz raar-ui.tar.gz
-  if [ "$NAME" == "admin" ]; then
-    sed -i -e 's/RewriteRule . \/index.html/RewriteRule . \/admin\/index.html/' .htaccess
-  fi
 EOF
