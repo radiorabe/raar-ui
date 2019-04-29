@@ -34,10 +34,16 @@
     ForceType application/javascript
     Header set Content-Encoding gzip
     Header add Vary Accept-Encoding
+    Header set Cache-Control "immutable, max-age=31536000"
 </FilesMatch>
 
 <FilesMatch ".*\.css\.gz$">
     ForceType text/css
     Header set Content-Encoding gzip
     Header add Vary Accept-Encoding
+    Header set Cache-Control "immutable, max-age=31536000"
+</FilesMatch>
+
+<FilesMatch "^index.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
 </FilesMatch>
