@@ -18,7 +18,7 @@ script:
   - ng build --prod --extra-webpack-config webpack.extra.js
 
 before_deploy:
-  - cd dist/raar-ui && gzip -k *.{css,js} && tar czf ../raar-ui.tar.gz *
+  - cd dist/raar-ui && gzip -kf *.{css,js} && tar czf ../raar-ui.tar.gz .
 
 deploy:
   provider: releases
