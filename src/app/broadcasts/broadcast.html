@@ -77,10 +77,10 @@
       <a (click)="loginWindow.show(true)">Login</a> an.
     </p>
 
-    <div *ngIf="tracks.length">
+    <div *ngIf="tracks.length" class="tracklist">
       <strong>Playlist</strong>
       <br />
-      <ul class="tracklist" [class.non-playable]="!isTracksPlayable()">
+      <ul [class.non-playable]="!isTracksPlayable()">
         <li *ngFor="let track of tracks">
           <a (click)="playTrack(track)" [class.active]="isTrackPlaying(track)">
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true">

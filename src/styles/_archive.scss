@@ -171,7 +171,11 @@ sd-broadcast {
   }
 
   .tracklist {
-    padding-left: 0;
+    clear: both;
+
+    ul {
+      padding-left: 0;
+    }
 
     li {
       list-style: none;
