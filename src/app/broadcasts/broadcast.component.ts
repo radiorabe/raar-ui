@@ -125,13 +125,15 @@ export class BroadcastComponent implements OnChanges {
   }
 
   private getFirstAudioFile(): AudioFileModel {
-    return (<AudioFileModel[]>this.audioFiles).sort((a, b) => {
+    const files = (<AudioFileModel[]>this.audioFiles).sort((a, b) => {
       if (a.attributes.codec === b.attributes.codec) {
         return a.attributes.bitrate - b.attributes.bitrate;
       } else {
         return a.attributes.codec === "mp3" ? -1 : 1;
       }
-    })[0];
+    });
+    // get second lowest quality
+    return files[files.length === 1 ? 0 : 1];
   }
 
   private fetchAudioFiles() {

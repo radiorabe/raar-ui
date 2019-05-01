@@ -1,4 +1,4 @@
-<div class="list-group-item view-{{view}}">
+<div class="list-group-item view-{{ view }}">
   <h4
     class="list-group-item-heading title"
     [class.access-denied]="!broadcast.attributes.audio_access"
@@ -9,7 +9,8 @@
     </div>
     <a>
       <span class="broadcast-date">
-        {{ broadcast | broadcastTime: (view === 'month' ? 'standard' : 'time')
+        {{
+          broadcast | broadcastTime: (view === "month" ? "standard" : "time")
         }}
       </span>
       {{ broadcast.attributes.label }}
@@ -17,7 +18,7 @@
   </h4>
 
   <div class="list-group-item-text fixclear" *ngIf="expanded">
-    <table class="table-condensed pull-right">
+    <table class="table-condensed pull-right audio-links">
       <tr *ngFor="let audio of audioFiles">
         <td>
           <a (click)="play(audio)">
@@ -25,15 +26,19 @@
               class="glyphicon glyphicon-play-circle"
               aria-hidden="true"
             ></span>
-            {{ audio.attributes.codec | uppercase }} {{
-            audio.attributes.playback_format }} (<span
-              *ngIf="audio.attributes.bitrate > 1"
-              >{{ audio.attributes.bitrate }}k </span
-            >{{ audio.attributes.channels == 2 ? 'stereo' : 'mono' }})
+            {{ audio.attributes.codec | uppercase }}
+            {{ audio.attributes.playback_format }}
+            <span *ngIf="audio.attributes.bitrate > 1">
+              ({{ audio.attributes.bitrate }}k)
+            </span>
           </a>
         </td>
         <td>
-          <a *ngIf="audio.links.download" (click)="download(audio)">
+          <a
+            *ngIf="audio.links.download"
+            (click)="download(audio)"
+            class="text-nowrap"
+          >
             <span
               class="glyphicon glyphicon-download"
               aria-hidden="true"
@@ -55,7 +60,9 @@
     </div>
 
     <p
-      *ngIf="!editing && (broadcast.attributes.details || broadcast.links.update)"
+      *ngIf="
+        !editing && (broadcast.attributes.details || broadcast.links.update)
+      "
     >
       <span
         *ngIf="broadcast.attributes.details"
@@ -113,7 +120,7 @@
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true">
             </span
             ><span class="track-time">
-              {{ track.attributes.started_at | dateString: 'time' }}
+              {{ track.attributes.started_at | dateString: "time" }}
             </span>
             <span class="track-info">
               <span *ngIf="track.attributes.artist">

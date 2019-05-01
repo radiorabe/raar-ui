@@ -96,15 +96,6 @@ sd-broadcast {
       margin-bottom: 0px;
     }
 
-    table {
-      margin-bottom: 10px;
-    }
-
-    .table-condensed tr > td {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
     .placeholder {
       margin-bottom: 10px;
       padding-left: 10px;
@@ -116,6 +107,21 @@ sd-broadcast {
   .details {
     white-space: pre-line;
     padding-bottom: 0;
+  }
+
+  .audio-links {
+    font-size: 15px;
+    margin-bottom: 10px;
+
+    tr > td {
+      padding-top: 0px;
+      padding-bottom: 6px;
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      padding-bottom: 0;
+    }
   }
 
   form {
@@ -169,6 +175,8 @@ sd-broadcast {
     li {
       list-style: none;
       padding-left: 48px;
+      padding-top: 1px;
+      padding-bottom: 1px;
     }
 
     .track-time {

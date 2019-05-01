@@ -59,7 +59,7 @@ sd-player {
 
   .time-progress {
     margin: 1px 10px 0 10px;
-    width: 31%;
+    width: 27%;
   }
 
   .time-total {
@@ -107,7 +107,7 @@ sd-player {
   }
 
   .backward {
-    margin-left: 15px;
+    margin-left: 10px;
 
     .glyphicon-repeat {
       transform: scaleX(-1);
@@ -118,12 +118,12 @@ sd-player {
     margin-left: 0;
   }
 
-  @media (min-width: 360px) {
+  @media (min-width: 380px) {
     .volume-icon {
       display: block;
     }
-    .time-progress  {
-      width: 37%;
+    .time-progress {
+      width: 33%;
     }
   }
 
@@ -154,6 +154,9 @@ sd-player {
     }
     .volume-icon {
       margin-top: 1px;
+    }
+    .backward {
+      margin-left: 15px;
     }
     .backward,
     .forward {
