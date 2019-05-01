@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, isDevMode } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup } from "@angular/forms";
 import {
   BroadcastModel,
   AudioFileModel,
@@ -10,7 +9,6 @@ import { LoginWindowService } from "../shared/services/login-window.service";
 import { AudioPlayerService } from "../player/audio-player.service";
 import { AudioFilesService } from "../shared/services/audio-files.service";
 import { DateParamsService } from "../shared/services/date-params.service";
-import { BroadcastsService } from "../shared/services/broadcasts.service";
 import { TracksService } from "../shared/services/tracks.service";
 import { finalize } from "rxjs/operators";
 
@@ -24,31 +22,21 @@ export class BroadcastComponent implements OnChanges {
   @Input() expanded: boolean;
   @Input() view: "month" | "day";
 
-  form: FormGroup;
-
   loadingAudio: boolean = false;
   loadingTracks: boolean = false;
-  editing: boolean = false;
 
   tracks: TrackModel[] = [];
 
   constructor(
     public audioPlayer: AudioPlayerService,
     public loginWindow: LoginWindowService,
-    private broadcastsService: BroadcastsService,
     private audioFilesService: AudioFilesService,
     private tracksService: TracksService,
-    private router: Router,
-    fb: FormBuilder
-  ) {
-    this.form = fb.group({
-      details: ""
-    });
-  }
+    private router: Router
+  ) {}
 
   ngOnChanges(changes: any) {
     if (changes.broadcast) {
-      this.cancelEditing();
       this.tracks = [];
       if (this.expanded) {
         this.fetchAudioFiles();
@@ -73,25 +61,6 @@ export class BroadcastComponent implements OnChanges {
 
   download(audio: AudioFileModel) {
     (<any>window).location = (isDevMode() ? "/api" : "") + audio.links.download;
-  }
-
-  onSubmit() {
-    const model = this.serializeForm();
-    this.broadcastsService
-      .update(model)
-      .pipe(finalize(() => this.cancelEditing()))
-      .subscribe(_entry => {
-        this.broadcast.attributes.details = model.attributes.details;
-      });
-  }
-
-  startEditing() {
-    this.editing = true;
-  }
-
-  cancelEditing() {
-    this.editing = false;
-    this.resetForm();
   }
 
   get audioFiles(): AudioFileModel[] | void {
@@ -187,21 +156,5 @@ export class BroadcastComponent implements OnChanges {
   private get broadcastRoute(): ActivatedRoute {
     var state = <any>this.router.routerState;
     return state.firstChild(state.root);
-  }
-
-  private resetForm() {
-    this.form.reset({
-      details: this.broadcast.attributes.details
-    });
-  }
-
-  private serializeForm(): BroadcastModel {
-    const formModel = this.form.value;
-    const model = new BroadcastModel();
-    model.id = this.broadcast.id;
-    model.type = this.broadcast.type;
-    model.attributes = Object.assign({}, this.broadcast.attributes);
-    model.attributes.details = formModel.details.trim();
-    return model;
   }
 }

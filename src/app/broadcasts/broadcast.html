@@ -59,42 +59,8 @@
       <em>Kein Zugriff oder keine Aufnahme vorhanden</em>
     </div>
 
-    <p
-      *ngIf="
-        !editing && (broadcast.attributes.details || broadcast.links.update)
-      "
-    >
-      <span
-        *ngIf="broadcast.attributes.details"
-        class="details"
-        [innerHtml]="broadcast.attributes.details.trim()"
-      ></span>
-      &nbsp;
-      <a *ngIf="broadcast.links.update" (click)="startEditing()">
-        <span class="glyphicon glyphicon-pencil"></span>
-      </a>
-    </p>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="editing">
-      <textarea
-        class="form-control"
-        placeholder="Schwerpunkte, Gäste, Themen usw. dieser Sendung"
-        formControlName="details"
-        rows="5"
-      ></textarea>
-      <div>
-        <button
-          type="submit"
-          [disabled]="form.pristine || !form.valid"
-          class="btn btn-primary"
-        >
-          Speichern
-        </button>
-        <button type="reset" (click)="cancelEditing()" class="btn btn-link">
-          Abbrechen
-        </button>
-      </div>
-    </form>
+    <sd-broadcast-description-form [broadcast]="broadcast">
+    </sd-broadcast-description-form>
 
     <p *ngIf="view == 'day'">
       <a

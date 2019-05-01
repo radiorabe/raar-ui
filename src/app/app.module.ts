@@ -24,6 +24,7 @@ import * as moment from "moment";
 import "moment/locale/de";
 import { SearchComponent } from "./search/search.component";
 import { BroadcastsMonthlyComponent } from "./broadcasts/broadcasts-monthly.component";
+import { BroadcastDescriptionFormComponent } from "./broadcasts/broadcast-description-form.component";
 
 moment.locale("de");
 (<any>window).soundManager.setup({ debugMode: false });
@@ -47,6 +48,7 @@ moment.locale("de");
     BroadcastsSearchComponent,
     BroadcastsMonthlyComponent,
     BroadcastComponent,
+    BroadcastDescriptionFormComponent,
     PlayerComponent,
     DateStringPipe,
     BroadcastTimePipe
