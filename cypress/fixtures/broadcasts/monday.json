@@ -1,0 +1,266 @@
+{
+  "data": [
+    {
+      "id": "1018401627",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2015-04-17T23:00:00.000+02:00",
+        "finished_at": "2015-04-18T08:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "415164569", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401627" }
+    },
+    {
+      "id": "1018401628",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "der Morgen",
+        "started_at": "2015-04-18T08:00:00.000+02:00",
+        "finished_at": "2015-04-18T11:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "894544279", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401628" }
+    },
+    {
+      "id": "1018401629",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Info",
+        "started_at": "2015-04-18T11:00:00.000+02:00",
+        "finished_at": "2015-04-18T11:30:00.000+02:00",
+        "people": "",
+        "details": "Viele Infos von heute",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": { "data": { "id": "193540442", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401629" }
+    },
+    {
+      "id": "1018401630",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2015-04-18T11:30:00.000+02:00",
+        "finished_at": "2015-04-18T13:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "415164569", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401630" }
+    },
+    {
+      "id": "1018401631",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "70-80-90-Mambo!",
+        "started_at": "2015-04-18T13:00:00.000+02:00",
+        "finished_at": "2015-04-18T16:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "894544280", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401631" }
+    },
+    {
+      "id": "1018401632",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2015-04-18T16:00:00.000+02:00",
+        "finished_at": "2015-04-18T17:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "415164569", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401632" }
+    },
+    {
+      "id": "1018401633",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "The Vidiot",
+        "started_at": "2015-04-18T17:00:00.000+02:00",
+        "finished_at": "2015-04-18T18:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "894544281", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401633" }
+    },
+    {
+      "id": "1018401634",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Info",
+        "started_at": "2015-04-18T18:00:00.000+02:00",
+        "finished_at": "2015-04-18T18:30:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": { "data": { "id": "193540442", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401634" }
+    },
+    {
+      "id": "1018401635",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "ganzOhr",
+        "started_at": "2015-04-18T18:30:00.000+02:00",
+        "finished_at": "2015-04-18T19:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "894544282", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401635" }
+    },
+    {
+      "id": "1018401636",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "HellasRadio",
+        "started_at": "2015-04-18T19:00:00.000+02:00",
+        "finished_at": "2015-04-18T20:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "894544283", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401636" }
+    },
+    {
+      "id": "1018401637",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Lost in Disco",
+        "started_at": "2015-04-18T20:00:00.000+02:00",
+        "finished_at": "2015-04-18T21:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": { "data": { "id": "894544284", "type": "shows" } }
+      },
+      "links": { "self": "/broadcasts/1018401637" }
+    }
+  ],
+  "included": [
+    {
+      "id": "415164569",
+      "type": "shows",
+      "attributes": {
+        "name": "Klangbecken",
+        "details": "\u003cp\u003e„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.\u003c/p\u003e",
+        "audio_access": false
+      },
+      "links": { "self": "/shows/415164569" }
+    },
+    {
+      "id": "894544279",
+      "type": "shows",
+      "attributes": {
+        "name": "der Morgen",
+        "details": null,
+        "audio_access": false
+      },
+      "links": { "self": "/shows/894544279" }
+    },
+    {
+      "id": "193540442",
+      "type": "shows",
+      "attributes": { "name": "Info", "details": null, "audio_access": false },
+      "links": { "self": "/shows/193540442" }
+    },
+    {
+      "id": "894544280",
+      "type": "shows",
+      "attributes": {
+        "name": "70-80-90-Mambo!",
+        "details": "\u003cp\u003eImmer wieder MONTACHS, 13.00-16.00: Grooviges puuures Vinyl aus den 70er80er90ern + des Tomzoff-Motorators Geschwätz + Alles, was IHR, liebe Hörer und Innen per mail \u0026amp; sms beisteuern könnt und wollt.\u003cbr\u003e Das ZIEL: INTERAKTIVES Montach-Nachmittachs-Überlebens-Radio, KAMPF DEM MONTAGS-FRUST + GO-GO-GO!!!\u003c/p\u003e",
+        "audio_access": false
+      },
+      "links": { "self": "/shows/894544280" }
+    },
+    {
+      "id": "894544281",
+      "type": "shows",
+      "attributes": {
+        "name": "The Vidiot",
+        "details": null,
+        "audio_access": false
+      },
+      "links": { "self": "/shows/894544281" }
+    },
+    {
+      "id": "894544282",
+      "type": "shows",
+      "attributes": {
+        "name": "ganzOhr",
+        "details": null,
+        "audio_access": false
+      },
+      "links": { "self": "/shows/894544282" }
+    },
+    {
+      "id": "894544283",
+      "type": "shows",
+      "attributes": {
+        "name": "HellasRadio",
+        "details": "\u003cp\u003eHellas Radio bringt, neben viel griechischer Musik, Informationen und Veranstaltungshinweise für Griechinnen und Griechen in der Schweiz und natürlich für alle anderen Interessierten. Sowie Interviews mit verschiedenen Landsleuten aus allen Ecken der Schweiz.\u003c/p\u003e",
+        "audio_access": false
+      },
+      "links": { "self": "/shows/894544283" }
+    },
+    {
+      "id": "894544284",
+      "type": "shows",
+      "attributes": {
+        "name": "Lost in Disco",
+        "details": "\u003cp\u003eDisco-Musik von den 70’s bis zu den 80’s. Italodisco, Synthpop, New Wave, Disco / Funk\u003c/p\u003e",
+        "audio_access": false
+      },
+      "links": { "self": "/shows/894544284" }
+    }
+  ],
+  "jsonapi": { "version": "1.0" },
+  "links": {
+    "self": "http://localhost:4200/broadcasts/2015/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50",
+    "first": "http://localhost:4200/broadcasts/2015/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/broadcasts/2015/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50"
+  }
+}

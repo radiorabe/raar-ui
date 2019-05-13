@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": "737218148",
+      "type": "audio_files",
+      "attributes": {
+        "codec": "mp3",
+        "bitrate": 192,
+        "channels": 2,
+        "playback_format": "high"
+      },
+      "links": {
+        "self": "/audio_files/2015/04/18/110000_high.mp3",
+        "play": "/audio_files/2015/04/18/110000_high.mp3",
+        "download": "/audio_files/2015/04/18/110000_high.mp3?download=true"
+      }
+    },
+    {
+      "id": "737218147",
+      "type": "audio_files",
+      "attributes": {
+        "codec": "mp3",
+        "bitrate": 96,
+        "channels": 1,
+        "playback_format": "low"
+      },
+      "links": {
+        "self": "/audio_files/2015/04/18/110000_low.mp3",
+        "play": "/audio_files/2015/04/18/110000_low.mp3",
+        "download": "/audio_files/2015/04/18/110000_low.mp3?download=true"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "links": {
+    "self": "http://localhost:4200/broadcasts/1018401629/audio_files?page%5Bnumber%5D=1&page%5Bsize%5D=50",
+    "first": "http://localhost:4200/broadcasts/1018401629/audio_files?page%5Bnumber%5D=1&page%5Bsize%5D=50",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/broadcasts/1018401629/audio_files?page%5Bnumber%5D=1&page%5Bsize%5D=50"
+  }
+}
