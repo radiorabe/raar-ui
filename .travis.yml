@@ -18,6 +18,9 @@ cache:
     - ~/.cache
     - node_modules
 
+before_script:
+  - export TZ=Europe/Zurich
+
 script:
   - ng test --watch=false --browsers=ChromeHeadlessNoSandbox
   - ng build --prod --extra-webpack-config webpack.extra.js
