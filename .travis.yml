@@ -5,17 +5,23 @@ sudo: false
 
 addons:
   chrome: stable
+  apt:
+    packages:
+      - libgconf-2-4
 
 notifications:
   email: true
 
 cache:
+  npm: true
   directories:
+    - ~/.cache
     - node_modules
 
 script:
   - ng test --watch=false --browsers=ChromeHeadlessNoSandbox
   - ng build --prod --extra-webpack-config webpack.extra.js
+  - npm run cy:ci
 
 before_deploy:
   - cd dist/raar-ui && gzip -kf *.{css,js} && tar czf ../raar-ui.tar.gz .
