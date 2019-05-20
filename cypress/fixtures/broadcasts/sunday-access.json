@@ -1,0 +1,447 @@
+{
+  "data": [
+    {
+      "id": "1018401617",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Galaxy Space Night",
+        "started_at": "2015-04-16T21:00:00.000+02:00",
+        "finished_at": "2015-04-17T03:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544277",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401617"
+      }
+    },
+    {
+      "id": "1018401615",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2015-04-17T03:00:00.000+02:00",
+        "finished_at": "2015-04-17T10:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "415164569",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401615"
+      }
+    },
+    {
+      "id": "1018401616",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Jazz am Sunntig",
+        "started_at": "2015-04-17T10:00:00.000+02:00",
+        "finished_at": "2015-04-17T11:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544269",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401616"
+      }
+    },
+    {
+      "id": "1018401618",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Radio Silbergrau",
+        "started_at": "2015-04-17T11:00:00.000+02:00",
+        "finished_at": "2015-04-17T12:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544270",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401618"
+      }
+    },
+    {
+      "id": "1018401619",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Pars Ava",
+        "started_at": "2015-04-17T12:00:00.000+02:00",
+        "finished_at": "2015-04-17T13:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544271",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401619"
+      }
+    },
+    {
+      "id": "1018401620",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Onda Libera",
+        "started_at": "2015-04-17T13:00:00.000+02:00",
+        "finished_at": "2015-04-17T14:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544272",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401620"
+      }
+    },
+    {
+      "id": "1018401621",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2015-04-17T14:00:00.000+02:00",
+        "finished_at": "2015-04-17T15:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "415164569",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401621"
+      }
+    },
+    {
+      "id": "1018401622",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Best Of",
+        "started_at": "2015-04-17T15:00:00.000+02:00",
+        "finished_at": "2015-04-17T17:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544273",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401622"
+      }
+    },
+    {
+      "id": "1018401623",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Balgarski Tschass",
+        "started_at": "2015-04-17T17:00:00.000+02:00",
+        "finished_at": "2015-04-17T18:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544278",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401623"
+      }
+    },
+    {
+      "id": "1018401624",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Jadran",
+        "started_at": "2015-04-17T18:00:00.000+02:00",
+        "finished_at": "2015-04-17T19:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544274",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401624"
+      }
+    },
+    {
+      "id": "1018401625",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Gay Radio",
+        "started_at": "2015-04-17T19:00:00.000+02:00",
+        "finished_at": "2015-04-17T21:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544275",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401625"
+      }
+    },
+    {
+      "id": "1018401626",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "unerhörtes-ungehörtes",
+        "started_at": "2015-04-17T21:00:00.000+02:00",
+        "finished_at": "2015-04-17T23:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544276",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401626"
+      }
+    },
+    {
+      "id": "1018401627",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2015-04-17T23:00:00.000+02:00",
+        "finished_at": "2015-04-18T08:00:00.000+02:00",
+        "people": "",
+        "details": "",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "415164569",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018401627"
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "894544277",
+      "type": "shows",
+      "attributes": {
+        "name": "Galaxy Space Night",
+        "details": "<p>Galaxy Space Night, dieser Name steht seit über 20 Jahre für elektronische Musik auf den Lokalradiostationen Radio RaBe, Radio Stadtfilter und Radio LoRa.</p><p>Die Sendung besteht aus Sublabels und erhält dadurch Ihre Einzigartigkeit in der elektronischen Musikwelt.</p><p>Jeden Samstag von 21 Uhr bis 04 Uhr.</p><p>Galaxy Space Night   gehört…..gehört….</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544277"
+      }
+    },
+    {
+      "id": "415164569",
+      "type": "shows",
+      "attributes": {
+        "name": "Klangbecken",
+        "details": "<p>„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/415164569"
+      }
+    },
+    {
+      "id": "894544269",
+      "type": "shows",
+      "attributes": {
+        "name": "Jazz am Sunntig",
+        "details": "<p>In der Sendung „Jazz am Sunntig“ zwischen 10 und 11 Uhr präsentieren Christian Schütz und Simon Petermann Musik aus der weiten Welt des Jazz.</p><p>Die Sendung beinhaltet zwei Teile: Die erste Dreiviertelstunde ist jeden Sonntag einem bestimmten Thema gewidmet. Darin werden einerseits wichtige Figuren der Jazzgeschichte vorgestellt und Perlen ihres Schaffens präsentiert, andererseits bietet die Sendung Gelegenheit, von Exponenten der regionalen und nationalen Musikszene persönliches zu erfahren, wenn sie als Studiogäste von ihrem Schaffen und ihrer Auseinandersetzung mit der Musik berichten.</p><p>Der zweite Teil der Sendung bietet eine Vorschau auf die Jazzkonzerte in der Region Bern der folgenden Woche, wobei zwei Bands mit Hörproben vorgestellt werden, um beim passionierten Jazzpublikum Lust auf einen Konzertbesuch zu wecken.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544269"
+      }
+    },
+    {
+      "id": "894544270",
+      "type": "shows",
+      "attributes": {
+        "name": "Radio Silbergrau",
+        "details": "<p>Senioren machen Radio.</p><p>Vor allem machen wir alle vier Wochen eine einstündige Sendung, die gegenwärtig über Radio Rabe und auf Kanal K im Aargau ausgestrahlt wird. „Nur eine Stunde pro Monat“ fragen Sie – Sie dürfen ruhig einmal bei uns vorbeikommen, um zu sehen, was es alles braucht, bis eine solche Stunde bereit ist. Recherchieren, Kontakte knüpfen, mit Leuten reden, Aufnahmen machen, Aufnahmen redigieren, auf dem PC schneiden, in eine fertige Form bringen, Zwischentexte moderieren, Musik einfügen – das ist es, was unsere Tätigkeit so interessant und spannend macht. Dabei kann jedes Mitglied seine speziellen Fähigkeiten einbringen und das machen, was es am besten kann.</p><p>Wir haben monatlich eine Redaktionssitzung, an der wir unsere Programme besprechen. Unsere Radioarbeit machen wir in unserem einfachen Studio in Schliern bei Köniz (Schaufelweg 33), wo wir Aufnahmen machen können und alle Sendungen auf dem PC vorbereiten.</p><p>Ein abgeschlossenes Programmkonzept haben wir nicht. Wir machen vor allem die Beiträge, die unsere Mitglieder interessieren, jeder kann Vorschläge machen. Da wir alle Seniorinnen und Senioren sind, haben die Beiträge oft Themen, die vor allem Senioren ansprechen. Das ist jedoch kein konkretes Ziel, sondern es ergibt sich aus den Interessen der Mitglieder. Dabei kann es um Literatur, Entwicklungshilfe, Ausstellungen, Film, Wandertipps, seltene Sportarten, aktuelle Anlässe und vieles andere gehen; die Form kann ein Interview, eine Reportage, ein gestalteter Beitrag, ein besinnliches Gespräch oder eine eher kabarettistische Bearbeitung eines Themas sein, alles ist möglich. Selbstverständlich machen wir jedoch ebenso Beiträge, die auch Jüngere ansprechen. Die stündige Sendung setzt sich meistens aus 3-5 Wortbeiträgen und dazwischen Musik zusammen; ab und zu machen wir auch Themensendungen.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544270"
+      }
+    },
+    {
+      "id": "894544271",
+      "type": "shows",
+      "attributes": {
+        "name": "Pars Ava",
+        "details": "<p>Ich glaube, dass Kultur, Sprache und Musik die besten Mittel sind, damit sich Menschen aus verschiedenen Nationen und Kulturen näher kommen können. Um dazu einen Beitrag zu leisten, habe ich mit meiner Sendung „Pars Ava“ auf dem Kultursender RaBe gestartet.</p><p>Zur Bedeutung des Sendungsnamens: Pars ist die Bezeichnung für den Iran zur Zeit des Cyrus-Imperiums. Cyrus der Grosse gilt als erster und sehr barmherziger Herrscher des altpersischen Weltreiches (529 v. Chr.). Ava bedeutet soviel wie Klang. „Pars Ava“ – eine Stimme erhob sich aus dem Land des Cyrus.</p><p>Ich möchte versuchen, den RadiohörerInnen die persische Kultur, mit persischer Musik, Geschichte, Poesie und Literatur von persischen Dichtern und Schriftstellern, näher zu bringen.</p><p>Die Moderationen in der Sendung sind zweisprachig. Dadurch möchte ich einerseits meine persischen Landsleute, die in der Schweiz leben, erreichen, aber genau so auch die ZuhörerInnen, die kein persisch verstehen.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544271"
+      }
+    },
+    {
+      "id": "894544272",
+      "type": "shows",
+      "attributes": {
+        "name": "Onda Libera",
+        "details": "<p>Die älteste RaBe-Sendung – seit 1996 – italienisches Radio mit DJ Salvi.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544272"
+      }
+    },
+    {
+      "id": "894544273",
+      "type": "shows",
+      "attributes": {
+        "name": "Best Of",
+        "details": "<p>Blues, Beat, Rock, Soul, Folk und Pop – Jeden zweiten Sonntag von 15 bis 17 Uhr (im Wechsel mit Blues Zeppelin).</p><p>Kann der Begriff, der als CD- oder LP – Titel bei jedem engagierten Musikfreak ein verächtliches Ohrenrümpfen erzeugt, tatsächlich und ausgerechnet im RaBe-Programm auftauchen? Aber sicher, das passt! Voraussetzung ist die kompromisslose Umsetzung des Begriffs: Nur das Beste wird gespielt, alles hand- respektive ohrverlesen. Dazu – nach der naturgemäss völlig subjektiven Meinung des Sendungsmachers – die richtige Musik: Blues, Beat, Rock, Pop, Soul, R’n‘B, Folk und was der liebenswerten Dinge mehr sind in der Welt der Musik! Jede zweite Sendung ist einem besonderen Thema gewidmet.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544273"
+      }
+    },
+    {
+      "id": "894544278",
+      "type": "shows",
+      "attributes": {
+        "name": "Balgarski Tschass",
+        "details": "<p>Die bulgarische Stimme auf RaBe – jeden zweiten Sonntag von 17:00-18:00 Uhr.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544278"
+      }
+    },
+    {
+      "id": "894544274",
+      "type": "shows",
+      "attributes": {
+        "name": "Jadran",
+        "details": "<p>Kroatische Hintergrundsendung zu Themen aus Kultur, Politik und Gesellschaft – jeden Sonntag von 18 bsi 19 Uhr.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544274"
+      }
+    },
+    {
+      "id": "894544275",
+      "type": "shows",
+      "attributes": {
+        "name": "Gay Radio",
+        "details": null,
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544275"
+      }
+    },
+    {
+      "id": "894544276",
+      "type": "shows",
+      "attributes": {
+        "name": "unerhörtes-ungehörtes",
+        "details": "<p>Experimentelle Musik und Toncollagen, eine Reise von den Synapsen bis zu den auralen Grenzen und darüber hinaus. Von IDM über Noisemusic bis Psychill und alles, wo Dub eingeflochten wurde.</p><p>Nach 15 Jahren im Alleingang mit über 350 Sendungen von Harry Schaumburger aka DJ Hemi Sync wurde die Sendung für experimentelle Musik im September 2012 mit Mo/Lcp ideal ergänzt.</p><p>LiebhaberInnen der etwas anderen Musik kommen hier auf ihre Kosten.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544276"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "links": {
+    "self": "http://localhost:4200/broadcasts/2015/04/17?page%5Bnumber%5D=1&page%5Bsize%5D=50",
+    "first": "http://localhost:4200/broadcasts/2015/04/17?page%5Bnumber%5D=1&page%5Bsize%5D=50",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/broadcasts/2015/04/17?page%5Bnumber%5D=1&page%5Bsize%5D=50"
+  }
+}

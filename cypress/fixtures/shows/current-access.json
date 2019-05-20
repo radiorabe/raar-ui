@@ -1,0 +1,50 @@
+{
+  "data": [
+    {
+      "id": "193540442",
+      "type": "shows",
+      "attributes": {
+        "name": "Info",
+        "details": null,
+        "audio_access": true
+      },
+      "links": {
+        "self": "/shows/193540442"
+      }
+    },
+    {
+      "id": "894544268",
+      "type": "shows",
+      "attributes": {
+        "name": "Geschäch9schlimmers",
+        "details": null,
+        "audio_access": true
+      },
+      "links": {
+        "self": "/shows/894544268"
+      }
+    },
+    {
+      "id": "415164569",
+      "type": "shows",
+      "attributes": {
+        "name": "Klangbecken",
+        "details": "<p>„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.</p>",
+        "audio_access": true
+      },
+      "links": {
+        "self": "/shows/415164569"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "links": {
+    "self": "http://localhost:4200/shows?page%5Bnumber%5D=1&page%5Bsize%5D=100&since=2018-01-01&sort=-last_broadcast_at",
+    "first": "http://localhost:4200/shows?page%5Bnumber%5D=1&page%5Bsize%5D=100&since=2018-01-01&sort=-last_broadcast_at",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/shows?page%5Bnumber%5D=1&page%5Bsize%5D=100&since=2018-01-01&sort=-last_broadcast_at"
+  }
+}

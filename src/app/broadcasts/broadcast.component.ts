@@ -134,9 +134,11 @@ export class BroadcastComponent implements OnChanges {
     queryParams["time"] = DateParamsService.convertTimeToParam(date);
     if (url[0] === "show" || url[0] === "search") {
       queryParams["year"] = date.getFullYear();
-      queryParams["month"] = date.getMonth() + 1;
-      queryParams["day"] = date.getDate();
-    } else if (url[url.length - 1] !== date.getDate().toString()) {
+      queryParams["month"] = DateParamsService.zeroPad(date.getMonth() + 1);
+      queryParams["day"] = DateParamsService.zeroPad(date.getDate());
+    } else if (
+      url[url.length - 1] !== DateParamsService.zeroPad(date.getDate())
+    ) {
       // handle shows that begin before midnight and go on to the current day.
       queryParams["time"] = "0000";
     }

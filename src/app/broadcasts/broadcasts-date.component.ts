@@ -121,8 +121,8 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   private navigateTo(date: Date) {
     this.router.navigate([
       date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate()
+      DateParamsService.zeroPad(date.getMonth() + 1),
+      DateParamsService.zeroPad(date.getDate())
     ]);
   }
 
