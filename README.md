@@ -12,7 +12,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng test` to run the unit tests of the project (Currently, some demo specs only).
 
-Run `ng serve` and `npm run cy:open` to open the Cypress test runner or `npm run cy:run` for a single run.
+Run `ng serve` and `npm run cy:open` to open the Cypress test runner (browser tests) or `npm run cy:run` for a single run.
 
 Run `ng build --prod` to build the project. The build artifacts will be stored in the `dist/raar-ui` directory.
 

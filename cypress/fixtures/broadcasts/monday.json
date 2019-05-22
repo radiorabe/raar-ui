@@ -5,8 +5,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Klangbecken",
-        "started_at": "2015-04-17T23:00:00.000+02:00",
-        "finished_at": "2015-04-18T08:00:00.000+02:00",
+        "started_at": "2019-04-15T23:00:00.000+02:00",
+        "finished_at": "2019-04-15T08:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -21,8 +21,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "der Morgen",
-        "started_at": "2015-04-18T08:00:00.000+02:00",
-        "finished_at": "2015-04-18T11:00:00.000+02:00",
+        "started_at": "2019-04-15T08:00:00.000+02:00",
+        "finished_at": "2019-04-15T11:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -37,8 +37,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Info",
-        "started_at": "2015-04-18T11:00:00.000+02:00",
-        "finished_at": "2015-04-18T11:30:00.000+02:00",
+        "started_at": "2019-04-15T11:00:00.000+02:00",
+        "finished_at": "2019-04-15T11:30:00.000+02:00",
         "people": "",
         "details": "Viele Infos von heute",
         "audio_access": true
@@ -53,8 +53,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Klangbecken",
-        "started_at": "2015-04-18T11:30:00.000+02:00",
-        "finished_at": "2015-04-18T13:00:00.000+02:00",
+        "started_at": "2019-04-15T11:30:00.000+02:00",
+        "finished_at": "2019-04-15T13:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -69,8 +69,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "70-80-90-Mambo!",
-        "started_at": "2015-04-18T13:00:00.000+02:00",
-        "finished_at": "2015-04-18T16:00:00.000+02:00",
+        "started_at": "2019-04-15T13:00:00.000+02:00",
+        "finished_at": "2019-04-15T16:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -85,8 +85,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Klangbecken",
-        "started_at": "2015-04-18T16:00:00.000+02:00",
-        "finished_at": "2015-04-18T17:00:00.000+02:00",
+        "started_at": "2019-04-15T16:00:00.000+02:00",
+        "finished_at": "2019-04-15T17:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -101,8 +101,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "The Vidiot",
-        "started_at": "2015-04-18T17:00:00.000+02:00",
-        "finished_at": "2015-04-18T18:00:00.000+02:00",
+        "started_at": "2019-04-15T17:00:00.000+02:00",
+        "finished_at": "2019-04-15T18:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -117,8 +117,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Info",
-        "started_at": "2015-04-18T18:00:00.000+02:00",
-        "finished_at": "2015-04-18T18:30:00.000+02:00",
+        "started_at": "2019-04-15T18:00:00.000+02:00",
+        "finished_at": "2019-04-15T18:30:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -133,8 +133,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "ganzOhr",
-        "started_at": "2015-04-18T18:30:00.000+02:00",
-        "finished_at": "2015-04-18T19:00:00.000+02:00",
+        "started_at": "2019-04-15T18:30:00.000+02:00",
+        "finished_at": "2019-04-15T19:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -149,8 +149,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "HellasRadio",
-        "started_at": "2015-04-18T19:00:00.000+02:00",
-        "finished_at": "2015-04-18T20:00:00.000+02:00",
+        "started_at": "2019-04-15T19:00:00.000+02:00",
+        "finished_at": "2019-04-15T20:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -165,8 +165,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Lost in Disco",
-        "started_at": "2015-04-18T20:00:00.000+02:00",
-        "finished_at": "2015-04-18T21:00:00.000+02:00",
+        "started_at": "2019-04-15T20:00:00.000+02:00",
+        "finished_at": "2019-04-15T21:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": false
@@ -257,10 +257,10 @@
   ],
   "jsonapi": { "version": "1.0" },
   "links": {
-    "self": "http://localhost:4200/broadcasts/2015/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50",
-    "first": "http://localhost:4200/broadcasts/2015/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50",
+    "self": "http://localhost:4200/broadcasts/2019/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50",
+    "first": "http://localhost:4200/broadcasts/2019/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50",
     "prev": null,
     "next": null,
-    "last": "http://localhost:4200/broadcasts/2015/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50"
+    "last": "http://localhost:4200/broadcasts/2019/04/18?page%5Bnumber%5D=1\u0026page%5Bsize%5D=50"
   }
 }

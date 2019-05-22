@@ -1,0 +1,1178 @@
+{
+  "data": [
+      {
+          "id": "1018407905",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-21T04:00:00.000+01:00",
+              "finished_at": "2016-02-21T10:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407905"
+          }
+      },
+      {
+          "id": "1018407903",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-20T20:00:00.000+01:00",
+              "finished_at": "2016-02-20T21:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407903"
+          }
+      },
+      {
+          "id": "1018407896",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-20T02:00:00.000+01:00",
+              "finished_at": "2016-02-20T08:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407896"
+          }
+      },
+      {
+          "id": "1018407892",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-19T18:00:00.000+01:00",
+              "finished_at": "2016-02-19T19:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407892"
+          }
+      },
+      {
+          "id": "1018407887",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-18T23:00:00.000+01:00",
+              "finished_at": "2016-02-19T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407887"
+          }
+      },
+      {
+          "id": "1018407883",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-18T18:00:00.000+01:00",
+              "finished_at": "2016-02-18T19:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407883"
+          }
+      },
+      {
+          "id": "1018407879",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-18T00:00:00.000+01:00",
+              "finished_at": "2016-02-18T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407879"
+          }
+      },
+      {
+          "id": "1018407872",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-17T15:00:00.000+01:00",
+              "finished_at": "2016-02-17T16:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407872"
+          }
+      },
+      {
+          "id": "1018407870",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-17T13:00:00.000+01:00",
+              "finished_at": "2016-02-17T14:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407870"
+          }
+      },
+      {
+          "id": "1018407866",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-17T00:00:00.000+01:00",
+              "finished_at": "2016-02-17T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407866"
+          }
+      },
+      {
+          "id": "1018407858",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-16T16:00:00.000+01:00",
+              "finished_at": "2016-02-16T17:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407858"
+          }
+      },
+      {
+          "id": "1018407856",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-16T12:00:00.000+01:00",
+              "finished_at": "2016-02-16T14:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407856"
+          }
+      },
+      {
+          "id": "1018407853",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-15T23:00:00.000+01:00",
+              "finished_at": "2016-02-16T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407853"
+          }
+      },
+      {
+          "id": "1018407846",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-15T16:00:00.000+01:00",
+              "finished_at": "2016-02-15T18:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407846"
+          }
+      },
+      {
+          "id": "1018407844",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-15T12:00:00.000+01:00",
+              "finished_at": "2016-02-15T13:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407844"
+          }
+      },
+      {
+          "id": "1018407841",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-14T23:00:00.000+01:00",
+              "finished_at": "2016-02-15T08:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407841"
+          }
+      },
+      {
+          "id": "1018407832",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-14T04:00:00.000+01:00",
+              "finished_at": "2016-02-14T10:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407832"
+          }
+      },
+      {
+          "id": "1018407830",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-13T20:00:00.000+01:00",
+              "finished_at": "2016-02-13T21:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407830"
+          }
+      },
+      {
+          "id": "1018407823",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-13T02:00:00.000+01:00",
+              "finished_at": "2016-02-13T08:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407823"
+          }
+      },
+      {
+          "id": "1018407819",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-12T18:00:00.000+01:00",
+              "finished_at": "2016-02-12T19:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407819"
+          }
+      },
+      {
+          "id": "1018407814",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-11T23:00:00.000+01:00",
+              "finished_at": "2016-02-12T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407814"
+          }
+      },
+      {
+          "id": "1018407810",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-11T18:00:00.000+01:00",
+              "finished_at": "2016-02-11T19:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407810"
+          }
+      },
+      {
+          "id": "1018407806",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-11T00:00:00.000+01:00",
+              "finished_at": "2016-02-11T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407806"
+          }
+      },
+      {
+          "id": "1018407799",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-10T15:00:00.000+01:00",
+              "finished_at": "2016-02-10T16:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407799"
+          }
+      },
+      {
+          "id": "1018407797",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-10T13:00:00.000+01:00",
+              "finished_at": "2016-02-10T14:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407797"
+          }
+      },
+      {
+          "id": "1018407793",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-10T00:00:00.000+01:00",
+              "finished_at": "2016-02-10T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407793"
+          }
+      },
+      {
+          "id": "1018407785",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-09T16:00:00.000+01:00",
+              "finished_at": "2016-02-09T17:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407785"
+          }
+      },
+      {
+          "id": "1018407783",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-09T12:00:00.000+01:00",
+              "finished_at": "2016-02-09T14:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407783"
+          }
+      },
+      {
+          "id": "1018407780",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-08T23:00:00.000+01:00",
+              "finished_at": "2016-02-09T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407780"
+          }
+      },
+      {
+          "id": "1018407773",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-08T16:00:00.000+01:00",
+              "finished_at": "2016-02-08T18:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407773"
+          }
+      },
+      {
+          "id": "1018407771",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-08T12:00:00.000+01:00",
+              "finished_at": "2016-02-08T13:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407771"
+          }
+      },
+      {
+          "id": "1018407768",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-07T23:00:00.000+01:00",
+              "finished_at": "2016-02-08T08:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407768"
+          }
+      },
+      {
+          "id": "1018407759",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-07T04:00:00.000+01:00",
+              "finished_at": "2016-02-07T10:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407759"
+          }
+      },
+      {
+          "id": "1018407757",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-06T20:00:00.000+01:00",
+              "finished_at": "2016-02-06T21:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407757"
+          }
+      },
+      {
+          "id": "1018407750",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-06T02:00:00.000+01:00",
+              "finished_at": "2016-02-06T08:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407750"
+          }
+      },
+      {
+          "id": "1018407746",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-05T18:00:00.000+01:00",
+              "finished_at": "2016-02-05T19:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407746"
+          }
+      },
+      {
+          "id": "1018407741",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-04T23:00:00.000+01:00",
+              "finished_at": "2016-02-05T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407741"
+          }
+      },
+      {
+          "id": "1018407737",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-04T18:00:00.000+01:00",
+              "finished_at": "2016-02-04T19:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407737"
+          }
+      },
+      {
+          "id": "1018407733",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-04T00:00:00.000+01:00",
+              "finished_at": "2016-02-04T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407733"
+          }
+      },
+      {
+          "id": "1018407726",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-03T15:00:00.000+01:00",
+              "finished_at": "2016-02-03T16:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407726"
+          }
+      },
+      {
+          "id": "1018407724",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-03T13:00:00.000+01:00",
+              "finished_at": "2016-02-03T14:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407724"
+          }
+      },
+      {
+          "id": "1018407720",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-03T00:00:00.000+01:00",
+              "finished_at": "2016-02-03T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407720"
+          }
+      },
+      {
+          "id": "1018407712",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-02T16:00:00.000+01:00",
+              "finished_at": "2016-02-02T17:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407712"
+          }
+      },
+      {
+          "id": "1018407710",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-02T12:00:00.000+01:00",
+              "finished_at": "2016-02-02T14:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407710"
+          }
+      },
+      {
+          "id": "1018407707",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-01T23:00:00.000+01:00",
+              "finished_at": "2016-02-02T09:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407707"
+          }
+      },
+      {
+          "id": "1018407700",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-01T16:00:00.000+01:00",
+              "finished_at": "2016-02-01T18:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407700"
+          }
+      },
+      {
+          "id": "1018407698",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-02-01T12:00:00.000+01:00",
+              "finished_at": "2016-02-01T13:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407698"
+          }
+      },
+      {
+          "id": "1018407695",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-01-31T23:00:00.000+01:00",
+              "finished_at": "2016-02-01T08:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407695"
+          }
+      },
+      {
+          "id": "1018407686",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-01-31T04:00:00.000+01:00",
+              "finished_at": "2016-01-31T10:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407686"
+          }
+      },
+      {
+          "id": "1018407684",
+          "type": "broadcasts",
+          "attributes": {
+              "label": "Klangbecken",
+              "started_at": "2016-01-30T20:00:00.000+01:00",
+              "finished_at": "2016-01-30T21:00:00.000+01:00",
+              "people": null,
+              "details": null,
+              "audio_access": true
+          },
+          "relationships": {
+              "show": {
+                  "data": {
+                      "id": "415164569",
+                      "type": "shows"
+                  }
+              }
+          },
+          "links": {
+              "self": "/broadcasts/1018407684"
+          }
+      }
+  ],
+  "included": [
+      {
+          "id": "415164569",
+          "type": "shows",
+          "attributes": {
+              "name": "Klangbecken",
+              "details": "<p>„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.</p>",
+              "audio_access": true
+          },
+          "links": {
+              "self": "/shows/415164569"
+          }
+      }
+  ],
+  "jsonapi": {
+      "version": "1.0"
+  },
+  "links": {
+      "self": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=2&page%5Bsize%5D=50&show_id=415164569&sort=-started_at",
+      "first": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=1&page%5Bsize%5D=50&show_id=415164569&sort=-started_at",
+      "prev": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=1&page%5Bsize%5D=50&show_id=415164569&sort=-started_at",
+      "next": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=3&page%5Bsize%5D=50&show_id=415164569&sort=-started_at",
+      "last": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=15&page%5Bsize%5D=50&show_id=415164569&sort=-started_at"
+  }
+}

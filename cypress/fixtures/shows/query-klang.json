@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": "415164569",
+      "type": "shows",
+      "attributes": {
+        "name": "Klangbecken",
+        "details": "<p>„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/415164569"
+      }
+    },
+    {
+      "id": "894544271",
+      "type": "shows",
+      "attributes": {
+        "name": "Pars Ava",
+        "details": "<p>Ich glaube, dass Kultur, Sprache und Musik die besten Mittel sind, damit sich Menschen aus verschiedenen Nationen und Kulturen näher kommen können. Um dazu einen Beitrag zu leisten, habe ich mit meiner Sendung „Pars Ava“ auf dem Kultursender RaBe gestartet.</p><p>Zur Bedeutung des Sendungsnamens: Pars ist die Bezeichnung für den Iran zur Zeit des Cyrus-Imperiums. Cyrus der Grosse gilt als erster und sehr barmherziger Herrscher des altpersischen Weltreiches (529 v. Chr.). Ava bedeutet soviel wie Klang. „Pars Ava“ – eine Stimme erhob sich aus dem Land des Cyrus.</p><p>Ich möchte versuchen, den RadiohörerInnen die persische Kultur, mit persischer Musik, Geschichte, Poesie und Literatur von persischen Dichtern und Schriftstellern, näher zu bringen.</p><p>Die Moderationen in der Sendung sind zweisprachig. Dadurch möchte ich einerseits meine persischen Landsleute, die in der Schweiz leben, erreichen, aber genau so auch die ZuhörerInnen, die kein persisch verstehen.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544271"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "links": {
+    "self": "http://localhost:4200/shows?page%5Bnumber%5D=1&page%5Bsize%5D=50&q=klang&sort=name",
+    "first": "http://localhost:4200/shows?page%5Bnumber%5D=1&page%5Bsize%5D=50&q=klang&sort=name",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/shows?page%5Bnumber%5D=1&page%5Bsize%5D=50&q=klang&sort=name"
+  }
+}

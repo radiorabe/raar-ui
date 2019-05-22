@@ -1,20 +1,10 @@
 import { datePath } from "../support/helpers";
 
-const today = new Date();
-const yesterday = new Date(today);
-yesterday.setDate(yesterday.getDate() - 1);
-
-const WEEKDAYS = {
-  "0": "Sonntag",
-  "1": "Montag",
-  "2": "Dienstag",
-  "3": "Mittwoch",
-  "4": "Donnerstag",
-  "5": "Freitag",
-  "6": "Samstag"
-};
+const today = new Date("2019-04-15");
+const yesterday = new Date("2019-04-14");
 
 beforeEach(() => {
+  cy.clock(today.getTime(), ["Date"]);
   cy.server({ force404: true });
   cy.route({
     method: "GET",
@@ -29,12 +19,12 @@ beforeEach(() => {
   });
   cy.route({
     method: "GET",
-    url: "/api/broadcasts" + datePath(today),
+    url: "/api/broadcasts/2019/04/15",
     response: "fixture:broadcasts/monday.json"
   });
   cy.route({
     method: "GET",
-    url: "/api/broadcasts" + datePath(yesterday),
+    url: "/api/broadcasts/2019/04/14",
     response: "fixture:broadcasts/sunday.json"
   });
   cy.route({
@@ -52,24 +42,66 @@ beforeEach(() => {
 });
 
 describe("Broadcasts", () => {
-  it("navigates back and forth", () => {
+  it("navigates date back and forth", () => {
     cy.visit("/");
-    cy.get("h2.title").should("contain", WEEKDAYS[today.getDay()]);
+    cy.get("h2.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
+    cy.get(".dp-selected").should("contain", "15");
 
     cy.get(".pager > li:first-child a").click();
-    cy.get("h2.title").should("contain", WEEKDAYS[yesterday.getDay()]);
+    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.url().should("include", datePath(yesterday));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 13);
+    cy.get(".dp-selected").should("contain", "14");
 
     cy.get(".pager > li:last-child a").click();
-    cy.get("h2.title").should("contain", WEEKDAYS[today.getDay()]);
+    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.url().should("include", datePath(today));
+    cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
+    cy.get(".dp-selected").should("contain", "15");
+  });
+
+  it("opens page for given date", () => {
+    cy.visit("/2019/04/14");
+    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
+    cy.get(".dp-selected").should("contain", "14");
+    cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 13);
+
+    cy.get(".dp-current-day").click();
+    cy.get("h2.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
   });
 
-  it("has items with denied access", () => {
+  it("navigates over datepicker", () => {
+    cy.visit("/");
+    cy.route({
+      method: "GET",
+      url: "/api/broadcasts/2018/10/05",
+      response: {
+        data: []
+      }
+    });
+
+    cy.get(".dp-nav-header-btn").click();
+    cy.get('[data-date="01-02-2019"]').should("contain", "Feb");
+    cy.get(".dp-calendar-nav-left").click();
+    cy.get(".dp-nav-header-btn").should("contain", "2018");
+    cy.get('[data-date="01-10-2018"]')
+      .should("contain", "Okt.")
+      .click();
+    cy.get('[data-date="05-10-2018"]').click();
+    cy.get("h2.title").should("contain", "Freitag 5. Oktober 2018");
+    cy.get("sd-broadcasts-date").should(
+      "contain",
+      "Keine aufgenommenen Sendungen"
+    );
+    cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 0);
+    cy.get(".dp-selected").should("contain", "05");
+  });
+
+  it("opens broadcasts with and without access", () => {
     cy.visit("/");
     cy.get(".navbar-brand").should("contain", "RaBe Archiv");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
@@ -95,30 +127,26 @@ describe("Broadcasts", () => {
       .should("contain", "Du hast keinen Zugriff")
       .find(".audio-links tr")
       .should("not.exist");
+    cy.url().should("include", datePath(today) + ";time=0800");
 
-    // because fixtures contain a different date, the url time query param
-    // is not set correctly.
-    // cy.url().should('include', datePath(today) + ';time=0800')
-
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) h4").click();
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
     cy.get(
       "sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text"
     ).should("not.exist");
-
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .list-group-item-text")
       .should("contain", "Viele Infos von heute")
       .find(".audio-links tr")
       .should("have.length", 2);
+    cy.url().should("include", datePath(today) + ";time=1100");
   });
 
   it("reloads page after login", () => {
     cy.visit("/");
-    cy.get("h2.title").should("contain", WEEKDAYS[today.getDay()]);
+    cy.get("h2.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
 
     cy.get(".pager > li:first-child a").click();
-    cy.get("h2.title").should("contain", WEEKDAYS[yesterday.getDay()]);
+    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.url().should("include", datePath(yesterday));
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
       "have.length",
@@ -157,7 +185,7 @@ describe("Broadcasts", () => {
     cy.get("sd-login form input[name=accessCode]").type("1337dead");
     cy.get("sd-login form .btn-primary").click();
 
-    cy.get("h2.title").should("contain", WEEKDAYS[yesterday.getDay()]);
+    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
       "have.length",
       0
@@ -189,7 +217,7 @@ describe("Broadcasts", () => {
 
     cy.get(".navbar-nav.navbar-right li:first-child a").click();
 
-    cy.get("h2.title").should("contain", WEEKDAYS[yesterday.getDay()]);
+    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
       "have.length",
       12

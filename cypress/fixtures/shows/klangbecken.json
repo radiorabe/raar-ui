@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "415164569",
+    "type": "shows",
+    "attributes": {
+      "name": "Klangbecken",
+      "details": "<p>„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.</p>",
+      "audio_access": true
+    },
+    "links": {
+      "self": "/shows/415164569"
+    }
+  },
+  "jsonapi": {
+    "version": "1.0"
+  }
+}

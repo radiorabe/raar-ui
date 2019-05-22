@@ -5,8 +5,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Galaxy Space Night",
-        "started_at": "2015-04-16T21:00:00.000+02:00",
-        "finished_at": "2015-04-17T03:00:00.000+02:00",
+        "started_at": "2019-04-13T21:00:00.000+02:00",
+        "finished_at": "2019-04-14T03:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -28,8 +28,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Klangbecken",
-        "started_at": "2015-04-17T03:00:00.000+02:00",
-        "finished_at": "2015-04-17T10:00:00.000+02:00",
+        "started_at": "2019-04-14T03:00:00.000+02:00",
+        "finished_at": "2019-04-14T10:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -51,8 +51,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Jazz am Sunntig",
-        "started_at": "2015-04-17T10:00:00.000+02:00",
-        "finished_at": "2015-04-17T11:00:00.000+02:00",
+        "started_at": "2019-04-14T10:00:00.000+02:00",
+        "finished_at": "2019-04-14T11:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -74,8 +74,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Radio Silbergrau",
-        "started_at": "2015-04-17T11:00:00.000+02:00",
-        "finished_at": "2015-04-17T12:00:00.000+02:00",
+        "started_at": "2019-04-14T11:00:00.000+02:00",
+        "finished_at": "2019-04-14T12:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -97,8 +97,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Pars Ava",
-        "started_at": "2015-04-17T12:00:00.000+02:00",
-        "finished_at": "2015-04-17T13:00:00.000+02:00",
+        "started_at": "2019-04-14T12:00:00.000+02:00",
+        "finished_at": "2019-04-14T13:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -120,8 +120,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Onda Libera",
-        "started_at": "2015-04-17T13:00:00.000+02:00",
-        "finished_at": "2015-04-17T14:00:00.000+02:00",
+        "started_at": "2019-04-14T13:00:00.000+02:00",
+        "finished_at": "2019-04-14T14:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -143,8 +143,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Klangbecken",
-        "started_at": "2015-04-17T14:00:00.000+02:00",
-        "finished_at": "2015-04-17T15:00:00.000+02:00",
+        "started_at": "2019-04-14T14:00:00.000+02:00",
+        "finished_at": "2019-04-14T15:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -166,8 +166,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Best Of",
-        "started_at": "2015-04-17T15:00:00.000+02:00",
-        "finished_at": "2015-04-17T17:00:00.000+02:00",
+        "started_at": "2019-04-14T15:00:00.000+02:00",
+        "finished_at": "2019-04-14T17:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -189,8 +189,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Balgarski Tschass",
-        "started_at": "2015-04-17T17:00:00.000+02:00",
-        "finished_at": "2015-04-17T18:00:00.000+02:00",
+        "started_at": "2019-04-14T17:00:00.000+02:00",
+        "finished_at": "2019-04-14T18:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -212,8 +212,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Jadran",
-        "started_at": "2015-04-17T18:00:00.000+02:00",
-        "finished_at": "2015-04-17T19:00:00.000+02:00",
+        "started_at": "2019-04-14T18:00:00.000+02:00",
+        "finished_at": "2019-04-14T19:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -235,8 +235,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Gay Radio",
-        "started_at": "2015-04-17T19:00:00.000+02:00",
-        "finished_at": "2015-04-17T21:00:00.000+02:00",
+        "started_at": "2019-04-14T19:00:00.000+02:00",
+        "finished_at": "2019-04-14T21:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -258,8 +258,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "unerhörtes-ungehörtes",
-        "started_at": "2015-04-17T21:00:00.000+02:00",
-        "finished_at": "2015-04-17T23:00:00.000+02:00",
+        "started_at": "2019-04-14T21:00:00.000+02:00",
+        "finished_at": "2019-04-14T23:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -281,8 +281,8 @@
       "type": "broadcasts",
       "attributes": {
         "label": "Klangbecken",
-        "started_at": "2015-04-17T23:00:00.000+02:00",
-        "finished_at": "2015-04-18T08:00:00.000+02:00",
+        "started_at": "2019-04-14T23:00:00.000+02:00",
+        "finished_at": "2019-04-15T08:00:00.000+02:00",
         "people": "",
         "details": "",
         "audio_access": true
@@ -438,10 +438,10 @@
     "version": "1.0"
   },
   "links": {
-    "self": "http://localhost:4200/broadcasts/2015/04/17?page%5Bnumber%5D=1&page%5Bsize%5D=50",
-    "first": "http://localhost:4200/broadcasts/2015/04/17?page%5Bnumber%5D=1&page%5Bsize%5D=50",
+    "self": "http://localhost:4200/broadcasts/2019/04/14?page%5Bnumber%5D=1&page%5Bsize%5D=50",
+    "first": "http://localhost:4200/broadcasts/2019/04/14?page%5Bnumber%5D=1&page%5Bsize%5D=50",
     "prev": null,
     "next": null,
-    "last": "http://localhost:4200/broadcasts/2015/04/17?page%5Bnumber%5D=1&page%5Bsize%5D=50"
+    "last": "http://localhost:4200/broadcasts/2019/04/14?page%5Bnumber%5D=1&page%5Bsize%5D=50"
   }
 }

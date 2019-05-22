@@ -9,6 +9,7 @@ import {
   takeUntil
 } from "rxjs/operators";
 import * as moment from "moment";
+import { DateParamsService } from "../shared/services/date-params.service";
 
 const TODAY_UPDATE_INTERVAL = 60000;
 
@@ -93,8 +94,8 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   private navigateToDate(date: moment.Moment) {
     const url = this.dateRoute.snapshot.url.map(e => e.path);
     const year = date.year().toString();
-    const month = (date.month() + 1).toString();
-    const day = date.date().toString();
+    const month = DateParamsService.zeroPad(date.month() + 1);
+    const day = DateParamsService.zeroPad(date.date());
     if (url[0] !== year || url[1] !== month || url[2] !== day) {
       this.router.navigate([year, month, day]);
     }
