@@ -22,8 +22,8 @@ before_script:
   - export TZ=Europe/Zurich
 
 script:
-  - npm test:ci
-  - npm build:prod
+  - npm run test:ci
+  - npm run build:prod
   - npm run cy:ci
 
 before_deploy:
