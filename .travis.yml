@@ -22,8 +22,8 @@ before_script:
   - export TZ=Europe/Zurich
 
 script:
-  - ng test --watch=false --browsers=ChromeHeadlessNoSandbox
-  - ng build --prod --extra-webpack-config webpack.extra.js
+  - npm test:ci
+  - npm build:prod
   - npm run cy:ci
 
 before_deploy:

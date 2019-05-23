@@ -1,6 +1,3 @@
-import { datePath } from "../support/helpers";
-import { createVerify } from "crypto";
-
 const today = new Date("2019-04-15");
 
 beforeEach(() => {
@@ -74,7 +71,7 @@ describe("Broadcasts for show", () => {
   });
 
   it("loads more results on scroll", () => {
-    cy.visit("/show/415164569-klangbecken");
+    cy.visit("/show/415164569-klangbecken", { failOnStatusCode: false });
     cy.get("h2.title").should("contain", "Klangbecken");
     cy.get(".details").should("contain", "Musig ohni Gschnurr");
     cy.get("sd-shows a.list-group-item.active").should(

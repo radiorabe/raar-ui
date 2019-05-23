@@ -63,7 +63,7 @@ describe("Broadcasts", () => {
   });
 
   it("opens page for given date", () => {
-    cy.visit("/2019/04/14");
+    cy.visit("/2019/04/14", { failOnStatusCode: false });
     cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.get(".dp-selected").should("contain", "14");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 13);
