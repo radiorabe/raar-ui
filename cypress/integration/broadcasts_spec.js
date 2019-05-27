@@ -235,4 +235,39 @@ describe("Broadcasts", () => {
       1
     );
   });
+
+  it("searches broadcasts", () => {
+    cy.route({
+      method: "GET",
+      url: "/api/broadcasts?q=tru&sort=-started_at",
+      response: "fixture:broadcasts/query-tru.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "/api/broadcasts?q=true&sort=-started_at",
+      response: {
+        data: []
+      }
+    });
+
+    cy.visit("/");
+    cy.get("#search_query").type("tru");
+    cy.get("h2.title").should("contain", "Suchresultate für «tru»");
+    cy.url().should("include", "/search/tru");
+    cy.get("sd-broadcast").should("have.length", 6);
+    cy.get("h3.title").should("have.length", 4);
+
+    cy.get("#search_query").type("e");
+    cy.get("h2.title").should("contain", "Suchresultate für «true»");
+    cy.url().should("include", "/search/true");
+    cy.get(".content").should(
+      "contain",
+      "Für diesen Begriff konnten keine Resultate gefunden werden"
+    );
+
+    cy.get("sd-search .form-search .glyphicon-remove").click();
+    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.url().should("include", datePath(today));
+    cy.get("#search_query").should("have.value", "");
+  });
 });

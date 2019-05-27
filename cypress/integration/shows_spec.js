@@ -60,7 +60,7 @@ describe("Broadcasts for show", () => {
     cy.url().should("include", "/show/415164569-klangbecken");
 
     cy.get(
-      "sd-shows > .form-search > .form-control-feedback > .glyphicon"
+      "sd-shows > .form-search > .form-control-feedback > .glyphicon-remove"
     ).click();
     cy.get("#show_query").should("have.value", "");
     cy.get("sd-shows .list-group .list-group-item").should("have.length", 3);

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # compile code
-ng build --prod --extra-webpack-config webpack.extra.js || exit 1
+npm run build:prod || exit 1
 
 # build tarball
 (cd dist/raar-ui && gzip -kf *.{css,js} && tar czf ../raar-ui.tar.gz .)

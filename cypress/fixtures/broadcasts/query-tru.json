@@ -1,0 +1,202 @@
+{
+  "data": [
+    {
+      "id": "1018408156",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Info",
+        "started_at": "2019-03-20T11:00:00.000+01:00",
+        "finished_at": "2019-03-20T11:30:00.000+01:00",
+        "people": null,
+        "details": "Die neueste Folge von trumpwat.ch und die News vom 20. März 2019: &#160; Eine Auswahl der Monatschronik &#8211; 21. Februar bis 20. März 2019 21. Februar – Im Bundesstaat North Carolina müssen die Wahlen in einem bestimmten Wahldistrikt wiederholt werden. Es hat sich herausgestellt, dass es zu massiver Wahlfälschung gekommen ist. Der knappe Sieg des ... <span class=\"more\"><a class=\"more-link\" href=\"https://rabe.ch/2019/03/20/trumpwatch-26-monate-im-amt/\">></a></span>",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "193540442",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018408156"
+      }
+    },
+    {
+      "id": "1018408155",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Gschächnütschlimmers",
+        "started_at": "2019-02-13T20:00:00.000+01:00",
+        "finished_at": "2019-02-13T22:00:00.000+01:00",
+        "people": null,
+        "details": null,
+        "audio_access": false
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544268",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018408155"
+      }
+    },
+    {
+      "id": "1018408152",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Rabe Info",
+        "started_at": "2019-02-11T11:00:00.000+01:00",
+        "finished_at": "2019-02-11T11:30:00.000+01:00",
+        "people": null,
+        "details": "Der GAV der Schweizer Velokurier*innen ist ein europaweites Novum und geschlechtergerechte Formulierungen ein wichtiges Machtinstrument, um die Gleichstellung aller voranzutreiben. Dies zwei der Themen, welche heute im Rabe-Info im Fokus stehen. Den Podcast gibts hier:   Faire Arbeitsbedingungen für Velokurier*innen Sie sind bekannt für ihre roten Trikots und ihre halsbrecherischen Überholmanöver: Die Velokurier*innen sind aus ...",
+        "audio_access": true
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "193540442",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018408152"
+      }
+    },
+    {
+      "id": "1018408148",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "El Gato Calculista",
+        "started_at": "2017-02-03T19:00:00.000+01:00",
+        "finished_at": "2017-02-03T20:00:00.000+01:00",
+        "people": null,
+        "details": "asf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfas asf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s \n asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfasasf asdfasdfasdf asfasd fasd fasd fas s asdfasdfasdfas",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544312",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/1018408148"
+      }
+    },
+    {
+      "id": "361997813",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "G9S Shizzle Edition",
+        "started_at": "2013-05-20T20:00:00.000+02:00",
+        "finished_at": "2013-05-20T23:00:00.000+02:00",
+        "people": null,
+        "details": "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
+        "audio_access": false
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "894544268",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/361997813"
+      }
+    },
+    {
+      "id": "309712499",
+      "type": "broadcasts",
+      "attributes": {
+        "label": "Klangbecken",
+        "started_at": "2013-05-20T11:30:00.000+02:00",
+        "finished_at": "2013-05-20T20:00:00.000+02:00",
+        "people": null,
+        "details": null,
+        "audio_access": false
+      },
+      "relationships": {
+        "show": {
+          "data": {
+            "id": "415164569",
+            "type": "shows"
+          }
+        }
+      },
+      "links": {
+        "self": "/broadcasts/309712499"
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "193540442",
+      "type": "shows",
+      "attributes": {
+        "name": "Info",
+        "details": null,
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/193540442"
+      }
+    },
+    {
+      "id": "894544268",
+      "type": "shows",
+      "attributes": {
+        "name": "Geschäch9schlimmers",
+        "details": null,
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544268"
+      }
+    },
+    {
+      "id": "894544312",
+      "type": "shows",
+      "attributes": {
+        "name": "El Gato Calculista",
+        "details": "<p>Tangos, südamerikanische Musik, Literatur, Fussball und nützliche Tipps, um sich in der klebrigen Masse, die sich Welt nennt, einen Weg zu bahnen. Jeden Freitag von 19h bis 20h auf Radio RaBe.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/894544312"
+      }
+    },
+    {
+      "id": "415164569",
+      "type": "shows",
+      "attributes": {
+        "name": "Klangbecken",
+        "details": "<p>„Musig ohni Gschnurr drzwüsche“… wenn keine Sendung läuft, gibt’s das legendäre Klangbecken, das regelmässig vom RaBe-Musikredaktor mit neuer Musik gefüllt wird.</p>",
+        "audio_access": false
+      },
+      "links": {
+        "self": "/shows/415164569"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "links": {
+    "self": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=1&page%5Bsize%5D=50&q=tru&sort=-started_at",
+    "first": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=1&page%5Bsize%5D=50&q=tru&sort=-started_at",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/api/broadcasts?page%5Bnumber%5D=1&page%5Bsize%5D=50&q=tru&sort=-started_at"
+  }
+}
