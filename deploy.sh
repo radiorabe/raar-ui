@@ -3,9 +3,6 @@
 # compile code
 npm run build:prod || exit 1
 
-# build tarball
-(cd dist/raar-ui && gzip -kf *.{css,js} && tar czf ../raar-ui.tar.gz .)
-
 # upload archive
 scp dist/raar-ui.tar.gz raar@archiv:/var/www/raar-ui/raar-ui.new.tar.gz
 

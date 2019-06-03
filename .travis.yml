@@ -26,9 +26,6 @@ script:
   - npm run build:prod
   - npm run cy:ci
 
-before_deploy:
-  - cd dist/raar-ui && gzip -kf *.{css,js} && tar czf ../raar-ui.tar.gz .
-
 deploy:
   provider: releases
   api_key:
