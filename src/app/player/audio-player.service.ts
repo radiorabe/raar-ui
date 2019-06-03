@@ -156,7 +156,7 @@ export class AudioPlayerService {
 
   private getSoundOptions(url: string | void, position: number): any {
     return {
-      url: (isDevMode() ? "/api" : "") + url,
+      url: this.normalizeAudioUrl(url),
       volume: this._volume,
       position: position,
       autoLoad: true,
@@ -171,5 +171,9 @@ export class AudioPlayerService {
       //ondataerror: () => this._events.emit(PlayerEvents.AudioError),
       //whileplaying: () => this._events.emit(PlayerEvents.Time)
     };
+  }
+
+  private normalizeAudioUrl(url: string | void): string {
+    return (isDevMode() && url && !url.match(/^\/api/) ? "/api" : "") + url;
   }
 }

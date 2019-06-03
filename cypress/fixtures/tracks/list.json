@@ -1,0 +1,222 @@
+{
+  "data": [
+    {
+      "id": "117174",
+      "type": "tracks",
+      "attributes": {
+        "title": "The Dower",
+        "artist": "Autisti",
+        "started_at": "2019-04-15T11:00:03.000+01:00",
+        "finished_at": "2019-04-15T11:03:19.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117174"
+      }
+    },
+    {
+      "id": "117175",
+      "type": "tracks",
+      "attributes": {
+        "title": "Sole Mate",
+        "artist": "infinite bisous",
+        "started_at": "2019-04-15T11:03:46.000+01:00",
+        "finished_at": "2019-04-15T11:07:56.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117175"
+      }
+    },
+    {
+      "id": "117176",
+      "type": "tracks",
+      "attributes": {
+        "title": "Feelin Blue",
+        "artist": "Aldous RH",
+        "started_at": "2019-04-15T11:07:56.000+01:00",
+        "finished_at": "2019-04-15T11:10:53.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117176"
+      }
+    },
+    {
+      "id": "117177",
+      "type": "tracks",
+      "attributes": {
+        "title": "Stories",
+        "artist": "The Chakachas",
+        "started_at": "2019-04-15T11:10:56.000+01:00",
+        "finished_at": "2019-04-15T11:13:48.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117177"
+      }
+    },
+    {
+      "id": "117178",
+      "type": "tracks",
+      "attributes": {
+        "title": "Kong",
+        "artist": "The Notwist",
+        "started_at": "2019-04-15T11:13:48.000+01:00",
+        "finished_at": "2019-04-15T11:17:38.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117178"
+      }
+    },
+    {
+      "id": "117179",
+      "type": "tracks",
+      "attributes": {
+        "title": "I Won't Be Long",
+        "artist": "Kush K",
+        "started_at": "2019-04-15T11:17:58.000+01:00",
+        "finished_at": "2019-04-15T11:21:19.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117179"
+      }
+    },
+    {
+      "id": "117180",
+      "type": "tracks",
+      "attributes": {
+        "title": "La Trampa",
+        "artist": "Fumaça Preta",
+        "started_at": "2019-04-15T11:21:27.000+01:00",
+        "finished_at": "2019-04-15T11:24:07.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117180"
+      }
+    },
+    {
+      "id": "117181",
+      "type": "tracks",
+      "attributes": {
+        "title": "Thai Cumbia",
+        "artist": "Rolando Bruno",
+        "started_at": "2019-04-15T11:24:07.000+01:00",
+        "finished_at": "2019-04-15T11:27:47.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117181"
+      }
+    },
+    {
+      "id": "117182",
+      "type": "tracks",
+      "attributes": {
+        "title": "For the Cause",
+        "artist": "Poté",
+        "started_at": "2019-04-15T11:27:47.000+01:00",
+        "finished_at": "2019-04-15T11:31:36.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117182"
+      }
+    },
+    {
+      "id": "117183",
+      "type": "tracks",
+      "attributes": {
+        "title": "Cantando Ciranda Na Beira Do Mar",
+        "artist": "Siba",
+        "started_at": "2019-04-15T11:33:43.000+01:00",
+        "finished_at": "2019-04-15T11:38:42.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117183"
+      }
+    },
+    {
+      "id": "117184",
+      "type": "tracks",
+      "attributes": {
+        "title": "Sede de Paz",
+        "artist": "Musipere, Ana Vilela",
+        "started_at": "2019-04-15T11:39:12.000+01:00",
+        "finished_at": "2019-04-15T11:41:42.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117184"
+      }
+    },
+    {
+      "id": "117185",
+      "type": "tracks",
+      "attributes": {
+        "title": "Corredor Polonês",
+        "artist": "Boogarins",
+        "started_at": "2019-04-15T11:42:07.000+01:00",
+        "finished_at": "2019-04-15T11:46:07.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117185"
+      }
+    },
+    {
+      "id": "117186",
+      "type": "tracks",
+      "attributes": {
+        "title": "Doce Violeta",
+        "artist": "Winter & Triptides",
+        "started_at": "2019-04-15T11:46:08.000+01:00",
+        "finished_at": "2019-04-15T11:48:48.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117186"
+      }
+    },
+    {
+      "id": "117187",
+      "type": "tracks",
+      "attributes": {
+        "title": "Buscando",
+        "artist": "Dengue Dengue Dengue",
+        "started_at": "2019-04-15T11:52:30.000+01:00",
+        "finished_at": "2019-04-15T11:56:23.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117187"
+      }
+    },
+    {
+      "id": "117188",
+      "type": "tracks",
+      "attributes": {
+        "title": "Make Money",
+        "artist": "MINA",
+        "started_at": "2019-04-15T11:56:28.000+01:00",
+        "finished_at": "2019-04-15T11:59:38.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117188"
+      }
+    },
+    {
+      "id": "117189",
+      "type": "tracks",
+      "attributes": {
+        "title": "Tschädere",
+        "artist": "Dawill, Coco",
+        "started_at": "2019-04-15T11:59:38.000+01:00",
+        "finished_at": "2019-04-15T16:02:55.000+01:00"
+      },
+      "links": {
+        "self": "/tracks/117189"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "links": {
+    "self": "http://localhost:4200/api/tracks?broadcast_id=1018408146&page%5Bnumber%5D=1&page%5Bsize%5D=500&sort=started_at",
+    "first": "http://localhost:4200/api/tracks?broadcast_id=1018408146&page%5Bnumber%5D=1&page%5Bsize%5D=500&sort=started_at",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:4200/api/tracks?broadcast_id=1018408146&page%5Bnumber%5D=1&page%5Bsize%5D=500&sort=started_at"
+  }
+}
