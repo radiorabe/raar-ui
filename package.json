@@ -20,30 +20,30 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^7.2.14",
-    "@angular/common": "^7.2.14",
-    "@angular/compiler": "^7.2.14",
-    "@angular/core": "^7.2.14",
-    "@angular/forms": "^7.2.14",
-    "@angular/platform-browser": "^7.2.14",
-    "@angular/platform-browser-dynamic": "^7.2.14",
-    "@angular/router": "^7.2.14",
+    "@angular/animations": "^8.0.2",
+    "@angular/common": "^8.0.2",
+    "@angular/compiler": "^8.0.2",
+    "@angular/core": "^8.0.2",
+    "@angular/forms": "^8.0.2",
+    "@angular/platform-browser": "^8.0.2",
+    "@angular/platform-browser-dynamic": "^8.0.2",
+    "@angular/router": "^8.0.2",
     "bootstrap-sass": "^3.4.1",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
     "ng2-date-picker": "^2.11.0",
-    "ngx-build-plus": "^7.8.2",
+    "ngx-build-plus": "^8.0.3",
     "ngx-infinite-scroll": "^7.1.0",
-    "rxjs": "~6.3.3",
+    "rxjs": "~6.5.2",
     "soundmanager2": "^2.97.20170602",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.13.8",
-    "@angular/cli": "^7.3.8",
-    "@angular/compiler-cli": "^7.2.14",
-    "@angular/language-service": "^7.2.14",
+    "@angular-devkit/build-angular": "^0.800.3",
+    "@angular/cli": "^8.0.3",
+    "@angular/compiler-cli": "^8.0.2",
+    "@angular/language-service": "^8.0.2",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -63,6 +63,6 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.4.5"
   }
 }

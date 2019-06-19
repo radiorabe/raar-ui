@@ -10,7 +10,7 @@ import { UserModel } from "../models/user.model";
   templateUrl: "login.html"
 })
 export class LoginComponent {
-  @ViewChild("modal") modal: SmallModalComponent;
+  @ViewChild("modal", { static: true }) modal: SmallModalComponent;
 
   username: string;
   password: string;

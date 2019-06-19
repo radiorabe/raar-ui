@@ -19,8 +19,8 @@ export class SliderComponent {
   @Output() slidingEvent = new EventEmitter<number>();
   @Output() stopSlidingEvent = new EventEmitter<number>();
 
-  @ViewChild("handle") handleElement: ElementRef;
-  @ViewChild("current") currentElement: ElementRef;
+  @ViewChild("handle", { static: true }) handleElement: ElementRef;
+  @ViewChild("current", { static: true }) currentElement: ElementRef;
 
   private lastMove: number = new Date().getTime();
   private dragTimer: number;
