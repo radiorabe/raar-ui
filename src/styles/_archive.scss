@@ -116,6 +116,7 @@ sd-broadcast {
     tr > td {
       padding-top: 0px;
       padding-bottom: 6px;
+      padding-left: 6px;
       vertical-align: top;
     }
 
@@ -228,6 +229,12 @@ sd-broadcast {
           margin-left: -48px;
         }
       }
+    }
+  }
+
+  @media (min-width: $screen-lg-min) {
+    .tracklist {
+      clear: none;
     }
   }
 }
