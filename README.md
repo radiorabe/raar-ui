@@ -8,7 +8,7 @@ An Angular web client for the Radio Archive [RAAR](https://github.com/radiorabe/
 
 Run `npm install` to install all the dependencies.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. The backend API must be running on `http://localhost:3000/`. See https://github.com/radiorabe/raar for corresponding instructions.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. The backend API must be running on `http://localhost:3000/`. See https://github.com/radiorabe/raar for corresponding instructions. Otherwise, switch to `proxy-prod.conf.json` in `angular.json` to use the production backend (`archiv.rabe.ch`). Avoid modifying actions in this case!
 
 Run `ng serve` and `npm run cy:open` to open the Cypress test runner (browser tests) or `npm run cy:run` for a single run. The browser tests cover a good amount of the frontend's functionality.
 

@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://archiv.rabe.ch",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
