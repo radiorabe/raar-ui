@@ -12,6 +12,136 @@
     <meta http-equiv="Pragma" content="no-cache" />
 
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+    <style type="text/css">
+      /* All styles required for loading page */
+      @import url(https://fonts.googleapis.com/css?family=Fjalla+One|Roboto:500italic,500,300&subset=latin,latin-ext);
+
+      body {
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #333333;
+        background-color: #d8efdb;
+      }
+      a {
+        color: #00c9bf;
+        text-decoration: none;
+      }
+      a:hover, a:focus {
+        color: #00e1d4;
+        text-decoration: underline;
+      }
+      a:focus {
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+      }
+      #brand_loading {
+        width: 410px;
+        height: 600px;
+        position: absolute;
+        /*it can be fixed too*/
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        /*this to solve "the content will not be cut when the window is smaller than the content": */
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+      }
+      #brand_loading .brand {
+        font-size: 72px;
+        text-align: center;
+        font-family: "Fjalla One", sans-serif;
+      }
+      #brand_loading .brand small {
+        font-size: 18px;
+      }
+      #logo {
+        position: absolute;
+        top: 62px;
+        left: 30%;
+        width: 70%;
+      }
+      #spinner {
+        position: relative;
+        width: 100%;
+      }
+      #spinner .part {
+        -webkit-animation-name: fade;
+        animation-name: fade;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        fill: #222;
+        opacity: 0;
+      }
+      #spinner #part1 {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+      }
+      #spinner #part2 {
+        -webkit-animation-delay: 0.125s;
+        animation-delay: 0.125s;
+      }
+      #spinner #part3 {
+        -webkit-animation-delay: 0.25s;
+        animation-delay: 0.25s;
+      }
+      #spinner #part4 {
+        -webkit-animation-delay: 0.375s;
+        animation-delay: 0.375s;
+      }
+      #spinner #part5 {
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+      }
+      #spinner #part6 {
+        -webkit-animation-delay: 0.625s;
+        animation-delay: 0.625s;
+      }
+      #spinner #part7 {
+        -webkit-animation-delay: 0.75s;
+        animation-delay: 0.75s;
+      }
+      #spinner #part8 {
+        -webkit-animation-delay: 0.875s;
+        animation-delay: 0.875s;
+      }
+      @-webkit-keyframes fade {
+        0% {
+          opacity: 1;
+        }
+        25% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0.2;
+        }
+      }
+      @keyframes fade {
+        0% {
+          opacity: 1;
+        }
+        25% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0.2;
+        }
+      }
+    </style>
   </head>
   <body>
     <sd-app>
