@@ -1,0 +1,16 @@
+<div class="list-group-item view-day">
+  <h4 class="list-group-item-heading title" (click)="toggle()">
+    <a>
+      <span class="broadcast-date">
+        {{ date | dateString: "time" }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;
+      </span>
+      Laufendes Programm
+    </a>
+  </h4>
+
+  <div class="list-group-item-text fixclear" *ngIf="expanded">
+    <p>Siehe <a href="https://rabe.ch/programm/">RaBe Programm</a></p>
+    <sd-tracks [tracks]="tracks"></sd-tracks>
+  </div>
+</div>

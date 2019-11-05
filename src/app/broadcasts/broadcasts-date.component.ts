@@ -32,6 +32,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   broadcasts: BroadcastModel[] = [];
   loading: boolean = false;
   errorMessage: string | void;
+  lastTodaysBroadcastFinishedAt: Date | undefined;
 
   private readonly destroy$ = new Subject();
 
@@ -76,7 +77,10 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
         map((list: CrudList<BroadcastModel>) => list.entries),
         tap(() => (this.loading = false))
       )
-      .subscribe((list: BroadcastModel[]) => (this.broadcasts = list));
+      .subscribe((list: BroadcastModel[]) => {
+        this.broadcasts = list;
+        this.lastTodaysBroadcastFinishedAt = this.fetchLastTodaysBroadcastFinishedAt();
+      });
   }
 
   ngOnDestroy() {
@@ -118,6 +122,12 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
   }
 
+  isRunningExpanded(): boolean {
+    return this.dateWithTime && this.lastTodaysBroadcastFinishedAt
+      ? moment(this.dateWithTime).isSame(this.lastTodaysBroadcastFinishedAt)
+      : false;
+  }
+
   private navigateTo(date: Date) {
     this.router.navigate([
       date.getFullYear(),
@@ -139,6 +149,24 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   private getDateWithTime(params: RouteParams): Date | void {
     if (params["time"] && params["time"].length >= 4) {
       return DateParamsService.timeFromParams(params);
+    }
+  }
+
+  // Actually, today or yesterdays last broadcast
+  private fetchLastTodaysBroadcastFinishedAt(): Date | undefined {
+    const diff = moment(this.date).diff(moment(), "days");
+    if (diff === 0 || diff === -1) {
+      if (this.broadcasts.length) {
+        const last = this.broadcasts[this.broadcasts.length - 1];
+        if (
+          last.attributes.started_at.getHours() <=
+          last.attributes.finished_at.getHours()
+        ) {
+          return last.attributes.finished_at;
+        }
+      } else {
+        return this.date;
+      }
     }
   }
 

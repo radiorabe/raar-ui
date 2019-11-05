@@ -23,7 +23,6 @@ export class BroadcastComponent implements OnChanges {
   @Input() view: "month" | "day";
 
   loadingAudio: boolean = false;
-  loadingTracks: boolean = false;
 
   tracks: TrackModel[] = [];
 
@@ -78,13 +77,6 @@ export class BroadcastComponent implements OnChanges {
     return this.audioFiles && this.audioFiles.length > 0;
   }
 
-  isTrackPlaying(track: TrackModel): boolean {
-    const pos = this.audioPlayer.position;
-    return (
-      track.attributes.started_at <= pos && track.attributes.finished_at > pos
-    );
-  }
-
   private isBroadcastPlaying(): boolean {
     return (
       this.audioPlayer.audioFile &&
@@ -119,10 +111,8 @@ export class BroadcastComponent implements OnChanges {
 
   private fetchTracks() {
     if (!this.tracks.length) {
-      this.loadingTracks = true;
       this.tracksService
         .getListForBroadcast(this.broadcast)
-        .pipe(finalize(() => (this.loadingTracks = false)))
         .subscribe(list => (this.tracks = list.entries));
     }
   }

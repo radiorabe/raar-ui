@@ -12,18 +12,23 @@
 </nav>
 
 <h2 class="title">
-  <span class="mobile">{{ date | dateString: 'short' }}</span>
-  <span class="tablet">{{ date | dateString: 'date' }}</span>
+  <span class="mobile">{{ date | dateString: "short" }}</span>
+  <span class="tablet">{{ date | dateString: "date" }}</span>
 </h2>
 
 <div class="list-group" [class.loading]="loading">
   <sd-broadcast
-    *ngFor="let broadcast of broadcasts, trackBy: getCrudIdentifier"
+    *ngFor="let broadcast of broadcasts; trackBy: getCrudIdentifier"
     [broadcast]="broadcast"
-    [view]="'day'"
     [expanded]="isExpanded(broadcast)"
+    view="day"
   >
   </sd-broadcast>
+  <sd-running-broadcast
+    *ngIf="lastTodaysBroadcastFinishedAt"
+    [date]="lastTodaysBroadcastFinishedAt"
+    [expanded]="isRunningExpanded()"
+  ></sd-running-broadcast>
 </div>
 
 <p *ngIf="errorMessage" [class.loading]="loading">

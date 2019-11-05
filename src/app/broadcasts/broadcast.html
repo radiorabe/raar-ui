@@ -77,26 +77,11 @@
       <a (click)="loginWindow.show(true)">Login</a> an.
     </p>
 
-    <div *ngIf="tracks.length" class="tracklist">
-      <strong>Playlist</strong>
-      <br />
-      <ul [class.non-playable]="!isTracksPlayable()">
-        <li *ngFor="let track of tracks">
-          <a (click)="playTrack(track)" [class.active]="isTrackPlaying(track)">
-            <span class="glyphicon glyphicon-play-circle" aria-hidden="true">
-            </span
-            ><span class="track-time">
-              {{ track.attributes.started_at | dateString: "time" }}
-            </span>
-            <span class="track-info">
-              <span *ngIf="track.attributes.artist">
-                {{ track.attributes.artist }} –
-              </span>
-              {{ track.attributes.title }}
-            </span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <sd-tracks
+      [tracks]="tracks"
+      [playable]="isTracksPlayable()"
+      [playPosition]="audioPlayer.position"
+      (play)="playTrack($event)"
+    ></sd-tracks>
   </div>
 </div>

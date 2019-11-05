@@ -43,7 +43,8 @@ sd-broadcasts-show {
   }
 }
 
-sd-broadcast {
+sd-broadcast,
+sd-running-broadcast {
   .list-group-item {
     border: 0;
     padding: 0;

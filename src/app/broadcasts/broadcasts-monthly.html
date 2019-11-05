@@ -20,14 +20,17 @@
   (scrolled)="onScroll()"
   [class.loading]="loading"
 >
-  <div *ngFor="let month of months | async, trackBy: getMonthIdentifier">
+  <div *ngFor="let month of months | async; trackBy: getMonthIdentifier">
     <h3 class="title">{{ month }}</h3>
     <div class="list-group">
       <sd-broadcast
-        *ngFor="let broadcast of (monthlyBroadcasts | async)[month], trackBy: getCrudIdentifier"
+        *ngFor="
+          let broadcast of (monthlyBroadcasts | async)[month];
+          trackBy: getCrudIdentifier
+        "
         [broadcast]="broadcast"
-        [view]="'month'"
         [expanded]="isExpanded(broadcast)"
+        view="month"
       >
       </sd-broadcast>
     </div>
