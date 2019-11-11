@@ -1,0 +1,199 @@
+{
+  "data": [
+    {
+      "id": "140477",
+      "type": "tracks",
+      "attributes": {
+        "title": "Overland",
+        "artist": "I'm With Her",
+        "started_at": "2019-11-10T23:59:19.000+02:00",
+        "finished_at": "2019-04-15T00:02:41.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140477" }
+    },
+    {
+      "id": "140478",
+      "type": "tracks",
+      "attributes": {
+        "title": "Tempest Blues",
+        "artist": "The Last Internationale",
+        "started_at": "2019-04-15T00:02:48.000+02:00",
+        "finished_at": "2019-04-15T00:05:03.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140478" }
+    },
+    {
+      "id": "140479",
+      "type": "tracks",
+      "attributes": {
+        "title": "Florence-Jean",
+        "artist": "Damien Jurado",
+        "started_at": "2019-04-15T00:05:17.000+02:00",
+        "finished_at": "2019-04-15T00:07:39.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140479" }
+    },
+    {
+      "id": "140480",
+      "type": "tracks",
+      "attributes": {
+        "title": "All Reality is Virtual",
+        "artist": "Odd Beholder",
+        "started_at": "2019-04-15T00:07:46.000+02:00",
+        "finished_at": "2019-04-15T00:12:14.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140480" }
+    },
+    {
+      "id": "140481",
+      "type": "tracks",
+      "attributes": {
+        "title": "Diaspora",
+        "artist": "us \u0026 sparkles",
+        "started_at": "2019-04-15T00:12:20.000+02:00",
+        "finished_at": "2019-04-15T00:16:28.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140481" }
+    },
+    {
+      "id": "140482",
+      "type": "tracks",
+      "attributes": {
+        "title": "Back to the City",
+        "artist": "Gringo Star",
+        "started_at": "2019-04-15T00:16:36.000+02:00",
+        "finished_at": "2019-04-15T00:19:44.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140482" }
+    },
+    {
+      "id": "140483",
+      "type": "tracks",
+      "attributes": {
+        "title": "Chasing Shadows",
+        "artist": "John Turrell",
+        "started_at": "2019-04-15T00:19:47.000+02:00",
+        "finished_at": "2019-04-15T00:23:44.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140483" }
+    },
+    {
+      "id": "140484",
+      "type": "tracks",
+      "attributes": {
+        "title": "I Never Asked To Be Your Mountain",
+        "artist": "Beth Orton;The Chemical Brothers",
+        "started_at": "2019-04-15T00:24:04.000+02:00",
+        "finished_at": "2019-04-15T00:27:43.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140484" }
+    },
+    {
+      "id": "140485",
+      "type": "tracks",
+      "attributes": {
+        "title": "I'm Comin' Out",
+        "artist": "Shovels \u0026 Rope",
+        "started_at": "2019-04-15T00:27:48.000+02:00",
+        "finished_at": "2019-04-15T00:31:30.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140485" }
+    },
+    {
+      "id": "140486",
+      "type": "tracks",
+      "attributes": {
+        "title": "Crow",
+        "artist": "Forest Swords",
+        "started_at": "2019-04-15T00:31:33.000+02:00",
+        "finished_at": "2019-04-15T00:35:05.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140486" }
+    },
+    {
+      "id": "140487",
+      "type": "tracks",
+      "attributes": {
+        "title": "Active Balanced Rmx (feat. Mayer Hawthorne \u0026 Now On) [prod. Terry Cole]",
+        "artist": "Ozay Moore, Mayer Hawthorne, Now On, Terry Cole",
+        "started_at": "2019-04-15T00:35:27.000+02:00",
+        "finished_at": "2019-04-15T00:38:27.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140487" }
+    },
+    {
+      "id": "140488",
+      "type": "tracks",
+      "attributes": {
+        "title": "Tables Turn",
+        "artist": "Ian Fisher",
+        "started_at": "2019-04-15T00:38:30.000+02:00",
+        "finished_at": "2019-04-15T00:43:01.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140488" }
+    },
+    {
+      "id": "140489",
+      "type": "tracks",
+      "attributes": {
+        "title": "The Weight Is Gone",
+        "artist": "Albin Lee Meldau",
+        "started_at": "2019-04-15T00:43:09.000+02:00",
+        "finished_at": "2019-04-15T00:46:38.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140489" }
+    },
+    {
+      "id": "140490",
+      "type": "tracks",
+      "attributes": {
+        "title": "Dogspeed",
+        "artist": "Blyolk",
+        "started_at": "2019-04-15T00:46:47.000+02:00",
+        "finished_at": "2019-04-15T00:49:49.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140490" }
+    },
+    {
+      "id": "140491",
+      "type": "tracks",
+      "attributes": {
+        "title": "Comrades",
+        "artist": "Rodney Cromwell",
+        "started_at": "2019-04-15T00:50:27.000+02:00",
+        "finished_at": "2019-04-15T00:54:16.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140491" }
+    },
+    {
+      "id": "140492",
+      "type": "tracks",
+      "attributes": {
+        "title": "Tidal Wave",
+        "artist": "Portugal. The Man",
+        "started_at": "2019-04-15T00:54:19.000+02:00",
+        "finished_at": "2019-04-15T00:58:15.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140492" }
+    },
+    {
+      "id": "140493",
+      "type": "tracks",
+      "attributes": {
+        "title": "Home",
+        "artist": "Caribou",
+        "started_at": "2019-04-15T00:58:18.000+02:00",
+        "finished_at": "2019-04-15T01:00:53.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140493" }
+    }
+  ],
+  "jsonapi": { "version": "1.0" },
+  "links": {
+    "self": "https://archiv.rabe.ch/api/tracks?broadcast_id=19417\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "first": "https://archiv.rabe.ch/api/tracks?broadcast_id=19417\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "prev": null,
+    "next": null,
+    "last": "https://archiv.rabe.ch/api/tracks?broadcast_id=19417\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at"
+  }
+}

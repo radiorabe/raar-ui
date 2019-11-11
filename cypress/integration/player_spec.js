@@ -33,7 +33,9 @@ beforeEach(() => {
     }
   });
 
-  /* adjust once full network stubbing is available
+  /*
+  adjust once full network stubbing is available
+  https://github.com/cypress-io/cypress/pull/4176
 
   cy.fixture("audio_files/silence.mp3", "binary").as("audio");
   cy.route({

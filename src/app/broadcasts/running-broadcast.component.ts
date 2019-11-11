@@ -1,11 +1,10 @@
-import { Component, Input, OnChanges, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { TrackModel } from "../shared/models/index";
 import { TracksService } from "../shared/services/tracks.service";
 import * as moment from "moment";
-import { forkJoin, Observable, from } from "rxjs";
+import { forkJoin, Observable } from "rxjs";
 import { Router, ActivatedRoute } from "@angular/router";
 import { DateParamsService } from "../shared/services/date-params.service";
-import { mergeMap, toArray, concatMap } from "rxjs/operators";
 
 // Show the tracks for the currently running shows that
 // have not yet been imported into the archive.
@@ -47,7 +46,10 @@ export class RunningBroadcastComponent implements OnInit {
 
   private fetchTracksForMissingHours(): Observable<TrackModel[]>[] {
     const lastHour = moment(this.date);
-    const hours = moment().diff(lastHour, "hours");
+    const now = moment();
+    const hours = lastHour.isSame(now, "day")
+      ? now.diff(lastHour, "hours")
+      : 23 - lastHour.get("hour");
     const missingHours = Array.from(Array(hours + 1).keys());
     return missingHours.map(hour => {
       const date = lastHour

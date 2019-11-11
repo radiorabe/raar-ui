@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "id": "140633",
+      "type": "tracks",
+      "attributes": {
+        "title": "Schwarzer Block Girls",
+        "artist": "Guz",
+        "started_at": "2019-04-15T23:01:33.000+02:00",
+        "finished_at": "2019-04-15T23:04:50.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140633" }
+    },
+    {
+      "id": "140634",
+      "type": "tracks",
+      "attributes": {
+        "title": "You Will Die First",
+        "artist": "Insanity",
+        "started_at": "2019-04-15T23:04:52.000+02:00",
+        "finished_at": "2019-04-15T23:08:54.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140634" }
+    },
+    {
+      "id": "140635",
+      "type": "tracks",
+      "attributes": {
+        "title": "Don't Cling To Life",
+        "artist": "The Murder Capital",
+        "started_at": "2019-04-15T23:11:14.000+02:00",
+        "finished_at": "2019-04-15T23:13:37.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140635" }
+    },
+    {
+      "id": "140636",
+      "type": "tracks",
+      "attributes": {
+        "title": "Turnpike Gates",
+        "artist": "Lifetime",
+        "started_at": "2019-04-15T23:13:43.000+02:00",
+        "finished_at": "2019-04-15T23:15:56.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140636" }
+    },
+    {
+      "id": "140637",
+      "type": "tracks",
+      "attributes": {
+        "title": "Basket",
+        "artist": "Team Dresch",
+        "started_at": "2019-04-15T23:17:18.000+02:00",
+        "finished_at": "2019-04-15T23:20:21.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140637" }
+    },
+    {
+      "id": "140638",
+      "type": "tracks",
+      "attributes": {
+        "title": "Shine Down",
+        "artist": "Überyou",
+        "started_at": "2019-04-15T23:20:23.000+02:00",
+        "finished_at": "2019-04-15T23:23:47.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140638" }
+    },
+    {
+      "id": "140639",
+      "type": "tracks",
+      "attributes": {
+        "title": "Rockers, Punks \u0026 Zeros",
+        "artist": "Tight Finks",
+        "started_at": "2019-04-15T23:26:32.000+02:00",
+        "finished_at": "2019-04-15T23:30:05.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140639" }
+    },
+    {
+      "id": "140640",
+      "type": "tracks",
+      "attributes": {
+        "title": "Six Wave Hold-Down",
+        "artist": "Hot Snakes",
+        "started_at": "2019-04-15T23:30:13.000+02:00",
+        "finished_at": "2019-04-15T23:33:27.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140640" }
+    },
+    {
+      "id": "140641",
+      "type": "tracks",
+      "attributes": {
+        "title": "Im Taxi weinen",
+        "artist": "Kettcar",
+        "started_at": "2019-04-15T23:36:15.000+02:00",
+        "finished_at": "2019-04-15T23:40:09.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140641" }
+    },
+    {
+      "id": "140642",
+      "type": "tracks",
+      "attributes": {
+        "title": "Cop Cars",
+        "artist": "Exploited",
+        "started_at": "2019-04-15T23:41:38.000+02:00",
+        "finished_at": "2019-04-15T23:43:25.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140642" }
+    },
+    {
+      "id": "140643",
+      "type": "tracks",
+      "attributes": {
+        "title": "Side Effects",
+        "artist": "The Bronx",
+        "started_at": "2019-04-15T23:43:26.000+02:00",
+        "finished_at": "2019-04-15T23:46:47.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140643" }
+    },
+    {
+      "id": "140644",
+      "type": "tracks",
+      "attributes": {
+        "title": "Mein Baby war beim Frisör",
+        "artist": "Die Ärzte",
+        "started_at": "2019-04-15T23:46:47.000+02:00",
+        "finished_at": "2019-04-15T23:49:01.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140644" }
+    },
+    {
+      "id": "140645",
+      "type": "tracks",
+      "attributes": {
+        "title": "Goin' Away Girl",
+        "artist": "Beat Man Zeller, The Seniles",
+        "started_at": "2019-04-15T23:49:03.000+02:00",
+        "finished_at": "2019-04-15T23:51:46.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140645" }
+    },
+    {
+      "id": "140646",
+      "type": "tracks",
+      "attributes": {
+        "title": "Pour Some Sugar On Me",
+        "artist": "Def Leppard",
+        "started_at": "2019-04-15T23:55:47.000+02:00",
+        "finished_at": "2019-04-16T00:00:01.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140646" }
+    }
+  ],
+  "jsonapi": { "version": "1.0" },
+  "links": {
+    "self": "https://archiv.rabe.ch/api/tracks?broadcast_id=19418\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "first": "https://archiv.rabe.ch/api/tracks?broadcast_id=19418\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "prev": null,
+    "next": null,
+    "last": "https://archiv.rabe.ch/api/tracks?broadcast_id=19418\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at"
+  }
+}

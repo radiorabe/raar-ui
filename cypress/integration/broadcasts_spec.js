@@ -122,13 +122,28 @@ describe("Broadcasts", () => {
       .find(".glyphicon-lock")
       .should("not.exist");
 
+    // der morgen
+    cy.route({
+      method: "GET",
+      url: "/api/tracks?broadcast_id=1018401628*",
+      response: "fixture:tracks/list.json"
+    });
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) h4").click();
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text")
       .should("contain", "Du hast keinen Zugriff")
       .find(".audio-links tr")
       .should("not.exist");
     cy.url().should("include", datePath(today) + ";time=0800");
+    cy.get(".tracklist li").should("have.length", 16);
+    cy.get(".tracklist li:first-child").should("contain", "Autisti");
+    cy.get(".tracklist ul.non-playable").should("exist");
 
+    // info
+    cy.route({
+      method: "GET",
+      url: "/api/tracks?broadcast_id=1018401629*",
+      response: "fixture:tracks/list.json"
+    });
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
     cy.get(
       "sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text"
@@ -138,6 +153,8 @@ describe("Broadcasts", () => {
       .find(".audio-links tr")
       .should("have.length", 2);
     cy.url().should("include", datePath(today) + ";time=1100");
+    cy.get(".tracklist li").should("have.length", 16);
+    cy.get(".tracklist ul.non-playable").should("not.exist");
   });
 
   it("reloads page after login", () => {

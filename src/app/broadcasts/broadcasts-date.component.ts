@@ -66,7 +66,10 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
             .asObservable()
             .pipe(withLatestFrom(dateObservable, (_, date) => date))
         ),
-        tap(() => (this.loading = true)),
+        tap(() => {
+          this.loading = true;
+          this.lastTodaysBroadcastFinishedAt = undefined;
+        }),
         debounceTime(200),
         switchMap((date: Date) =>
           this.broadcastsService.getListForDate(date).pipe(

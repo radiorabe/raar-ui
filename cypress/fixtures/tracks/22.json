@@ -1,0 +1,188 @@
+{
+  "data": [
+    {
+      "id": "140617",
+      "type": "tracks",
+      "attributes": {
+        "title": "Got The Time",
+        "artist": "Anthrax",
+        "started_at": "2019-04-15T21:59:08.000+02:00",
+        "finished_at": "2019-04-15T22:01:47.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140617" }
+    },
+    {
+      "id": "140618",
+      "type": "tracks",
+      "attributes": {
+        "title": "In The Air",
+        "artist": "The Next Movement",
+        "started_at": "2019-04-15T22:06:22.000+02:00",
+        "finished_at": "2019-04-15T22:09:58.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140618" }
+    },
+    {
+      "id": "140619",
+      "type": "tracks",
+      "attributes": {
+        "title": "Reaction",
+        "artist": "From Ashes Rise",
+        "started_at": "2019-04-15T22:10:00.000+02:00",
+        "finished_at": "2019-04-15T22:13:12.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140619" }
+    },
+    {
+      "id": "140620",
+      "type": "tracks",
+      "attributes": {
+        "title": "Rocket Man (I Think It's Going To Be A Long Long Time)",
+        "artist": "Elton John",
+        "started_at": "2019-04-15T22:13:53.000+02:00",
+        "finished_at": "2019-04-15T22:18:22.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140620" }
+    },
+    {
+      "id": "140621",
+      "type": "tracks",
+      "attributes": {
+        "title": "Birthdays",
+        "artist": "The Smith Street Band",
+        "started_at": "2019-04-15T22:18:29.000+02:00",
+        "finished_at": "2019-04-15T22:21:56.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140621" }
+    },
+    {
+      "id": "140622",
+      "type": "tracks",
+      "attributes": {
+        "title": "Love Song",
+        "artist": "The Damned",
+        "started_at": "2019-04-15T22:21:59.000+02:00",
+        "finished_at": "2019-04-15T22:24:17.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140622" }
+    },
+    {
+      "id": "140623",
+      "type": "tracks",
+      "attributes": {
+        "title": "No One Knows",
+        "artist": "Queens of the Stone Age",
+        "started_at": "2019-04-15T22:24:19.000+02:00",
+        "finished_at": "2019-04-15T22:28:56.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140623" }
+    },
+    {
+      "id": "140624",
+      "type": "tracks",
+      "attributes": {
+        "title": "Mate Ka Moris Ukun Rasik An",
+        "artist": "Propagandhi",
+        "started_at": "2019-04-15T22:29:00.000+02:00",
+        "finished_at": "2019-04-15T22:31:56.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140624" }
+    },
+    {
+      "id": "140625",
+      "type": "tracks",
+      "attributes": {
+        "title": "By Myself",
+        "artist": "SOLID GROUND",
+        "started_at": "2019-04-15T22:32:03.000+02:00",
+        "finished_at": "2019-04-15T22:33:52.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140625" }
+    },
+    {
+      "id": "140626",
+      "type": "tracks",
+      "attributes": {
+        "title": "New Direction",
+        "artist": "Gorilla Biscuits",
+        "started_at": "2019-04-15T22:33:53.000+02:00",
+        "finished_at": "2019-04-15T22:36:18.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140626" }
+    },
+    {
+      "id": "140627",
+      "type": "tracks",
+      "attributes": {
+        "title": "By the Sea",
+        "artist": "Modern Life Is War",
+        "started_at": "2019-04-15T22:36:20.000+02:00",
+        "finished_at": "2019-04-15T22:39:59.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140627" }
+    },
+    {
+      "id": "140628",
+      "type": "tracks",
+      "attributes": {
+        "title": "Was Du sagst ist was Du wählst",
+        "artist": "Casanovas schwule Seite",
+        "started_at": "2019-04-15T22:40:40.000+02:00",
+        "finished_at": "2019-04-15T22:42:58.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140628" }
+    },
+    {
+      "id": "140629",
+      "type": "tracks",
+      "attributes": {
+        "title": "Fever",
+        "artist": "Antillectual",
+        "started_at": "2019-04-15T22:43:00.000+02:00",
+        "finished_at": "2019-04-15T22:45:46.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140629" }
+    },
+    {
+      "id": "140630",
+      "type": "tracks",
+      "attributes": {
+        "title": "Delmenhorst",
+        "artist": "Element Of Crime",
+        "started_at": "2019-04-15T22:50:53.000+02:00",
+        "finished_at": "2019-04-15T22:54:45.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140630" }
+    },
+    {
+      "id": "140631",
+      "type": "tracks",
+      "attributes": {
+        "title": "Wenn man morgens aufwacht (Und nix tut einem weh dann ist man tot)",
+        "artist": "Lulu \u0026 Die Einhornfarm",
+        "started_at": "2019-04-15T22:54:45.000+02:00",
+        "finished_at": "2019-04-15T22:57:23.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140631" }
+    },
+    {
+      "id": "140632",
+      "type": "tracks",
+      "attributes": {
+        "title": "Filmriss",
+        "artist": "Knochenfabrik",
+        "started_at": "2019-04-15T22:57:24.000+02:00",
+        "finished_at": "2019-04-15T22:59:17.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140632" }
+    }
+  ],
+  "jsonapi": { "version": "1.0" },
+  "links": {
+    "self": "https://archiv.rabe.ch/api/tracks?broadcast_id=19418\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "first": "https://archiv.rabe.ch/api/tracks?broadcast_id=19418\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "prev": null,
+    "next": null,
+    "last": "https://archiv.rabe.ch/api/tracks?broadcast_id=19418\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at"
+  }
+}
