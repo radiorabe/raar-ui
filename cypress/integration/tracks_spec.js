@@ -66,7 +66,7 @@ describe("Tracks", () => {
       response: "fixture:tracks/23.json"
     });
 
-    cy.visit("/2019/04/15;time=2100");
+    cy.visit("/2019/04/15;time=2100", { failOnStatusCode: false });
     cy.get("h2.title").should("contain", "Montag 15. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);

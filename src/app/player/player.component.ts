@@ -128,7 +128,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     this.broadcastsService
       .getForTime(time)
       .pipe(filter(Boolean))
-      .subscribe(broadcast => {
+      .subscribe((broadcast: BroadcastModel) => {
         this.findAndPlayAudio(broadcast, time, codec, playbackFormat);
       });
   }
