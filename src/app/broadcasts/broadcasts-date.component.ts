@@ -161,10 +161,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     if (diff === 0 || diff === -1) {
       if (this.broadcasts.length) {
         const last = this.broadcasts[this.broadcasts.length - 1];
-        if (
-          last.attributes.started_at.getHours() <=
-          last.attributes.finished_at.getHours()
-        ) {
+        if (last.attributes.finished_at.getDate() === this.date.getDate()) {
           return last.attributes.finished_at;
         }
       } else {
