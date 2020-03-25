@@ -116,20 +116,23 @@ export class PlayerComponent implements OnInit, OnDestroy {
   private handleRouteParams(params: Params): void {
     if (params["time"] && params["play"] && params["format"]) {
       const time = DateParamsService.timeFromParams(params);
-      this.findAndPlayBroadcast(time, params["format"], params["play"]);
+      // Most browser prevent autoplay on load. Do not even try
+      // so the play button is displayed correctly.
+      this.findAndPlayBroadcast(time, params["format"], params["play"], false);
     }
   }
 
   private findAndPlayBroadcast(
     time: Date,
     codec: string,
-    playbackFormat: string
+    playbackFormat: string,
+    autoplay: boolean = true
   ): void {
     this.broadcastsService
       .getForTime(time)
       .pipe(filter(Boolean))
       .subscribe((broadcast: BroadcastModel) => {
-        this.findAndPlayAudio(broadcast, time, codec, playbackFormat);
+        this.findAndPlayAudio(broadcast, time, codec, playbackFormat, autoplay);
       });
   }
 
@@ -137,7 +140,8 @@ export class PlayerComponent implements OnInit, OnDestroy {
     broadcast: BroadcastModel,
     time: Date,
     codec: string,
-    playbackFormat: string
+    playbackFormat: string,
+    autoplay: boolean = true
   ): void {
     this.audioFilesService.getListForBroadcast(broadcast).subscribe(files => {
       let audio = files.entries.find(file => {
@@ -147,7 +151,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
         );
       });
       if (!audio) audio = files.entries[0];
-      if (audio) this.player.play(audio, time);
+      if (audio) this.player.play(audio, time, autoplay);
     });
   }
 }

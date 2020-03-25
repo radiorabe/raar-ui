@@ -15,14 +15,14 @@ export class AudioPlayerService {
     return this._audioFile;
   }
 
-  play(audioFile?: AudioFileModel, time?: Date) {
+  play(audioFile?: AudioFileModel, time?: Date, autoplay: boolean = true) {
     if (audioFile && audioFile !== this._audioFile) {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
-      const pos = time ? this.timeToPosition(time) : 0;
       this._audio = (<any>window).soundManager.createSound(
-        this.getSoundOptions(audioFile.links.play, pos)
+        this.getSoundOptions(audioFile.links.play, autoplay)
       );
+      if (time) this.setPosition(time);
     } else if (this._audio) {
       if (time) this.setPosition(time);
       if (!this.playing) this._audio.play();
@@ -154,22 +154,23 @@ export class AudioPlayerService {
     return this._audioFile.relationships.broadcast!.attributes;
   }
 
-  private getSoundOptions(url: string | void, position: number): any {
+  private getSoundOptions(url: string | void, autoplay: boolean = true): any {
     return {
       url: this.normalizeAudioUrl(url),
       volume: this._volume,
-      position: position,
       autoLoad: true,
-      autoPlay: true,
+      autoPlay: autoplay,
       onfinish: () => this._events.emit(PlayerEvents.Finish),
       onpause: () => this._events.emit(PlayerEvents.Pause),
       onplay: () => this._events.emit(PlayerEvents.Play),
       onresume: () => this._events.emit(PlayerEvents.PlayResume),
-      onstop: () => this._events.emit(PlayerEvents.Stop)
-      //onload: () => this._events.emit(PlayerEvents.BufferingStart),
-      //onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
-      //ondataerror: () => this._events.emit(PlayerEvents.AudioError),
-      //whileplaying: () => this._events.emit(PlayerEvents.Time)
+      onstop: () => this._events.emit(PlayerEvents.Stop),
+      // onload: () => this._events.emit(PlayerEvents.BufferingStart),
+      // onbufferchange: () => this._events.emit(PlayerEvents.BufferingStart),
+      // whileplaying: () => this._events.emit(PlayerEvents.Time),
+      onfailure: () => this._events.emit(PlayerEvents.Failure),
+      onerror: () => this._events.emit(PlayerEvents.Error),
+      ondataerror: () => this._events.emit(PlayerEvents.AudioError)
     };
   }
 

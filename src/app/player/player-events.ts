@@ -15,4 +15,6 @@ export class PlayerEvents {
   public static NoProtocol = 14;
   public static NoConnection = 15;
   public static Volume = 16;
+  public static Failure = 17;
+  public static Error = 18;
 }
