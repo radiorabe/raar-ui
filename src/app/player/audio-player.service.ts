@@ -1,10 +1,11 @@
-import { EventEmitter, isDevMode } from "@angular/core";
+import { EventEmitter, isDevMode, Injectable } from "@angular/core";
 import { AudioFileModel } from "../shared/models/audio-file.model";
 import { PlayerEvents } from "./player-events";
 import { Observable } from "rxjs";
 import { BroadcastModel } from "../shared/models/broadcast.model";
 import * as moment from "moment";
 
+@Injectable()
 export class AudioPlayerService {
   private _audio: any;
   private _audioFile: AudioFileModel;

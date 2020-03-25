@@ -1,12 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  Renderer,
-  ElementRef,
-  EventEmitter,
-  ViewChild
-} from "@angular/core";
+import { Component, Input, Output, ElementRef, EventEmitter, ViewChild, Renderer2 } from "@angular/core";
 
 @Component({
   selector: "sd-slider",
@@ -25,7 +17,7 @@ export class SliderComponent {
   private lastMove: number = new Date().getTime();
   private dragTimer: number;
 
-  constructor(private el: ElementRef, private renderer: Renderer) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   startSliding(e: any) {
     // deny dragging and selecting
@@ -110,16 +102,8 @@ export class SliderComponent {
   }
 
   private updateView() {
-    this.renderer.setElementStyle(
-      this.handleElement.nativeElement,
-      "left",
-      this.percent + "%"
-    );
-    this.renderer.setElementStyle(
-      this.currentElement.nativeElement,
-      "width",
-      this.percent + "%"
-    );
+    this.renderer.setStyle(this.handleElement.nativeElement, "left", this.percent + "%");
+    this.renderer.setStyle(this.currentElement.nativeElement, "width", this.percent + "%");
   }
 
   private stopEvent(e: any) {
