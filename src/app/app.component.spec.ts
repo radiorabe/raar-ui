@@ -1,9 +1,9 @@
-import { TestBed, async } from "@angular/core/testing";
+import { TestBed, waitForAsync } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
 import { AppModule } from "./app.module";
 
 describe("Archive component", () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [AppModule]
     }).compileComponents();

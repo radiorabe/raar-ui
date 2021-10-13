@@ -24,8 +24,7 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/.htaccess", "src/assets"],
             "styles": ["src/styles/main.scss"],
-            "scripts": ["node_modules/soundmanager2/script/soundmanager2.js"],
-            "es5BrowserSupport": true
+            "scripts": ["node_modules/soundmanager2/script/soundmanager2.js"]
           },
           "configurations": {
             "production": {
@@ -38,7 +37,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,

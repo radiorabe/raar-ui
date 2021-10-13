@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .pager a {
   margin-left: 5px;
 
@@ -28,12 +30,12 @@
   opacity: 1;
   position: fixed;
   bottom: -100px;
-  right: $grid-gutter-width / 2;
+  right: math.div($grid-gutter-width, 2);
   width: 350px;
   max-height: 200px;
 
   &.display {
-    bottom: $grid-gutter-width / 2;
+    bottom: math.div($grid-gutter-width, 2);
     transition: bottom 0.5s;
   }
 
