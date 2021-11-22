@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+env:
+  TZ: Europe/Zurich
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          config: video=false
+          build: npm run build:prod
+          start: npm run cy:ci
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
