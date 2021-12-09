@@ -1,6 +1,6 @@
 # Raar-Ui
 
-[![Build Status](https://app.travis-ci.com/radiorabe/raar-ui.svg?branch=master)](https://app.travis-ci.com/github/radiorabe/raar-ui)
+[![Build Status](https://github.com/radiorabe/raar-ui/actions/workflows/build.yml/badge.svg)](https://github.com/radiorabe/raar-ui/actions/workflows/build.yml)
 
 An Angular web client for the Radio Archive [RAAR](https://github.com/radiorabe/raar).
 
