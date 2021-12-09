@@ -1,48 +1,40 @@
-const today = new Date("2019-04-15");
-
-beforeEach(() => {
-  cy.clock(today.getTime(), ["Date"]);
-  cy.server({ force404: true });
-  cy.route({
-    method: "GET",
-    url: "/api/login",
-    response: "fixture:login/failed.json",
-    status: 401
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/shows/415164569",
-    response: "fixture:shows/klangbecken.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page[size]=100",
-    response: "fixture:shows/current.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/broadcasts?show_id=415164569&sort=-started_at",
-    response: "fixture:broadcasts/klangbecken-1.json"
-  });
-  cy.route({
-    method: "GET",
-    url:
-      "/api/broadcasts?page[number]=2&page[size]=50&show_id=415164569&sort=-started_at",
-    response: "fixture:broadcasts/klangbecken-2.json"
-  });
-});
-
 describe("Broadcasts for show", () => {
-  it("finds shows on type", () => {
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts/2019/04/15",
-      response: "fixture:broadcasts/monday.json"
+  const today = new Date("2019-04-15");
+
+  beforeEach(() => {
+    cy.clock(today.getTime(), ["Date"]);
+    cy.intercept("GET", "/api/login", {
+      fixture: "login/failed.json",
+      statusCode: 401,
     });
-    cy.route({
-      method: "GET",
-      url: "/api/shows?q=klang&sort=name",
-      response: "fixture:shows/query-klang.json"
+    cy.intercept("GET", "/api/shows/415164569", {
+      fixture: "shows/klangbecken.json",
+    });
+    cy.intercept(
+      "GET",
+      "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
+      {
+        fixture: "shows/current.json",
+      }
+    );
+    cy.intercept("GET", "/api/broadcasts?show_id=415164569&sort=-started_at", {
+      fixture: "broadcasts/klangbecken-1.json",
+    });
+    cy.intercept(
+      "GET",
+      "/api/broadcasts?page%5Bnumber%5D=2&page%5Bsize%5D=50&show_id=415164569&sort=-started_at",
+      {
+        fixture: "broadcasts/klangbecken-2.json",
+      }
+    );
+  });
+
+  it("finds shows on type", () => {
+    cy.intercept("GET", "/api/broadcasts/2019/04/15", {
+      fixture: "broadcasts/monday.json",
+    });
+    cy.intercept("GET", "/api/shows?q=klang&sort=name", {
+      fixture: "shows/query-klang.json",
     });
 
     cy.visit("/");

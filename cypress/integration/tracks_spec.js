@@ -1,32 +1,27 @@
 import { datePath } from "../support/helpers";
 
-beforeEach(() => {
-  cy.server({ force404: true });
-  cy.route({
-    method: "GET",
-    url: "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page[size]=100",
-    response: "fixture:shows/current.json"
-  });
-});
-
 describe("Tracks", () => {
+  beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
+      {
+        fixture: "shows/current.json",
+      }
+    );
+  });
+
   it("shows running tracks in the middle of day", () => {
     const now = new Date("2019-04-15T22:55:01");
     cy.clock(now.getTime(), ["Date"]);
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts/2019/04/15",
-      response: "fixture:broadcasts/monday.json"
+    cy.intercept("GET", "/api/broadcasts/2019/04/15", {
+      fixture: "broadcasts/monday.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/21*",
-      response: "fixture:tracks/21.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/21*", {
+      fixture: "tracks/21.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/22*",
-      response: "fixture:tracks/22.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/22*", {
+      fixture: "tracks/22.json",
     });
 
     cy.visit("/");
@@ -45,25 +40,17 @@ describe("Tracks", () => {
   it("shows running tracks at the end of yesterday", () => {
     const now = new Date("2019-04-16T03:22:01");
     cy.clock(now.getTime(), ["Date"]);
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts/2019/04/15",
-      response: "fixture:broadcasts/monday.json"
+    cy.intercept("GET", "/api/broadcasts/2019/04/15", {
+      fixture: "broadcasts/monday.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/21*",
-      response: "fixture:tracks/21.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/21*", {
+      fixture: "tracks/21.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/22*",
-      response: "fixture:tracks/22.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/22*", {
+      fixture: "tracks/22.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/23*",
-      response: "fixture:tracks/23.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/23*", {
+      fixture: "tracks/23.json",
     });
 
     cy.visit("/2019/04/15;time=2100", { failOnStatusCode: false });
@@ -81,22 +68,16 @@ describe("Tracks", () => {
   it("shows latest tracks at the beginning of today", () => {
     const now = new Date("2019-04-15T01:45:01");
     cy.clock(now.getTime(), ["Date"]);
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts/2019/04/15",
-      response: {
-        data: []
-      }
+    cy.intercept("GET", "/api/broadcasts/2019/04/15", {
+      body: {
+        data: [],
+      },
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/00*",
-      response: "fixture:tracks/00.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/00*", {
+      fixture: "tracks/00.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/tracks/2019/04/15/01*",
-      response: "fixture:tracks/01.json"
+    cy.intercept("GET", "/api/tracks/2019/04/15/01*", {
+      fixture: "tracks/01.json",
     });
 
     cy.visit("/");

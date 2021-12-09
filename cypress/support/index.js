@@ -18,3 +18,13 @@ import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on("uncaught:exception", (err, runnable, promise) => {
+  if (promise) {
+    return false;
+  }
+});
+
+beforeEach(() => {
+  cy.intercept("/api/**", { statusCode: 404, body: "Cypress forced 404" });
+});

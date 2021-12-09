@@ -1,52 +1,36 @@
-const today = new Date("2019-04-15");
-const yesterday = new Date("2019-04-14");
-
-beforeEach(() => {
-  cy.clock(today.getTime(), ["Date"]);
-  cy.server({ force404: true });
-  cy.route({
-    method: "GET",
-    url: "/api/login",
-    response: "fixture:login/failed.json",
-    status: 401
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page[size]=100",
-    response: "fixture:shows/current.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/broadcasts/2019/04/15",
-    response: "fixture:broadcasts/monday.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/broadcasts/1018401629/audio_files*",
-    response: "fixture:audio_files/info.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/tracks*",
-    response: {
-      data: []
-    }
-  });
-
-  /*
-  adjust once full network stubbing is available
-  https://github.com/cypress-io/cypress/pull/4176
-
-  cy.fixture("audio_files/silence.mp3", "binary").as("audio");
-  cy.route({
-    method: "GET",
-    url: "/api/audio_files/2019/04/15/110000_high.mp3",
-    response: "@audio"
-  });
-  */
-});
-
 describe("Player", () => {
+  const today = new Date("2019-04-15");
+  const yesterday = new Date("2019-04-14");
+
+  beforeEach(() => {
+    cy.clock(today.getTime(), ["Date"]);
+    cy.intercept("GET", "/api/login", {
+      fixture: "login/failed.json",
+      statusCode: 401,
+    });
+    cy.intercept(
+      "GET",
+      "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
+      {
+        fixture: "shows/current.json",
+      }
+    );
+    cy.intercept("GET", "/api/broadcasts/2019/04/15", {
+      fixture: "broadcasts/monday.json",
+    });
+    cy.intercept("GET", "/api/broadcasts/1018401629/audio_files*", {
+      fixture: "audio_files/info.json",
+    });
+    cy.intercept("GET", "/api/tracks*", {
+      body: {
+        data: [],
+      },
+    });
+    cy.fixture("audio_files/silence.mp3", "binary").then((audio) => {
+      cy.intercept("GET", "/api/audio_files/2019/04/15/110000_high.mp3", audio);
+    });
+  });
+
   it("plays audio for broadcast", () => {
     cy.visit("/");
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4")

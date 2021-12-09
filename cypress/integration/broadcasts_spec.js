@@ -1,47 +1,38 @@
 import { datePath } from "../support/helpers";
 
-const today = new Date("2019-04-15");
-const yesterday = new Date("2019-04-14");
-
-beforeEach(() => {
-  cy.clock(today.getTime(), ["Date"]);
-  cy.server({ force404: true });
-  cy.route({
-    method: "GET",
-    url: "/api/login",
-    response: "fixture:login/failed.json",
-    status: 401
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page[size]=100",
-    response: "fixture:shows/current.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/broadcasts/2019/04/15",
-    response: "fixture:broadcasts/monday.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/broadcasts/2019/04/14",
-    response: "fixture:broadcasts/sunday.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/broadcasts/1018401629/audio_files*",
-    response: "fixture:audio_files/info.json"
-  });
-  cy.route({
-    method: "GET",
-    url: "/api/tracks*",
-    response: {
-      data: []
-    }
-  });
-});
-
 describe("Broadcasts", () => {
+  const today = new Date("2019-04-15");
+  const yesterday = new Date("2019-04-14");
+
+  beforeEach(() => {
+    cy.clock(today.getTime(), ["Date"]);
+    cy.intercept("GET", "/api/login", {
+      fixture: "login/failed.json",
+      statusCode: 401,
+    });
+    cy.intercept(
+      "GET",
+      "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
+      {
+        fixture: "shows/current.json",
+      }
+    );
+    cy.intercept("GET", "/api/broadcasts/2019/04/15", {
+      fixture: "broadcasts/monday.json",
+    });
+    cy.intercept("GET", "/api/broadcasts/2019/04/14", {
+      fixture: "broadcasts/sunday.json",
+    });
+    cy.intercept("GET", "/api/broadcasts/1018401629/audio_files*", {
+      fixture: "audio_files/info.json",
+    });
+    cy.intercept("GET", "/api/tracks*", {
+      body: {
+        data: [],
+      },
+    });
+  });
+
   it("navigates date back and forth", () => {
     cy.visit("/");
     cy.get("h2.title").should("contain", "Montag 15. April 2019");
@@ -76,21 +67,17 @@ describe("Broadcasts", () => {
 
   it("navigates over datepicker", () => {
     cy.visit("/");
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts/2018/10/05",
-      response: {
-        data: []
-      }
+    cy.intercept("GET", "/api/broadcasts/2018/10/05", {
+      body: {
+        data: [],
+      },
     });
 
     cy.get(".dp-nav-header-btn").click();
     cy.get('[data-date="01-02-2019"]').should("contain", "Feb");
     cy.get(".dp-calendar-nav-left").click();
     cy.get(".dp-nav-header-btn").should("contain", "2018");
-    cy.get('[data-date="01-10-2018"]')
-      .should("contain", "Okt.")
-      .click();
+    cy.get('[data-date="01-10-2018"]').should("contain", "Okt.").click();
     cy.get('[data-date="05-10-2018"]').click();
     cy.get("h2.title").should("contain", "Freitag 5. Oktober 2018");
     cy.get("sd-broadcasts-date").should(
@@ -123,10 +110,8 @@ describe("Broadcasts", () => {
       .should("not.exist");
 
     // der morgen
-    cy.route({
-      method: "GET",
-      url: "/api/tracks?broadcast_id=1018401628*",
-      response: "fixture:tracks/list.json"
+    cy.intercept("GET", "/api/tracks?broadcast_id=1018401628*", {
+      fixture: "tracks/list.json",
     });
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) h4").click();
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text")
@@ -139,10 +124,8 @@ describe("Broadcasts", () => {
     cy.get(".tracklist ul.non-playable").should("exist");
 
     // info
-    cy.route({
-      method: "GET",
-      url: "/api/tracks?broadcast_id=1018401629*",
-      response: "fixture:tracks/list.json"
+    cy.intercept("GET", "/api/tracks?broadcast_id=1018401629*", {
+      fixture: "tracks/list.json",
     });
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
     cy.get(
@@ -183,21 +166,19 @@ describe("Broadcasts", () => {
     cy.get("sd-login form .btn-primary").click();
     cy.get("sd-login .alert-danger").should("exist");
 
-    cy.route({
-      method: "GET",
-      url: "/api/login",
-      response: "fixture:login/access-code.json"
+    cy.intercept("GET", "/api/login", {
+      fixture: "login/access-code.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts" + datePath(yesterday),
-      response: "fixture:broadcasts/sunday-access.json"
+    cy.intercept("GET", "/api/broadcasts" + datePath(yesterday), {
+      fixture: "broadcasts/sunday-access.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page[size]=100",
-      response: "fixture:shows/current-access.json"
-    });
+    cy.intercept(
+      "GET",
+      "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
+      {
+        fixture: "shows/current-access.json",
+      }
+    );
 
     cy.get("sd-login form input[name=accessCode]").type("1337dead");
     cy.get("sd-login form .btn-primary").click();
@@ -221,16 +202,16 @@ describe("Broadcasts", () => {
     );
 
     // Logout
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts" + datePath(yesterday),
-      response: "fixture:broadcasts/sunday.json"
+    cy.intercept("GET", "/api/broadcasts" + datePath(yesterday), {
+      fixture: "broadcasts/sunday.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page[size]=100",
-      response: "fixture:shows/current.json"
-    });
+    cy.intercept(
+      "GET",
+      "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
+      {
+        fixture: "shows/current.json",
+      }
+    );
 
     cy.get(".navbar-nav.navbar-right li:first-child a").click();
 
@@ -254,17 +235,13 @@ describe("Broadcasts", () => {
   });
 
   it("searches broadcasts", () => {
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts?q=tru&sort=-started_at",
-      response: "fixture:broadcasts/query-tru.json"
+    cy.intercept("GET", "/api/broadcasts?q=tru&sort=-started_at", {
+      fixture: "broadcasts/query-tru.json",
     });
-    cy.route({
-      method: "GET",
-      url: "/api/broadcasts?q=true&sort=-started_at",
-      response: {
-        data: []
-      }
+    cy.intercept("GET", "/api/broadcasts?q=true&sort=-started_at", {
+      body: {
+        data: [],
+      },
     });
 
     cy.visit("/");

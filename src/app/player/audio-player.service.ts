@@ -26,7 +26,9 @@ export class AudioPlayerService {
       if (time) this.setPosition(time);
     } else if (this._audio) {
       if (time) this.setPosition(time);
-      if (!this.playing) this._audio.play();
+      if (!this.playing) {
+        this._audio.play();
+      }
     }
   }
 
@@ -171,7 +173,7 @@ export class AudioPlayerService {
       // whileplaying: () => this._events.emit(PlayerEvents.Time),
       onfailure: () => this._events.emit(PlayerEvents.Failure),
       onerror: () => this._events.emit(PlayerEvents.Error),
-      ondataerror: () => this._events.emit(PlayerEvents.AudioError)
+      ondataerror: () => this._events.emit(PlayerEvents.AudioError),
     };
   }
 
