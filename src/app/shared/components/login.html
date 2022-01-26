@@ -1,8 +1,6 @@
 <sd-small-modal title="Login" #modal>
   <div *ngIf="failure && userLogin" class="alert alert-danger">
     Benutzername oder Password sind ungültig.
-    <br>
-    <a href="https://my.rabe.ch/auth/forgotpw">Passwort zurücksetzen?</a>
   </div>
   <div *ngIf="failure && !userLogin" class="alert alert-danger">
     Der Zugangscode ist ungültig oder abgelaufen.
@@ -41,13 +39,16 @@
       <a href="http://www.rabe.ch/mitgliedschaft">RaBe-Mitglied</a>
       und erhalte den Zugang zum Archiv.
     </div>
+    <div class="form-group" *ngIf="userLogin">
+      <a href="https://my.rabe.ch/auth/forgotpw">Passwort vergessen?</a>
+    </div>
     <div class="form-group">
-      <a *ngIf="userLogin" (click)="userLogin = false; failure = false"
-        >Du hast einen Zugangscode?</a
-      >
-      <a *ngIf="!userLogin" (click)="userLogin = true; failure = false"
-        >Du hast ein RaBe Login?</a
-      >
+      <a *ngIf="userLogin" (click)="userLogin = false; failure = false">
+        Du hast einen Zugangscode?
+      </a>
+      <a *ngIf="!userLogin" (click)="userLogin = true; failure = false">
+        Du hast ein RaBe Login?
+      </a>
     </div>
     <button
       type="submit"
