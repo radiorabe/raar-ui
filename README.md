@@ -6,7 +6,7 @@ An Angular web client for the Radio Archive [RAAR](https://github.com/radiorabe/
 
 ## Development
 
-Run `npm install` to install all the dependencies.
+Run `npm install -g @angular/cli` and `npm install` to install all the dependencies.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. The backend API must be running on `http://localhost:3000/`. See https://github.com/radiorabe/raar for corresponding instructions. Otherwise, switch to `proxy-prod.conf.json` in `angular.json` to use the production backend (`archiv.rabe.ch`). Avoid modifying actions in this case!
 
@@ -22,7 +22,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Smoke Tests
 
-So far, there is no automatic test suite for raar-ui. Use the following list
+So far, there is only a small cypress test suite for raar-ui. Use the following list
 of smoke tests to verify a basically correct behavior:
 
 - Load broadcasts for a show. Infinite scrolling should load more broadcasts
@@ -52,5 +52,5 @@ $ ./deploy.sh
 ## License
 
 raar-ui is released under the terms of the GNU Affero General Public License.
-Copyright 2016-2021 Radio RaBe.
+Copyright 2016-2022 Radio RaBe.
 See `LICENSE` for further information.
