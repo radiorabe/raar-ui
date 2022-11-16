@@ -1,13 +1,13 @@
 import { Component, ViewChild } from "@angular/core";
-import { SmallModalComponent } from "./small-modal.component";
-import { LoginService } from "../services/login.service";
-import { LoginWindowService } from "../../shared/services/login-window.service";
 import { AuthService } from "../../shared/services/auth.service";
+import { LoginWindowService } from "../../shared/services/login-window.service";
 import { UserModel } from "../models/user.model";
+import { LoginService } from "../services/login.service";
+import { SmallModalComponent } from "./small-modal.component";
 
 @Component({
   selector: "sd-login",
-  templateUrl: "login.html"
+  templateUrl: "login.html",
 })
 export class LoginComponent {
   @ViewChild("modal", { static: true }) modal: SmallModalComponent;
@@ -28,8 +28,20 @@ export class LoginComponent {
   }
 
   show(userLogin: boolean = false) {
+    if (userLogin && this.auth.requestLogin()) return;
     this.userLogin = userLogin;
     this.modal.show();
+  }
+
+  displayUserLogin(): void {
+    if (this.auth.requestLogin()) return;
+    this.userLogin = true;
+    this.failure = false;
+  }
+
+  displayAccessCode(): void {
+    this.userLogin = false;
+    this.failure = false;
   }
 
   submit() {
@@ -53,18 +65,19 @@ export class LoginComponent {
   }
 
   private loginUser() {
-    this.login
-      .post(this.username, this.password)
-      .subscribe(user => this.loginSuccess(user), err => this.loginFailed());
+    this.login.post(this.username, this.password).subscribe(
+      (user) => this.loginSuccess(user),
+      (err) => this.loginFailed()
+    );
   }
 
   private loginGuest() {
     this.login.get(this.accessCode).subscribe(
-      user => {
+      (user) => {
         user.attributes.api_token = this.accessCode;
         this.loginSuccess(user);
       },
-      err => this.loginFailed()
+      (err) => this.loginFailed()
     );
   }
 

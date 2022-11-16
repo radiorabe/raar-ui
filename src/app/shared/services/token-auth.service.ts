@@ -3,6 +3,7 @@ import { LoginService } from "./login.service";
 import { UserModel } from "../models/index";
 import { Observable, of } from "rxjs";
 import { map, catchError } from "rxjs/operators";
+import { environment } from "../../../environments/environment";
 
 export class TokenAuthService {
   protected _redirectUrl: string | void;
@@ -16,7 +17,7 @@ export class TokenAuthService {
   constructor(protected login: LoginService, protected router: Router) {}
 
   get isLoggedIn(): Observable<boolean> {
-    return this.checkUserAuth().pipe(map(_ => this.isUserAuthenticated));
+    return this.checkUserAuth().pipe(map((_) => this.isUserAuthenticated));
   }
 
   get hasToken(): boolean {
@@ -104,12 +105,32 @@ export class TokenAuthService {
 
   protected checkAuth(key: string): Observable<void> {
     const token = this.getToken(key);
-    return this.login.get(token).pipe(
-      map(user => {
-        this._user = user;
+    if (token) {
+      return this.runAuthCheck(this.login.get(token), key);
+    } else if (this.sso) {
+      return this.runAuthCheck(this.login.sso(), key);
+    } else {
+      return of(undefined);
+    }
+  }
+
+  protected runAuthCheck(
+    check: Observable<UserModel>,
+    key: string
+  ): Observable<void> {
+    return check.pipe(
+      map((user) => {
+        this.setUser(user);
         return undefined;
       }),
-      catchError(err => of(undefined))
+      catchError((err) => {
+        this.clearToken(key);
+        return of(undefined);
+      })
     );
+  }
+
+  protected get sso(): boolean {
+    return environment.authenticationMethod === "sso";
   }
 }

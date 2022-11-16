@@ -3,7 +3,7 @@ import {
   HttpParams,
   HttpClient,
   HttpHeaders,
-  HttpResponse
+  HttpResponse,
 } from "@angular/common/http";
 import { UserModel } from "../models/user.model";
 import { PatchedQueryEncoder } from "./patched-query-encoder";
@@ -18,11 +18,11 @@ export class LoginService {
     const headers = new HttpHeaders({
       "Content-Type": "application/vnd.api+json",
       Authorization: 'Token token="' + token + '"',
-      "Skip-Error-Handling": "true"
+      "Skip-Error-Handling": "true",
     });
     return this.http
       .get("/api/login", { headers, observe: "response" })
-      .pipe(map(res => this.setUserFromResponse(res)));
+      .pipe(map((res) => this.setUserFromResponse(res)));
   }
 
   post(username: string, password: string): Observable<UserModel> {
@@ -31,12 +31,22 @@ export class LoginService {
       .append("password", password);
     const headers = new HttpHeaders({
       "Content-Type": "application/x-www-form-urlencoded",
-      "Skip-Error-Handling": "true"
+      "Skip-Error-Handling": "true",
     });
 
     return this.http
       .post("/api/login", body, { headers, observe: "response" })
-      .pipe(map(res => this.setUserFromResponse(res)));
+      .pipe(map((res) => this.setUserFromResponse(res)));
+  }
+
+  sso(): Observable<UserModel> {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/vnd.api+json",
+      "Skip-Error-Handling": "true",
+    });
+    return this.http
+      .get("/api/sso", { headers, observe: "response" })
+      .pipe(map((res) => this.setUserFromResponse(res)));
   }
 
   private setUserFromResponse(res: HttpResponse<Object>): UserModel {

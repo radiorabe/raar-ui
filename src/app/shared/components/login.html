@@ -43,10 +43,10 @@
       <a href="https://my.rabe.ch/auth/forgotpw">Passwort vergessen?</a>
     </div>
     <div class="form-group">
-      <a *ngIf="userLogin" (click)="userLogin = false; failure = false">
+      <a *ngIf="userLogin" (click)="displayAccessCode()">
         Du hast einen Zugangscode?
       </a>
-      <a *ngIf="!userLogin" (click)="userLogin = true; failure = false">
+      <a *ngIf="!userLogin" (click)="displayUserLogin()">
         Du hast ein RaBe Login?
       </a>
     </div>
