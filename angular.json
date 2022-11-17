@@ -85,5 +85,7 @@
       }
     }
   },
-  "defaultProject": "raar-ui"
+  "cli": {
+    "analytics": false
+  }
 }
