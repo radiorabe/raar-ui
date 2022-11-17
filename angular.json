@@ -81,13 +81,6 @@
             "scripts": ["node_modules/soundmanager2/script/soundmanager2.js"],
             "assets": ["src/.htaccess", "src/assets"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       }
     }
