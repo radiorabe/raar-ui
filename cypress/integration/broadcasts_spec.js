@@ -202,6 +202,13 @@ describe("Broadcasts", () => {
     );
 
     // Logout
+    cy.intercept(
+      "GET",
+      "/sso/redirect?logout=http://localhost:4200" + datePath(yesterday),
+      (req) => {
+        req.redirect(datePath(yesterday));
+      }
+    );
     cy.intercept("GET", "/api/broadcasts" + datePath(yesterday), {
       fixture: "broadcasts/sunday.json",
     });

@@ -20,15 +20,17 @@ import { BroadcastTimePipe } from "./shared/pipes/broadcast-time.pipe";
 import { DateStringPipe } from "./shared/pipes/date-string.pipe";
 import { BroadcastsSearchComponent } from "./broadcasts/broadcasts-search.component";
 
-import * as moment from "moment";
-import "moment/locale/de";
 import { SearchComponent } from "./search/search.component";
 import { BroadcastsMonthlyComponent } from "./broadcasts/broadcasts-monthly.component";
 import { BroadcastDescriptionFormComponent } from "./broadcasts/broadcast-description-form.component";
 import { TracksComponent } from "./broadcasts/tracks.component";
 import { RunningBroadcastComponent } from "./broadcasts/running-broadcast.component";
 
-moment.locale("de");
+import * as dayjs from "dayjs";
+import "dayjs/locale/de-CH";
+
+dayjs.locale("de-ch");
+
 (<any>window).soundManager.setup({ debugMode: false });
 
 @NgModule({
@@ -38,7 +40,7 @@ moment.locale("de");
     SharedModule.forRoot(),
     CommonModule,
     DpDatePickerModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
   ],
   declarations: [
     AppComponent,
@@ -55,15 +57,15 @@ moment.locale("de");
     RunningBroadcastComponent,
     PlayerComponent,
     DateStringPipe,
-    BroadcastTimePipe
+    BroadcastTimePipe,
   ],
   exports: [AppComponent],
   providers: [
     BroadcastsService,
     ShowsService,
     AudioFilesService,
-    AudioPlayerService
+    AudioPlayerService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

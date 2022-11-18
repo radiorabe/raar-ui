@@ -1,40 +1,39 @@
-import { OnInit, OnDestroy, Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, Subject, ReplaySubject, of } from "rxjs";
+import { Observable, of, ReplaySubject, Subject } from "rxjs";
 import {
-  tap,
+  catchError,
+  distinctUntilChanged,
   map,
-  takeUntil,
   merge,
   switchMap,
+  takeUntil,
+  tap,
   withLatestFrom,
-  distinctUntilChanged,
-  catchError
 } from "rxjs/operators";
 import { BroadcastModel, CrudList } from "../shared/models/index";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
-import { RefreshService } from "../shared/services/refresh.service";
 import {
   DateParamsService,
-  RouteParams
+  RouteParams,
 } from "../shared/services/date-params.service";
+import { RefreshService } from "../shared/services/refresh.service";
 
-import * as moment from "moment";
+import * as dayjs from "dayjs";
 
 type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 
 @Component({
   selector: "sd-broadcasts-monthly",
-  templateUrl: "broadcasts-monthly.html"
+  templateUrl: "broadcasts-monthly.html",
 })
 export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   dateWithTime: Date | void;
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<
     CrudList<BroadcastModel>
   >(1);
-  monthlyBroadcasts: Subject<MonthlyBroadcasts> = new ReplaySubject<
-    MonthlyBroadcasts
-  >(1);
+  monthlyBroadcasts: Subject<MonthlyBroadcasts> =
+    new ReplaySubject<MonthlyBroadcasts>(1);
   loading: boolean = false;
   hasMore: boolean = false;
   fetchingMore: boolean = false;
@@ -55,19 +54,16 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.broadcastLoadObservable()
-      .pipe(
-        takeUntil(this.destroy$),
-        merge(this.broadcastMoreObservable())
-      )
+      .pipe(takeUntil(this.destroy$), merge(this.broadcastMoreObservable()))
       .subscribe(this.broadcastList);
 
     this.broadcastList
       .pipe(
         takeUntil(this.destroy$),
-        tap(list => (this.hasMore = !!list.links.next)),
-        map(list => list.entries),
-        map(broadcasts => this.buildMonthlyBroadcasts(broadcasts)),
-        tap(_ => {
+        tap((list) => (this.hasMore = !!list.links.next)),
+        map((list) => list.entries),
+        map((broadcasts) => this.buildMonthlyBroadcasts(broadcasts)),
+        tap((_) => {
           this.loading = false;
           this.fetchingMore = false;
         })
@@ -76,7 +72,9 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
 
     this.route.params
       .pipe(takeUntil(this.destroy$))
-      .subscribe(params => (this.dateWithTime = this.getDateWithTime(params)));
+      .subscribe(
+        (params) => (this.dateWithTime = this.getDateWithTime(params))
+      );
   }
 
   ngOnDestroy() {
@@ -86,7 +84,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   buildMonthlyBroadcasts(broadcasts: BroadcastModel[]): MonthlyBroadcasts {
     const result: MonthlyBroadcasts = {};
     for (const b of broadcasts) {
-      const label = moment(b.attributes.started_at).format("MMMM YYYY");
+      const label = dayjs(b.attributes.started_at).format("MMMM YYYY");
       if (result[label] === undefined) result[label] = [];
       result[label].push(b);
     }
@@ -94,7 +92,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   }
 
   get months(): Observable<string[]> {
-    return this.monthlyBroadcasts.pipe(map(monthly => Object.keys(monthly)));
+    return this.monthlyBroadcasts.pipe(map((monthly) => Object.keys(monthly)));
   }
 
   getMonthIdentifier(i: number, month: string): string {
@@ -127,8 +125,8 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
       tap(() => (this.fetchingMore = true)),
       switchMap((list: CrudList<BroadcastModel>) =>
         this.broadcastsService.getNextEntries(list).pipe(
-          tap(_ => (this.errorMessage = undefined)),
-          catchError(msg => this.handleListError(msg))
+          tap((_) => (this.errorMessage = undefined)),
+          catchError((msg) => this.handleListError(msg))
         )
       )
     );

@@ -1,44 +1,46 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Router, NavigationEnd, ActivatedRoute } from "@angular/router";
-import { Subject, interval } from "rxjs";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import * as dayjs from "dayjs";
+import * as objectSupport from "dayjs/plugin/objectSupport";
+import { interval, Subject } from "rxjs";
 import {
-  startWith,
-  map,
   distinctUntilChanged,
   filter,
-  takeUntil
+  map,
+  startWith,
+  takeUntil,
 } from "rxjs/operators";
-import * as moment from "moment";
 import { DateParamsService } from "../shared/services/date-params.service";
+dayjs.extend(objectSupport);
 
 const TODAY_UPDATE_INTERVAL = 60000;
 
 @Component({
   selector: "sd-datepicker",
-  templateUrl: "datepicker.html"
+  templateUrl: "datepicker.html",
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
   today$ = interval(TODAY_UPDATE_INTERVAL).pipe(
     startWith(0),
-    map(() => moment().format("YYYY-MM-DD")),
+    map(() => dayjs().format("YYYY-MM-DD")),
     distinctUntilChanged(),
-    map(dateStr => moment(dateStr))
+    map((dateStr) => dayjs(dateStr))
   );
 
   dayPickerConfig$ = this.today$.pipe(
-    map(date => {
+    map((date) => {
       return {
         firstDayOfWeek: "mo",
         locale: "de",
         max: date,
         monthFormat: "MMMM YYYY",
         weekdayFormat: "dd",
-        showGoToCurrent: false
+        showGoToCurrent: false,
       };
     })
   );
 
-  private _date: moment.Moment | void;
+  private _date: dayjs.Dayjs | void;
 
   private readonly destroy$ = new Subject();
 
@@ -48,20 +50,20 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     this.router.events
       .pipe(
         takeUntil(this.destroy$),
-        filter(e => e instanceof NavigationEnd)
+        filter((e) => e instanceof NavigationEnd)
       )
-      .subscribe(_ => this.setDateFromRoute());
+      .subscribe((_) => this.setDateFromRoute());
   }
 
   ngOnDestroy() {
     this.destroy$.next();
   }
 
-  get date(): moment.Moment | void {
+  get date(): dayjs.Dayjs | void {
     return this._date;
   }
 
-  set date(date: moment.Moment | void) {
+  set date(date: dayjs.Dayjs | void) {
     this._date = date;
 
     if (date) {
@@ -85,14 +87,14 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     const month = params["month"];
     const day = params["day"];
     if (year && month && day) {
-      this._date = moment({ year: +year, month: +month - 1, day: +day });
+      this._date = dayjs({ year: +year, month: +month - 1, day: +day });
     } else {
       this._date = undefined;
     }
   }
 
-  private navigateToDate(date: moment.Moment) {
-    const url = this.dateRoute.snapshot.url.map(e => e.path);
+  private navigateToDate(date: dayjs.Dayjs) {
+    const url = this.dateRoute.snapshot.url.map((e) => e.path);
     const year = date.year().toString();
     const month = DateParamsService.zeroPad(date.month() + 1);
     const day = DateParamsService.zeroPad(date.date());

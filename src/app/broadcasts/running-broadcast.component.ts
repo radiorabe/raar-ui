@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { TrackModel } from "../shared/models/index";
-import { TracksService } from "../shared/services/tracks.service";
-import * as moment from "moment";
+import { ActivatedRoute, Router } from "@angular/router";
+import * as dayjs from "dayjs";
 import { forkJoin, Observable } from "rxjs";
-import { Router, ActivatedRoute } from "@angular/router";
+import { TrackModel } from "../shared/models/index";
 import { DateParamsService } from "../shared/services/date-params.service";
+import { TracksService } from "../shared/services/tracks.service";
 
 // Show the tracks for the currently running shows that
 // have not yet been imported into the archive.
 @Component({
   selector: "sd-running-broadcast",
-  templateUrl: "running-broadcast.html"
+  templateUrl: "running-broadcast.html",
 })
 export class RunningBroadcastComponent implements OnInit {
   @Input() expanded: boolean;
@@ -38,33 +38,30 @@ export class RunningBroadcastComponent implements OnInit {
   private fetchTracks() {
     if (!this.tracks.length) {
       forkJoin(this.fetchTracksForMissingHours()).subscribe(
-        lists =>
+        (lists) =>
           (this.tracks = lists.reduce((acc, list) => acc.concat(list), []))
       );
     }
   }
 
   private fetchTracksForMissingHours(): Observable<TrackModel[]>[] {
-    const lastHour = moment(this.date);
-    const now = moment();
+    const lastHour = dayjs(this.date);
+    const now = dayjs();
     const hours = lastHour.isSame(now, "day")
       ? now.diff(lastHour, "hours")
       : 23 - lastHour.get("hour");
     const missingHours = Array.from(Array(hours + 1).keys());
-    return missingHours.map(hour => {
-      const date = lastHour
-        .clone()
-        .add(hour, "hours")
-        .toDate();
+    return missingHours.map((hour) => {
+      const date = lastHour.clone().add(hour, "hours").toDate();
       return this.tracksService.getListForHour(date);
     });
   }
 
   private navigateToSelf() {
     if (!this.broadcastRoute) return;
-    let url = this.broadcastRoute.snapshot.url.map(e => e.path);
+    let url = this.broadcastRoute.snapshot.url.map((e) => e.path);
     let queryParams = {
-      time: DateParamsService.convertTimeToParam(this.date)
+      time: DateParamsService.convertTimeToParam(this.date),
     };
     this.router.navigate([...url, queryParams]);
   }

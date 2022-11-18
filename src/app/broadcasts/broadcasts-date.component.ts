@@ -1,30 +1,30 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { Observable, Subject, of } from "rxjs";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import * as dayjs from "dayjs";
+import { Observable, of, Subject } from "rxjs";
 import {
-  map,
-  takeUntil,
-  switchMap,
-  debounceTime,
   catchError,
-  merge,
-  tap,
+  debounceTime,
   distinctUntilChanged,
-  withLatestFrom
+  map,
+  merge,
+  switchMap,
+  takeUntil,
+  tap,
+  withLatestFrom,
 } from "rxjs/operators";
-import { CrudList } from "../shared/models/crud-list";
 import { BroadcastModel } from "../shared/models/broadcast.model";
+import { CrudList } from "../shared/models/crud-list";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
-import { RefreshService } from "../shared/services/refresh.service";
 import {
+  DateParamsService,
   RouteParams,
-  DateParamsService
 } from "../shared/services/date-params.service";
-import * as moment from "moment";
+import { RefreshService } from "../shared/services/refresh.service";
 
 @Component({
   selector: "sd-broadcasts-date",
-  templateUrl: "broadcasts-date.html"
+  templateUrl: "broadcasts-date.html",
 })
 export class BroadcastsDateComponent implements OnInit, OnDestroy {
   date: Date;
@@ -46,16 +46,18 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const paramsObservable = this.route.params;
     const dateObservable = paramsObservable.pipe(
-      map(params => this.getDate(params))
+      map((params) => this.getDate(params))
     );
 
     dateObservable
       .pipe(takeUntil(this.destroy$))
-      .subscribe(date => (this.date = date));
+      .subscribe((date) => (this.date = date));
 
     paramsObservable
       .pipe(takeUntil(this.destroy$))
-      .subscribe(params => (this.dateWithTime = this.getDateWithTime(params)));
+      .subscribe(
+        (params) => (this.dateWithTime = this.getDateWithTime(params))
+      );
 
     dateObservable
       .pipe(
@@ -73,7 +75,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
         debounceTime(200),
         switchMap((date: Date) =>
           this.broadcastsService.getListForDate(date).pipe(
-            tap(_ => (this.errorMessage = undefined)),
+            tap((_) => (this.errorMessage = undefined)),
             catchError(this.handleHttpError.bind(this))
           )
         ),
@@ -82,7 +84,8 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
       )
       .subscribe((list: BroadcastModel[]) => {
         this.broadcasts = list;
-        this.lastTodaysBroadcastFinishedAt = this.fetchLastTodaysBroadcastFinishedAt();
+        this.lastTodaysBroadcastFinishedAt =
+          this.fetchLastTodaysBroadcastFinishedAt();
       });
   }
 
@@ -91,30 +94,17 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   }
 
   prevDate() {
-    this.navigateTo(
-      moment(this.date)
-        .subtract(1, "d")
-        .toDate()
-    );
+    this.navigateTo(dayjs(this.date).subtract(1, "d").toDate());
   }
 
   nextDate() {
     if (!this.nextDateDisabled()) {
-      this.navigateTo(
-        moment(this.date)
-          .add(1, "d")
-          .toDate()
-      );
+      this.navigateTo(dayjs(this.date).add(1, "d").toDate());
     }
   }
 
   nextDateDisabled(): boolean {
-    return (
-      this.date >=
-      moment()
-        .startOf("day")
-        .toDate()
-    );
+    return this.date >= dayjs().startOf("day").toDate();
   }
 
   getCrudIdentifier(i: number, model: BroadcastModel): number {
@@ -127,7 +117,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
 
   isRunningExpanded(): boolean {
     return this.dateWithTime && this.lastTodaysBroadcastFinishedAt
-      ? moment(this.dateWithTime).isSame(this.lastTodaysBroadcastFinishedAt)
+      ? dayjs(this.dateWithTime).isSame(this.lastTodaysBroadcastFinishedAt)
       : false;
   }
 
@@ -135,7 +125,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     this.router.navigate([
       date.getFullYear(),
       DateParamsService.zeroPad(date.getMonth() + 1),
-      DateParamsService.zeroPad(date.getDate())
+      DateParamsService.zeroPad(date.getDate()),
     ]);
   }
 
@@ -157,7 +147,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
 
   // Actually, today or yesterdays last broadcast
   private fetchLastTodaysBroadcastFinishedAt(): Date | undefined {
-    const diff = moment(this.date).diff(moment(), "days");
+    const diff = dayjs(this.date).diff(dayjs(), "days");
     if (diff === 0 || diff === -1) {
       if (this.broadcasts.length) {
         const last = this.broadcasts[this.broadcasts.length - 1];

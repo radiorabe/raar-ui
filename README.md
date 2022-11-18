@@ -16,7 +16,7 @@ Run `ng test` to run the unit tests of the project (Currently, some dummy specs 
 
 Run `npm run build:prod` to build the project. The build artifacts will be stored in the `dist/raar-ui` directory.
 
-To keep dependencies up-to-date, run `ng update` to get a list of available updates and follow the instructions.
+To keep Angular up-to-date, run `ng update` to get a list of available updates and follow the instructions. For the other dependencies, check `npm outdated`, adjust version numbers in `package.json` and update with `npm update`.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 

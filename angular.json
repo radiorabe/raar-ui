@@ -15,7 +15,7 @@
       },
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/raar-ui",
             "index": "src/index.html",
@@ -24,7 +24,10 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/.htaccess", "src/assets"],
             "styles": ["src/styles/main.scss"],
-            "scripts": ["node_modules/soundmanager2/script/soundmanager2.js"]
+            "scripts": ["node_modules/soundmanager2/script/soundmanager2.js"],
+            "allowedCommonJsDependencies": [
+              "dayjs"
+            ]
           },
           "configurations": {
             "production": {
@@ -53,7 +56,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "raar-ui:build",
             "proxyConfig": "proxy.conf.json"
@@ -71,7 +74,7 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",

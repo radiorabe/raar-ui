@@ -1,9 +1,9 @@
-import { EventEmitter, isDevMode, Injectable } from "@angular/core";
-import { AudioFileModel } from "../shared/models/audio-file.model";
-import { PlayerEvents } from "./player-events";
+import { EventEmitter, Injectable, isDevMode } from "@angular/core";
+import * as dayjs from "dayjs";
 import { Observable } from "rxjs";
+import { AudioFileModel } from "../shared/models/audio-file.model";
 import { BroadcastModel } from "../shared/models/broadcast.model";
-import * as moment from "moment";
+import { PlayerEvents } from "./player-events";
 
 @Injectable()
 export class AudioPlayerService {
@@ -101,7 +101,7 @@ export class AudioPlayerService {
     return (
       this._audio.duration ||
       this._audio.durationEstimate ||
-      moment(this.broadcastAttrs.finished_at).diff(
+      dayjs(this.broadcastAttrs.finished_at).diff(
         this.broadcastAttrs.started_at
       )
     );
