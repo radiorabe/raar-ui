@@ -9,8 +9,7 @@
     </div>
     <a>
       <span class="broadcast-date">
-        {{
-          broadcast | broadcastTime: (view === "month" ? "standard" : "time")
+        {{ broadcast | broadcastTime: (view === "month" ? "standard" : "time")
         }}
       </span>
       {{ broadcast.attributes.label }}
@@ -26,8 +25,8 @@
               class="glyphicon glyphicon-play-circle"
               aria-hidden="true"
             ></span>
-            {{ audio.attributes.codec | uppercase }}
-            {{ audio.attributes.playback_format }}
+            {{ audio.attributes.codec | uppercase }} {{
+            audio.attributes.playback_format }}
             <span *ngIf="audio.attributes.bitrate > 1">
               ({{ audio.attributes.bitrate }}k)
             </span>
@@ -54,7 +53,7 @@
     </div>
     <div
       class="pull-right placeholder"
-      *ngIf="audioFiles && audioFiles.length == 0"
+      *ngIf="audioFiles && audioFiles.length === 0"
     >
       <em>Kein Zugriff oder keine Aufnahme vorhanden</em>
     </div>
@@ -62,7 +61,7 @@
     <sd-broadcast-description-form [broadcast]="broadcast">
     </sd-broadcast-description-form>
 
-    <p *ngIf="view == 'day'">
+    <p *ngIf="view === 'day'">
       <a
         [routerLink]="['/show', broadcast.relationships.show.data.id]"
         class="nowrap"
@@ -81,7 +80,7 @@
       [tracks]="tracks"
       [playable]="isTracksPlayable()"
       [playPosition]="audioPlayer.position"
-      (play)="playTrack($event)"
+      (playTrack)="playTrack($event)"
     ></sd-tracks>
   </div>
 </div>

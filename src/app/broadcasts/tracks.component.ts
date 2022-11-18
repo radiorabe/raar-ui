@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "sd-tracks",
-  templateUrl: "tracks.html"
+  templateUrl: "tracks.html",
 })
 export class TracksComponent {
   @Input()
@@ -16,7 +16,7 @@ export class TracksComponent {
   playPosition: Date | undefined;
 
   @Output()
-  play = new EventEmitter<TrackModel>();
+  playTrack = new EventEmitter<TrackModel>();
 
   isTrackPlaying(track: TrackModel): boolean {
     return (

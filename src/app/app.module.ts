@@ -27,7 +27,7 @@ import { TracksComponent } from "./broadcasts/tracks.component";
 import { RunningBroadcastComponent } from "./broadcasts/running-broadcast.component";
 
 import * as dayjs from "dayjs";
-import "dayjs/locale/de-CH";
+import "dayjs/locale/de-ch";
 
 dayjs.locale("de-ch");
 
