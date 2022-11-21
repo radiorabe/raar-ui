@@ -3,7 +3,7 @@
   <br />
   <ul [class.non-playable]="!playable">
     <li *ngFor="let track of tracks; trackBy: getCrudIdentifier">
-      <a (click)="play.emit(track)" [class.active]="isTrackPlaying(track)">
+      <a (click)="playTrack.emit(track)" [class.active]="isTrackPlaying(track)">
         <span class="glyphicon glyphicon-play-circle" aria-hidden="true"> </span
         ><span class="track-time">
           {{ track.attributes.started_at | dateString: "time" }}

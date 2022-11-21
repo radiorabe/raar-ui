@@ -23,6 +23,14 @@ export class AudioPlayerService {
       this._audio = (<any>window).soundManager.createSound(
         this.getSoundOptions(audioFile.links.play, autoplay)
       );
+      console.log(
+        "Play",
+        audioFile,
+        " at ",
+        time,
+        "total",
+        this._audio.duration
+      );
       if (time) this.setPosition(time);
     } else if (this._audio) {
       if (time) this.setPosition(time);
@@ -41,6 +49,13 @@ export class AudioPlayerService {
   seek(percent: number) {
     if (this._audio) {
       var position = (this.duration * percent) / 100;
+      console.log(
+        "seek",
+        position,
+        "total",
+        this._audio.duration,
+        this._audio.durationEstimate
+      );
       this._audio.setPosition(position);
     }
   }

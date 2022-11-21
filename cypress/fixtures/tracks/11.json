@@ -1,0 +1,111 @@
+{
+  "data": [
+    {
+      "id": "140494",
+      "type": "tracks",
+      "attributes": {
+        "title": "Bango",
+        "artist": "The Chemical Brothers",
+        "started_at": "2019-04-15T11:00:02.000+02:00",
+        "finished_at": "2019-04-15T11:05:04.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140494" }
+    },
+    {
+      "id": "140495",
+      "type": "tracks",
+      "attributes": {
+        "title": "Waiting Too Long (feat. Notch)",
+        "artist": "Thievery Corporation",
+        "started_at": "2019-04-15T11:05:11.000+02:00",
+        "finished_at": "2019-04-15T11:09:11.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140495" }
+    },
+    {
+      "id": "140496",
+      "type": "tracks",
+      "attributes": {
+        "title": "Question Everything",
+        "artist": "Miss Kittin",
+        "started_at": "2019-04-15T11:09:18.000+02:00",
+        "finished_at": "2019-04-15T11:12:38.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140496" }
+    },
+    {
+      "id": "140497",
+      "type": "tracks",
+      "attributes": {
+        "title": "Pearly Gates",
+        "artist": "U.S. Girls",
+        "started_at": "2019-04-15T11:12:41.000+02:00",
+        "finished_at": "2019-04-15T11:16:40.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140497" }
+    },
+    {
+      "id": "140498",
+      "type": "tracks",
+      "attributes": {
+        "title": "Eaze!",
+        "artist": "Cookie The Herbalist \u0026 Lee \"Scratch\" Perry",
+        "started_at": "2019-04-15T11:16:47.000+02:00",
+        "finished_at": "2019-04-15T11:20:41.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140498" }
+    },
+    {
+      "id": "140499",
+      "type": "tracks",
+      "attributes": {
+        "title": "The Youngest Gary",
+        "artist": "THE S.L.P.",
+        "started_at": "2019-04-15T11:21:23.000+02:00",
+        "finished_at": "2019-04-15T11:25:33.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140499" }
+    },
+    {
+      "id": "140500",
+      "type": "tracks",
+      "attributes": {
+        "title": "Tiny Monster",
+        "artist": "Steaming Satellites",
+        "started_at": "2019-04-15T11:25:38.000+02:00",
+        "finished_at": "2019-04-15T11:29:18.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140500" }
+    },
+    {
+      "id": "140501",
+      "type": "tracks",
+      "attributes": {
+        "title": "Like A Motherless Child",
+        "artist": "Moby",
+        "started_at": "2019-04-15T11:29:21.000+02:00",
+        "finished_at": "2019-04-15T11:32:54.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140501" }
+    },
+    {
+      "id": "140502",
+      "type": "tracks",
+      "attributes": {
+        "title": "dead yet (with phem)",
+        "artist": "gabriel black with phem",
+        "started_at": "2019-04-15T11:33:00.000+02:00",
+        "finished_at": "2019-04-15T11:35:40.000+02:00"
+      },
+      "links": { "self": "/api/tracks/140502" }
+    }
+  ],
+  "jsonapi": { "version": "1.0" },
+  "links": {
+    "self": "https://archiv.rabe.ch/api/tracks?broadcast_id=1018401629\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "first": "https://archiv.rabe.ch/api/tracks?broadcast_id=1018401629\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at",
+    "prev": null,
+    "next": null,
+    "last": "https://archiv.rabe.ch/api/tracks?broadcast_id=1018401629\u0026page%5Bnumber%5D=1\u0026page%5Bsize%5D=500\u0026sort=started_at"
+  }
+}

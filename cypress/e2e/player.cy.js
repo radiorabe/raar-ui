@@ -21,13 +21,19 @@ describe("Player", () => {
     cy.intercept("GET", "/api/broadcasts/1018401629/audio_files*", {
       fixture: "audio_files/info.json",
     });
-    cy.intercept("GET", "/api/tracks*", {
-      body: {
-        data: [],
+    cy.intercept(
+      "GET",
+      "/api/tracks?broadcast_id=1018401629&sort=started_at&page%5Bsize%5D=500",
+      {
+        fixture: "tracks/11.json",
+      }
+    );
+    cy.intercept("GET", "/api/audio_files/2019/04/15/*.mp3", {
+      fixture: "audio_files/silence.mp3,null",
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "70627",
       },
-    });
-    cy.fixture("audio_files/silence.mp3", "binary").then((audio) => {
-      cy.intercept("GET", "/api/audio_files/2019/04/15/110000_high.mp3", audio);
     });
   });
 
@@ -46,12 +52,31 @@ describe("Player", () => {
     cy.get("table.audio-links tr:first-child td:first-child a").click();
     cy.url().should("include", "/2019/04/15;play=high;format=mp3;time=110000");
     cy.get("sd-player .controls .glyphicon-pause").should("exist");
-    cy.get(".time-total").should("contain", "30:00");
   });
 
-  it("plays audio at track position");
+  it("plays audio at track position", () => {
+    cy.visit("/");
+    cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4")
+      .should("contain", "11:00 - 11:30")
+      .should("contain", "Info");
 
-  it("highlights track at current audio position");
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
+    cy.get(
+      "sd-broadcasts-date sd-broadcast:nth-child(3) sd-tracks ul li"
+    ).should("have.length", 9);
 
-  it("plays next broadcast when finished");
+    cy.get(
+      "sd-broadcasts-date sd-broadcast:nth-child(3) sd-tracks ul li:nth-child(1) a .track-info"
+    ).click();
+    cy.url().should("include", "/2019/04/15;play=high;format=mp3;time=110002");
+    cy.get("sd-player .controls .glyphicon-pause").should("exist");
+    cy.get("sd-player .time-passed").should("contain", "00:02");
+    cy.get(
+      "sd-broadcasts-date sd-broadcast:nth-child(3) sd-tracks ul li:nth-child(1) a"
+    )
+      .should("have.class", "active")
+      .find(".glyphicon-play-circle")
+      .should("exist");
+  });
 });
