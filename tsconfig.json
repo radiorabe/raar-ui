@@ -11,7 +11,13 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es6",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "useDefineForClassFields": false
   }
 }

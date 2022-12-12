@@ -12,8 +12,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng serve` and `npm run cy:open` to open the Cypress test runner (browser tests) or `npm run cy:run` for a single run. The browser tests cover a good amount of the frontend's functionality.
 
-Run `ng test` to run the unit tests of the project (Currently, some dummy specs only).
-
 Run `npm run build:prod` to build the project. The build artifacts will be stored in the `dist/raar-ui` directory.
 
 To keep Angular up-to-date, run `ng update` to get a list of available updates and follow the instructions. For the other dependencies, check `npm outdated`, adjust version numbers in `package.json` and update with `npm update`.

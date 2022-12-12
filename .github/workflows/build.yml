@@ -14,12 +14,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+
+      - name: Install
+        run: npm install --force # fix dependency issues
+
+      - name: Lint
+        run: npm run lint
+
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
           config: video=false
           build: npm run build:prod
           start: npm run cy:ci
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
