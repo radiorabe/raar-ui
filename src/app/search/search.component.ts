@@ -17,7 +17,7 @@ import {
 export class SearchComponent implements OnInit, OnDestroy {
   query = new FormControl();
 
-  private readonly destroy$ = new Subject();
+  private readonly destroy$ = new Subject<void>();
 
   constructor(private router: Router) {}
 

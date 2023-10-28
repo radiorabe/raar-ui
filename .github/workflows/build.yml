@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "20"
           cache: "npm"
 
       - name: Install
@@ -28,11 +28,11 @@ jobs:
         run: npm run lint
 
       - name: Cypress run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
           config: video=false
           build: npm run build:prod
-          start: npm run cy:ci
+          start: npm run start
 
       - uses: actions/upload-artifact@v3
         if: failure()

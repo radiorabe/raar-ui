@@ -34,7 +34,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   errorMessage: string | void;
   lastTodaysBroadcastFinishedAt: Date | undefined;
 
-  private readonly destroy$ = new Subject();
+  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,

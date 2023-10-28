@@ -14,7 +14,7 @@ import { PlayerEvents } from "./player-events";
   templateUrl: "player.html"
 })
 export class PlayerComponent implements OnInit, OnDestroy {
-  private readonly destroy$ = new Subject();
+  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private _player: AudioPlayerService,

@@ -42,7 +42,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
   private _date: dayjs.Dayjs | void;
 
-  private readonly destroy$ = new Subject();
+  private readonly destroy$ = new Subject<void>();
 
   constructor(private router: Router) {}
 

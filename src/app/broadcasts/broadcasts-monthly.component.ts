@@ -44,7 +44,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   noBroadcastsMessage: string = "Keine Ausstrahlungen vorhanden.";
 
   protected fetchMore: Subject<void> = new Subject<void>();
-  protected readonly destroy$ = new Subject();
+  protected readonly destroy$ = new Subject<void>();
 
   constructor(
     protected route: ActivatedRoute,
