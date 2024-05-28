@@ -56,19 +56,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "raar-ui:build",
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "proxy.conf.json",
+            "buildTarget": "raar-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "raar-ui:build:production"
+              "buildTarget": "raar-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "raar-ui:build"
+            "buildTarget": "raar-ui:build"
           }
         },
         "test": {
