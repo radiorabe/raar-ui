@@ -21,9 +21,9 @@ const interceptors = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AddAuthHeaderInterceptor,
-    multi: true
+    multi: true,
   },
-  { provide: HTTP_INTERCEPTORS, useClass: RemoteErrorInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: RemoteErrorInterceptor, multi: true },
 ];
 
 @NgModule({
@@ -32,13 +32,13 @@ const interceptors = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [
     LayoutComponent,
     LoginComponent,
     SliderComponent,
-    SmallModalComponent
+    SmallModalComponent,
   ],
   exports: [
     CommonModule,
@@ -49,8 +49,8 @@ const interceptors = [
     LayoutComponent,
     LoginComponent,
     SliderComponent,
-    SmallModalComponent
-  ]
+    SmallModalComponent,
+  ],
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders<SharedModule> {
@@ -64,8 +64,8 @@ export class SharedModule {
         { provide: TokenAuthService, useExisting: AuthService },
         LoginWindowService,
         RefreshService,
-        ...interceptors
-      ]
+        ...interceptors,
+      ],
     };
   }
 }

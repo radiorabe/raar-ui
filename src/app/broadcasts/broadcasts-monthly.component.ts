@@ -49,7 +49,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   constructor(
     protected route: ActivatedRoute,
     protected broadcastsService: BroadcastsService,
-    protected refreshService: RefreshService
+    protected refreshService: RefreshService,
   ) {}
 
   ngOnInit() {
@@ -66,14 +66,14 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
         tap((_) => {
           this.loading = false;
           this.fetchingMore = false;
-        })
+        }),
       )
       .subscribe(this.monthlyBroadcasts);
 
     this.route.params
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (params) => (this.dateWithTime = this.getDateWithTime(params))
+        (params) => (this.dateWithTime = this.getDateWithTime(params)),
       );
   }
 
@@ -120,20 +120,20 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
       withLatestFrom(this.broadcastList, (_, list) => list),
       distinctUntilChanged(
         (a: CrudList<BroadcastModel>, b: CrudList<BroadcastModel>) =>
-          a.links.next === b.links.next
+          a.links.next === b.links.next,
       ),
       tap(() => (this.fetchingMore = true)),
       switchMap((list: CrudList<BroadcastModel>) =>
         this.broadcastsService.getNextEntries(list).pipe(
           tap((_) => (this.errorMessage = undefined)),
-          catchError((msg) => this.handleListError(msg))
-        )
-      )
+          catchError((msg) => this.handleListError(msg)),
+        ),
+      ),
     );
   }
 
   protected handleListError(
-    message: string
+    message: string,
   ): Observable<CrudList<BroadcastModel>> {
     this.errorMessage = message;
     return of(new CrudList<BroadcastModel>());

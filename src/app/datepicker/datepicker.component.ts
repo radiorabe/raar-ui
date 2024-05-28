@@ -24,7 +24,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     startWith(0),
     map(() => dayjs().format("YYYY-MM-DD")),
     distinctUntilChanged(),
-    map((dateStr) => dayjs(dateStr))
+    map((dateStr) => dayjs(dateStr)),
   );
 
   dayPickerConfig$ = this.today$.pipe(
@@ -37,7 +37,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
         weekdayFormat: "dd",
         showGoToCurrent: false,
       };
-    })
+    }),
   );
 
   private _date: dayjs.Dayjs | void;
@@ -50,7 +50,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     this.router.events
       .pipe(
         takeUntil(this.destroy$),
-        filter((e) => e instanceof NavigationEnd)
+        filter((e) => e instanceof NavigationEnd),
       )
       .subscribe((_) => this.setDateFromRoute());
   }

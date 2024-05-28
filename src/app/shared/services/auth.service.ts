@@ -13,7 +13,7 @@ export class AuthService extends TokenAuthService {
     login: LoginService,
     router: Router,
     private refresh: RefreshService,
-    private loginWindow: LoginWindowService
+    private loginWindow: LoginWindowService,
   ) {
     super(login, router);
   }

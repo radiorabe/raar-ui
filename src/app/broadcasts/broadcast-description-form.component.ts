@@ -6,7 +6,7 @@ import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "sd-broadcast-description-form",
-  templateUrl: "broadcast-description-form.html"
+  templateUrl: "broadcast-description-form.html",
 })
 export class BroadcastDescriptionFormComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;
@@ -15,9 +15,12 @@ export class BroadcastDescriptionFormComponent implements OnChanges {
 
   editing: boolean = false;
 
-  constructor(private broadcastsService: BroadcastsService, fb: FormBuilder) {
+  constructor(
+    private broadcastsService: BroadcastsService,
+    fb: FormBuilder,
+  ) {
     this.form = fb.group({
-      details: ""
+      details: "",
     });
   }
 
@@ -32,7 +35,7 @@ export class BroadcastDescriptionFormComponent implements OnChanges {
     this.broadcastsService
       .update(model)
       .pipe(finalize(() => this.cancelEditing()))
-      .subscribe(_entry => {
+      .subscribe((_entry) => {
         this.broadcast.attributes.details = model.attributes.details;
       });
   }
@@ -48,7 +51,7 @@ export class BroadcastDescriptionFormComponent implements OnChanges {
 
   private resetForm() {
     this.form.reset({
-      details: this.broadcast.attributes.details
+      details: this.broadcast.attributes.details,
     });
   }
 

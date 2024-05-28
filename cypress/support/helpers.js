@@ -1,4 +1,4 @@
-export const zeroPad = number => {
+export const zeroPad = (number) => {
   if (number < 10) {
     return "0" + number;
   } else {
@@ -6,7 +6,7 @@ export const zeroPad = number => {
   }
 };
 
-export const datePath = date => {
+export const datePath = (date) => {
   return (
     "/" +
     date.getFullYear() +

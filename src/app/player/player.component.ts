@@ -11,7 +11,7 @@ import { PlayerEvents } from "./player-events";
 
 @Component({
   selector: "sd-player",
-  templateUrl: "player.html"
+  templateUrl: "player.html",
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();
@@ -19,7 +19,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
   constructor(
     private _player: AudioPlayerService,
     private audioFilesService: AudioFilesService,
-    private broadcastsService: BroadcastsService
+    private broadcastsService: BroadcastsService,
   ) {}
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     this._player.events
       .pipe(
         takeUntil(this.destroy$),
-        filter(i => i === PlayerEvents.Finish)
+        filter((i) => i === PlayerEvents.Finish),
       )
       .subscribe(() => this.playNextBroadcast());
   }
@@ -81,7 +81,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
       this.findAndPlayBroadcast(
         this.broadcast.attributes.finished_at,
         this.audioFile.attributes.codec,
-        this.audioFile.attributes.playback_format
+        this.audioFile.attributes.playback_format,
       );
     }
   }
@@ -126,7 +126,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     time: Date,
     codec: string,
     playbackFormat: string,
-    autoplay: boolean = true
+    autoplay: boolean = true,
   ): void {
     this.broadcastsService
       .getForTime(time)
@@ -141,10 +141,10 @@ export class PlayerComponent implements OnInit, OnDestroy {
     time: Date,
     codec: string,
     playbackFormat: string,
-    autoplay: boolean = true
+    autoplay: boolean = true,
   ): void {
-    this.audioFilesService.getListForBroadcast(broadcast).subscribe(files => {
-      let audio = files.entries.find(file => {
+    this.audioFilesService.getListForBroadcast(broadcast).subscribe((files) => {
+      let audio = files.entries.find((file) => {
         return (
           file.attributes.playback_format === playbackFormat &&
           file.attributes.codec === codec

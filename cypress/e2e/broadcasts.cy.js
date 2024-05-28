@@ -15,7 +15,7 @@ describe("Broadcasts", () => {
       "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
       {
         fixture: "shows/current.json",
-      }
+      },
     );
     cy.intercept("GET", "/api/broadcasts/2019/04/15", {
       fixture: "broadcasts/monday.json",
@@ -82,7 +82,7 @@ describe("Broadcasts", () => {
     cy.get("h2.title").should("contain", "Freitag 5. Oktober 2018");
     cy.get("sd-broadcasts-date").should(
       "contain",
-      "Keine aufgenommenen Sendungen"
+      "Keine aufgenommenen Sendungen",
     );
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 0);
     cy.get(".dp-selected").should("contain", "05");
@@ -129,7 +129,7 @@ describe("Broadcasts", () => {
     });
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
     cy.get(
-      "sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text"
+      "sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text",
     ).should("not.exist");
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .list-group-item-text")
       .should("contain", "Viele Infos von heute")
@@ -150,15 +150,15 @@ describe("Broadcasts", () => {
     cy.url().should("include", datePath(yesterday));
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
       "have.length",
-      12
+      12,
     );
     cy.get("sd-shows .list-group .list-group-item.access-denied").should(
       "have.length",
-      2
+      2,
     );
     cy.get("sd-shows .list-group .list-group-item:not(.access-denied)").should(
       "have.length",
-      1
+      1,
     );
 
     // Login
@@ -177,7 +177,7 @@ describe("Broadcasts", () => {
       "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
       {
         fixture: "shows/current-access.json",
-      }
+      },
     );
 
     cy.get("sd-login form input[name=accessCode]").type("1337dead");
@@ -186,19 +186,19 @@ describe("Broadcasts", () => {
     cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
       "have.length",
-      0
+      0,
     );
     cy.get("sd-broadcasts-date sd-broadcast h4:not(.access-denied)").should(
       "have.length",
-      13
+      13,
     );
     cy.get("sd-shows .list-group .list-group-item.access-denied").should(
       "have.length",
-      0
+      0,
     );
     cy.get("sd-shows .list-group .list-group-item:not(.access-denied)").should(
       "have.length",
-      3
+      3,
     );
 
     // Logout
@@ -207,7 +207,7 @@ describe("Broadcasts", () => {
       "/sso/redirect?logout=http://localhost:4200" + datePath(yesterday),
       (req) => {
         req.redirect(datePath(yesterday));
-      }
+      },
     );
     cy.intercept("GET", "/api/broadcasts" + datePath(yesterday), {
       fixture: "broadcasts/sunday.json",
@@ -217,7 +217,7 @@ describe("Broadcasts", () => {
       "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
       {
         fixture: "shows/current.json",
-      }
+      },
     );
 
     cy.get(".navbar-nav.navbar-right li:first-child a").click();
@@ -225,19 +225,19 @@ describe("Broadcasts", () => {
     cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
       "have.length",
-      12
+      12,
     );
     cy.get("sd-broadcasts-date sd-broadcast h4:not(.access-denied)").should(
       "have.length",
-      1
+      1,
     );
     cy.get("sd-shows .list-group .list-group-item.access-denied").should(
       "have.length",
-      2
+      2,
     );
     cy.get("sd-shows .list-group .list-group-item:not(.access-denied)").should(
       "have.length",
-      1
+      1,
     );
   });
 
@@ -263,7 +263,7 @@ describe("Broadcasts", () => {
     cy.url().should("include", "/search/true");
     cy.get(".content").should(
       "contain",
-      "Für diesen Begriff konnten keine Resultate gefunden werden"
+      "Für diesen Begriff konnten keine Resultate gefunden werden",
     );
 
     cy.get("sd-search .form-search .glyphicon-remove").click();

@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 
 @Component({
   selector: "sd-layout",
-  templateUrl: "layout.html"
+  templateUrl: "layout.html",
 })
 export class LayoutComponent implements OnDestroy {
   @Input() collapsibleNav = true;
@@ -15,7 +15,7 @@ export class LayoutComponent implements OnDestroy {
 
   constructor(router: Router) {
     "foo";
-    this.routerSub = router.events.subscribe(e => {
+    this.routerSub = router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) this._showNav = false;
     });
   }

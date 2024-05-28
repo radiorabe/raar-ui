@@ -4,12 +4,12 @@ import { LoginWindowService } from "./shared/services/login-window.service";
 
 @Component({
   selector: "sd-app",
-  templateUrl: "app.html"
+  templateUrl: "app.html",
 })
 export class AppComponent {
   constructor(
     public auth: AuthService,
-    private loginWindow: LoginWindowService
+    private loginWindow: LoginWindowService,
   ) {
     auth.isLoggedIn.subscribe();
   }

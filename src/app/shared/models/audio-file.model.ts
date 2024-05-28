@@ -11,7 +11,7 @@ export class AudioFileModel extends CrudModel {
     codec: undefined,
     bitrate: undefined,
     channels: undefined,
-    playback_format: undefined
+    playback_format: undefined,
   };
 
   relationships: {
@@ -24,6 +24,6 @@ export class AudioFileModel extends CrudModel {
     download?: string;
   } = {
     self: undefined,
-    play: undefined
+    play: undefined,
   };
 }

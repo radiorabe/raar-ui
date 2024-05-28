@@ -5,7 +5,7 @@ import { AppModule } from "./app.module";
 describe("Archive component", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule]
+      imports: [AppModule],
     }).compileComponents();
   }));
 
@@ -20,7 +20,7 @@ describe("Archive component", () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector("a.navbar-brand").textContent).toContain(
-      "RaBe Archiv"
+      "RaBe Archiv",
     );
   });
 });
