@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import {
   BroadcastModel,
   AudioFileModel,
-  TrackModel
+  TrackModel,
 } from "../shared/models/index";
 import { LoginWindowService } from "../shared/services/login-window.service";
 import { AudioPlayerService } from "../player/audio-player.service";
@@ -14,7 +14,7 @@ import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "sd-broadcast",
-  templateUrl: "broadcast.html"
+  templateUrl: "broadcast.html",
 })
 export class BroadcastComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;
@@ -31,7 +31,7 @@ export class BroadcastComponent implements OnChanges {
     public loginWindow: LoginWindowService,
     private audioFilesService: AudioFilesService,
     private tracksService: TracksService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnChanges(changes: any) {
@@ -104,7 +104,7 @@ export class BroadcastComponent implements OnChanges {
         .getListForBroadcast(this.broadcast)
         .pipe(finalize(() => (this.loadingAudio = false)))
         .subscribe(
-          list => (this.broadcast.relationships.audio_files = list.entries)
+          (list) => (this.broadcast.relationships.audio_files = list.entries),
         );
     }
   }
@@ -113,13 +113,13 @@ export class BroadcastComponent implements OnChanges {
     if (!this.tracks.length) {
       this.tracksService
         .getListForBroadcast(this.broadcast)
-        .subscribe(list => (this.tracks = list.entries));
+        .subscribe((list) => (this.tracks = list.entries));
     }
   }
 
   private navigateToSelf(queryParams: any = {}, time?: Date) {
     if (!this.broadcastRoute) return;
-    let url = this.broadcastRoute.snapshot.url.map(e => e.path);
+    let url = this.broadcastRoute.snapshot.url.map((e) => e.path);
     const date = time || this.broadcast.attributes.started_at;
     queryParams["time"] = DateParamsService.convertTimeToParam(date);
     if (url[0] === "show" || url[0] === "search") {
@@ -139,9 +139,9 @@ export class BroadcastComponent implements OnChanges {
     this.navigateToSelf(
       {
         play: audio.attributes.playback_format,
-        format: audio.attributes.codec
+        format: audio.attributes.codec,
       },
-      time
+      time,
     );
   }
 

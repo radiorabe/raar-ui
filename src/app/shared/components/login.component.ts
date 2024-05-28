@@ -22,7 +22,7 @@ export class LoginComponent {
   constructor(
     private login: LoginService,
     private auth: AuthService,
-    private loginWindow: LoginWindowService
+    private loginWindow: LoginWindowService,
   ) {
     this.loginWindow.show$.subscribe(this.show.bind(this));
   }
@@ -67,7 +67,7 @@ export class LoginComponent {
   private loginUser() {
     this.login.post(this.username, this.password).subscribe(
       (user) => this.loginSuccess(user),
-      (err) => this.loginFailed()
+      (err) => this.loginFailed(),
     );
   }
 
@@ -77,7 +77,7 @@ export class LoginComponent {
         user.attributes.api_token = this.accessCode;
         this.loginSuccess(user);
       },
-      (err) => this.loginFailed()
+      (err) => this.loginFailed(),
     );
   }
 

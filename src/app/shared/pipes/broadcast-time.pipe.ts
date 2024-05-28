@@ -6,7 +6,7 @@ import { BroadcastModel } from "../models/broadcast.model";
 export class BroadcastTimePipe implements PipeTransform {
   transform(broadcast: BroadcastModel, format: string): string {
     let output = dayjs(broadcast.attributes.started_at).format(
-      this.startFormat(format)
+      this.startFormat(format),
     );
     output += " - ";
     output += dayjs(broadcast.attributes.finished_at).format("HH:mm");

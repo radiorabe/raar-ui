@@ -7,12 +7,12 @@ import {
   filter,
   debounceTime,
   distinctUntilChanged,
-  startWith
+  startWith,
 } from "rxjs/operators";
 
 @Component({
   selector: "sd-search",
-  templateUrl: "search.html"
+  templateUrl: "search.html",
 })
 export class SearchComponent implements OnInit, OnDestroy {
   query = new FormControl();
@@ -25,9 +25,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.router.events
       .pipe(
         takeUntil(this.destroy$),
-        filter(e => e instanceof NavigationEnd)
+        filter((e) => e instanceof NavigationEnd),
       )
-      .subscribe(_ => this.setQueryFromRoute());
+      .subscribe((_) => this.setQueryFromRoute());
 
     this.query.valueChanges
       .pipe(
@@ -35,9 +35,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         debounceTime(200),
         filter((q: string) => q.length === 0 || q.length > 2),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
-      .subscribe(q => this.navigateToSearch(q));
+      .subscribe((q) => this.navigateToSearch(q));
   }
 
   ngOnDestroy() {

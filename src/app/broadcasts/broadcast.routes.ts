@@ -7,18 +7,18 @@ import { BroadcastsSearchComponent } from "./broadcasts-search.component";
 export const BroadcastRoutes: Route[] = [
   {
     path: "show/:id",
-    component: BroadcastsShowComponent
+    component: BroadcastsShowComponent,
   },
   {
     path: "search/:query",
-    component: BroadcastsSearchComponent
+    component: BroadcastsSearchComponent,
   },
   {
     path: ":year/:month/:day",
-    component: BroadcastsDateComponent
+    component: BroadcastsDateComponent,
   },
   {
     path: "**",
-    component: BroadcastsDateComponent
-  }
+    component: BroadcastsDateComponent,
+  },
 ];

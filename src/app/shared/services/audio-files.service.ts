@@ -13,16 +13,16 @@ export class AudioFilesService extends ReadRestService<AudioFileModel> {
   }
 
   getListForBroadcast(
-    broadcast: BroadcastModel
+    broadcast: BroadcastModel,
   ): Observable<CrudList<AudioFileModel>> {
     return this.http
       .get("/api/broadcasts/" + broadcast.id + "/audio_files")
       .pipe(
-        map(json => {
+        map((json) => {
           const list = this.buildListFromResponse(json, this.buildEntity);
           for (const a of list.entries) a.relationships.broadcast = broadcast;
           return list;
-        })
+        }),
       );
   }
 

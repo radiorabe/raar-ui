@@ -5,12 +5,15 @@ import { Observable, BehaviorSubject } from "rxjs";
 import { map } from "rxjs/operators";
 
 export class ReadRestService<T extends CrudModel> {
-  constructor(protected http: HttpClient, public baseUrlTemplate: string) {}
+  constructor(
+    protected http: HttpClient,
+    public baseUrlTemplate: string,
+  ) {}
 
   getList(params?: any): Observable<CrudList<T>> {
     return this.http
       .get(this.baseUrl, this.requestOptionsFromParams(params))
-      .pipe(map(json => this.buildListFromResponse(json, this.buildEntity)));
+      .pipe(map((json) => this.buildListFromResponse(json, this.buildEntity)));
   }
 
   getNextEntries(list: CrudList<T>): Observable<CrudList<T>> {
@@ -19,13 +22,13 @@ export class ReadRestService<T extends CrudModel> {
     }
 
     return this.http.get(list.links.next).pipe(
-      map(json => this.buildListFromResponse(json, this.buildEntity)),
-      map(res => {
+      map((json) => this.buildListFromResponse(json, this.buildEntity)),
+      map((res) => {
         res.links.prev = list.links.prev;
         res.entries = list.entries.concat(res.entries);
         res.included = list.included.concat(res.included);
         return res;
-      })
+      }),
     );
   }
 
@@ -42,7 +45,7 @@ export class ReadRestService<T extends CrudModel> {
     }
     return this.http
       .get(`${this.baseUrl}/${id}`)
-      .pipe(map(json => this.updateEntityFromResponse(json, entity)));
+      .pipe(map((json) => this.updateEntityFromResponse(json, entity)));
   }
 
   protected get baseUrl(): string {
@@ -51,11 +54,11 @@ export class ReadRestService<T extends CrudModel> {
 
   protected buildListFromResponse<R extends CrudModel>(
     json: any,
-    builder: () => R
+    builder: () => R,
   ): CrudList<R> {
     let list = new CrudList<R>();
     list.entries = json["data"].map((item: any) =>
-      this.copyAttributes(item, builder())
+      this.copyAttributes(item, builder()),
     );
     Object.assign(list.links, json["links"]);
 
@@ -64,7 +67,7 @@ export class ReadRestService<T extends CrudModel> {
 
   protected updateEntityFromResponse<R extends CrudModel>(
     json: any,
-    entity: R
+    entity: R,
   ): R {
     return this.copyAttributes(json["data"], entity);
   }
@@ -77,7 +80,7 @@ export class ReadRestService<T extends CrudModel> {
 
   protected buildEntity(): T {
     throw new Error(
-      `${this.constructor.name}#buildEntity() is not implemented`
+      `${this.constructor.name}#buildEntity() is not implemented`,
     );
   }
 
@@ -86,12 +89,12 @@ export class ReadRestService<T extends CrudModel> {
     return {
       params: Object.keys(params)
         .filter(this.paramFilter(params))
-        .reduce((s, key) => s.append(key, params[key]), new HttpParams())
+        .reduce((s, key) => s.append(key, params[key]), new HttpParams()),
     };
   }
 
   private paramFilter(params: any): (key: string) => boolean {
-    return key =>
+    return (key) =>
       params[key] != null &&
       ((typeof params[key] !== "string" && !Array.isArray(params[key])) ||
         params[key].length !== 0);

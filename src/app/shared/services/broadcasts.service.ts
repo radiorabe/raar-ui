@@ -19,7 +19,7 @@ export class BroadcastsService extends ReadRestService<BroadcastModel> {
   getListForDate(date: Date): Observable<CrudList<BroadcastModel>> {
     return this.http
       .get(this.baseUrl + DateParamsService.convertDateToPath(date))
-      .pipe(map(json => this.buildListFromResponse(json, this.buildEntity)));
+      .pipe(map((json) => this.buildListFromResponse(json, this.buildEntity)));
   }
 
   getListForQuery(query: string): Observable<CrudList<BroadcastModel>> {
@@ -29,16 +29,16 @@ export class BroadcastsService extends ReadRestService<BroadcastModel> {
   getForTime(date: Date): Observable<BroadcastModel | void> {
     return this.http
       .get(this.baseUrl + DateParamsService.convertTimeToPath(date))
-      .pipe(map(json => this.buildBroadcastFromResponse(json)));
+      .pipe(map((json) => this.buildBroadcastFromResponse(json)));
   }
 
   update(
     entity: BroadcastModel,
-    entityToUpdate: BroadcastModel = entity
+    entityToUpdate: BroadcastModel = entity,
   ): Observable<BroadcastModel> {
     return this.http
       .patch(`${this.baseUrl}/${entity.id}`, this.rootedJson(entity))
-      .pipe(map(json => this.updateEntityFromResponse(json, entityToUpdate)));
+      .pipe(map((json) => this.updateEntityFromResponse(json, entityToUpdate)));
   }
 
   protected buildEntity(): BroadcastModel {

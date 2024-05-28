@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpEvent,
   HttpHandler,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -20,14 +20,14 @@ export class RemoteErrorInterceptor implements HttpInterceptor {
 
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     if (req.headers.has("Skip-Error-Handling")) {
       return next.handle(
-        req.clone({ headers: req.headers.delete("Skip-Error-Handling") })
+        req.clone({ headers: req.headers.delete("Skip-Error-Handling") }),
       );
     } else {
-      return next.handle(req).pipe(catchError(res => this.handleError(res)));
+      return next.handle(req).pipe(catchError((res) => this.handleError(res)));
     }
   }
 

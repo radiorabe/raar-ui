@@ -14,7 +14,10 @@ export class TokenAuthService {
 
   private _initialized: boolean = false;
 
-  constructor(protected login: LoginService, protected router: Router) {}
+  constructor(
+    protected login: LoginService,
+    protected router: Router,
+  ) {}
 
   get isLoggedIn(): Observable<boolean> {
     return this.checkUserAuth().pipe(map((_) => this.isUserAuthenticated));
@@ -116,7 +119,7 @@ export class TokenAuthService {
 
   protected runAuthCheck(
     check: Observable<UserModel>,
-    key: string
+    key: string,
   ): Observable<void> {
     return check.pipe(
       map((user) => {
@@ -126,7 +129,7 @@ export class TokenAuthService {
       catchError((err) => {
         this.clearToken(key);
         return of(undefined);
-      })
+      }),
     );
   }
 

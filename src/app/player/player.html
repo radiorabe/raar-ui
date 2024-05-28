@@ -27,14 +27,10 @@
     <div *ngIf="audioFile">
       <div class="info">
         <h4 class="show title">{{ broadcast.attributes.label }}</h4>
-        <div>
-          {{ broadcast | broadcastTime: 'full' }}
-        </div>
+        <div>{{ broadcast | broadcastTime: 'full' }}</div>
       </div>
 
-      <div class="time-passed">
-        {{ player.currentTime }}
-      </div>
+      <div class="time-passed">{{ player.currentTime }}</div>
 
       <div class="backward" role="button" (click)="player.backward(15)">
         <span class="glyphicon glyphicon-repeat"></span>
@@ -47,9 +43,7 @@
         (slidingEvent)="player.seek($event)"
       ></sd-slider>
 
-      <div class="time-total">
-        {{ player.totalTime }}
-      </div>
+      <div class="time-total">{{ player.totalTime }}</div>
 
       <div class="forward" role="button" (click)="player.forward(15)">
         <span class="glyphicon glyphicon-repeat"></span>

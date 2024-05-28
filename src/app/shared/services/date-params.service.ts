@@ -11,7 +11,7 @@ export const DateParamsService = {
       +params["day"],
       +hour,
       +min,
-      +sec
+      +sec,
     );
   },
 
@@ -25,7 +25,7 @@ export const DateParamsService = {
       [
         date.getFullYear(),
         this.zeroPad(date.getMonth() + 1),
-        this.zeroPad(date.getDate())
+        this.zeroPad(date.getDate()),
       ].join("/")
     );
   },
@@ -50,5 +50,5 @@ export const DateParamsService = {
 
   zeroPad(n: number): string {
     return ("0" + n).slice(-2);
-  }
+  },
 };

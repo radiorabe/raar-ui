@@ -8,6 +8,6 @@ export class ShowModel extends CrudModel {
   } = {
     name: "",
     details: undefined,
-    audio_access: false
+    audio_access: false,
   };
 }

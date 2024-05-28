@@ -7,7 +7,7 @@ describe("Tracks", () => {
       "/api/shows?since=2018-01-01&sort=-last_broadcast_at&page%5Bsize%5D=100",
       {
         fixture: "shows/current.json",
-      }
+      },
     );
   });
 
@@ -30,7 +30,7 @@ describe("Tracks", () => {
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);
     cy.get("sd-broadcasts-date sd-running-broadcast").should(
       "contain",
-      "21:00"
+      "21:00",
     );
 
     cy.get("sd-broadcasts-date sd-running-broadcast h4").click();
@@ -59,7 +59,7 @@ describe("Tracks", () => {
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);
     cy.get("sd-broadcasts-date sd-running-broadcast").should(
       "contain",
-      "21:00"
+      "21:00",
     );
     cy.url().should("include", datePath(new Date("2019-04-15")) + ";time=2100");
     cy.get(".tracklist li").should("have.length", 44);
@@ -86,7 +86,7 @@ describe("Tracks", () => {
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);
     cy.get("sd-broadcasts-date sd-running-broadcast").should(
       "contain",
-      "00:00"
+      "00:00",
     );
 
     cy.get("sd-broadcasts-date sd-running-broadcast h4").click();

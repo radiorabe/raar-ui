@@ -13,22 +13,25 @@ export class TracksService extends ReadRestService<TrackModel> {
   }
 
   getListForBroadcast(
-    broadcast: BroadcastModel
+    broadcast: BroadcastModel,
   ): Observable<CrudList<TrackModel>> {
     return this.getList({
       broadcast_id: broadcast.id,
       sort: "started_at",
-      "page[size]": 500
-    }).pipe(switchMap(list => this.loadAllEntries(list)));
+      "page[size]": 500,
+    }).pipe(switchMap((list) => this.loadAllEntries(list)));
   }
 
   getListForHour(hour: Date): Observable<TrackModel[]> {
     return this.http
       .get(
         this.baseUrl + this.convertHourToPath(hour),
-        this.requestOptionsFromParams({ sort: "started_at", "page[size]": 100 })
+        this.requestOptionsFromParams({
+          sort: "started_at",
+          "page[size]": 100,
+        }),
       )
-      .pipe(map(json => this.buildTracksInHourFromResponse(json, hour)));
+      .pipe(map((json) => this.buildTracksInHourFromResponse(json, hour)));
   }
 
   protected buildEntity(): TrackModel {
@@ -36,11 +39,11 @@ export class TracksService extends ReadRestService<TrackModel> {
   }
 
   private loadAllEntries(
-    list: CrudList<TrackModel>
+    list: CrudList<TrackModel>,
   ): Observable<CrudList<TrackModel>> {
     if (list.links.next) {
       return this.getNextEntries(list).pipe(
-        switchMap(l => this.loadAllEntries(l))
+        switchMap((l) => this.loadAllEntries(l)),
       );
     } else {
       return of(list);
@@ -63,7 +66,7 @@ export class TracksService extends ReadRestService<TrackModel> {
         // Filter the ones that actually did start in the requested hour.
         .filter(
           (e: TrackModel) =>
-            e.attributes.started_at.getHours() === hour.getHours()
+            e.attributes.started_at.getHours() === hour.getHours(),
         )
     );
   }

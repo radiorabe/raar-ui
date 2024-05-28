@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpEvent,
   HttpHandler,
-  HttpHeaders
+  HttpHeaders,
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
@@ -17,7 +17,7 @@ export class AddAuthHeaderInterceptor implements HttpInterceptor {
 
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     return next.handle(this.transformRequest(req));
   }
@@ -31,7 +31,7 @@ export class AddAuthHeaderInterceptor implements HttpInterceptor {
   private setContentType(req: HttpRequest<any>): HttpRequest<any> {
     if (!req.headers.has("Content-Type")) {
       return req.clone({
-        headers: req.headers.set("Content-Type", MEDIA_TYPE_JSON_API)
+        headers: req.headers.set("Content-Type", MEDIA_TYPE_JSON_API),
       });
     }
     return req;
@@ -42,8 +42,8 @@ export class AddAuthHeaderInterceptor implements HttpInterceptor {
       return req.clone({
         headers: req.headers.set(
           "Authorization",
-          'Token token="' + this.auth.token + '"'
-        )
+          'Token token="' + this.auth.token + '"',
+        ),
       });
     }
     return req;

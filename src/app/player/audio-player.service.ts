@@ -21,7 +21,7 @@ export class AudioPlayerService {
       this._audioFile = audioFile;
       if (this._audio) this._audio.destruct();
       this._audio = (<any>window).soundManager.createSound(
-        this.getSoundOptions(audioFile.links.play, autoplay)
+        this.getSoundOptions(audioFile.links.play, autoplay),
       );
       console.log(
         "Play",
@@ -29,7 +29,7 @@ export class AudioPlayerService {
         " at ",
         time,
         "total",
-        this._audio.duration
+        this._audio.duration,
       );
       if (time) this.setPosition(time);
     } else if (this._audio) {
@@ -54,7 +54,7 @@ export class AudioPlayerService {
         position,
         "total",
         this._audio.duration,
-        this._audio.durationEstimate
+        this._audio.durationEstimate,
       );
       this._audio.setPosition(position);
     }
@@ -117,7 +117,7 @@ export class AudioPlayerService {
       this._audio.duration ||
       this._audio.durationEstimate ||
       dayjs(this.broadcastAttrs.finished_at).diff(
-        this.broadcastAttrs.started_at
+        this.broadcastAttrs.started_at,
       )
     );
   }
@@ -130,7 +130,7 @@ export class AudioPlayerService {
   get position(): Date {
     if (!this._audio) return new Date(0);
     return new Date(
-      this.broadcastAttrs.started_at.getTime() + this._audio.position
+      this.broadcastAttrs.started_at.getTime() + this._audio.position,
     );
   }
 

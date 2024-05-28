@@ -40,13 +40,13 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private broadcastsService: BroadcastsService,
-    private refreshService: RefreshService
+    private refreshService: RefreshService,
   ) {}
 
   ngOnInit() {
     const paramsObservable = this.route.params;
     const dateObservable = paramsObservable.pipe(
-      map((params) => this.getDate(params))
+      map((params) => this.getDate(params)),
     );
 
     dateObservable
@@ -56,7 +56,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     paramsObservable
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (params) => (this.dateWithTime = this.getDateWithTime(params))
+        (params) => (this.dateWithTime = this.getDateWithTime(params)),
       );
 
     dateObservable
@@ -66,7 +66,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
         merge(
           this.refreshService
             .asObservable()
-            .pipe(withLatestFrom(dateObservable, (_, date) => date))
+            .pipe(withLatestFrom(dateObservable, (_, date) => date)),
         ),
         tap(() => {
           this.loading = true;
@@ -76,11 +76,11 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
         switchMap((date: Date) =>
           this.broadcastsService.getListForDate(date).pipe(
             tap((_) => (this.errorMessage = undefined)),
-            catchError(this.handleHttpError.bind(this))
-          )
+            catchError(this.handleHttpError.bind(this)),
+          ),
         ),
         map((list: CrudList<BroadcastModel>) => list.entries),
-        tap(() => (this.loading = false))
+        tap(() => (this.loading = false)),
       )
       .subscribe((list: BroadcastModel[]) => {
         this.broadcasts = list;
@@ -161,7 +161,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   }
 
   private handleHttpError(
-    message: string
+    message: string,
   ): Observable<CrudList<BroadcastModel>> {
     this.errorMessage = message;
     return of(new CrudList<BroadcastModel>());

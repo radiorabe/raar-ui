@@ -9,7 +9,7 @@ import {
   merge,
   map,
   switchMap,
-  catchError
+  catchError,
 } from "rxjs/operators";
 import { ShowsService } from "../shared/services/shows.service";
 import { ShowModel } from "../shared/models/show.model";
@@ -18,7 +18,7 @@ import { UrlSlugService } from "../shared/services/url-slug.service";
 
 @Component({
   selector: "sd-shows",
-  templateUrl: "shows.html"
+  templateUrl: "shows.html",
 })
 export class ShowsComponent {
   // maximally show this number of shows if no search query is given.
@@ -33,19 +33,19 @@ export class ShowsComponent {
     debounceTime(200),
     filter((q: string) => q.length === 0 || q.length > 2),
     distinctUntilChanged(),
-    merge(this.refreshService.asObservable().pipe(map(_ => ""))),
-    switchMap(q => this.fetchShows(q))
+    merge(this.refreshService.asObservable().pipe(map((_) => ""))),
+    switchMap((q) => this.fetchShows(q)),
   );
 
   constructor(
     private showService: ShowsService,
-    private refreshService: RefreshService
+    private refreshService: RefreshService,
   ) {}
 
   getShowLink(show: ShowModel): string[] {
     return [
       "/show",
-      show.id + "-" + UrlSlugService.escape(show.attributes.name)
+      show.id + "-" + UrlSlugService.escape(show.attributes.name),
     ];
   }
 
@@ -53,12 +53,12 @@ export class ShowsComponent {
     let observable: Observable<ShowModel[]> = this.showService
       .getList(this.fetchParams(q))
       .pipe(
-        map(list => list.entries),
-        catchError(_ => of([]))
+        map((list) => list.entries),
+        catchError((_) => of([])),
       );
     if (q.length === 0) {
       // sort shows by name as we get them ordered by last_broadcast_at.
-      observable = observable.pipe(map(list => this.sortByName(list)));
+      observable = observable.pipe(map((list) => this.sortByName(list)));
     }
     return observable;
   }
@@ -70,19 +70,19 @@ export class ShowsComponent {
       return {
         since: year.toString() + "-01-01",
         sort: "-last_broadcast_at",
-        "page[size]": ShowsComponent.MAX_INITIAL_SHOWS
+        "page[size]": ShowsComponent.MAX_INITIAL_SHOWS,
       };
     } else {
       return {
         q: q,
-        sort: "name"
+        sort: "name",
       };
     }
   }
 
   private sortByName(entries: ShowModel[]): ShowModel[] {
     return entries.sort((a, b) =>
-      a.attributes.name.localeCompare(b.attributes.name)
+      a.attributes.name.localeCompare(b.attributes.name),
     );
   }
 }

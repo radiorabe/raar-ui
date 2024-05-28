@@ -19,7 +19,10 @@ export class RunningBroadcastComponent implements OnInit {
 
   tracks: TrackModel[] = [];
 
-  constructor(private tracksService: TracksService, private router: Router) {}
+  constructor(
+    private tracksService: TracksService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     if (this.expanded) {
@@ -39,7 +42,7 @@ export class RunningBroadcastComponent implements OnInit {
     if (!this.tracks.length) {
       forkJoin(this.fetchTracksForMissingHours()).subscribe(
         (lists) =>
-          (this.tracks = lists.reduce((acc, list) => acc.concat(list), []))
+          (this.tracks = lists.reduce((acc, list) => acc.concat(list), [])),
       );
     }
   }
