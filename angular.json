@@ -50,20 +50,32 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "proxyConfig": "proxy.conf.json",
-            "buildTarget": "raar-ui:build"
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
               "buildTarget": "raar-ui:build:production"
+            },
+            "development": {
+              "buildTarget": "raar-ui:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

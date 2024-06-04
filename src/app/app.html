@@ -1,13 +1,16 @@
 <sd-layout [collapsibleNav]="false">
   <nav>
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="(auth.isLoggedIn | async) === false">
+      @if ((auth.isLoggedIn | async) === false) {
+      <li>
         <a (click)="showLogin()"><small>Login</small></a>
       </li>
-      <li *ngIf="auth.isLoggedIn | async" class="navbar-user">
+      } @if (auth.isLoggedIn | async) {
+      <li class="navbar-user">
         <small class="user">{{ auth.user.toString() }}</small>
         <a (click)="auth.logout()"><small>Logout</small></a>
       </li>
+      }
       <li class="navbar-user hidden-xs">
         <a href="https://rabe.ch"><small>RaBe Webseite</small></a>
       </li>

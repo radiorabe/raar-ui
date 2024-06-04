@@ -4,9 +4,11 @@
     [class.access-denied]="!broadcast.attributes.audio_access"
     (click)="toggle()"
   >
-    <div *ngIf="!broadcast.attributes.audio_access" class="pull-right">
+    @if (!broadcast.attributes.audio_access) {
+    <div class="pull-right">
       <span class="glyphicon glyphicon-lock"></span>
     </div>
+    }
     <a>
       <span class="broadcast-date">
         {{ broadcast | broadcastTime: (view === "month" ? "standard" : "time")
@@ -16,9 +18,11 @@
     </a>
   </h4>
 
-  <div class="list-group-item-text fixclear" *ngIf="expanded">
+  @if (expanded) {
+  <div class="list-group-item-text fixclear">
     <table class="table-condensed pull-right audio-links">
-      <tr *ngFor="let audio of audioFiles">
+      @for (audio of audioFiles; track audio.id) {
+      <tr>
         <td>
           <a (click)="play(audio)">
             <span
@@ -26,56 +30,53 @@
               aria-hidden="true"
             ></span>
             {{ audio.attributes.codec | uppercase }} {{
-            audio.attributes.playback_format }}
-            <span *ngIf="audio.attributes.bitrate > 1">
-              ({{ audio.attributes.bitrate }}k)
-            </span>
+            audio.attributes.playback_format }} @if (audio.attributes.bitrate >
+            1) {
+            <span> ({{ audio.attributes.bitrate }}k) </span>
+            }
           </a>
         </td>
         <td>
-          <a
-            *ngIf="audio.links.download"
-            (click)="download(audio)"
-            class="text-nowrap"
-          >
+          @if (audio.links.download) {
+          <a (click)="download(audio)" class="text-nowrap">
             <span
               class="glyphicon glyphicon-download"
               aria-hidden="true"
             ></span>
             Download
           </a>
+          }
         </td>
       </tr>
+      }
     </table>
-
-    <div class="pull-right placeholder" *ngIf="loadingAudio">
+    @if (loadingAudio) {
+    <div class="pull-right placeholder">
       <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
     </div>
-    <div
-      class="pull-right placeholder"
-      *ngIf="audioFiles && audioFiles.length === 0"
-    >
+    } @if (audioFiles && audioFiles.length === 0) {
+    <div class="pull-right placeholder">
       <em>Kein Zugriff oder keine Aufnahme vorhanden</em>
     </div>
-
+    }
     <sd-broadcast-description-form [broadcast]="broadcast">
     </sd-broadcast-description-form>
-
-    <p *ngIf="view === 'day'">
+    @if (view === 'day') {
+    <p>
       <a
         [routerLink]="['/show', broadcast.relationships.show.data.id]"
         class="nowrap"
         >Alle Sendungen</a
       >
     </p>
-
-    <p *ngIf="!broadcast.attributes.audio_access">
+    } @if (!broadcast.attributes.audio_access) {
+    <p>
       Du hast keinen Zugriff auf diese Aufnahme. Bitte
       <a (click)="loginWindow.show(false)">gib den Zugangscode</a> aus dem
       StattRadio ein oder melde dich mit deinem neuen RaBe
       <a (click)="loginWindow.show(true)">Login</a> an.
     </p>
-
+    }
     <sd-tracks
       [tracks]="tracks"
       [playable]="isTracksPlayable()"
@@ -83,4 +84,5 @@
       (playTrack)="playTrack($event)"
     ></sd-tracks>
   </div>
+  }
 </div>

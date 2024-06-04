@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, isDevMode } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  isDevMode,
+} from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
   BroadcastModel,

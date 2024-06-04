@@ -1,18 +1,14 @@
 <h2 class="title">{{ title$ | async }}</h2>
 
-<div
-  *ngIf="details$ | async as details"
-  class="details"
-  [innerHtml]="details.trim()"
-></div>
-
-<p *ngIf="errorMessage" [class.loading]="loading">
+@if (details$ | async; as details) {
+<div class="details" [innerHtml]="details.trim()"></div>
+} @if (errorMessage) {
+<p [class.loading]="loading">
   Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
 </p>
-
-<div *ngIf="((months | async) || []).length === 0" [class.loading]="loading">
-  {{ noBroadcastsMessage }}
-</div>
+} @if (((months | async) || []).length === 0) {
+<div [class.loading]="loading">{{ noBroadcastsMessage }}</div>
+}
 
 <div
   infinite-scroll
@@ -20,27 +16,30 @@
   (scrolled)="onScroll()"
   [class.loading]="loading"
 >
-  <div *ngFor="let month of months | async; trackBy: getMonthIdentifier">
+  @for (month of months | async; track month) {
+  <div>
     <h3 class="title">{{ month }}</h3>
     <div class="list-group">
+      @for ( broadcast of (monthlyBroadcasts | async)[month]; track
+      broadcast.id) {
       <sd-broadcast
-        *ngFor="
-          let broadcast of (monthlyBroadcasts | async)[month];
-          trackBy: getCrudIdentifier
-        "
         [broadcast]="broadcast"
         [expanded]="isExpanded(broadcast)"
         view="month"
       >
       </sd-broadcast>
+      }
     </div>
   </div>
+  }
 </div>
 
-<div class="text-center" *ngIf="fetchingMore">
+@if (fetchingMore) {
+<div class="text-center">
   <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
 </div>
-
-<div *ngIf="hasMore && !fetchingMore">
+} @if (hasMore && !fetchingMore) {
+<div>
   <a (click)="onScroll()">Weitere laden</a>
 </div>
+}

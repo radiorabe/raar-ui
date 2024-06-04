@@ -95,14 +95,6 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
     return this.monthlyBroadcasts.pipe(map((monthly) => Object.keys(monthly)));
   }
 
-  getMonthIdentifier(i: number, month: string): string {
-    return month;
-  }
-
-  getCrudIdentifier(i: number, model: BroadcastModel): number {
-    return model.id;
-  }
-
   onScroll() {
     this.fetchMore.next();
   }
