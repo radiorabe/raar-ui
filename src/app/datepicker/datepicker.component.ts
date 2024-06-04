@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import * as dayjs from "dayjs";
-import * as objectSupport from "dayjs/plugin/objectSupport";
+import dayjs from "dayjs";
+import objectSupport from "dayjs/plugin/objectSupport";
 import { interval, Subject } from "rxjs";
 import {
   distinctUntilChanged,

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { Observable, of, Subject } from "rxjs";
 import {
   catchError,
