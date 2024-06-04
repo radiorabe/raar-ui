@@ -1,13 +1,17 @@
 <sd-small-modal title="Login" #modal>
-  <div *ngIf="failure && userLogin" class="alert alert-danger">
+  @if (failure && userLogin) {
+  <div class="alert alert-danger">
     Benutzername oder Password sind ungültig.
   </div>
-  <div *ngIf="failure && !userLogin" class="alert alert-danger">
+  } @if (failure && !userLogin) {
+  <div class="alert alert-danger">
     Der Zugangscode ist ungültig oder abgelaufen.
   </div>
+  }
 
   <form (submit)="submit()">
-    <div *ngIf="userLogin" class="form-group">
+    @if (userLogin) {
+    <div class="form-group">
       <label for="username">Benutzername</label>
       <input
         type="string"
@@ -16,7 +20,8 @@
         [(ngModel)]="username"
       />
     </div>
-    <div *ngIf="userLogin" class="form-group">
+    } @if (userLogin) {
+    <div class="form-group">
       <label for="password">Passwort</label>
       <input
         type="password"
@@ -25,7 +30,8 @@
         [(ngModel)]="password"
       />
     </div>
-    <div *ngIf="!userLogin" class="form-group">
+    } @if (!userLogin) {
+    <div class="form-group">
       <label for="username">Zugangscode</label>
       <input
         type="string"
@@ -34,21 +40,23 @@
         [(ngModel)]="accessCode"
       />
     </div>
-    <div class="form-group" *ngIf="!userLogin">
+    } @if (!userLogin) {
+    <div class="form-group">
       Du hast keinen Zugangscode? Werde
       <a href="http://www.rabe.ch/mitgliedschaft">RaBe-Mitglied</a>
       und erhalte den Zugang zum Archiv.
     </div>
-    <div class="form-group" *ngIf="userLogin">
+    } @if (userLogin) {
+    <div class="form-group">
       <a href="https://my.rabe.ch/auth/forgotpw">Passwort vergessen?</a>
     </div>
+    }
     <div class="form-group">
-      <a *ngIf="userLogin" (click)="displayAccessCode()">
-        Du hast einen Zugangscode?
-      </a>
-      <a *ngIf="!userLogin" (click)="displayUserLogin()">
-        Du hast ein RaBe Login?
-      </a>
+      @if (userLogin) {
+      <a (click)="displayAccessCode()"> Du hast einen Zugangscode? </a>
+      } @if (!userLogin) {
+      <a (click)="displayUserLogin()"> Du hast ein RaBe Login? </a>
+      }
     </div>
     <button
       type="submit"

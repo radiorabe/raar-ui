@@ -20,16 +20,18 @@
 </div>
 
 <div class="list-group">
+  @for (show of shows | async; track show.id) {
   <a
-    *ngFor="let show of shows | async"
     [routerLink]="getShowLink(show)"
     routerLinkActive="active"
     class="list-group-item title"
     [class.access-denied]="!show.attributes.audio_access"
   >
-    <div *ngIf="!show.attributes.audio_access" class="pull-right">
+    @if (!show.attributes.audio_access) {
+    <div class="pull-right">
       <span class="glyphicon glyphicon-lock"></span>
     </div>
-    {{ show.attributes.name }}
+    } {{ show.attributes.name }}
   </a>
+  }
 </div>

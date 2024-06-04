@@ -1,16 +1,18 @@
-<p *ngIf="!editing && (broadcast.attributes.details || broadcast.links.update)">
+@if (!editing && (broadcast.attributes.details || broadcast.links.update)) {
+<p>
+  @if (broadcast.attributes.details) {
   <span
-    *ngIf="broadcast.attributes.details"
     class="details"
     [innerHtml]="broadcast.attributes.details.trim()"
   ></span>
-  &nbsp;
-  <a *ngIf="broadcast.links.update" (click)="startEditing()">
+  } &nbsp; @if (broadcast.links.update) {
+  <a (click)="startEditing()">
     <span class="glyphicon glyphicon-pencil"></span>
   </a>
+  }
 </p>
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="editing">
+} @if (editing) {
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <textarea
     class="form-control"
     placeholder="Schwerpunkte, Gäste, Themen usw. dieser Sendung"
@@ -30,3 +32,4 @@
     </button>
   </div>
 </form>
+}

@@ -1,20 +1,23 @@
-<div *ngIf="tracks.length" class="tracklist">
+@if (tracks.length) {
+<div class="tracklist">
   <strong>Playlist</strong>
   <br />
   <ul [class.non-playable]="!playable">
-    <li *ngFor="let track of tracks; trackBy: getCrudIdentifier">
-      <a (click)="playTrack.emit(track)" [class.active]="isTrackPlaying(track)">
+    @for (trak of tracks; track trak.id) {
+    <li>
+      <a (click)="playTrack.emit(trak)" [class.active]="isTrackPlaying(trak)">
         <span class="glyphicon glyphicon-play-circle" aria-hidden="true"> </span
         ><span class="track-time">
-          {{ track.attributes.started_at | dateString: "time" }}
+          {{ trak.attributes.started_at | dateString: "time" }}
         </span>
         <span class="track-info">
-          <span *ngIf="track.attributes.artist">
-            {{ track.attributes.artist }} –
-          </span>
-          {{ track.attributes.title }}
+          @if (trak.attributes.artist) {
+          <span> {{ trak.attributes.artist }} – </span>
+          } {{ trak.attributes.title }}
         </span>
       </a>
     </li>
+    }
   </ul>
 </div>
+}

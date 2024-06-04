@@ -15,41 +15,38 @@
         </span>
       </a>
 
-      <div class="circle-loading" *ngIf="player.loading" (click)="togglePlay()">
+      @if (player.loading) {
+      <div class="circle-loading" (click)="togglePlay()">
         <div class="spinner">
           <div class="mask">
             <div class="maskedCircle"></div>
           </div>
         </div>
       </div>
+      }
     </div>
 
-    <div *ngIf="audioFile">
+    @if (audioFile) {
+    <div>
       <div class="info">
         <h4 class="show title">{{ broadcast.attributes.label }}</h4>
         <div>{{ broadcast | broadcastTime: 'full' }}</div>
       </div>
-
       <div class="time-passed">{{ player.currentTime }}</div>
-
       <div class="backward" role="button" (click)="player.backward(15)">
         <span class="glyphicon glyphicon-repeat"></span>
         <span class="skip-time">15</span>
       </div>
-
       <sd-slider
         class="time-progress"
         [value]="player.percent"
         (slidingEvent)="player.seek($event)"
       ></sd-slider>
-
       <div class="time-total">{{ player.totalTime }}</div>
-
       <div class="forward" role="button" (click)="player.forward(15)">
         <span class="glyphicon glyphicon-repeat"></span>
         <span class="skip-time">15</span>
       </div>
-
       <div class="volume-icon">
         <span
           class="glyphicon"
@@ -60,12 +57,12 @@
           (click)="player.toggleMute()"
         ></span>
       </div>
-
       <sd-slider
         class="volume-slider"
         [value]="volume"
         (slidingEvent)="player.setVolume($event)"
       ></sd-slider>
     </div>
+    }
   </div>
 </div>

@@ -107,10 +107,6 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     return this.date >= dayjs().startOf("day").toDate();
   }
 
-  getCrudIdentifier(i: number, model: BroadcastModel): number {
-    return model.id;
-  }
-
   isExpanded(broadcast: BroadcastModel): boolean {
     return this.dateWithTime ? broadcast.isCovering(this.dateWithTime) : false;
   }
