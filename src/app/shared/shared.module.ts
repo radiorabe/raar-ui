@@ -13,7 +13,7 @@ import { TokenAuthService } from "./services/token-auth.service";
 import { TracksService } from "./services/tracks.service";
 import { LayoutComponent } from "./components/layout.component";
 import { LoginService } from "./services/login.service";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, provideHttpClient } from "@angular/common/http";
 import { AddAuthHeaderInterceptor } from "./services/add-auth-header-interceptor.service";
 import { RemoteErrorInterceptor } from "./services/remote-error-interceptor.service";
 
@@ -27,13 +27,6 @@ const interceptors = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-  ],
   declarations: [
     LayoutComponent,
     LoginComponent,
@@ -45,12 +38,12 @@ const interceptors = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule,
     LayoutComponent,
     LoginComponent,
     SliderComponent,
     SmallModalComponent,
   ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders<SharedModule> {
@@ -64,6 +57,7 @@ export class SharedModule {
         { provide: TokenAuthService, useExisting: AuthService },
         LoginWindowService,
         RefreshService,
+        provideHttpClient(),
         ...interceptors,
       ],
     };

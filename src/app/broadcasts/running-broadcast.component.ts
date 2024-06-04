@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { forkJoin, Observable } from "rxjs";
 import { TrackModel } from "../shared/models/index";
 import { DateParamsService } from "../shared/services/date-params.service";

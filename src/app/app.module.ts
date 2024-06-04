@@ -26,8 +26,9 @@ import { BroadcastDescriptionFormComponent } from "./broadcasts/broadcast-descri
 import { TracksComponent } from "./broadcasts/tracks.component";
 import { RunningBroadcastComponent } from "./broadcasts/running-broadcast.component";
 
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import "dayjs/locale/de-ch";
+import { provideHttpClient } from "@angular/common/http";
 
 dayjs.locale("de-ch");
 

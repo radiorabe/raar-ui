@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, isDevMode } from "@angular/core";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { Observable } from "rxjs";
 import { AudioFileModel } from "../shared/models/audio-file.model";
 import { BroadcastModel } from "../shared/models/broadcast.model";

@@ -19,7 +19,7 @@ import {
 } from "../shared/services/date-params.service";
 import { RefreshService } from "../shared/services/refresh.service";
 
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 
