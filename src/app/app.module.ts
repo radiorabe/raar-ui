@@ -28,7 +28,6 @@ import { RunningBroadcastComponent } from "./broadcasts/running-broadcast.compon
 
 import dayjs from "dayjs";
 import "dayjs/locale/de-ch";
-import { provideHttpClient } from "@angular/common/http";
 
 dayjs.locale("de-ch");
 
