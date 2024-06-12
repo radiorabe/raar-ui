@@ -13,7 +13,11 @@ import { TokenAuthService } from "./services/token-auth.service";
 import { TracksService } from "./services/tracks.service";
 import { LayoutComponent } from "./components/layout.component";
 import { LoginService } from "./services/login.service";
-import { HTTP_INTERCEPTORS, provideHttpClient } from "@angular/common/http";
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { AddAuthHeaderInterceptor } from "./services/add-auth-header-interceptor.service";
 import { RemoteErrorInterceptor } from "./services/remote-error-interceptor.service";
 
@@ -57,7 +61,7 @@ export class SharedModule {
         { provide: TokenAuthService, useExisting: AuthService },
         LoginWindowService,
         RefreshService,
-        provideHttpClient(),
+        provideHttpClient(withInterceptorsFromDi()),
         ...interceptors,
       ],
     };
