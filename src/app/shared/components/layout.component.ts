@@ -14,14 +14,18 @@ export class LayoutComponent implements OnDestroy {
   private routerSub: Subscription;
 
   constructor(router: Router) {
-    "foo";
     this.routerSub = router.events.subscribe((e) => {
-      if (e instanceof NavigationEnd) this._showNav = false;
+      if (e instanceof NavigationEnd && !e.url.includes("/search/"))
+        this._showNav = false;
     });
   }
 
   get showNav(): boolean {
     return this._showNav;
+  }
+
+  get currentYear(): number {
+    return new Date().getFullYear();
   }
 
   toggleNav() {

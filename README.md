@@ -52,5 +52,5 @@ $ ./deploy.sh
 ## License
 
 raar-ui is released under the terms of the GNU Affero General Public License.
-Copyright 2016-2023 Radio RaBe.
+Copyright 2016-today Radio RaBe.
 See `LICENSE` for further information.
