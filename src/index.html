@@ -38,10 +38,19 @@
 
     <style type="text/css">
       /* All styles required for loading page */
-      @import url(https://fonts.googleapis.com/css?family=Fjalla+One|Roboto:500italic,500,300&subset=latin,latin-ext);
+      @font-face {
+        font-family: Font-regular;
+        src: url(/assets/font-regular.otf) format("opentype");
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Font-bold;
+        src: url(/assets/font-bold.otf) format("opentype");
+        font-display: swap;
+      }
 
       body {
-        font-family: "Roboto", sans-serif;
+        font-family: "Font-regular", Arial, sans-serif;
         font-size: 14px;
         line-height: 1.428571429;
         color: #333333;
@@ -78,7 +87,7 @@
       #brand_loading .brand {
         font-size: 72px;
         text-align: center;
-        font-family: "Fjalla One", sans-serif;
+        font-family: "Font-bold", Arial, sans-serif;
       }
       #brand_loading .brand small {
         font-size: 18px;

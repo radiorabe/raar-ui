@@ -10,7 +10,7 @@
     </div>
     }
     <a>
-      <span class="broadcast-date">
+      <span class="broadcast-time">
         {{ broadcast | broadcastTime: (view === "month" ? "standard" : "time")
         }}
       </span>
@@ -73,8 +73,8 @@
     <p>
       Du hast keinen Zugriff auf diese Aufnahme. Bitte
       <a (click)="loginWindow.show(false)">gib den Zugangscode</a> aus dem
-      StattRadio ein oder melde dich mit deinem neuen RaBe
-      <a (click)="loginWindow.show(true)">Login</a> an.
+      StattRadio ein oder melde dich mit deinem
+      <a (click)="loginWindow.show(true)">RaBe Login</a> an.
     </p>
     }
     <sd-tracks

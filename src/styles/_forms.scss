@@ -3,6 +3,10 @@
   margin-left: $padding-base-horizontal;
 }
 
+.btn {
+  font-family: $headings-font-family;
+}
+
 .has-clear {
   input::-ms-clear {
     display: none;

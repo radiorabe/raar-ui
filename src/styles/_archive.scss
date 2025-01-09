@@ -25,7 +25,11 @@ sd-broadcasts-date {
     display: none;
   }
 
-  @media (min-width: 565px) {
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: $screen-md-min) {
     .mobile {
       display: none;
     }
@@ -48,19 +52,14 @@ sd-running-broadcast {
   .list-group-item {
     border: 0;
     padding: 0;
+    background-color: $brand-secondary;
+
+    &:last-child {
+      margin-bottom: $padding-large-vertical * 2;
+    }
 
     &.title {
       font-size: 16px;
-    }
-
-    &:before {
-      content: "";
-      position: absolute;
-      left: 1.25%;
-      bottom: 0;
-      height: 1px;
-      width: 97.5%;
-      border-bottom: 1px solid #ddd;
     }
   }
 
@@ -71,7 +70,7 @@ sd-running-broadcast {
 
   .list-group-item-heading {
     margin-bottom: 0;
-    padding: 10px 15px;
+    padding: 20px 20px;
 
     & > a {
       color: #000;
@@ -80,7 +79,7 @@ sd-running-broadcast {
   }
 
   .list-group-item-text {
-    padding: 0px 15px 10px 15px + $padding-base-horizontal;
+    padding: 10px 15px 10px 15px + $padding-base-horizontal;
     max-height: 300px;
     overflow-y: auto;
 
@@ -111,13 +110,18 @@ sd-running-broadcast {
   }
 
   .audio-links {
-    font-size: 15px;
-    margin-bottom: 10px;
+
+    &:not(:empty) {
+      margin-bottom: 10px;
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+        float: none !important;
+        margin-bottom: 20px;
+      }
+    }
 
     tr > td {
-      padding-top: 0px;
-      padding-bottom: 6px;
-      padding-left: 6px;
+      padding: 0 0 6px 10px;
       vertical-align: top;
     }
 
@@ -126,8 +130,8 @@ sd-running-broadcast {
     }
   }
 
-  sd-broadcast-description-form {
-    margin-bottom: 10px;
+  sd-broadcast-description-form:not(:empty) {
+    margin-bottom: 20px;
     display: block;
   }
 
@@ -135,44 +139,35 @@ sd-running-broadcast {
     margin-bottom: 5px;
   }
 
-  .broadcast-date,
-  .broadcast-date {
+  .broadcast-time {
     margin-right: $padding-base-horizontal;
     text-align: right;
     display: inline-block;
   }
 
   .view-day {
-    .list-group-item-heading {
-      padding-left: 131px;
-      text-indent: -116px;
-
-      .pull-right {
-        text-indent: 0;
-      }
-    }
-
-    .broadcast-date {
-      min-width: 100px;
+    .broadcast-time {
+      min-width: 7em;
     }
   }
 
   .view-month {
-    .list-group-item-heading {
-      padding-left: 201px;
-      text-indent: -186px;
+    .broadcast-time {
+      min-width: 12em;
 
-      .pull-right {
-        text-indent: 0;
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+        min-width: 0;
+        text-align: left;
+        display: block;
+        margin-bottom: 10px;
       }
-    }
-
-    .broadcast-date {
-      min-width: 170px;
     }
   }
 
   .tracklist {
+
+    $time-width: 3.5em;
+
     clear: both;
 
     ul {
@@ -181,15 +176,16 @@ sd-running-broadcast {
 
     li {
       list-style: none;
-      padding-left: 48px;
+      padding-left: 4em;
       padding-top: 1px;
       padding-bottom: 1px;
     }
 
     .track-time {
       display: inline-block;
-      margin-right: 10px;
-      margin-left: -48px;
+      margin-right: 0;
+      margin-left: -3.5em;
+      width: $time-width;
     }
 
     .glyphicon {
@@ -198,11 +194,12 @@ sd-running-broadcast {
 
     a:hover,
     a.active {
+      color: $link-hover-color;
+
       .glyphicon {
-        color: $link-hover-color;
         display: inline-block;
-        margin-right: 5px;
-        margin-left: -67px;
+        margin-right: 0.5em;
+        margin-left: -5em;
       }
 
       .track-time {
@@ -214,11 +211,8 @@ sd-running-broadcast {
       a {
         color: inherit;
         font-weight: inherit;
+        font-family: inherit;
         cursor: inherit;
-      }
-
-      a:hover {
-        text-decoration: none;
       }
 
       a:hover {
@@ -227,15 +221,9 @@ sd-running-broadcast {
         }
 
         .track-time {
-          margin-left: -48px;
+          margin-left: -3.5em;
         }
       }
-    }
-  }
-
-  @media (min-width: $screen-lg-min) {
-    .tracklist {
-      clear: none;
     }
   }
 }
@@ -248,21 +236,23 @@ sd-running-broadcast {
       & > a {
         color: $brand-disabled;
       }
+
+      &.access-denied.title > a {
+        color: $brand-disabled;
+      }
     }
   }
 }
 
-.access-denied {
-  &.title {
+.access-denied.title:not(.active) {
+  color: $brand-no-access;
+
+  a {
     color: $brand-no-access;
+  }
 
-    a {
-      color: $brand-no-access;
-    }
-
-    .glyphicon {
-      color: $brand-disabled;
-    }
+  .glyphicon {
+    color: $brand-disabled;
   }
 }
 

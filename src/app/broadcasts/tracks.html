@@ -1,7 +1,7 @@
 @if (tracks.length) {
 <div class="tracklist">
-  <strong>Playlist</strong>
-  <br />
+  <h5>Playlist</h5>
+
   <ul [class.non-playable]="!playable">
     @for (trak of tracks; track trak.id) {
     <li>
@@ -12,7 +12,7 @@
         </span>
         <span class="track-info">
           @if (trak.attributes.artist) {
-          <span> {{ trak.attributes.artist }} – </span>
+          <span>{{ trak.attributes.artist }} – </span>
           } {{ trak.attributes.title }}
         </span>
       </a>
