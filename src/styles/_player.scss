@@ -7,9 +7,10 @@ sd-player {
   visibility: hidden;
 
   .well {
-    background-color: $brand-info;
+    background-color: $brand-primary;
     padding: 10px;
     border: 0;
+    border-radius: 0;
     color: white;
     margin-bottom: 0;
     transition: transform 200ms ease-out;
@@ -32,10 +33,15 @@ sd-player {
     }
   }
 
+  .info {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
   .show {
-    font-size: 16px;
-    margin-top: 4px;
-    margin-bottom: 0px;
+    font-size: $font-size-base;
+    margin-top: 0;
+    margin-bottom: 0;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -58,7 +64,7 @@ sd-player {
   }
 
   .time-progress {
-    margin: 1px 10px 0 10px;
+    margin: 0px 15px 0 15px;
     width: 27%;
   }
 
@@ -73,7 +79,6 @@ sd-player {
     line-height: 12px;
     margin-top: -3px;
     float: right;
-    display: none;
   }
 
   .volume-slider {
@@ -101,8 +106,8 @@ sd-player {
     .skip-time {
       font-size: 8px;
       position: absolute;
-      top: 2px;
-      left: 5px;
+      top: 3px;
+      left: 6px;
     }
   }
 
@@ -123,7 +128,7 @@ sd-player {
       display: block;
     }
     .time-progress {
-      width: 33%;
+      width: 50%;
     }
   }
 
@@ -132,11 +137,12 @@ sd-player {
     .info {
       width: 180px;
       float: left;
+      margin-bottom: 0;
     }
     .time-passed,
     .time-total,
     .volume-icon {
-      line-height: 46px;
+      margin-top: 15px;
     }
     .backward {
       clear: none;
@@ -144,22 +150,22 @@ sd-player {
     .time-passed {
       margin-left: 15px;
       text-align: right;
+      line-height: inherit;
     }
     .time-progress,
     .volume-slider {
-      margin-top: 16px;
+      margin-top: 20px;
     }
     .time-progress {
       width: 16%;
-    }
-    .volume-icon {
-      margin-top: 1px;
     }
     .backward {
       margin-left: 15px;
     }
     .backward,
     .forward {
+      margin-top: 5px;
+
       .glyphicon {
         top: 13px;
       }
@@ -196,7 +202,7 @@ sd-player {
       width: 210px;
     }
     .volume-icon {
-      margin-left: 30px;
+      margin-left: 20px;
       float: left;
     }
     .volume-slider {
@@ -215,7 +221,7 @@ sd-player {
       margin-right: 30px;
     }
     .volume-icon {
-      margin-left: 45px;
+      margin-left: 35px;
     }
     .time-total {
       display: block;
@@ -226,6 +232,7 @@ sd-player {
     }
     .info {
       width: 240px;
+      font-size: inherit;
     }
   }
 
@@ -237,7 +244,7 @@ sd-player {
       margin-right: 30px;
     }
     .volume-icon {
-      margin-left: 60px;
+      margin-left: 50px;
     }
   }
 }
@@ -302,5 +309,5 @@ sd-player {
   border-radius: 50%;
   border-style: solid;
   border-width: 5px;
-  border-color: $brand-info;
+  border-color: $brand-primary;
 }
