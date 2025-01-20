@@ -48,33 +48,29 @@ sd-player {
     line-height: 1.4;
   }
 
-  .time-passed,
-  .time-progress,
-  .time-total,
-  .forward,
-  .backward,
-  .volume-slider {
-    float: left;
+  .player-details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
   }
 
   .time-passed {
     text-align: left;
     line-height: 16px;
-    min-width: 50px;
   }
 
   .time-progress {
-    margin: 0px 15px 0 15px;
-    width: 27%;
+    width: 40%;
   }
 
   .time-total {
     display: none;
-    min-width: 50px;
   }
 
   .volume-icon {
-    margin-left: 15px;
     font-size: 20px;
     line-height: 12px;
     margin-top: -3px;
@@ -82,7 +78,6 @@ sd-player {
   }
 
   .volume-slider {
-    margin: 1px 0px 0 10px;
     width: 40px;
     display: none;
   }
@@ -112,15 +107,9 @@ sd-player {
   }
 
   .backward {
-    margin-left: 10px;
-
     .glyphicon-repeat {
       transform: scaleX(-1);
     }
-  }
-
-  .forward {
-    margin-left: 0;
   }
 
   @media (min-width: 380px) {
@@ -139,51 +128,31 @@ sd-player {
       float: left;
       margin-bottom: 0;
     }
-    .time-passed,
-    .time-total,
-    .volume-icon {
-      margin-top: 15px;
+
+    .player-details {
+      margin-top:13px;
     }
-    .backward {
-      clear: none;
-    }
+
     .time-passed {
-      margin-left: 15px;
       text-align: right;
       line-height: inherit;
     }
     .time-progress,
-    .volume-slider {
-      margin-top: 20px;
-    }
-    .time-progress {
-      width: 16%;
-    }
-    .backward {
-      margin-left: 15px;
-    }
-    .backward,
-    .forward {
-      margin-top: 5px;
 
-      .glyphicon {
-        top: 13px;
-      }
-      .skip-time {
-        top: 15px;
-      }
+    .time-progress {
+      width: 40%;
     }
   }
 
   @media (min-width: 600px) {
     .time-progress {
-      width: 21%;
+      width: 50%;
     }
   }
 
   @media (min-width: 640px) {
     .time-progress {
-      width: 23%;
+      width: 50%;
     }
     .info {
       width: 200px;
@@ -192,7 +161,7 @@ sd-player {
 
   @media (min-width: 700px) {
     .time-progress {
-      width: 30%;
+      width: 50%;
     }
   }
 
@@ -200,10 +169,6 @@ sd-player {
   @media (min-width: $screen-sm-min) {
     .time-progress {
       width: 210px;
-    }
-    .volume-icon {
-      margin-left: 20px;
-      float: left;
     }
     .volume-slider {
       display: block;
@@ -219,9 +184,6 @@ sd-player {
     }
     .controls {
       margin-right: 30px;
-    }
-    .volume-icon {
-      margin-left: 35px;
     }
     .time-total {
       display: block;
@@ -239,12 +201,6 @@ sd-player {
   @media (min-width: $screen-lg-min) {
     .time-progress {
       width: 550px;
-    }
-    .controls {
-      margin-right: 30px;
-    }
-    .volume-icon {
-      margin-left: 50px;
     }
   }
 }
