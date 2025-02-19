@@ -1,10 +1,16 @@
 <nav class="pull-right">
   <ul class="pager" style="margin-top: 0">
     <li>
-      <a (click)="prevDate()"><span aria-hidden="true">⟨</span></a>
+      <a (click)="prevDate()" aria-label="Voriger Tag"
+        ><span aria-hidden="true">⟨</span></a
+      >
     </li>
     <li>
-      <a (click)="nextDate()" [class.disabled]="nextDateDisabled()">
+      <a
+        (click)="nextDate()"
+        [class.disabled]="nextDateDisabled()"
+        aria-label="Nächster Tag"
+      >
         <span aria-hidden="true">⟩</span>
       </a>
     </li>
@@ -16,7 +22,12 @@
   <span class="tablet">{{ date | dateString: "date" }}</span>
 </h2>
 
-<div class="list-group" [class.loading]="loading">
+<div
+  class="list-group"
+  [class.loading]="loading"
+  role="tablist"
+  aria-multiselectable="true"
+>
   @for (broadcast of broadcasts; track broadcast.id) {
   <sd-broadcast
     [broadcast]="broadcast"
@@ -36,6 +47,6 @@
 <p [class.loading]="loading">
   Die Sendungen konnten nicht geladen werden ({{ errorMessage }}).
 </p>
-} @if (!errorMessage && broadcasts.length === 0) {
+} @else if (broadcasts.length === 0) {
 <p [class.loading]="loading">Keine aufgenommenen Sendungen vorhanden.</p>
 }

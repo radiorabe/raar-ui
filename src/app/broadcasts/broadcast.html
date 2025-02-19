@@ -1,15 +1,31 @@
 <div class="list-group-item view-{{ view }}">
   <h4
     class="list-group-item-heading title"
+    role="tab"
     [class.access-denied]="!broadcast.attributes.audio_access"
     (click)="toggle()"
   >
-    @if (!broadcast.attributes.audio_access) {
-    <div class="pull-right">
-      <span class="glyphicon glyphicon-lock"></span>
-    </div>
-    }
-    <a>
+    <a
+      role="button"
+      [attr.aria-expanded]="!expanded"
+      [attr.aria-controls]="'broadcast-' + broadcast.id"
+    >
+      <div class="pull-right">
+        @if (!broadcast.attributes.audio_access) {
+        <span class="glyphicon glyphicon-lock"></span>
+        }
+        <span class="toggle" [class.up]="expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.1 14.6">
+            <path
+              fill="none"
+              stroke-linecap="round"
+              stroke-width="3"
+              d="m2.044 2.049 19.227 10.83 18.773-10.83"
+            ></path>
+          </svg>
+        </span>
+      </div>
+
       <span class="broadcast-time">
         {{ broadcast | broadcastTime: (view === "month" ? "standard" : "time")
         }}
@@ -19,7 +35,11 @@
   </h4>
 
   @if (expanded) {
-  <div class="list-group-item-text fixclear">
+  <div
+    class="list-group-item-text fixclear"
+    id="broadcast-{{ broadcast.id }}"
+    role="tabpanel"
+  >
     <table class="table-condensed pull-right audio-links">
       @for (audio of audioFiles; track audio.id) {
       <tr>

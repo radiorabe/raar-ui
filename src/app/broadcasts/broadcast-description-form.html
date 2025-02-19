@@ -1,17 +1,4 @@
-@if (!editing && (broadcast.attributes.details || broadcast.links.update)) {
-<p>
-  @if (broadcast.attributes.details) {
-  <span
-    class="details"
-    [innerHtml]="broadcast.attributes.details.trim()"
-  ></span>
-  } &nbsp; @if (broadcast.links.update) {
-  <a (click)="startEditing()">
-    <span class="glyphicon glyphicon-pencil"></span>
-  </a>
-  }
-</p>
-} @if (editing) {
+@if (editing) {
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <textarea
     class="form-control"
@@ -32,4 +19,17 @@
     </button>
   </div>
 </form>
+} @else if (broadcast.attributes.details || broadcast.links.update) {
+<p>
+  @if (broadcast.attributes.details) {
+  <span
+    class="details"
+    [innerHtml]="broadcast.attributes.details.trim()"
+  ></span>
+  } &nbsp; @if (broadcast.links.update) {
+  <a (click)="startEditing()">
+    <span class="glyphicon glyphicon-pencil"></span>
+  </a>
+  }
+</p>
 }

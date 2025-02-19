@@ -162,7 +162,7 @@ describe("Broadcasts", () => {
     );
 
     // Login
-    cy.get(".navbar-nav.navbar-right li:first-child a").click();
+    cy.get(".navbar-nav.navbar-right li a").contains("Login").click();
     cy.get("sd-login form .btn-primary").click();
     cy.get("sd-login .alert-danger").should("exist");
 
@@ -220,7 +220,7 @@ describe("Broadcasts", () => {
       },
     );
 
-    cy.get(".navbar-nav.navbar-right li:first-child a").click();
+    cy.get(".navbar-nav.navbar-right li a").contains("Logout").click();
 
     cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(

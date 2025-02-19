@@ -1,17 +1,19 @@
-<sd-layout [collapsibleNav]="false">
+<sd-layout>
   <nav>
     <ul class="nav navbar-nav navbar-right">
-      @if ((auth.isLoggedIn | async) === false) {
+      @if (auth.isLoggedIn | async) {
+      <li>
+        <small class="user">{{ auth.user.toString() }}</small>
+      </li>
+      <li>
+        <a (click)="auth.logout()"><small>Logout</small></a>
+      </li>
+      } @else {
       <li>
         <a (click)="showLogin()"><small>Login</small></a>
       </li>
-      } @if (auth.isLoggedIn | async) {
-      <li class="navbar-user">
-        <small class="user">{{ auth.user.toString() }}</small>
-        <a (click)="auth.logout()"><small>Logout</small></a>
-      </li>
       }
-      <li class="navbar-user hidden-xs">
+      <li class="hidden-xs">
         <a href="https://rabe.ch"><small>RaBe Webseite</small></a>
       </li>
     </ul>

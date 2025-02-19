@@ -1,13 +1,13 @@
 <sd-small-modal title="Login" #modal>
-  @if (failure && userLogin) {
+  @if (failure) { @if (userLogin) {
   <div class="alert alert-danger">
     Benutzername oder Password sind ungültig.
   </div>
-  } @if (failure && !userLogin) {
+  } @else {
   <div class="alert alert-danger">
     Der Zugangscode ist ungültig oder abgelaufen.
   </div>
-  }
+  } }
 
   <form (submit)="submit()">
     @if (userLogin) {
@@ -20,7 +20,6 @@
         [(ngModel)]="username"
       />
     </div>
-    } @if (userLogin) {
     <div class="form-group">
       <label for="password">Passwort</label>
       <input
@@ -30,7 +29,13 @@
         [(ngModel)]="password"
       />
     </div>
-    } @if (!userLogin) {
+    <div class="form-group">
+      <a href="https://my.rabe.ch/auth/forgotpw">Passwort vergessen?</a>
+    </div>
+    <div class="form-group">
+      <a (click)="displayAccessCode()">Du hast einen Zugangscode?</a>
+    </div>
+    } @else {
     <div class="form-group">
       <label for="username">Zugangscode</label>
       <input
@@ -40,24 +45,15 @@
         [(ngModel)]="accessCode"
       />
     </div>
-    } @if (!userLogin) {
     <div class="form-group">
       Du hast keinen Zugangscode?
       <a href="http://www.rabe.ch//mitglied-werden">Werde RaBe-Mitglied</a>
       und erhalte den Zugang zum Archiv.
     </div>
-    } @if (userLogin) {
     <div class="form-group">
-      <a href="https://my.rabe.ch/auth/forgotpw">Passwort vergessen?</a>
+      <a (click)="displayUserLogin()">Du hast ein RaBe Login?</a>
     </div>
     }
-    <div class="form-group">
-      @if (userLogin) {
-      <a (click)="displayAccessCode()"> Du hast einen Zugangscode? </a>
-      } @if (!userLogin) {
-      <a (click)="displayUserLogin()"> Du hast ein RaBe Login? </a>
-      }
-    </div>
     <button
       type="submit"
       class="btn btn-primary btn-default"
