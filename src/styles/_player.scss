@@ -34,8 +34,8 @@ sd-player {
   }
 
   .info {
-    font-size: 14px;
     margin-bottom: 20px;
+    white-space: nowrap;
   }
 
   .show {
@@ -58,12 +58,12 @@ sd-player {
   }
 
   .time-passed {
-    text-align: left;
-    line-height: 16px;
+    text-align: right;
+    font-size: 14px;
   }
 
   .time-progress {
-    width: 40%;
+    width: 65%;
   }
 
   .time-total {
@@ -74,7 +74,7 @@ sd-player {
     font-size: 20px;
     line-height: 12px;
     margin-top: -3px;
-    float: right;
+    display: none;
   }
 
   .volume-slider {
@@ -116,71 +116,34 @@ sd-player {
     .volume-icon {
       display: block;
     }
-    .time-progress {
-      width: 50%;
-    }
   }
 
   // horizontal player layout
   @media (min-width: 565px) {
     .info {
-      width: 180px;
       float: left;
+      font-size: 14px;
       margin-bottom: 0;
+      margin-right: 30px;
     }
 
     .player-details {
-      margin-top:13px;
+      margin-top: 13px;
     }
 
-    .time-passed {
-      text-align: right;
-      line-height: inherit;
-    }
-    .time-progress,
-
-    .time-progress {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 600px) {
-    .time-progress {
-      width: 50%;
-    }
-  }
-
-  @media (min-width: 640px) {
-    .time-progress {
-      width: 50%;
-    }
-    .info {
-      width: 200px;
-    }
-  }
-
-  @media (min-width: 700px) {
-    .time-progress {
-      width: 50%;
-    }
   }
 
   // sidebar is shown
   @media (min-width: $screen-sm-min) {
-    .time-progress {
-      width: 210px;
-    }
     .volume-slider {
       display: block;
-    }
-    .info {
-      width: 200px;
     }
   }
 
   @media (min-width: $screen-md-min) {
-    .time-progress {
-      width: 365px;
+    .time-passed {
+      line-height: inherit;
+      font-size: inherit;
     }
     .controls {
       margin-right: 30px;
@@ -193,14 +156,14 @@ sd-player {
       display: none;
     }
     .info {
-      width: 240px;
       font-size: inherit;
+      margin-right: 30px;
     }
   }
 
   @media (min-width: $screen-lg-min) {
     .time-progress {
-      width: 550px;
+      width: 70%;
     }
   }
 }

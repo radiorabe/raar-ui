@@ -9,7 +9,7 @@ export class DateStringPipe implements PipeTransform {
     } else if (format === "date") {
       return dayjs(value).format("dddd D. MMMM YYYY");
     } else if (format === "short") {
-      return dayjs(value).format("dd, D. MMMM YYYY");
+      return dayjs(value).format("dd, D. MMM YYYY");
     } else {
       return dayjs(value).format("dd D.M.YYYY HH:mm");
     }

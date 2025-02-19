@@ -50,11 +50,7 @@
       </a>
     </div>
 
-    <div
-      [class.collapse]="collapsibleNav"
-      [class.navbar-collapse]="collapsibleNav"
-      [class.in]="showNav"
-    >
+    <div class="collapse navbar-collapse" [class.in]="showNav">
       <ng-content select="nav"></ng-content>
     </div>
   </div>

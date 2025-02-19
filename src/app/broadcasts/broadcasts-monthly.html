@@ -19,7 +19,7 @@
   @for (month of months | async; track month) {
   <div>
     <h3 class="title">{{ month }}</h3>
-    <div class="list-group">
+    <div class="list-group" role="tablist" aria-multiselectable="true">
       @for ( broadcast of (monthlyBroadcasts | async)[month]; track
       broadcast.id) {
       <sd-broadcast
@@ -38,7 +38,7 @@
 <div class="text-center">
   <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
 </div>
-} @if (hasMore && !fetchingMore) {
+} @else if (hasMore) {
 <div>
   <a (click)="onScroll()">Weitere laden</a>
 </div>

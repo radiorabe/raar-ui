@@ -2,6 +2,8 @@
 
 .pager a {
   margin-left: 5px;
+  user-select: none;
+  touch-action: manipulation; // prevent zoom when double tapping on mobile devices
 
   &:hover {
     background-color: white;
