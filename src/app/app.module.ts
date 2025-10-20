@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { CommonModule } from "@angular/common";
 import { DpDatePickerModule } from "ng2-date-picker";
-import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { InfiniteScrollDirective } from "ngx-infinite-scroll";
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
 import { BroadcastsService } from "./shared/services/broadcasts.service";
@@ -40,7 +40,7 @@ dayjs.locale("de-ch");
     SharedModule.forRoot(),
     CommonModule,
     DpDatePickerModule,
-    InfiniteScrollModule,
+    InfiniteScrollDirective,
   ],
   declarations: [
     AppComponent,
