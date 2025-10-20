@@ -1,8 +1,9 @@
 import { Component, Input, ChangeDetectorRef } from "@angular/core";
 
 @Component({
-  selector: "sd-small-modal",
-  templateUrl: "small-modal.html",
+    selector: "sd-small-modal",
+    templateUrl: "small-modal.html",
+    standalone: false
 })
 export class SmallModalComponent {
   @Input() title: string;

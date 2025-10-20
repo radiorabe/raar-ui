@@ -9,8 +9,9 @@ import { TracksService } from "../shared/services/tracks.service";
 // Show the tracks for the currently running shows that
 // have not yet been imported into the archive.
 @Component({
-  selector: "sd-running-broadcast",
-  templateUrl: "running-broadcast.html",
+    selector: "sd-running-broadcast",
+    templateUrl: "running-broadcast.html",
+    standalone: false
 })
 export class RunningBroadcastComponent implements OnInit {
   @Input() expanded: boolean;

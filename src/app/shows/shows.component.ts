@@ -17,8 +17,9 @@ import { RefreshService } from "../shared/services/refresh.service";
 import { UrlSlugService } from "../shared/services/url-slug.service";
 
 @Component({
-  selector: "sd-shows",
-  templateUrl: "shows.html",
+    selector: "sd-shows",
+    templateUrl: "shows.html",
+    standalone: false
 })
 export class ShowsComponent {
   // maximally show this number of shows if no search query is given.

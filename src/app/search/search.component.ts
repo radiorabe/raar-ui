@@ -11,8 +11,9 @@ import {
 } from "rxjs/operators";
 
 @Component({
-  selector: "sd-search",
-  templateUrl: "search.html",
+    selector: "sd-search",
+    templateUrl: "search.html",
+    standalone: false
 })
 export class SearchComponent implements OnInit, OnDestroy {
   query = new FormControl();

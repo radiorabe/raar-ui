@@ -16,8 +16,9 @@ dayjs.extend(objectSupport);
 const TODAY_UPDATE_INTERVAL = 60000;
 
 @Component({
-  selector: "sd-datepicker",
-  templateUrl: "datepicker.html",
+    selector: "sd-datepicker",
+    templateUrl: "datepicker.html",
+    standalone: false
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
   today$ = interval(TODAY_UPDATE_INTERVAL).pipe(

@@ -23,8 +23,9 @@ import {
 import { RefreshService } from "../shared/services/refresh.service";
 
 @Component({
-  selector: "sd-broadcasts-date",
-  templateUrl: "broadcasts-date.html",
+    selector: "sd-broadcasts-date",
+    templateUrl: "broadcasts-date.html",
+    standalone: false
 })
 export class BroadcastsDateComponent implements OnInit, OnDestroy {
   date: Date;

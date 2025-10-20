@@ -18,8 +18,9 @@ import { RefreshService } from "../shared/services/refresh.service";
 import { BroadcastsMonthlyComponent } from "./broadcasts-monthly.component";
 
 @Component({
-  selector: "sd-broadcasts-search",
-  templateUrl: "broadcasts-monthly.html",
+    selector: "sd-broadcasts-search",
+    templateUrl: "broadcasts-monthly.html",
+    standalone: false
 })
 export class BroadcastsSearchComponent
   extends BroadcastsMonthlyComponent

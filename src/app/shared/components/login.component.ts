@@ -6,8 +6,9 @@ import { LoginService } from "../services/login.service";
 import { SmallModalComponent } from "./small-modal.component";
 
 @Component({
-  selector: "sd-login",
-  templateUrl: "login.html",
+    selector: "sd-login",
+    templateUrl: "login.html",
+    standalone: false
 })
 export class LoginComponent {
   @ViewChild("modal", { static: true }) modal: SmallModalComponent;

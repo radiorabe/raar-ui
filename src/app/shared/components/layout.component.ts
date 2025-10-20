@@ -3,8 +3,9 @@ import { Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: "sd-layout",
-  templateUrl: "layout.html",
+    selector: "sd-layout",
+    templateUrl: "layout.html",
+    standalone: false
 })
 export class LayoutComponent implements OnDestroy {
   private _showNav: boolean = false;

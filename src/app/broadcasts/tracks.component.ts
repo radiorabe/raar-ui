@@ -8,8 +8,9 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "sd-tracks",
-  templateUrl: "tracks.html",
+    selector: "sd-tracks",
+    templateUrl: "tracks.html",
+    standalone: false
 })
 export class TracksComponent {
   @Input()

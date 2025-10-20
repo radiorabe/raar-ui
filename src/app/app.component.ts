@@ -3,8 +3,9 @@ import { AuthService } from "./shared/services/auth.service";
 import { LoginWindowService } from "./shared/services/login-window.service";
 
 @Component({
-  selector: "sd-app",
-  templateUrl: "app.html",
+    selector: "sd-app",
+    templateUrl: "app.html",
+    standalone: false
 })
 export class AppComponent {
   constructor(

@@ -10,8 +10,9 @@ import { DateParamsService } from "../shared/services/date-params.service";
 import { PlayerEvents } from "./player-events";
 
 @Component({
-  selector: "sd-player",
-  templateUrl: "player.html",
+    selector: "sd-player",
+    templateUrl: "player.html",
+    standalone: false
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();

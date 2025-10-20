@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import dayjs from "dayjs";
 
-@Pipe({ name: "dateString" })
+@Pipe({
+    name: "dateString",
+    standalone: false
+})
 export class DateStringPipe implements PipeTransform {
   transform(value: Date, format: string): string {
     if (format === "time") {

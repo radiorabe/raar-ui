@@ -24,8 +24,9 @@ import dayjs from "dayjs";
 type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 
 @Component({
-  selector: "sd-broadcasts-monthly",
-  templateUrl: "broadcasts-monthly.html",
+    selector: "sd-broadcasts-monthly",
+    templateUrl: "broadcasts-monthly.html",
+    standalone: false
 })
 export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   dateWithTime: Date | void;

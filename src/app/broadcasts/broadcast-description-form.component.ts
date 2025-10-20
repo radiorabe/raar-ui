@@ -5,8 +5,9 @@ import { BroadcastsService } from "../shared/services/broadcasts.service";
 import { finalize } from "rxjs/operators";
 
 @Component({
-  selector: "sd-broadcast-description-form",
-  templateUrl: "broadcast-description-form.html",
+    selector: "sd-broadcast-description-form",
+    templateUrl: "broadcast-description-form.html",
+    standalone: false
 })
 export class BroadcastDescriptionFormComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;

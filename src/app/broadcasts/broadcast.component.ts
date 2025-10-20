@@ -13,8 +13,9 @@ import { TracksService } from "../shared/services/tracks.service";
 import { finalize } from "rxjs/operators";
 
 @Component({
-  selector: "sd-broadcast",
-  templateUrl: "broadcast.html",
+    selector: "sd-broadcast",
+    templateUrl: "broadcast.html",
+    standalone: false
 })
 export class BroadcastComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;
