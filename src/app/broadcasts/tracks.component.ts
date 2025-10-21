@@ -1,11 +1,5 @@
 import { TrackModel } from "../shared/models";
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  SimpleChanges,
-} from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 
 @Component({

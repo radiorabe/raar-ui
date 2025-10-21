@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Observable, of } from "rxjs";
 import {
   startWith,
@@ -21,13 +21,7 @@ import { AsyncPipe } from "@angular/common";
 @Component({
   selector: "sd-shows",
   templateUrl: "shows.html",
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLinkActive,
-    RouterLink,
-    AsyncPipe,
-  ],
+  imports: [ReactiveFormsModule, RouterLinkActive, RouterLink, AsyncPipe],
 })
 export class ShowsComponent {
   // maximally show this number of shows if no search query is given.
