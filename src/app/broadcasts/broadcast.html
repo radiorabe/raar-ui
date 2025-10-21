@@ -40,6 +40,7 @@
     id="broadcast-{{ broadcast.id }}"
     role="tabpanel"
   >
+    @if (audioFiles) {
     <table class="table-condensed pull-right audio-links">
       @for (audio of audioFiles; track audio.id) {
       <tr>
@@ -70,7 +71,7 @@
       </tr>
       }
     </table>
-    @if (loadingAudio) {
+    } @if (loadingAudio) {
     <div class="pull-right placeholder">
       <span class="glyphicon glyphicon-option-horizontal icon-pulse"></span>
     </div>

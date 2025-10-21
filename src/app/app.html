@@ -1,7 +1,7 @@
 <sd-layout>
   <nav>
     <ul class="nav navbar-nav navbar-right">
-      @if (auth.isLoggedIn | async) {
+      @if ((auth.isLoggedIn | async) && auth.user) {
       <li>
         <small class="user">{{ auth.user.toString() }}</small>
       </li>
