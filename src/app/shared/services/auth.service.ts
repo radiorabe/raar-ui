@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { LoginWindowService } from "./login-window.service";
 import { RefreshService } from "./refresh.service";
@@ -9,14 +9,8 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class AuthService extends TokenAuthService {
-  constructor(
-    login: LoginService,
-    router: Router,
-    private refresh: RefreshService,
-    private loginWindow: LoginWindowService,
-  ) {
-    super(login, router);
-  }
+  private refresh = inject(RefreshService);
+  private loginWindow = inject(LoginWindowService);
 
   requestLogin(): boolean {
     if (this.sso) {

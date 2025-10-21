@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, of, ReplaySubject, Subject } from "rxjs";
 import {
@@ -47,14 +47,12 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   details$: Observable<string | void> = of(undefined);
   noBroadcastsMessage: string = "Keine Ausstrahlungen vorhanden.";
 
+  protected route = inject(ActivatedRoute);
+  protected broadcastsService = inject(BroadcastsService);
+  protected refreshService = inject(RefreshService);
+
   protected fetchMore: Subject<void> = new Subject<void>();
   protected readonly destroy$ = new Subject<void>();
-
-  constructor(
-    protected route: ActivatedRoute,
-    protected broadcastsService: BroadcastsService,
-    protected refreshService: RefreshService,
-  ) {}
 
   ngOnInit() {
     this.broadcastLoadObservable()

@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, Input, ChangeDetectorRef, inject } from "@angular/core";
 import { NgStyle } from "@angular/common";
 
 @Component({
@@ -7,12 +7,12 @@ import { NgStyle } from "@angular/common";
   imports: [NgStyle],
 })
 export class SmallModalComponent {
+  private cd = inject(ChangeDetectorRef);
+
   @Input() title: string;
 
   visible = false;
   visibleAnimate = false;
-
-  constructor(private cd: ChangeDetectorRef) {}
 
   show(): void {
     this.visible = true;

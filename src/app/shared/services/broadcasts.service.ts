@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { ReadRestService } from "./read-rest.service";
 import { DateParamsService } from "./date-params.service";
 import { BroadcastModel, ShowModel, CrudList } from "../models/index";
@@ -8,8 +8,8 @@ import { map } from "rxjs/operators";
 
 @Injectable()
 export class BroadcastsService extends ReadRestService<BroadcastModel> {
-  constructor(http: HttpClient) {
-    super(http, "/api/broadcasts");
+  constructor() {
+    super("/api/broadcasts");
   }
 
   getListForShow(show: ShowModel): Observable<CrudList<BroadcastModel>> {

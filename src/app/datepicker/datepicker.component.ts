@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import dayjs from "dayjs";
 import objectSupport from "dayjs/plugin/objectSupport";
@@ -14,6 +14,7 @@ import { DateParamsService } from "../shared/services/date-params.service";
 import { DpDatePickerModule } from "ng2-date-picker";
 import { FormsModule } from "@angular/forms";
 import { AsyncPipe } from "@angular/common";
+
 dayjs.extend(objectSupport);
 
 const TODAY_UPDATE_INTERVAL = 60000;
@@ -34,7 +35,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   dayPickerConfig$ = this.today$.pipe(
     map((date) => {
       return {
-        firstDayOfWeek: "mo",
+        firstDayOfWeek: "mo" as const,
         locale: "de",
         max: date,
         monthFormat: "MMMM YYYY",
@@ -44,11 +45,11 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     }),
   );
 
-  private _date: dayjs.Dayjs | void;
+  private router = inject(Router);
+
+  private _date: dayjs.Dayjs;
 
   private readonly destroy$ = new Subject<void>();
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events
@@ -63,11 +64,11 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     this.destroy$.next();
   }
 
-  get date(): dayjs.Dayjs | void {
+  get date(): dayjs.Dayjs {
     return this._date;
   }
 
-  set date(date: dayjs.Dayjs | void) {
+  set date(date: dayjs.Dayjs) {
     this._date = date;
 
     if (date) {

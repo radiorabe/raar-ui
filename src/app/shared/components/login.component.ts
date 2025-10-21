@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, inject } from "@angular/core";
 import { AuthService } from "../../shared/services/auth.service";
 import { LoginWindowService } from "../../shared/services/login-window.service";
 import { UserModel } from "../models/user.model";
@@ -12,6 +12,10 @@ import { FormsModule } from "@angular/forms";
   imports: [SmallModalComponent, FormsModule],
 })
 export class LoginComponent {
+  private login = inject(LoginService);
+  private auth = inject(AuthService);
+  private loginWindow = inject(LoginWindowService);
+
   @ViewChild("modal", { static: true }) modal: SmallModalComponent;
 
   username: string;
@@ -21,11 +25,7 @@ export class LoginComponent {
   failure: boolean = false;
   userLogin: boolean = false;
 
-  constructor(
-    private login: LoginService,
-    private auth: AuthService,
-    private loginWindow: LoginWindowService,
-  ) {
+  constructor() {
     this.loginWindow.show$.subscribe(this.show.bind(this));
   }
 

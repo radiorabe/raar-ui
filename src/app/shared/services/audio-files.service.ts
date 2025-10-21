@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { ReadRestService } from "./read-rest.service";
 import { DateParamsService } from "./date-params.service";
 import { BroadcastModel, CrudList, AudioFileModel } from "../models/index";
@@ -8,8 +8,8 @@ import { map } from "rxjs/operators";
 
 @Injectable()
 export class AudioFilesService extends ReadRestService<AudioFileModel> {
-  constructor(http: HttpClient) {
-    super(http, "/api/audio_files");
+  constructor() {
+    super("/api/audio_files");
   }
 
   getListForBroadcast(

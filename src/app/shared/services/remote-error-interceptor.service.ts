@@ -1,4 +1,4 @@
-import { Injectable, Injector } from "@angular/core";
+import { Injectable, Injector, inject } from "@angular/core";
 import {
   HttpInterceptor,
   HttpRequest,
@@ -14,9 +14,7 @@ const HTTP_UNAUTHORIZED = 401;
 
 @Injectable()
 export class RemoteErrorInterceptor implements HttpInterceptor {
-  constructor(private injector: Injector) {
-    // Get services depending on HttpClient later using injector to avoid cyclic dependency issues
-  }
+  private injector = inject(Injector);
 
   intercept(
     req: HttpRequest<any>,

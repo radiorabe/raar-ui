@@ -6,6 +6,7 @@ import {
   EventEmitter,
   ViewChild,
   Renderer2,
+  inject,
 } from "@angular/core";
 
 @Component({
@@ -14,6 +15,9 @@ import {
   providers: [],
 })
 export class SliderComponent {
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+
   @Input() value: number = 0;
   @Output() startSlidingEvent = new EventEmitter<number>();
   @Output() slidingEvent = new EventEmitter<number>();
@@ -24,11 +28,6 @@ export class SliderComponent {
 
   private lastMove: number = new Date().getTime();
   private dragTimer: number;
-
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-  ) {}
 
   startSliding(e: any) {
     // deny dragging and selecting

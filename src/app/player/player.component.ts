@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, inject } from "@angular/core";
 import { Params } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil, filter } from "rxjs/operators";
@@ -17,13 +17,11 @@ import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
   imports: [SliderComponent, BroadcastTimePipe],
 })
 export class PlayerComponent implements OnInit, OnDestroy {
-  private readonly destroy$ = new Subject<void>();
+  private _player = inject(AudioPlayerService);
+  private audioFilesService = inject(AudioFilesService);
+  private broadcastsService = inject(BroadcastsService);
 
-  constructor(
-    private _player: AudioPlayerService,
-    private audioFilesService: AudioFilesService,
-    private broadcastsService: BroadcastsService,
-  ) {}
+  private readonly destroy$ = new Subject<void>();
 
   ngOnInit() {
     this.handleRouteParams(this.parseRouteParams());

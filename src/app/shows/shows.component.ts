@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Observable, of } from "rxjs";
 import {
@@ -24,6 +24,9 @@ import { AsyncPipe } from "@angular/common";
   imports: [ReactiveFormsModule, RouterLinkActive, RouterLink, AsyncPipe],
 })
 export class ShowsComponent {
+  private showService = inject(ShowsService);
+  private refreshService = inject(RefreshService);
+
   // maximally show this number of shows if no search query is given.
   private static MAX_INITIAL_SHOWS = 100;
   // list shows back to the beginning of this year (relative to today).
@@ -39,11 +42,6 @@ export class ShowsComponent {
     merge(this.refreshService.asObservable().pipe(map((_) => ""))),
     switchMap((q) => this.fetchShows(q)),
   );
-
-  constructor(
-    private showService: ShowsService,
-    private refreshService: RefreshService,
-  ) {}
 
   getShowLink(show: ShowModel): string[] {
     return [

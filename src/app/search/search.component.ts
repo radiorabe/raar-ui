@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { Subject } from "rxjs";
@@ -16,11 +16,11 @@ import {
   imports: [ReactiveFormsModule],
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+
   query = new FormControl();
 
   private readonly destroy$ = new Subject<void>();
-
-  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.router.events

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, isDevMode } from "@angular/core";
+import { Component, Input, OnChanges, isDevMode, inject } from "@angular/core";
 import { Router, ActivatedRoute, RouterLink } from "@angular/router";
 import {
   BroadcastModel,
@@ -28,6 +28,12 @@ import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
   ],
 })
 export class BroadcastComponent implements OnChanges {
+  audioPlayer = inject(AudioPlayerService);
+  loginWindow = inject(LoginWindowService);
+  private audioFilesService = inject(AudioFilesService);
+  private tracksService = inject(TracksService);
+  private router = inject(Router);
+
   @Input() broadcast: BroadcastModel;
   @Input() dateFormat: string;
   @Input() expanded: boolean;
@@ -36,14 +42,6 @@ export class BroadcastComponent implements OnChanges {
   loadingAudio: boolean = false;
 
   tracks: TrackModel[] = [];
-
-  constructor(
-    public audioPlayer: AudioPlayerService,
-    public loginWindow: LoginWindowService,
-    private audioFilesService: AudioFilesService,
-    private tracksService: TracksService,
-    private router: Router,
-  ) {}
 
   ngOnChanges(changes: any) {
     if (changes.broadcast) {

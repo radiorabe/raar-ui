@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Input } from "@angular/core";
+import { Component, OnDestroy, Input, inject } from "@angular/core";
 import { Router, NavigationEnd, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
 
@@ -12,7 +12,9 @@ export class LayoutComponent implements OnDestroy {
 
   private routerSub: Subscription;
 
-  constructor(router: Router) {
+  constructor() {
+    const router = inject(Router);
+
     this.routerSub = router.events.subscribe((e) => {
       if (e instanceof NavigationEnd && !e.url.includes("/search/"))
         this._showNav = false;

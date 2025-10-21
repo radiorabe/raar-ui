@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, Observer, Subject, ReplaySubject, of } from "rxjs";
 import {
@@ -34,14 +34,7 @@ export class BroadcastsShowComponent
   title$ = this.show.pipe(map((show) => show.attributes.name));
   noBroadcastsMessage = "Für diese Sendung existieren keine Ausstrahlungen.";
 
-  constructor(
-    route: ActivatedRoute,
-    private showsService: ShowsService,
-    broadcastsService: BroadcastsService,
-    refreshService: RefreshService,
-  ) {
-    super(route, broadcastsService, refreshService);
-  }
+  private showsService = inject(ShowsService);
 
   ngOnInit() {
     super.ngOnInit();

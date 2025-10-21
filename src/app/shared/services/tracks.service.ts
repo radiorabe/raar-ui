@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { switchMap, map } from "rxjs/operators";
@@ -8,8 +8,8 @@ import { DateParamsService } from "./date-params.service";
 
 @Injectable()
 export class TracksService extends ReadRestService<TrackModel> {
-  constructor(http: HttpClient) {
-    super(http, "/api/tracks");
+  constructor() {
+    super("/api/tracks");
   }
 
   getListForBroadcast(

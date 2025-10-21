@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, Subject, ReplaySubject, Observer } from "rxjs";
 import {
@@ -37,14 +37,6 @@ export class BroadcastsSearchComponent
 
   noBroadcastsMessage =
     "Für diesen Begriff konnten keine Resultate gefunden werden.";
-
-  constructor(
-    route: ActivatedRoute,
-    broadcastsService: BroadcastsService,
-    refreshService: RefreshService,
-  ) {
-    super(route, broadcastsService, refreshService);
-  }
 
   ngOnInit() {
     super.ngOnInit();

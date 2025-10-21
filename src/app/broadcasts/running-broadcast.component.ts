@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import dayjs from "dayjs";
 import { forkJoin, Observable } from "rxjs";
@@ -16,16 +16,14 @@ import { DateStringPipe } from "../shared/pipes/date-string.pipe";
   imports: [TracksComponent, DateStringPipe],
 })
 export class RunningBroadcastComponent implements OnInit {
+  private tracksService = inject(TracksService);
+  private router = inject(Router);
+
   @Input() expanded: boolean;
 
   @Input() date: Date;
 
   tracks: TrackModel[] = [];
-
-  constructor(
-    private tracksService: TracksService,
-    private router: Router,
-  ) {}
 
   ngOnInit() {
     if (this.expanded) {

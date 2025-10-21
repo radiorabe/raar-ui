@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { AuthService } from "./shared/services/auth.service";
 import { LoginWindowService } from "./shared/services/login-window.service";
 import { LayoutComponent } from "./shared/components/layout.component";
@@ -29,11 +29,11 @@ dayjs.locale("de-ch");
   ],
 })
 export class AppComponent {
-  constructor(
-    public auth: AuthService,
-    private loginWindow: LoginWindowService,
-  ) {
-    auth.isLoggedIn.subscribe();
+  auth = inject(AuthService);
+  private loginWindow = inject(LoginWindowService);
+
+  constructor() {
+    this.auth.isLoggedIn.subscribe();
   }
 
   showLogin() {

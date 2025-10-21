@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { BroadcastModel } from "../shared/models/index";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
@@ -16,10 +16,11 @@ export class BroadcastDescriptionFormComponent implements OnChanges {
 
   editing: boolean = false;
 
-  constructor(
-    private broadcastsService: BroadcastsService,
-    fb: FormBuilder,
-  ) {
+  private broadcastsService = inject(BroadcastsService);
+
+  constructor() {
+    const fb = inject(FormBuilder);
+
     this.form = fb.group({
       details: "",
     });

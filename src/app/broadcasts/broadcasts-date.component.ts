@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import dayjs from "dayjs";
 import { Observable, of, Subject } from "rxjs";
@@ -38,14 +38,12 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
   errorMessage: string | void;
   lastTodaysBroadcastFinishedAt: Date | undefined;
 
-  private readonly destroy$ = new Subject<void>();
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private broadcastsService = inject(BroadcastsService);
+  private refreshService = inject(RefreshService);
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private broadcastsService: BroadcastsService,
-    private refreshService: RefreshService,
-  ) {}
+  private readonly destroy$ = new Subject<void>();
 
   ngOnInit() {
     const paramsObservable = this.route.params;

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import {
   HttpInterceptor,
   HttpRequest,
@@ -13,7 +13,7 @@ export const MEDIA_TYPE_JSON_API = "application/vnd.api+json";
 
 @Injectable()
 export class AddAuthHeaderInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService) {}
+  private auth = inject(AuthService);
 
   intercept(
     req: HttpRequest<any>,

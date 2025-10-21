@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import {
   HttpParams,
   HttpClient,
@@ -12,7 +12,7 @@ import { map } from "rxjs/operators";
 
 @Injectable()
 export class LoginService {
-  constructor(protected http: HttpClient) {}
+  protected http = inject(HttpClient);
 
   get(token: string): Observable<UserModel> {
     const headers = new HttpHeaders({
