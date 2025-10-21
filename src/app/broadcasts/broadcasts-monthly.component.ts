@@ -20,13 +20,16 @@ import {
 import { RefreshService } from "../shared/services/refresh.service";
 
 import dayjs from "dayjs";
+import { InfiniteScrollDirective } from "ngx-infinite-scroll";
+import { BroadcastComponent } from "./broadcast.component";
+import { AsyncPipe } from "@angular/common";
 
 type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 
 @Component({
-    selector: "sd-broadcasts-monthly",
-    templateUrl: "broadcasts-monthly.html",
-    standalone: false
+  selector: "sd-broadcasts-monthly",
+  templateUrl: "broadcasts-monthly.html",
+  imports: [InfiniteScrollDirective, BroadcastComponent, AsyncPipe],
 })
 export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   dateWithTime: Date | void;

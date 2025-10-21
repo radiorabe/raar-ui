@@ -2,10 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import dayjs from "dayjs";
 import { BroadcastModel } from "../models/broadcast.model";
 
-@Pipe({
-    name: "broadcastTime",
-    standalone: false
-})
+@Pipe({ name: "broadcastTime" })
 export class BroadcastTimePipe implements PipeTransform {
   transform(broadcast: BroadcastModel, format: string): string {
     let output = dayjs(broadcast.attributes.started_at).format(

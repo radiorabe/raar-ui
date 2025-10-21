@@ -1,11 +1,11 @@
 import { Component, OnDestroy, Input } from "@angular/core";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
 
 @Component({
-    selector: "sd-layout",
-    templateUrl: "layout.html",
-    standalone: false
+  selector: "sd-layout",
+  templateUrl: "layout.html",
+  imports: [RouterOutlet],
 })
 export class LayoutComponent implements OnDestroy {
   private _showNav: boolean = false;

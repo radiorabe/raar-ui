@@ -31,12 +31,6 @@ const interceptors = [
 ];
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    LoginComponent,
-    SliderComponent,
-    SmallModalComponent,
-  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -47,7 +41,16 @@ const interceptors = [
     SliderComponent,
     SmallModalComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    LayoutComponent,
+    LoginComponent,
+    SliderComponent,
+    SmallModalComponent,
+  ],
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders<SharedModule> {

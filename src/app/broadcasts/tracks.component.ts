@@ -6,11 +6,12 @@ import {
   EventEmitter,
   SimpleChanges,
 } from "@angular/core";
+import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 
 @Component({
-    selector: "sd-tracks",
-    templateUrl: "tracks.html",
-    standalone: false
+  selector: "sd-tracks",
+  templateUrl: "tracks.html",
+  imports: [DateStringPipe],
 })
 export class TracksComponent {
   @Input()

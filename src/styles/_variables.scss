@@ -1,6 +1,6 @@
-$brand-primary: rgba(0,99,95,1.00) !default;
-$brand-secondary: rgba(227,249,248,1.00) !default;
-$brand-highlight: rgba(0,201,191,1.00) !default;
+$brand-primary: rgba(0, 99, 95, 1) !default;
+$brand-secondary: rgba(227, 249, 248, 1) !default;
+$brand-highlight: rgba(0, 201, 191, 1) !default;
 //$brand-success:             #5cb85c !default;
 //$brand-info:                #68796f !default;
 $brand-info: #064c57 !default;
@@ -9,7 +9,7 @@ $brand-info: #064c57 !default;
 $brand-disabled: #c4c4c4 !default;
 $brand-no-access: #646464 !default;
 
-$body-bg: rgba(0,0,0,0.00) !default;
+$body-bg: rgba(0, 0, 0, 0) !default;
 
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 $link-hover-color: $brand-highlight;

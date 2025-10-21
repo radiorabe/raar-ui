@@ -16,11 +16,14 @@ import { ShowsService } from "../shared/services/shows.service";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
 import { RefreshService } from "../shared/services/refresh.service";
 import { BroadcastsMonthlyComponent } from "./broadcasts-monthly.component";
+import { InfiniteScrollDirective } from "ngx-infinite-scroll";
+import { BroadcastComponent } from "./broadcast.component";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
-    selector: "sd-broadcasts-show",
-    templateUrl: "broadcasts-monthly.html",
-    standalone: false
+  selector: "sd-broadcasts-show",
+  templateUrl: "broadcasts-monthly.html",
+  imports: [InfiniteScrollDirective, BroadcastComponent, AsyncPipe],
 })
 export class BroadcastsShowComponent
   extends BroadcastsMonthlyComponent

@@ -8,11 +8,13 @@ import { AudioFileModel, BroadcastModel } from "../shared/models/index";
 import { AudioFilesService } from "../shared/services/audio-files.service";
 import { DateParamsService } from "../shared/services/date-params.service";
 import { PlayerEvents } from "./player-events";
+import { SliderComponent } from "../shared/components/slider.component";
+import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
 
 @Component({
-    selector: "sd-player",
-    templateUrl: "player.html",
-    standalone: false
+  selector: "sd-player",
+  templateUrl: "player.html",
+  imports: [SliderComponent, BroadcastTimePipe],
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();

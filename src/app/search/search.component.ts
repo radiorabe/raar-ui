@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { Subject } from "rxjs";
 import {
@@ -11,9 +11,9 @@ import {
 } from "rxjs/operators";
 
 @Component({
-    selector: "sd-search",
-    templateUrl: "search.html",
-    standalone: false
+  selector: "sd-search",
+  templateUrl: "search.html",
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   query = new FormControl();

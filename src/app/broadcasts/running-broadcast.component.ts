@@ -5,13 +5,15 @@ import { forkJoin, Observable } from "rxjs";
 import { TrackModel } from "../shared/models/index";
 import { DateParamsService } from "../shared/services/date-params.service";
 import { TracksService } from "../shared/services/tracks.service";
+import { TracksComponent } from "./tracks.component";
+import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 
 // Show the tracks for the currently running shows that
 // have not yet been imported into the archive.
 @Component({
-    selector: "sd-running-broadcast",
-    templateUrl: "running-broadcast.html",
-    standalone: false
+  selector: "sd-running-broadcast",
+  templateUrl: "running-broadcast.html",
+  imports: [TracksComponent, DateStringPipe],
 })
 export class RunningBroadcastComponent implements OnInit {
   @Input() expanded: boolean;

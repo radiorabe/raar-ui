@@ -9,10 +9,9 @@ import {
 } from "@angular/core";
 
 @Component({
-    selector: "sd-slider",
-    templateUrl: "slider.html",
-    providers: [],
-    standalone: false
+  selector: "sd-slider",
+  templateUrl: "slider.html",
+  providers: [],
 })
 export class SliderComponent {
   @Input() value: number = 0;

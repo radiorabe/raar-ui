@@ -11,14 +11,17 @@ import {
   takeUntil,
 } from "rxjs/operators";
 import { DateParamsService } from "../shared/services/date-params.service";
+import { DpDatePickerModule } from "ng2-date-picker";
+import { FormsModule } from "@angular/forms";
+import { AsyncPipe } from "@angular/common";
 dayjs.extend(objectSupport);
 
 const TODAY_UPDATE_INTERVAL = 60000;
 
 @Component({
-    selector: "sd-datepicker",
-    templateUrl: "datepicker.html",
-    standalone: false
+  selector: "sd-datepicker",
+  templateUrl: "datepicker.html",
+  imports: [DpDatePickerModule, FormsModule, AsyncPipe],
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
   today$ = interval(TODAY_UPDATE_INTERVAL).pipe(

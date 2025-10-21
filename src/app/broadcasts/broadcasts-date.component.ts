@@ -21,11 +21,14 @@ import {
   RouteParams,
 } from "../shared/services/date-params.service";
 import { RefreshService } from "../shared/services/refresh.service";
+import { BroadcastComponent } from "./broadcast.component";
+import { RunningBroadcastComponent } from "./running-broadcast.component";
+import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 
 @Component({
-    selector: "sd-broadcasts-date",
-    templateUrl: "broadcasts-date.html",
-    standalone: false
+  selector: "sd-broadcasts-date",
+  templateUrl: "broadcasts-date.html",
+  imports: [BroadcastComponent, RunningBroadcastComponent, DateStringPipe],
 })
 export class BroadcastsDateComponent implements OnInit, OnDestroy {
   date: Date;

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, isDevMode } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, RouterLink } from "@angular/router";
 import {
   BroadcastModel,
   AudioFileModel,
@@ -11,11 +11,21 @@ import { AudioFilesService } from "../shared/services/audio-files.service";
 import { DateParamsService } from "../shared/services/date-params.service";
 import { TracksService } from "../shared/services/tracks.service";
 import { finalize } from "rxjs/operators";
+import { BroadcastDescriptionFormComponent } from "./broadcast-description-form.component";
+import { TracksComponent } from "./tracks.component";
+import { UpperCasePipe } from "@angular/common";
+import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
 
 @Component({
-    selector: "sd-broadcast",
-    templateUrl: "broadcast.html",
-    standalone: false
+  selector: "sd-broadcast",
+  templateUrl: "broadcast.html",
+  imports: [
+    BroadcastDescriptionFormComponent,
+    RouterLink,
+    TracksComponent,
+    UpperCasePipe,
+    BroadcastTimePipe,
+  ],
 })
 export class BroadcastComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;

@@ -1,13 +1,18 @@
 import { Component, Input, OnChanges } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { BroadcastModel } from "../shared/models/index";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
 import { finalize } from "rxjs/operators";
 
 @Component({
-    selector: "sd-broadcast-description-form",
-    templateUrl: "broadcast-description-form.html",
-    standalone: false
+  selector: "sd-broadcast-description-form",
+  templateUrl: "broadcast-description-form.html",
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class BroadcastDescriptionFormComponent implements OnChanges {
   @Input() broadcast: BroadcastModel;

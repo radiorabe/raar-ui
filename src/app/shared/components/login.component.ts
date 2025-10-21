@@ -4,11 +4,12 @@ import { LoginWindowService } from "../../shared/services/login-window.service";
 import { UserModel } from "../models/user.model";
 import { LoginService } from "../services/login.service";
 import { SmallModalComponent } from "./small-modal.component";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-    selector: "sd-login",
-    templateUrl: "login.html",
-    standalone: false
+  selector: "sd-login",
+  templateUrl: "login.html",
+  imports: [SmallModalComponent, FormsModule],
 })
 export class LoginComponent {
   @ViewChild("modal", { static: true }) modal: SmallModalComponent;
