@@ -80,8 +80,7 @@
       <em>Kein Zugriff oder keine Aufnahme vorhanden</em>
     </div>
     }
-    <sd-broadcast-description-form [broadcast]="broadcast">
-    </sd-broadcast-description-form>
+    <sd-broadcast-description-form [broadcast]="broadcast" />
     @if (view === 'day') {
     <p>
       <a
@@ -103,7 +102,7 @@
       [playable]="isTracksPlayable()"
       [playPosition]="audioPlayer.position"
       (playTrack)="playTrack($event)"
-    ></sd-tracks>
+    />
   </div>
   }
 </div>

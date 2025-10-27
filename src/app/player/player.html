@@ -41,7 +41,7 @@
         class="time-progress"
         [value]="player.percent"
         (slidingEvent)="player.seek($event)"
-      ></sd-slider>
+      />
       <div class="time-total">{{ player.totalTime }}</div>
       <div class="forward" role="button" (click)="player.forward(15)">
         <span class="glyphicon glyphicon-repeat"></span>
@@ -61,7 +61,7 @@
         class="volume-slider"
         [value]="volume"
         (slidingEvent)="player.setVolume($event)"
-      ></sd-slider>
+      />
     </div>
     }
   </div>

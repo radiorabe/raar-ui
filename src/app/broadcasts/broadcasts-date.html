@@ -33,13 +33,12 @@
     [broadcast]="broadcast"
     [expanded]="isExpanded(broadcast)"
     view="day"
-  >
-  </sd-broadcast>
+  />
   } @if (lastTodaysBroadcastFinishedAt) {
   <sd-running-broadcast
     [date]="lastTodaysBroadcastFinishedAt"
     [expanded]="isRunningExpanded()"
-  ></sd-running-broadcast>
+  />
   }
 </div>
 

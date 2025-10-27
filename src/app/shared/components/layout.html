@@ -51,7 +51,7 @@
     </div>
 
     <div class="collapse navbar-collapse" [class.in]="showNav">
-      <ng-content select="nav"></ng-content>
+      <ng-content select="nav" />
     </div>
   </div>
 </nav>
@@ -59,7 +59,7 @@
 <div class="container" [class.active]="showNav">
   <aside id="nav" class="sidebar">
     <div class="sidebar-content">
-      <ng-content select="aside"></ng-content>
+      <ng-content select="aside" />
     </div>
 
     <footer>
@@ -78,6 +78,6 @@
   </aside>
 
   <div class="content">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </div>
 </div>
