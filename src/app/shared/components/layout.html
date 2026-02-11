@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<header class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
       <button
@@ -51,16 +51,14 @@
     </div>
 
     <div class="collapse navbar-collapse" [class.in]="showNav">
-      <ng-content select="nav" />
+      <ng-content select=".navbar-nav" />
     </div>
   </div>
-</nav>
+</header>
 
 <div class="container" [class.active]="showNav">
-  <aside id="nav" class="sidebar">
-    <div class="sidebar-content">
-      <ng-content select="aside" />
-    </div>
+  <nav id="nav" class="sidebar">
+    <ng-content select=".sidebar-content" />
 
     <footer>
       <small>
@@ -75,9 +73,9 @@
         <a href="http://codez.ch">code!z</a>
       </small>
     </footer>
-  </aside>
+  </nav>
 
-  <div class="content">
+  <main class="content">
     <router-outlet />
-  </div>
+  </main>
 </div>
