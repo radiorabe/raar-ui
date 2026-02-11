@@ -1,20 +1,20 @@
-import { Component, Input, OnChanges, isDevMode, inject } from "@angular/core";
-import { Router, ActivatedRoute, RouterLink } from "@angular/router";
+import { UpperCasePipe } from "@angular/common";
+import { Component, Input, OnChanges, inject, isDevMode } from "@angular/core";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { finalize } from "rxjs/operators";
+import { AudioPlayerService } from "../player/audio-player.service";
 import {
-  BroadcastModel,
   AudioFileModel,
+  BroadcastModel,
   TrackModel,
 } from "../shared/models/index";
-import { LoginWindowService } from "../shared/services/login-window.service";
-import { AudioPlayerService } from "../player/audio-player.service";
+import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
 import { AudioFilesService } from "../shared/services/audio-files.service";
 import { DateParamsService } from "../shared/services/date-params.service";
+import { LoginWindowService } from "../shared/services/login-window.service";
 import { TracksService } from "../shared/services/tracks.service";
-import { finalize } from "rxjs/operators";
 import { BroadcastDescriptionFormComponent } from "./broadcast-description-form.component";
 import { TracksComponent } from "./tracks.component";
-import { UpperCasePipe } from "@angular/common";
-import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
 
 @Component({
   selector: "sd-broadcast",
@@ -84,6 +84,11 @@ export class BroadcastComponent implements OnChanges {
 
   isTracksPlayable(): boolean {
     return this.audioFiles && this.audioFiles.length > 0;
+  }
+
+  showLogin(event: Event, userLogin: boolean = false) {
+    this.loginWindow.show(userLogin);
+    event.preventDefault();
   }
 
   private isBroadcastPlaying(): boolean {
