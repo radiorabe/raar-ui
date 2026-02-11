@@ -1,29 +1,27 @@
 <sd-layout>
-  <nav>
-    <ul class="nav navbar-nav navbar-right">
-      @if ((auth.isLoggedIn | async) && auth.user) {
-      <li>
-        <small class="user">{{ auth.user.toString() }}</small>
-      </li>
-      <li>
-        <a (click)="auth.logout()"><small>Logout</small></a>
-      </li>
-      } @else {
-      <li>
-        <a (click)="showLogin()"><small>Login</small></a>
-      </li>
-      }
-      <li class="hidden-xs">
-        <a href="https://rabe.ch"><small>RaBe Webseite</small></a>
-      </li>
-    </ul>
-  </nav>
+  <ul class="nav navbar-nav navbar-right">
+    @if ((auth.isLoggedIn | async) && auth.user) {
+    <li>
+      <small class="user">{{ auth.user.toString() }}</small>
+    </li>
+    <li>
+      <a (click)="auth.logout()"><small>Logout</small></a>
+    </li>
+    } @else {
+    <li>
+      <a (click)="showLogin()"><small>Login</small></a>
+    </li>
+    }
+    <li class="hidden-xs">
+      <a href="https://rabe.ch"><small>RaBe Webseite</small></a>
+    </li>
+  </ul>
 
-  <aside>
+  <div class="sidebar-content">
     <sd-datepicker />
     <sd-search />
     <sd-shows />
-  </aside>
+  </div>
 </sd-layout>
 
 <sd-player />
