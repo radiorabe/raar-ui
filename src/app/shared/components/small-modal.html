@@ -1,13 +1,13 @@
 <div
   class="modal fade"
-  tabindex="-1"
+  id="smallModal"
   role="dialog"
-  aria-hidden="true"
+  aria-labelledby="modal_title"
   (click)="onContainerClicked($event)"
   [class.in]="visibleAnimate"
   [ngStyle]="{ 'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0 }"
 >
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button
@@ -18,7 +18,7 @@
         >
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">{{ title }}</h4>
+        <h4 class="modal-title" id="modal_title">{{ heading }}</h4>
       </div>
       <div class="modal-body">
         <ng-content />
@@ -26,3 +26,8 @@
     </div>
   </div>
 </div>
+<div
+  class="modal-backdrop fade"
+  [class.in]="visibleAnimate"
+  [ngStyle]="{ 'display': visible ? 'block' : 'none' }"
+></div>

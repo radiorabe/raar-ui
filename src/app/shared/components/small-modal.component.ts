@@ -1,5 +1,5 @@
-import { Component, Input, ChangeDetectorRef, inject } from "@angular/core";
 import { NgStyle } from "@angular/common";
+import { ChangeDetectorRef, Component, inject, Input } from "@angular/core";
 
 @Component({
   selector: "sd-small-modal",
@@ -9,7 +9,7 @@ import { NgStyle } from "@angular/common";
 export class SmallModalComponent {
   private cd = inject(ChangeDetectorRef);
 
-  @Input() title: string;
+  @Input() heading: string;
 
   visible = false;
   visibleAnimate = false;
@@ -17,6 +17,7 @@ export class SmallModalComponent {
   show(): void {
     this.visible = true;
     this.cd.markForCheck();
+
     setTimeout(() => {
       this.visibleAnimate = true;
       this.cd.markForCheck();
@@ -26,6 +27,7 @@ export class SmallModalComponent {
   hide(): void {
     this.visibleAnimate = false;
     this.cd.markForCheck();
+
     setTimeout(() => {
       this.visible = false;
       this.cd.markForCheck();
