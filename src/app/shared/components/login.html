@@ -1,4 +1,4 @@
-<sd-small-modal title="Login" #modal>
+<sd-small-modal heading="Login" #modal>
   @if (failure) { @if (userLogin) {
   <div class="alert alert-danger">
     Benutzername oder Password sind ungültig.
@@ -16,6 +16,7 @@
       <input
         type="string"
         class="form-control"
+        id="username"
         name="username"
         [(ngModel)]="username"
       />
@@ -25,6 +26,7 @@
       <input
         type="password"
         class="form-control"
+        id="password"
         name="password"
         [(ngModel)]="password"
       />
@@ -37,9 +39,10 @@
     </div>
     } @else {
     <div class="form-group">
-      <label for="username">Zugangscode</label>
+      <label for="accessCode">Zugangscode</label>
       <input
         type="string"
+        id="accessCode"
         class="form-control"
         name="accessCode"
         [(ngModel)]="accessCode"
