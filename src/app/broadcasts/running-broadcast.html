@@ -1,12 +1,13 @@
 <div class="list-group-item view-day">
   <h4 class="list-group-item-heading title" role="tab" (click)="toggle()">
-    <a
-      role="button"
-      [attr.aria-expanded]="!expanded"
+    <button
+      class="btn-blank"
+      id="broadcast-heading-running"
+      [attr.aria-expanded]="expanded"
       aria-controls="broadcast-running"
     >
       <div class="pull-right">
-        <span class="toggle" [class.up]="expanded">
+        <span class="toggle" [class.up]="expanded" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.1 14.6">
             <path
               fill="none"
@@ -23,7 +24,7 @@
         &nbsp; &nbsp;
       </span>
       Laufendes Programm
-    </a>
+    </button>
   </h4>
 
   @if (expanded) {
@@ -31,6 +32,7 @@
     class="list-group-item-text fixclear"
     id="broadcast-running"
     role="tabpanel"
+    attr.aria-labelledby="broadcast-heading-running"
   >
     <p>Siehe <a href="https://rabe.ch/programm/">RaBe Programm</a></p>
     <sd-tracks [tracks]="tracks" />

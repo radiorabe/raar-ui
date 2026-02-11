@@ -7,6 +7,14 @@
   font-family: $headings-font-family;
 }
 
+.btn-blank {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+  text-align: left;
+}
+
 .has-clear {
   input::-ms-clear {
     display: none;

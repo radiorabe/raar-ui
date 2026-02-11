@@ -72,9 +72,8 @@ sd-running-broadcast {
     margin-bottom: 0;
     padding: 20px 20px;
 
-    & > a {
-      color: #000;
-      text-decoration: none;
+    & > button {
+      width: 100%;
       display: block;
     }
 
