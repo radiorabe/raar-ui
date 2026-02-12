@@ -1,5 +1,6 @@
-import { Component, OnDestroy, Input, inject } from "@angular/core";
-import { Router, NavigationEnd, RouterOutlet } from "@angular/router";
+import { ViewportScroller } from "@angular/common";
+import { Component, OnDestroy, inject } from "@angular/core";
+import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -8,6 +9,8 @@ import { Subscription } from "rxjs";
   imports: [RouterOutlet],
 })
 export class LayoutComponent implements OnDestroy {
+  private viewportScroller = inject(ViewportScroller);
+
   private _showNav: boolean = false;
 
   private routerSub: Subscription;
@@ -27,6 +30,12 @@ export class LayoutComponent implements OnDestroy {
 
   get currentYear(): number {
     return new Date().getFullYear();
+  }
+
+  scrollTo(anchor: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.viewportScroller.scrollToAnchor(anchor);
   }
 
   toggleNav() {

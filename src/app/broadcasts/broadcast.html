@@ -1,5 +1,5 @@
 <div class="list-group-item view-{{ view }}">
-  <h4
+  <h3
     class="list-group-item-heading title"
     role="tab"
     id="broadcast-heading-{{ broadcast.id }}"
@@ -13,7 +13,7 @@
     >
       <div class="pull-right">
         @if (!broadcast.attributes.audio_access) {
-        <span class="glyphicon glyphicon-lock"></span>
+        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
         }
         <span class="toggle" [class.up]="expanded" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.1 14.6">
@@ -33,7 +33,7 @@
       </span>
       {{ broadcast.attributes.label }}
     </button>
-  </h4>
+  </h3>
 
   @if (expanded) {
   <div
@@ -47,21 +47,34 @@
       @for (audio of audioFiles; track audio.id) {
       <tr>
         <td>
-          <a (click)="play(audio)">
+          <a
+            (click)="play(audio); false"
+            href="#player"
+            id="play-audio-{{ audio.id }}"
+          >
             <span
               class="glyphicon glyphicon-play-circle"
               aria-hidden="true"
             ></span>
-            {{ audio.attributes.codec | uppercase }} {{
-            audio.attributes.playback_format }} @if (audio.attributes.bitrate >
-            1) {
-            <span> ({{ audio.attributes.bitrate }}k) </span>
-            }
+            <span class="sr-only">Play</span>
+            <span id="audio-label-{{ audio.id }}">
+              {{ audio.attributes.codec | uppercase }} {{
+              audio.attributes.playback_format }} @if (audio.attributes.bitrate
+              > 1) {
+              <span> ({{ audio.attributes.bitrate }}k) </span>
+              }
+            </span>
           </a>
         </td>
         <td>
           @if (audio.links.download) {
-          <a (click)="download(audio)" class="text-nowrap">
+          <a
+            (click)="download(audio); false"
+            class="text-nowrap"
+            href="#"
+            id="download-audio-{{ audio.id }}"
+            attr.aria-labelledby="download-audio-{{ audio.id }} audio-label-{{ audio.id }}"
+          >
             <span
               class="glyphicon glyphicon-download"
               aria-hidden="true"
@@ -94,11 +107,9 @@
     } @if (!broadcast.attributes.audio_access) {
     <p>
       Du hast keinen Zugriff auf diese Aufnahme. Bitte
-      <a href="#login" (click)="showLogin($event, false)"
-        >gib den Zugangscode</a
-      >
+      <a href="#login" (click)="showLogin(false); false">gib den Zugangscode</a>
       aus dem StattRadio ein oder melde dich mit deinem
-      <a href="#login" (click)="showLogin($event, true)">RaBe Login</a> an.
+      <a href="#login" (click)="showLogin(true); false">RaBe Login</a> an.
     </p>
     }
     <sd-tracks

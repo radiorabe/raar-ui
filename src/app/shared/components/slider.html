@@ -1,4 +1,10 @@
-<div class="slider" (click)="onClick($event)" (touch)="onClick($event)">
+<div
+  class="slider"
+  (click)="onClick($event)"
+  (touch)="onClick($event)"
+  role="slider"
+  [aria-valuenow]="percent"
+>
   <span class="background"></span>
   <span #current class="current" [style.width]="percent + '%'"></span>
   <span

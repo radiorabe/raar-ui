@@ -1,13 +1,14 @@
-<nav class="pull-right">
+<nav class="pull-right" aria-label="Datum">
   <ul class="pager" style="margin-top: 0">
     <li>
-      <a (click)="prevDate()" aria-label="Voriger Tag"
-        ><span aria-hidden="true">⟨</span></a
-      >
+      <a (click)="prevDate(); false" aria-label="Voriger Tag" href="#">
+        <span aria-hidden="true">⟨</span>
+      </a>
     </li>
     <li>
       <a
-        (click)="nextDate()"
+        (click)="nextDate(); false"
+        href="#"
         [class.disabled]="nextDateDisabled()"
         aria-label="Nächster Tag"
       >
@@ -17,17 +18,14 @@
   </ul>
 </nav>
 
-<h2 class="title">
-  <span class="mobile">{{ date | dateString: "short" }}</span>
+<h1 class="title">
+  <span class="mobile" aria-hidden="true"
+    >{{ date | dateString: "short" }}</span
+  >
   <span class="tablet">{{ date | dateString: "date" }}</span>
-</h2>
+</h1>
 
-<div
-  class="list-group"
-  [class.loading]="loading"
-  role="tablist"
-  aria-multiselectable="true"
->
+<div class="list-group" [class.loading]="loading" role="tablist">
   @for (broadcast of broadcasts; track broadcast.id) {
   <sd-broadcast
     [broadcast]="broadcast"

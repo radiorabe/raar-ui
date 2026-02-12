@@ -7,6 +7,7 @@
   (click)="onContainerClicked($event)"
   [class.in]="visibleAnimate"
   [ngStyle]="{ 'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0 }"
+  #dialog
 >
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">

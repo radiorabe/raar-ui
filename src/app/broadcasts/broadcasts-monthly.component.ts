@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, of, ReplaySubject, Subject } from "rxjs";
 import {
@@ -19,10 +19,10 @@ import {
 } from "../shared/services/date-params.service";
 import { RefreshService } from "../shared/services/refresh.service";
 
+import { AsyncPipe } from "@angular/common";
 import dayjs from "dayjs";
 import { InfiniteScrollDirective } from "ngx-infinite-scroll";
 import { BroadcastComponent } from "./broadcast.component";
-import { AsyncPipe } from "@angular/common";
 
 type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 

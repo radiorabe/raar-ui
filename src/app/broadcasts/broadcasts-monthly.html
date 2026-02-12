@@ -1,4 +1,4 @@
-<h2 class="title">{{ title$ | async }}</h2>
+<h1 class="title">{{ title$ | async }}</h1>
 
 @if (details$ | async; as details) {
 <div class="details" [innerHtml]="details.trim()"></div>
@@ -18,8 +18,8 @@
 >
   @for (month of months | async; track month) {
   <div>
-    <h3 class="title">{{ month }}</h3>
-    <div class="list-group" role="tablist" aria-multiselectable="true">
+    <h2 class="title">{{ month }}</h2>
+    <div class="list-group" role="tablist">
       @for ( broadcast of (monthlyBroadcasts | async)[month]; track
       broadcast.id) {
       <sd-broadcast

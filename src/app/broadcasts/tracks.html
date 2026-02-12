@@ -1,13 +1,26 @@
 @if (tracks.length) {
 <div class="tracklist">
-  <h5>Playlist</h5>
+  <h4 class="h5">Playlist</h4>
 
-  <ul [class.non-playable]="!playable">
+  <ul>
     @for (trak of tracks; track trak.id) {
     <li>
-      <a (click)="playTrack.emit(trak)" [class.active]="isTrackPlaying(trak)">
-        <span class="glyphicon glyphicon-play-circle" aria-hidden="true"> </span
-        ><span class="track-time">
+      @if (playable) {
+      <a
+        (click)="play(trak); false"
+        [class.active]="isTrackPlaying(trak)"
+        href="#player"
+      >
+        <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+        <span class="sr-only">Play</span>
+        <ng-container *ngTemplateOutlet="label"></ng-container>
+      </a>
+      } @else {
+      <ng-container *ngTemplateOutlet="label"></ng-container>
+      }
+
+      <ng-template #label>
+        <span class="track-time">
           {{ trak.attributes.started_at | dateString: "time" }}
         </span>
         <span class="track-info">
@@ -15,7 +28,7 @@
           <span>{{ trak.attributes.artist }} – </span>
           } {{ trak.attributes.title }}
         </span>
-      </a>
+      </ng-template>
     </li>
     }
   </ul>

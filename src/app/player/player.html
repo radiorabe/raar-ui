@@ -1,19 +1,20 @@
 <aside class="well clearfix" [class.visible]="!!audioFile" aria-label="Player">
   <div class="container">
     <div class="controls pull-left">
-      <a
-        class="btn circle-xl"
+      <button
+        class="btn-blank circle-xl"
         (click)="togglePlay()"
         [class.disabled]="!audioFile"
+        aria-pressed="player.playing"
       >
         <span
           class="glyphicon"
-          role="button"
           [class.glyphicon-play]="!player.playing"
           [class.glyphicon-pause]="player.playing"
-        >
-        </span>
-      </a>
+          aria-hidden="true"
+        ></span>
+        <span class="sr-only">Play</span>
+      </button>
 
       @if (player.loading) {
       <div class="circle-loading" (click)="togglePlay()">
@@ -33,34 +34,42 @@
     </div>
     <div class="player-details">
       <div class="time-passed">{{ player.currentTime }}</div>
-      <div class="backward" role="button" (click)="player.backward(15)">
-        <span class="glyphicon glyphicon-repeat"></span>
+      <button class="btn-blank backward" (click)="player.backward(15)">
+        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
         <span class="skip-time">15</span>
-      </div>
+        <span class="sr-only">Sekunden zurück</span>
+      </button>
       <sd-slider
         class="time-progress"
         [value]="player.percent"
         (slidingEvent)="player.seek($event)"
+        aria-label="Wiedergabeposition"
       />
       <div class="time-total">{{ player.totalTime }}</div>
-      <div class="forward" role="button" (click)="player.forward(15)">
-        <span class="glyphicon glyphicon-repeat"></span>
+      <button class="btn-blank forward" (click)="player.forward(15)">
+        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
         <span class="skip-time">15</span>
-      </div>
-      <div class="volume-icon">
+        <span class="sr-only">Sekunden vor</span>
+      </button>
+      <button
+        class="btn-blank volume-icon"
+        (click)="player.toggleMute()"
+        aria-pressed="mute"
+      >
         <span
           class="glyphicon"
           [class.glyphicon-volume-up]="highVolume"
           [class.glyphicon-volume-down]="lowVolume"
           [class.glyphicon-volume-off]="mute"
-          role="button"
-          (click)="player.toggleMute()"
+          aria-hidden="true"
         ></span>
-      </div>
+        <span class="sr-only">Stumm</span>
+      </button>
       <sd-slider
         class="volume-slider"
         [value]="volume"
         (slidingEvent)="player.setVolume($event)"
+        aria-label="Lautstärke"
       />
     </div>
     }

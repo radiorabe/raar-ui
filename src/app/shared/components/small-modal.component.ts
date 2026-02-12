@@ -1,5 +1,12 @@
 import { NgStyle } from "@angular/common";
-import { ChangeDetectorRef, Component, inject, Input } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  ViewChild,
+} from "@angular/core";
 
 @Component({
   selector: "sd-small-modal",
@@ -11,6 +18,8 @@ export class SmallModalComponent {
 
   @Input() heading: string;
 
+  @ViewChild("dialog") dialog: ElementRef;
+
   visible = false;
   visibleAnimate = false;
 
@@ -20,6 +29,7 @@ export class SmallModalComponent {
 
     setTimeout(() => {
       this.visibleAnimate = true;
+      this.dialog.nativeElement.focus();
       this.cd.markForCheck();
     }, 100);
   }

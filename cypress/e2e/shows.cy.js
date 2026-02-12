@@ -48,7 +48,7 @@ describe("Broadcasts for show", () => {
       "contain",
       "Klangbecken",
     );
-    cy.get("h2.title").should("contain", "Klangbecken");
+    cy.get("h1.title").should("contain", "Klangbecken");
     cy.url().should("include", "/show/415164569-klangbecken");
 
     cy.get(
@@ -64,14 +64,14 @@ describe("Broadcasts for show", () => {
 
   it("loads more results on scroll", () => {
     cy.visit("/show/415164569-klangbecken", { failOnStatusCode: false });
-    cy.get("h2.title").should("contain", "Klangbecken");
+    cy.get("h1.title").should("contain", "Klangbecken");
     cy.get(".details").should("contain", "Musig ohni Gschnurr");
     cy.get("sd-shows a.list-group-item.active").should(
       "contain",
       "Klangbecken",
     );
 
-    cy.get("[infinite-scroll] div:nth-child(1) > h3.title").should(
+    cy.get("[infinite-scroll] div:nth-child(1) > h2.title").should(
       "contain",
       "Februar 2019",
     );
@@ -79,7 +79,7 @@ describe("Broadcasts for show", () => {
       "have.length",
       1,
     );
-    cy.get("[infinite-scroll] div:nth-child(2) > h3.title").should(
+    cy.get("[infinite-scroll] div:nth-child(2) > h2.title").should(
       "contain",
       "März 2016",
     );
@@ -87,7 +87,7 @@ describe("Broadcasts for show", () => {
       "have.length",
       50,
     );
-    cy.get("[infinite-scroll] div:nth-child(3) > h3.title").should(
+    cy.get("[infinite-scroll] div:nth-child(3) > h2.title").should(
       "contain",
       "Februar 2016",
     );
@@ -107,7 +107,7 @@ describe("Broadcasts for show", () => {
       "have.length",
       67,
     );
-    cy.get("[infinite-scroll] div:nth-child(4) > h3.title").should(
+    cy.get("[infinite-scroll] div:nth-child(4) > h2.title").should(
       "contain",
       "Januar 2016",
     );
