@@ -9,12 +9,14 @@
     id="show_query"
     class="form-control"
     placeholder="Suchen... "
+    aria-label="Sendung suchen"
     [formControl]="query"
   />
   <span
     class="form-control-feedback clear"
     (click)="query.setValue('', { emitEvent: true })"
     aria-label="Eingabefeld leeren"
+    role="button"
   >
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </span>

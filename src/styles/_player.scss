@@ -28,8 +28,9 @@ sd-player {
     height: 50px;
     margin-right: 15px;
 
-    a {
+    button {
       color: $link-hover-color;
+      text-align: center;
     }
   }
 

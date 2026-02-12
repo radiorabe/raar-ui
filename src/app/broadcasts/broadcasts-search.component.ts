@@ -1,24 +1,21 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Observable, Subject, ReplaySubject, Observer } from "rxjs";
+import { AsyncPipe } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { InfiniteScrollDirective } from "ngx-infinite-scroll";
+import { Observable, Observer, ReplaySubject, Subject } from "rxjs";
 import {
-  map,
-  takeUntil,
-  filter,
-  distinctUntilChanged,
-  tap,
-  merge,
-  withLatestFrom,
-  switchMap,
   catchError,
+  distinctUntilChanged,
+  filter,
+  map,
+  merge,
+  switchMap,
+  takeUntil,
+  tap,
+  withLatestFrom,
 } from "rxjs/operators";
 import { BroadcastModel, CrudList } from "../shared/models/index";
-import { BroadcastsService } from "../shared/services/broadcasts.service";
-import { RefreshService } from "../shared/services/refresh.service";
-import { BroadcastsMonthlyComponent } from "./broadcasts-monthly.component";
-import { InfiniteScrollDirective } from "ngx-infinite-scroll";
 import { BroadcastComponent } from "./broadcast.component";
-import { AsyncPipe } from "@angular/common";
+import { BroadcastsMonthlyComponent } from "./broadcasts-monthly.component";
 
 @Component({
   selector: "sd-broadcasts-search",

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import dayjs from "dayjs";
 import { Observable, of, Subject } from "rxjs";
@@ -15,6 +15,7 @@ import {
 } from "rxjs/operators";
 import { BroadcastModel } from "../shared/models/broadcast.model";
 import { CrudList } from "../shared/models/crud-list";
+import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
 import {
   DateParamsService,
@@ -23,7 +24,6 @@ import {
 import { RefreshService } from "../shared/services/refresh.service";
 import { BroadcastComponent } from "./broadcast.component";
 import { RunningBroadcastComponent } from "./running-broadcast.component";
-import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 
 @Component({
   selector: "sd-broadcasts-date",

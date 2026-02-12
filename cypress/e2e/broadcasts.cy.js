@@ -35,19 +35,19 @@ describe("Broadcasts", () => {
 
   it("navigates date back and forth", () => {
     cy.visit("/");
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
     cy.get(".dp-selected").should("contain", "15");
 
     cy.get(".pager > li:first-child a").click();
-    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
+    cy.get("h1.title").should("contain", "Sonntag 14. April 2019");
     cy.url().should("include", datePath(yesterday));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 13);
     cy.get(".dp-selected").should("contain", "14");
 
     cy.get(".pager > li:last-child a").click();
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
     cy.get(".dp-selected").should("contain", "15");
@@ -55,12 +55,12 @@ describe("Broadcasts", () => {
 
   it("opens page for given date", () => {
     cy.visit("/2019/04/14", { failOnStatusCode: false });
-    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
+    cy.get("h1.title").should("contain", "Sonntag 14. April 2019");
     cy.get(".dp-selected").should("contain", "14");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 13);
 
     cy.get(".dp-current-day").click();
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
   });
@@ -79,7 +79,7 @@ describe("Broadcasts", () => {
     cy.get(".dp-nav-header-btn").should("contain", "2018");
     cy.get('[data-date="01-10-2018"]').should("contain", "Okt.").click();
     cy.get('[data-date="05-10-2018"]').click();
-    cy.get("h2.title").should("contain", "Freitag 5. Oktober 2018");
+    cy.get("h1.title").should("contain", "Freitag 5. Oktober 2018");
     cy.get("sd-broadcasts-date").should(
       "contain",
       "Keine aufgenommenen Sendungen",
@@ -92,17 +92,17 @@ describe("Broadcasts", () => {
     cy.visit("/");
     cy.get(".navbar-brand").should("contain", "RaBe Archiv");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(1) h4")
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(1) .title")
       .should("contain", "23:00 - 08:00")
       .should("contain", "Klangbecken")
       .should("have.class", "access-denied");
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) h4")
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) .title")
       .should("contain", "08:00 - 11:00")
       .should("contain", "der Morgen")
       .should("have.class", "access-denied")
       .find(".glyphicon-lock")
       .should("exist");
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4")
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .title")
       .should("contain", "11:00 - 11:30")
       .should("contain", "Info")
       .should("not.have.class", "access-denied")
@@ -113,7 +113,7 @@ describe("Broadcasts", () => {
     cy.intercept("GET", "/api/tracks?broadcast_id=1018401628*", {
       fixture: "tracks/list.json",
     });
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) h4").click();
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) .title").click();
     cy.get("sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text")
       .should("contain", "Du hast keinen Zugriff")
       .find(".audio-links tr")
@@ -121,13 +121,13 @@ describe("Broadcasts", () => {
     cy.url().should("include", datePath(today) + ";time=0800");
     cy.get(".tracklist li").should("have.length", 16);
     cy.get(".tracklist li:first-child").should("contain", "Autisti");
-    cy.get(".tracklist ul.non-playable").should("exist");
+    cy.get(".tracklist li a").should("not.exist");
 
     // info
     cy.intercept("GET", "/api/tracks?broadcast_id=1018401629*", {
       fixture: "tracks/list.json",
     });
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .title").click();
     cy.get(
       "sd-broadcasts-date sd-broadcast:nth-child(2) .list-group-item-text",
     ).should("not.exist");
@@ -137,18 +137,18 @@ describe("Broadcasts", () => {
       .should("have.length", 2);
     cy.url().should("include", datePath(today) + ";time=1100");
     cy.get(".tracklist li").should("have.length", 16);
-    cy.get(".tracklist ul.non-playable").should("not.exist");
+    cy.get(".tracklist li a").should("exist");
   });
 
   it("reloads page after login", () => {
     cy.visit("/");
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
 
     cy.get(".pager > li:first-child a").click();
-    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
+    cy.get("h1.title").should("contain", "Sonntag 14. April 2019");
     cy.url().should("include", datePath(yesterday));
-    cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
+    cy.get("sd-broadcasts-date sd-broadcast .title.access-denied").should(
       "have.length",
       12,
     );
@@ -183,12 +183,12 @@ describe("Broadcasts", () => {
     cy.get("sd-login form input[name=accessCode]").type("1337dead");
     cy.get("sd-login form .btn-primary").click();
 
-    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
-    cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
+    cy.get("h1.title").should("contain", "Sonntag 14. April 2019");
+    cy.get("sd-broadcasts-date sd-broadcast .title.access-denied").should(
       "have.length",
       0,
     );
-    cy.get("sd-broadcasts-date sd-broadcast h4:not(.access-denied)").should(
+    cy.get("sd-broadcasts-date sd-broadcast .title:not(.access-denied)").should(
       "have.length",
       13,
     );
@@ -222,12 +222,12 @@ describe("Broadcasts", () => {
 
     cy.get(".navbar-nav.navbar-right li a").contains("Logout").click();
 
-    cy.get("h2.title").should("contain", "Sonntag 14. April 2019");
-    cy.get("sd-broadcasts-date sd-broadcast h4.access-denied").should(
+    cy.get("h1.title").should("contain", "Sonntag 14. April 2019");
+    cy.get("sd-broadcasts-date sd-broadcast .title.access-denied").should(
       "have.length",
       12,
     );
-    cy.get("sd-broadcasts-date sd-broadcast h4:not(.access-denied)").should(
+    cy.get("sd-broadcasts-date sd-broadcast .title:not(.access-denied)").should(
       "have.length",
       1,
     );
@@ -253,13 +253,13 @@ describe("Broadcasts", () => {
 
     cy.visit("/");
     cy.get("#search_query").type("tru");
-    cy.get("h2.title").should("contain", "Suchresultate für «tru»");
+    cy.get("h1.title").should("contain", "Suchresultate für «tru»");
     cy.url().should("include", "/search/tru");
     cy.get("sd-broadcast").should("have.length", 6);
-    cy.get("h3.title").should("have.length", 4);
+    cy.get("h2.title").should("have.length", 4);
 
     cy.get("#search_query").type("e");
-    cy.get("h2.title").should("contain", "Suchresultate für «true»");
+    cy.get("h1.title").should("contain", "Suchresultate für «true»");
     cy.url().should("include", "/search/true");
     cy.get(".content").should(
       "contain",
@@ -267,7 +267,7 @@ describe("Broadcasts", () => {
     );
 
     cy.get("sd-search .form-search .glyphicon-remove").click();
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("#search_query").should("have.value", "");
   });

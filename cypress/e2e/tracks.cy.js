@@ -25,7 +25,7 @@ describe("Tracks", () => {
     });
 
     cy.visit("/");
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);
     cy.get("sd-broadcasts-date sd-running-broadcast").should(
@@ -33,7 +33,7 @@ describe("Tracks", () => {
       "21:00",
     );
 
-    cy.get("sd-broadcasts-date sd-running-broadcast h4").click();
+    cy.get("sd-broadcasts-date sd-running-broadcast .title").click();
     cy.get(".tracklist li").should("have.length", 30);
   });
 
@@ -54,7 +54,7 @@ describe("Tracks", () => {
     });
 
     cy.visit("/2019/04/15;time=2100", { failOnStatusCode: false });
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);
     cy.get("sd-broadcasts-date sd-running-broadcast").should(
@@ -81,7 +81,7 @@ describe("Tracks", () => {
     });
 
     cy.visit("/");
-    cy.get("h2.title").should("contain", "Montag 15. April 2019");
+    cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 0);
     cy.get("sd-broadcasts-date sd-running-broadcast").should("have.length", 1);
     cy.get("sd-broadcasts-date sd-running-broadcast").should(
@@ -89,7 +89,7 @@ describe("Tracks", () => {
       "00:00",
     );
 
-    cy.get("sd-broadcasts-date sd-running-broadcast h4").click();
+    cy.get("sd-broadcasts-date sd-running-broadcast .title").click();
     cy.url().should("include", datePath(now) + ";time=0000");
     cy.get(".tracklist li").should("have.length", 25);
   });

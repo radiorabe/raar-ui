@@ -1,4 +1,4 @@
-<sd-small-modal title="Login" #modal>
+<sd-small-modal heading="Login" #modal id="login">
   @if (failure) { @if (userLogin) {
   <div class="alert alert-danger">
     Benutzername oder Password sind ungültig.
@@ -16,6 +16,7 @@
       <input
         type="string"
         class="form-control"
+        id="username"
         name="username"
         [(ngModel)]="username"
       />
@@ -25,6 +26,7 @@
       <input
         type="password"
         class="form-control"
+        id="password"
         name="password"
         [(ngModel)]="password"
       />
@@ -33,13 +35,16 @@
       <a href="https://my.rabe.ch/auth/forgotpw">Passwort vergessen?</a>
     </div>
     <div class="form-group">
-      <a (click)="displayAccessCode()">Du hast einen Zugangscode?</a>
+      <a (click)="displayAccessCode(); false" href="#login"
+        >Du hast einen Zugangscode?</a
+      >
     </div>
     } @else {
     <div class="form-group">
-      <label for="username">Zugangscode</label>
+      <label for="accessCode">Zugangscode</label>
       <input
         type="string"
+        id="accessCode"
         class="form-control"
         name="accessCode"
         [(ngModel)]="accessCode"
@@ -51,7 +56,9 @@
       und erhalte den Zugang zum Archiv.
     </div>
     <div class="form-group">
-      <a (click)="displayUserLogin()">Du hast ein RaBe Login?</a>
+      <a (click)="displayUserLogin(); false" href="#login"
+        >Du hast ein RaBe Login?</a
+      >
     </div>
     }
     <button
@@ -61,6 +68,8 @@
     >
       Login
     </button>
-    <a (click)="close()" class="cancel">Abbrechen</a>
+    <button (click)="close(); false" class="btn btn-link cancel">
+      Abbrechen
+    </button>
   </form>
 </sd-small-modal>

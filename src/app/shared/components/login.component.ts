@@ -1,10 +1,10 @@
 import { Component, ViewChild, inject } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { AuthService } from "../../shared/services/auth.service";
 import { LoginWindowService } from "../../shared/services/login-window.service";
 import { UserModel } from "../models/user.model";
 import { LoginService } from "../services/login.service";
 import { SmallModalComponent } from "./small-modal.component";
-import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "sd-login",

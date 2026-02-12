@@ -5,6 +5,7 @@
     placeholder="Schwerpunkte, Gäste, Themen usw. dieser Sendung"
     formControlName="details"
     rows="5"
+    aria-label="Beschreibung"
   ></textarea>
   <div>
     <button
@@ -27,9 +28,10 @@
     [innerHtml]="broadcast.attributes.details.trim()"
   ></span>
   } &nbsp; @if (broadcast.links.update) {
-  <a (click)="startEditing()">
+  <button class="btn btn-link" (click)="startEditing()">
     <span class="glyphicon glyphicon-pencil"></span>
-  </a>
+    <span class="sr-only">Beschreibung Bearbeiten</span>
+  </button>
   }
 </p>
 }
