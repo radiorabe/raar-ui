@@ -241,25 +241,6 @@ sd-running-broadcast {
         margin-left: 0;
       }
     }
-
-    ul.non-playable {
-      a {
-        color: inherit;
-        font-weight: inherit;
-        font-family: inherit;
-        cursor: inherit;
-      }
-
-      a:hover {
-        .glyphicon {
-          display: none;
-        }
-
-        .track-time {
-          margin-left: -3.5em;
-        }
-      }
-    }
   }
 }
 

@@ -9,11 +9,13 @@
     id="search_query"
     class="form-control"
     placeholder="Suchen... "
+    aria-label="Inhalt suchen"
     [formControl]="query"
   />
   <span
     class="form-control-feedback clear"
     (click)="query.setValue('', { emitEvent: true })"
+    role="button"
     aria-label="Eingabefeld leeren"
   >
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

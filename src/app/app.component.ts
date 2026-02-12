@@ -1,15 +1,15 @@
-import { Component, inject } from "@angular/core";
-import { AuthService } from "./shared/services/auth.service";
-import { LoginWindowService } from "./shared/services/login-window.service";
-import { LayoutComponent } from "./shared/components/layout.component";
-import { DatepickerComponent } from "./datepicker/datepicker.component";
-import { SearchComponent } from "./search/search.component";
-import { ShowsComponent } from "./shows/shows.component";
-import { PlayerComponent } from "./player/player.component";
-import { LoginComponent } from "./shared/components/login.component";
 import { AsyncPipe } from "@angular/common";
+import { Component, inject } from "@angular/core";
 import dayjs from "dayjs";
 import "dayjs/locale/de-ch";
+import { DatepickerComponent } from "./datepicker/datepicker.component";
+import { PlayerComponent } from "./player/player.component";
+import { SearchComponent } from "./search/search.component";
+import { LayoutComponent } from "./shared/components/layout.component";
+import { LoginComponent } from "./shared/components/login.component";
+import { AuthService } from "./shared/services/auth.service";
+import { LoginWindowService } from "./shared/services/login-window.service";
+import { ShowsComponent } from "./shows/shows.component";
 
 dayjs.locale("de-ch");
 
@@ -38,5 +38,9 @@ export class AppComponent {
 
   showLogin() {
     this.loginWindow.show();
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

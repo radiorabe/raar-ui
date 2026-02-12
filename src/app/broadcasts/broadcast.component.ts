@@ -86,9 +86,8 @@ export class BroadcastComponent implements OnChanges {
     return this.audioFiles && this.audioFiles.length > 0;
   }
 
-  showLogin(event: Event, userLogin: boolean = false) {
+  showLogin(userLogin: boolean = false) {
     this.loginWindow.show(userLogin);
-    event.preventDefault();
   }
 
   private isBroadcastPlaying(): boolean {

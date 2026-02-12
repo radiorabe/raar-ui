@@ -39,11 +39,11 @@ describe("Player", () => {
 
   it("plays audio for broadcast", () => {
     cy.visit("/");
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4")
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .title")
       .should("contain", "11:00 - 11:30")
       .should("contain", "Info");
 
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .title").click();
     cy.get(
       "sd-broadcasts-date sd-broadcast:nth-child(3) .list-group-item-text .audio-links tr",
     ).should("have.length", 2);
@@ -57,11 +57,11 @@ describe("Player", () => {
   it("plays audio at track position", () => {
     cy.visit("/");
     cy.get("sd-broadcasts-date sd-broadcast").should("have.length", 11);
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4")
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .title")
       .should("contain", "11:00 - 11:30")
       .should("contain", "Info");
 
-    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) h4").click();
+    cy.get("sd-broadcasts-date sd-broadcast:nth-child(3) .title").click();
     cy.get(
       "sd-broadcasts-date sd-broadcast:nth-child(3) sd-tracks ul li",
     ).should("have.length", 9);

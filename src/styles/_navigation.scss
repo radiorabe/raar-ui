@@ -30,7 +30,8 @@
       padding-right: 0;
     }
 
-    a {
+    a,
+    .btn-link {
       display: inline-block;
       padding: 0;
     }
@@ -63,6 +64,8 @@
   font-size: 20px;
   font-family: $headings-font-family;
   margin-right: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 
   .company {
     display: none;

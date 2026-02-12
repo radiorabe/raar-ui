@@ -1,3 +1,10 @@
+<a
+  class="sr-only sr-only-focusable"
+  href="#main"
+  (click)="scrollTo('main', $event)"
+  >Direkt zum Inhalt</a
+>
+
 <header class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
@@ -6,7 +13,7 @@
         class="navbar-toggle collapsed"
         data-toggle="collapse"
         data-target="#nav"
-        aria-expanded="false"
+        [aria-expanded]="showNav"
         (click)="toggleNav()"
       >
         <span class="sr-only">Navigation ein-/ausblenden</span>
@@ -45,7 +52,7 @@
         </svg>
       </div>
 
-      <a class="navbar-brand" href="/">
+      <a href="/" class="navbar-brand">
         <span class="company">RaBe</span> Archiv
       </a>
     </div>
@@ -75,7 +82,7 @@
     </footer>
   </nav>
 
-  <main class="content">
+  <main class="content" id="main" tabindex="-1">
     <router-outlet />
   </main>
 </div>
