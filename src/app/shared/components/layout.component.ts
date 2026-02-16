@@ -1,40 +1,59 @@
 import { ViewportScroller } from "@angular/common";
-import { Component, OnDestroy, inject } from "@angular/core";
+import {
+  Component,
+  DOCUMENT,
+  HostListener,
+  OnDestroy,
+  inject,
+} from "@angular/core";
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
+import { FooterComponent } from "./footer.component";
+
+const TOGGLE_NAV_MAX_WIDTH = 767;
 
 @Component({
   selector: "sd-layout",
   templateUrl: "layout.html",
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FooterComponent],
 })
 export class LayoutComponent implements OnDestroy {
+  private document = inject(DOCUMENT);
   private viewportScroller = inject(ViewportScroller);
 
-  private _showNav: boolean = false;
+  private _togglableNav = false;
+  private _showNav = false;
 
   private routerSub: Subscription;
 
   constructor() {
-    const router = inject(Router);
+    this.resize(null);
+    this.resetShowNav();
 
+    const router = inject(Router);
     this.routerSub = router.events.subscribe((e) => {
       if (e instanceof NavigationEnd && !e.url.includes("/search/"))
-        this._showNav = false;
+        this.resetShowNav();
     });
+  }
+
+  get togglableNav(): boolean {
+    return this._togglableNav;
   }
 
   get showNav(): boolean {
     return this._showNav;
   }
 
-  get currentYear(): number {
-    return new Date().getFullYear();
+  @HostListener("window:resize", ["$event"])
+  public resize(_event: Event): void {
+    this._togglableNav = this.document.body.clientWidth <= TOGGLE_NAV_MAX_WIDTH;
   }
 
   scrollTo(anchor: string, event: Event): void {
     event.preventDefault();
     event.stopPropagation();
+    this.resetShowNav();
     this.viewportScroller.scrollToAnchor(anchor);
   }
 
@@ -44,5 +63,9 @@ export class LayoutComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.routerSub.unsubscribe();
+  }
+
+  private resetShowNav() {
+    this._showNav = !this._togglableNav;
   }
 }

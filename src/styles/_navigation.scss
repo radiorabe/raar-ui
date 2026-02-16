@@ -79,12 +79,18 @@
     border: 0;
     margin-top: 18px;
 
-    &:hover {
+    &:hover, &:focus {
       background-color: inherit;
 
       .icon-bar {
         background-color: #444;
       }
+    }
+
+    &:focus {
+      outline: 5px auto black;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: 2px;
     }
 
     .icon-bar {
@@ -104,6 +110,13 @@
       padding: 0;
     }
   }
+}
+
+.skip-link:focus {
+  position: absolute;
+  top: $navbar-height + 5px;
+  background-color: white;
+  z-index: 20;
 }
 
 @media screen and (min-width: 768px) {
