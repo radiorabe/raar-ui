@@ -1,14 +1,32 @@
 version: 2
 updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    cooldown:
+      default-days: 7
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
+      angular-eslint:
+        patterns:
+          - "@angular-eslint/*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major" # leave major version updates to devs
+          - "version-update:semver-patch" # ignore patch versions to reduce noise
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: "chore(ci): "
     groups:
       actions:
         patterns:
           - "*"
-    cooldown:
-      default-days: 7
