@@ -34,7 +34,7 @@
     "rxjs": "^6.5.4",
     "soundmanager2": "^2.97.20170602",
     "tslib": "^2.0.0",
-    "zone.js": "~0.15.1"
+    "zone.js": "~0.16.2"
   },
   "devDependencies": {
     "@angular-eslint/builder": "20.5.0",
