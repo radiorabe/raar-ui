@@ -253,12 +253,14 @@ describe("Broadcasts", () => {
 
     cy.visit("/");
     cy.get("#search_query").type("tru");
+    cy.tick(300);
     cy.get("h1.title").should("contain", "Suchresultate für «tru»");
     cy.url().should("include", "/search/tru");
     cy.get("sd-broadcast").should("have.length", 6);
     cy.get("h2.title").should("have.length", 4);
 
     cy.get("#search_query").type("e");
+    cy.tick(300);
     cy.get("h1.title").should("contain", "Suchresultate für «true»");
     cy.url().should("include", "/search/true");
     cy.get(".content").should(
@@ -267,6 +269,7 @@ describe("Broadcasts", () => {
     );
 
     cy.get("sd-search .form-search .glyphicon-remove").click();
+    cy.tick(300);
     cy.get("h1.title").should("contain", "Montag 15. April 2019");
     cy.url().should("include", datePath(today));
     cy.get("#search_query").should("have.value", "");

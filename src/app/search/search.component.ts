@@ -32,9 +32,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     this.query.valueChanges
       .pipe(
-        startWith(""),
         takeUntil(this.destroy$),
         debounceTime(200),
+        startWith(""),
         filter((q: string) => q.length === 0 || q.length > 2),
         distinctUntilChanged(),
       )

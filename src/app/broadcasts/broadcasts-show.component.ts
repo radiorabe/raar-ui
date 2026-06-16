@@ -1,12 +1,11 @@
 import { AsyncPipe } from "@angular/common";
 import { Component, OnInit, inject } from "@angular/core";
 import { InfiniteScrollDirective } from "ngx-infinite-scroll";
-import { Observable, Observer, ReplaySubject, Subject, of } from "rxjs";
+import { Observable, Observer, ReplaySubject, Subject, of, mergeWith } from "rxjs";
 import {
   catchError,
   distinctUntilChanged,
   map,
-  merge,
   switchMap,
   takeUntil,
   tap,
@@ -55,7 +54,7 @@ export class BroadcastsShowComponent
 
   protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
     return this.show.pipe(
-      merge(
+      mergeWith(
         this.refreshService
           .asObservable()
           .pipe(withLatestFrom(this.show, (_, show) => show)),

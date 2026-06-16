@@ -1,11 +1,10 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, of, ReplaySubject, Subject } from "rxjs";
+import { Observable, of, ReplaySubject, Subject, mergeWith } from "rxjs";
 import {
   catchError,
   distinctUntilChanged,
   map,
-  merge,
   switchMap,
   takeUntil,
   tap,
@@ -56,7 +55,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.broadcastLoadObservable()
-      .pipe(takeUntil(this.destroy$), merge(this.broadcastMoreObservable()))
+      .pipe(takeUntil(this.destroy$), mergeWith(this.broadcastMoreObservable()))
       .subscribe(this.broadcastList);
 
     this.broadcastList
