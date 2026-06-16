@@ -1,15 +1,14 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { Observable, of } from "rxjs";
+import { Observable, of, merge } from "rxjs";
 import {
-  startWith,
   debounceTime,
   filter,
   distinctUntilChanged,
-  merge,
   map,
   switchMap,
   catchError,
+  startWith,
 } from "rxjs/operators";
 import { ShowsService } from "../shared/services/shows.service";
 import { ShowModel } from "../shared/models/show.model";
@@ -34,14 +33,15 @@ export class ShowsComponent {
 
   query: FormControl = new FormControl();
 
-  shows: Observable<ShowModel[]> = this.query.valueChanges.pipe(
-    startWith(""),
-    debounceTime(200),
-    filter((q: string) => q.length === 0 || q.length > 2),
-    distinctUntilChanged(),
-    merge(this.refreshService.asObservable().pipe(map((_) => ""))),
-    switchMap((q) => this.fetchShows(q)),
-  );
+  shows: Observable<ShowModel[]> = merge(
+    this.query.valueChanges.pipe(
+      debounceTime(200),
+      startWith(""),
+      filter((q: string) => q.length === 0 || q.length > 2),
+      distinctUntilChanged(),
+    ),
+    this.refreshService.pipe(map(() => "")),
+  ).pipe(switchMap((q) => this.fetchShows(q)));
 
   getShowLink(show: ShowModel): string[] {
     return [

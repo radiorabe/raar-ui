@@ -1,13 +1,12 @@
 import { AsyncPipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { InfiniteScrollDirective } from "ngx-infinite-scroll";
-import { Observable, Observer, ReplaySubject, Subject } from "rxjs";
+import { Observable, Observer, ReplaySubject, Subject, mergeWith } from "rxjs";
 import {
   catchError,
   distinctUntilChanged,
   filter,
   map,
-  merge,
   switchMap,
   takeUntil,
   tap,
@@ -51,7 +50,7 @@ export class BroadcastsSearchComponent
 
   protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
     return this.query.pipe(
-      merge(
+      mergeWith(
         this.refreshService
           .asObservable()
           .pipe(withLatestFrom(this.query, (_, query) => query)),

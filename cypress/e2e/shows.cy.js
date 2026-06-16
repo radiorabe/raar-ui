@@ -41,6 +41,7 @@ describe("Broadcasts for show", () => {
     cy.get("sd-shows .list-group .list-group-item").should("have.length", 3);
 
     cy.get("#show_query").type("klang");
+    cy.tick(300);
     cy.get("sd-shows .list-group .list-group-item").should("have.length", 2);
 
     cy.get("sd-shows .list-group .list-group-item:first-child").click();
@@ -54,6 +55,7 @@ describe("Broadcasts for show", () => {
     cy.get(
       "sd-shows > .form-search > .form-control-feedback > .glyphicon-remove",
     ).click();
+    cy.tick(300);
     cy.get("#show_query").should("have.value", "");
     cy.get("sd-shows .list-group .list-group-item").should("have.length", 3);
     cy.get("sd-shows .list-group .list-group-item.active").should(

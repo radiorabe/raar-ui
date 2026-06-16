@@ -1,10 +1,8 @@
 import { Injectable, inject } from "@angular/core";
-import { Router } from "@angular/router";
 import { LoginWindowService } from "./login-window.service";
 import { RefreshService } from "./refresh.service";
 import { UserModel } from "../models/index";
 import { TokenAuthService } from "./token-auth.service";
-import { LoginService } from "./login.service";
 import { environment } from "../../../environments/environment";
 
 @Injectable()
@@ -17,6 +15,8 @@ export class AuthService extends TokenAuthService {
       // /sso is a virtual path that redirects to SSO
       window.location.href = this.applicationRootUrl + "/sso";
       return true;
+    } else {
+      return false;
     }
   }
 

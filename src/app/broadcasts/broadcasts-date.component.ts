@@ -1,13 +1,12 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import dayjs from "dayjs";
-import { Observable, of, Subject } from "rxjs";
+import { Observable, of, Subject, mergeWith } from "rxjs";
 import {
   catchError,
   debounceTime,
   distinctUntilChanged,
   map,
-  merge,
   switchMap,
   takeUntil,
   tap,
@@ -65,7 +64,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged((a: Date, b: Date) => a.getTime() === b.getTime()),
-        merge(
+        mergeWith(
           this.refreshService
             .asObservable()
             .pipe(withLatestFrom(dateObservable, (_, date) => date)),
@@ -74,7 +73,6 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
           this.loading = true;
           this.lastTodaysBroadcastFinishedAt = undefined;
         }),
-        debounceTime(200),
         switchMap((date: Date) =>
           this.broadcastsService.getListForDate(date).pipe(
             tap((_) => (this.errorMessage = undefined)),
