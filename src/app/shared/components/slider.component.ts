@@ -75,10 +75,10 @@ export class SliderComponent {
   }
 
   private stopSliding(e: Event) {
-    document.onmousemove = () => {}; // eslint-disable-line
-    document.ontouchmove = () => {}; // eslint-disable-line
-    document.onmouseup = () => {}; // eslint-disable-line
-    document.ontouchend = () => {}; // eslint-disable-line
+    document.onmousemove = () => {};
+    document.ontouchmove = () => {};
+    document.onmouseup = () => {};
+    document.ontouchend = () => {};
 
     this.stopSlidingEvent.emit(this.updateValue(e));
 
