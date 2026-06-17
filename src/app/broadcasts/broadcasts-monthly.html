@@ -20,7 +20,7 @@
   <div>
     <h2 class="title">{{ month }}</h2>
     <div class="list-group" role="tablist">
-      @for ( broadcast of (monthlyBroadcasts | async)[month]; track
+      @for ( broadcast of (monthlyBroadcasts | async)![month]; track
       broadcast.id) {
       <sd-broadcast
         [broadcast]="broadcast"

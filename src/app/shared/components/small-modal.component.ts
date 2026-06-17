@@ -6,19 +6,21 @@ import {
   inject,
   Input,
   ViewChild,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 
 @Component({
   selector: "sd-small-modal",
   templateUrl: "small-modal.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgStyle],
 })
 export class SmallModalComponent {
   private cd = inject(ChangeDetectorRef);
 
-  @Input() heading: string;
+  @Input() heading!: string;
 
-  @ViewChild("dialog") dialog: ElementRef;
+  @ViewChild("dialog") dialog!: ElementRef;
 
   visible = false;
   visibleAnimate = false;

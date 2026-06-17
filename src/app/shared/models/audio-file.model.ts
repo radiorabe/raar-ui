@@ -2,16 +2,11 @@ import { CrudModel } from "./crud.model";
 import { BroadcastModel } from "./broadcast.model";
 
 export class AudioFileModel extends CrudModel {
-  attributes: {
+  attributes!: {
     codec: string;
     bitrate: number;
     channels: number;
     playback_format: string;
-  } = {
-    codec: undefined,
-    bitrate: undefined,
-    channels: undefined,
-    playback_format: undefined,
   };
 
   relationships: {

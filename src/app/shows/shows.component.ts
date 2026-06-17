@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Observable, of, merge } from "rxjs";
 import {
@@ -20,6 +20,7 @@ import { AsyncPipe } from "@angular/common";
 @Component({
   selector: "sd-shows",
   templateUrl: "shows.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, RouterLinkActive, RouterLink, AsyncPipe],
 })
 export class ShowsComponent {

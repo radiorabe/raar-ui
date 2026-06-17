@@ -20,7 +20,7 @@ export class AuthService extends TokenAuthService {
     }
   }
 
-  setUser(user: UserModel | void) {
+  setUser(user: UserModel | undefined) {
     const refresh = !this._redirectUrl;
     super.setUser(user);
     if (refresh) {

@@ -1,4 +1,10 @@
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, of, ReplaySubject, Subject, mergeWith } from "rxjs";
 import {
@@ -28,10 +34,11 @@ type MonthlyBroadcasts = { [id: string]: BroadcastModel[] };
 @Component({
   selector: "sd-broadcasts-monthly",
   templateUrl: "broadcasts-monthly.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [InfiniteScrollDirective, BroadcastComponent, AsyncPipe],
 })
 export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
-  dateWithTime: Date | void;
+  dateWithTime: Date | undefined = undefined;
   broadcastList: Subject<CrudList<BroadcastModel>> = new ReplaySubject<
     CrudList<BroadcastModel>
   >(1);
@@ -40,7 +47,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   hasMore: boolean = false;
   fetchingMore: boolean = false;
-  errorMessage: string | void;
+  errorMessage: string | undefined = undefined;
 
   title$: Observable<string> = of("");
   details$: Observable<string | void> = of(undefined);
@@ -105,7 +112,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
   }
 
   protected broadcastLoadObservable(): Observable<CrudList<BroadcastModel>> {
-    return of(undefined);
+    return of(new CrudList<BroadcastModel>());
   }
 
   protected broadcastMoreObservable(): Observable<CrudList<BroadcastModel>> {
@@ -132,7 +139,7 @@ export class BroadcastsMonthlyComponent implements OnInit, OnDestroy {
     return of(new CrudList<BroadcastModel>());
   }
 
-  private getDateWithTime(params: RouteParams): Date | void {
+  private getDateWithTime(params: RouteParams): Date | undefined {
     if (params["time"] && params["time"].length >= 4) {
       return DateParamsService.timeFromParams(params);
     }

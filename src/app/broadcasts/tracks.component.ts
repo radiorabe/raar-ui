@@ -1,11 +1,18 @@
 import { NgTemplateOutlet } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { TrackModel } from "../shared/models";
 import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 
 @Component({
   selector: "sd-tracks",
   templateUrl: "tracks.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DateStringPipe, NgTemplateOutlet],
 })
 export class TracksComponent {
@@ -23,7 +30,7 @@ export class TracksComponent {
 
   isTrackPlaying(track: TrackModel): boolean {
     return (
-      this.playPosition &&
+      !!this.playPosition &&
       track.attributes.started_at <= this.playPosition &&
       track.attributes.finished_at > this.playPosition
     );

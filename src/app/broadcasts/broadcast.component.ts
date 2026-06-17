@@ -1,5 +1,12 @@
 import { UpperCasePipe } from "@angular/common";
-import { Component, Input, OnChanges, inject, isDevMode } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnChanges,
+  inject,
+  isDevMode,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { finalize } from "rxjs/operators";
 import { AudioPlayerService } from "../player/audio-player.service";
@@ -19,6 +26,7 @@ import { TracksComponent } from "./tracks.component";
 @Component({
   selector: "sd-broadcast",
   templateUrl: "broadcast.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     BroadcastDescriptionFormComponent,
     RouterLink,
@@ -34,10 +42,10 @@ export class BroadcastComponent implements OnChanges {
   private tracksService = inject(TracksService);
   private router = inject(Router);
 
-  @Input() broadcast: BroadcastModel;
-  @Input() dateFormat: string;
-  @Input() expanded: boolean;
-  @Input() view: "month" | "day";
+  @Input() broadcast!: BroadcastModel;
+  @Input() dateFormat!: string;
+  @Input() expanded!: boolean;
+  @Input() view!: "month" | "day";
 
   loadingAudio: boolean = false;
 
@@ -77,13 +85,13 @@ export class BroadcastComponent implements OnChanges {
 
   playTrack(track: TrackModel) {
     const audio = this.isBroadcastPlaying()
-      ? this.audioPlayer.audioFile
+      ? this.audioPlayer.audioFile!
       : this.getFirstAudioFile();
     this.play(audio, track.attributes.started_at);
   }
 
   isTracksPlayable(): boolean {
-    return this.audioFiles && this.audioFiles.length > 0;
+    return !!this.audioFiles && this.audioFiles.length > 0;
   }
 
   showLogin(userLogin: boolean = false) {
@@ -91,11 +99,8 @@ export class BroadcastComponent implements OnChanges {
   }
 
   private isBroadcastPlaying(): boolean {
-    return (
-      this.audioPlayer.audioFile &&
-      this.audioPlayer.audioFile.relationships.broadcast.id ===
-        this.broadcast.id
-    );
+    const af = this.audioPlayer.audioFile;
+    return !!af && af.relationships.broadcast?.id === this.broadcast.id;
   }
 
   private getFirstAudioFile(): AudioFileModel {

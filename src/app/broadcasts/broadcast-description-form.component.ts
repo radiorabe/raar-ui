@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, inject } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnChanges,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { BroadcastModel } from "../shared/models/index";
 import { BroadcastsService } from "../shared/services/broadcasts.service";
@@ -7,10 +13,11 @@ import { finalize } from "rxjs/operators";
 @Component({
   selector: "sd-broadcast-description-form",
   templateUrl: "broadcast-description-form.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule],
 })
 export class BroadcastDescriptionFormComponent implements OnChanges {
-  @Input() broadcast: BroadcastModel;
+  @Input() broadcast!: BroadcastModel;
 
   form: FormGroup;
 

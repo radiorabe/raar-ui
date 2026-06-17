@@ -1,7 +1,7 @@
 import { CrudModel } from "./crud.model";
 
 export class TrackModel extends CrudModel {
-  attributes: {
+  attributes!: {
     title: string;
     artist: string | void;
     started_at: Date;

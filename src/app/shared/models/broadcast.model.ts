@@ -2,7 +2,7 @@ import { CrudModel } from "./crud.model";
 import { AudioFileModel } from "./audio-file.model";
 
 export class BroadcastModel extends CrudModel {
-  attributes: {
+  attributes!: {
     label: string;
     details: string;
     people: string;

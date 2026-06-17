@@ -8,11 +8,11 @@ import { PlayerEvents } from "./player-events";
 @Injectable()
 export class AudioPlayerService {
   private _audio: any;
-  private _audioFile: AudioFileModel;
+  private _audioFile: AudioFileModel | undefined;
   private _volume: number = 100;
   private _events: EventEmitter<number> = new EventEmitter();
 
-  get audioFile(): AudioFileModel {
+  get audioFile(): AudioFileModel | undefined {
     return this._audioFile;
   }
 
@@ -169,7 +169,7 @@ export class AudioPlayerService {
   }
 
   private get broadcastAttrs(): BroadcastModel["attributes"] {
-    return this._audioFile.relationships.broadcast!.attributes;
+    return this._audioFile!.relationships.broadcast!.attributes;
   }
 
   private getSoundOptions(url: string | void, autoplay: boolean = true): any {

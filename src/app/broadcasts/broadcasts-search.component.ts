@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { InfiniteScrollDirective } from "ngx-infinite-scroll";
 import { Observable, Observer, ReplaySubject, Subject, mergeWith } from "rxjs";
 import {
@@ -19,6 +19,7 @@ import { BroadcastsMonthlyComponent } from "./broadcasts-monthly.component";
 @Component({
   selector: "sd-broadcasts-search",
   templateUrl: "broadcasts-monthly.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [InfiniteScrollDirective, BroadcastComponent, AsyncPipe],
 })
 export class BroadcastsSearchComponent

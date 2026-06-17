@@ -1,4 +1,10 @@
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import dayjs from "dayjs";
 import { Observable, of, Subject, mergeWith } from "rxjs";
@@ -27,14 +33,15 @@ import { RunningBroadcastComponent } from "./running-broadcast.component";
 @Component({
   selector: "sd-broadcasts-date",
   templateUrl: "broadcasts-date.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [BroadcastComponent, RunningBroadcastComponent, DateStringPipe],
 })
 export class BroadcastsDateComponent implements OnInit, OnDestroy {
-  date: Date;
-  dateWithTime: Date | void;
+  date!: Date;
+  dateWithTime: Date | undefined = undefined;
   broadcasts: BroadcastModel[] = [];
   loading: boolean = false;
-  errorMessage: string | void;
+  errorMessage: string | undefined = undefined;
   lastTodaysBroadcastFinishedAt: Date | undefined;
 
   private route = inject(ActivatedRoute);
@@ -135,7 +142,7 @@ export class BroadcastsDateComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getDateWithTime(params: RouteParams): Date | void {
+  private getDateWithTime(params: RouteParams): Date | undefined {
     if (params["time"] && params["time"].length >= 4) {
       return DateParamsService.timeFromParams(params);
     }

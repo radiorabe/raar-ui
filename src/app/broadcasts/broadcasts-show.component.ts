@@ -1,7 +1,19 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { InfiniteScrollDirective } from "ngx-infinite-scroll";
-import { Observable, Observer, ReplaySubject, Subject, of, mergeWith } from "rxjs";
+import {
+  Observable,
+  Observer,
+  ReplaySubject,
+  Subject,
+  of,
+  mergeWith,
+} from "rxjs";
 import {
   catchError,
   distinctUntilChanged,
@@ -19,6 +31,7 @@ import { BroadcastsMonthlyComponent } from "./broadcasts-monthly.component";
 @Component({
   selector: "sd-broadcasts-show",
   templateUrl: "broadcasts-monthly.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [InfiniteScrollDirective, BroadcastComponent, AsyncPipe],
 })
 export class BroadcastsShowComponent
