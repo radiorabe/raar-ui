@@ -7,11 +7,13 @@ import {
   ViewChild,
   Renderer2,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 
 @Component({
   selector: "sd-slider",
   templateUrl: "slider.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [],
 })
 export class SliderComponent {
@@ -23,11 +25,11 @@ export class SliderComponent {
   @Output() slidingEvent = new EventEmitter<number>();
   @Output() stopSlidingEvent = new EventEmitter<number>();
 
-  @ViewChild("handle", { static: true }) handleElement: ElementRef;
-  @ViewChild("current", { static: true }) currentElement: ElementRef;
+  @ViewChild("handle", { static: true }) handleElement!: ElementRef;
+  @ViewChild("current", { static: true }) currentElement!: ElementRef;
 
   private lastMove: number = new Date().getTime();
-  private dragTimer: number;
+  private dragTimer!: number;
 
   startSliding(e: any) {
     // deny dragging and selecting

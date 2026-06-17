@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { Subject } from "rxjs";
@@ -13,6 +19,7 @@ import {
 @Component({
   selector: "sd-search",
   templateUrl: "search.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule],
 })
 export class SearchComponent implements OnInit, OnDestroy {

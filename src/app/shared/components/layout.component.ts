@@ -5,6 +5,7 @@ import {
   HostListener,
   OnDestroy,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -15,6 +16,7 @@ const TOGGLE_NAV_MAX_WIDTH = 767;
 @Component({
   selector: "sd-layout",
   templateUrl: "layout.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterOutlet, FooterComponent],
 })
 export class LayoutComponent implements OnDestroy {
@@ -46,7 +48,7 @@ export class LayoutComponent implements OnDestroy {
   }
 
   @HostListener("window:resize", ["$event"])
-  public resize(_event: Event): void {
+  public resize(_event: Event | null): void {
     this._togglableNav = this.document.body.clientWidth <= TOGGLE_NAV_MAX_WIDTH;
   }
 

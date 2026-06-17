@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import dayjs from "dayjs";
 import objectSupport from "dayjs/plugin/objectSupport";
@@ -22,6 +28,7 @@ const TODAY_UPDATE_INTERVAL = 60000;
 @Component({
   selector: "sd-datepicker",
   templateUrl: "datepicker.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DpDatePickerModule, FormsModule, AsyncPipe],
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
@@ -47,7 +54,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
   private router = inject(Router);
 
-  private _date: dayjs.Dayjs;
+  private _date: dayjs.Dayjs | undefined;
 
   private readonly destroy$ = new Subject<void>();
 
@@ -64,11 +71,11 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     this.destroy$.next();
   }
 
-  get date(): dayjs.Dayjs {
+  get date(): dayjs.Dayjs | undefined {
     return this._date;
   }
 
-  set date(date: dayjs.Dayjs) {
+  set date(date: dayjs.Dayjs | undefined) {
     this._date = date;
 
     if (date) {

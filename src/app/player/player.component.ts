@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { Params } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil, filter } from "rxjs/operators";
@@ -14,6 +20,7 @@ import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
 @Component({
   selector: "sd-player",
   templateUrl: "player.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SliderComponent, BroadcastTimePipe],
 })
 export class PlayerComponent implements OnInit, OnDestroy {
@@ -41,7 +48,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     return this._player;
   }
 
-  get audioFile(): AudioFileModel {
+  get audioFile(): AudioFileModel | undefined {
     return this.player.audioFile;
   }
 
@@ -78,11 +85,13 @@ export class PlayerComponent implements OnInit, OnDestroy {
   }
 
   private playNextBroadcast(): void {
-    if (this.broadcast) {
+    const audioFile = this.audioFile;
+    const broadcast = this.broadcast;
+    if (audioFile && broadcast) {
       this.findAndPlayBroadcast(
-        this.broadcast.attributes.finished_at,
-        this.audioFile.attributes.codec,
-        this.audioFile.attributes.playback_format,
+        broadcast.attributes.finished_at,
+        audioFile.attributes.codec,
+        audioFile.attributes.playback_format,
       );
     }
   }
@@ -131,7 +140,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
   ): void {
     this.broadcastsService
       .getForTime(time)
-      .pipe(filter(Boolean))
+      .pipe(filter((b): b is BroadcastModel => !!b))
       .subscribe((broadcast: BroadcastModel) => {
         this.findAndPlayAudio(broadcast, time, codec, playbackFormat, autoplay);
       });

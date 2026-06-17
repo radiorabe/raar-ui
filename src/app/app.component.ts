@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import dayjs from "dayjs";
 import "dayjs/locale/de-ch";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
@@ -18,6 +18,7 @@ dayjs.locale("de-ch");
 @Component({
   selector: "sd-app",
   templateUrl: "app.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     LayoutComponent,
     DatepickerComponent,

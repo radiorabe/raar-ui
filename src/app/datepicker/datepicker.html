@@ -5,7 +5,7 @@
   <dp-day-calendar
     (onSelect)="date = $event.date"
     [ngModel]="date"
-    [displayDate]="date"
-    [config]="dayPickerConfig$ | async"
+    [displayDate]="date!"
+    [config]="(dayPickerConfig$ | async)!"
   />
 </div>

@@ -19,6 +19,7 @@ import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr,
 } from "@angular/common/http";
 import { AddAuthHeaderInterceptor } from "./app/shared/services/add-auth-header-interceptor.service";
 import { RemoteErrorInterceptor } from "./app/shared/services/remote-error-interceptor.service";
@@ -62,7 +63,7 @@ bootstrapApplication(AppComponent, {
     LoginWindowService,
     RefreshService,
     { provide: TokenAuthService, useExisting: AuthService },
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
     ...interceptors,
   ],
 }).catch((err) => console.error(err));

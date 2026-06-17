@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import dayjs from "dayjs";
 import { forkJoin, Observable } from "rxjs";
@@ -13,15 +19,16 @@ import { DateStringPipe } from "../shared/pipes/date-string.pipe";
 @Component({
   selector: "sd-running-broadcast",
   templateUrl: "running-broadcast.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TracksComponent, DateStringPipe],
 })
 export class RunningBroadcastComponent implements OnInit {
   private tracksService = inject(TracksService);
   private router = inject(Router);
 
-  @Input() expanded: boolean;
+  @Input() expanded!: boolean;
 
-  @Input() date: Date;
+  @Input() date!: Date;
 
   tracks: TrackModel[] = [];
 

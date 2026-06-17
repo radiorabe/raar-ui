@@ -1,4 +1,9 @@
-import { Component, ViewChild, inject } from "@angular/core";
+import {
+  Component,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from "../../shared/services/auth.service";
 import { LoginWindowService } from "../../shared/services/login-window.service";
@@ -9,6 +14,7 @@ import { SmallModalComponent } from "./small-modal.component";
 @Component({
   selector: "sd-login",
   templateUrl: "login.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SmallModalComponent, FormsModule],
 })
 export class LoginComponent {
@@ -16,11 +22,11 @@ export class LoginComponent {
   private auth = inject(AuthService);
   private loginWindow = inject(LoginWindowService);
 
-  @ViewChild("modal", { static: true }) modal: SmallModalComponent;
+  @ViewChild("modal", { static: true }) modal!: SmallModalComponent;
 
-  username: string;
-  password: string;
-  accessCode: string;
+  username: string = "";
+  password: string = "";
+  accessCode: string = "";
   checking: boolean = false;
   failure: boolean = false;
   userLogin: boolean = false;

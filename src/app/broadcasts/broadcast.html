@@ -99,7 +99,7 @@
     @if (view === 'day') {
     <p>
       <a
-        [routerLink]="['/show', broadcast.relationships.show.data.id]"
+        [routerLink]="['/show', broadcast.relationships.show!.data!.id]"
         class="nowrap"
         >Alle Sendungen</a
       >

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   authenticationMethod: "password",
-  logoutUrl: undefined,
+  logoutUrl: undefined as string | undefined,
 };
 
 /*
