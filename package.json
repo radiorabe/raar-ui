@@ -48,7 +48,7 @@
     "@angular/compiler-cli": "^22.0.1",
     "@angular/language-service": "^22.0.1",
     "@types/node": "^26.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.61.0",
+    "@typescript-eslint/eslint-plugin": "^8.63.0",
     "@typescript-eslint/parser": "^8.61.0",
     "angular-eslint": "^22.0.0",
     "cypress": "^15.18.0",
