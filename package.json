@@ -31,7 +31,7 @@
     "core-js": "^3.49.0",
     "dayjs": "^1.11.6",
     "ng2-date-picker": "^21.0.1",
-    "ngx-infinite-scroll": "^21.0.0",
+    "ngx-infinite-scroll": "^22.0.0",
     "rxjs": "^7.0.0",
     "soundmanager2": "^2.97.20170602",
     "tslib": "^2.0.0",
