@@ -59,7 +59,7 @@
     "prettier": "^3.9.4",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.65.0"
+    "typescript-eslint": "^8.67.0"
   },
   "overrides": {
     "sass": "1.77.6",
