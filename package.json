@@ -51,7 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^8.69.0",
     "@typescript-eslint/parser": "^8.69.0",
     "angular-eslint": "^22.1.0",
-    "cypress": "^15.20.1",
+    "cypress": "^15.21.1",
     "eslint": "^10.9.1",
     "http-server": "^14.1.1",
     "istanbul-lib-instrument": "^6.0.3",
