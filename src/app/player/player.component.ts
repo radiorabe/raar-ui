@@ -4,6 +4,7 @@ import {
   OnDestroy,
   inject,
   ChangeDetectionStrategy,
+  HostListener,
 } from "@angular/core";
 import { Params } from "@angular/router";
 import { Subject } from "rxjs";
@@ -29,6 +30,39 @@ export class PlayerComponent implements OnInit, OnDestroy {
   private broadcastsService = inject(BroadcastsService);
 
   private readonly destroy$ = new Subject<void>();
+
+  @HostListener("window:keydown", ["$event"])
+  onWindowKeydown(event: KeyboardEvent) {
+    const isSpace =
+      event.code === "Space" || event.key === " " || event.key === "Spacebar";
+
+    if (!isSpace) {
+      return;
+    }
+
+    // check that only if we haven't focused an element the space bar
+    // should be captured for toggling the player
+    const target = event.target as HTMLElement | null;
+
+    if (!target) {
+      return;
+    }
+
+    const tag = target.tagName;
+    if (
+      tag === "INPUT" ||
+      tag === "TEXTAREA" ||
+      tag === "SELECT" ||
+      target.isContentEditable ||
+      target.closest("button, a, [role='button'], [contenteditable]") !== null
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+
+    this.togglePlay();
+  }
 
   ngOnInit() {
     this.handleRouteParams(this.parseRouteParams());
