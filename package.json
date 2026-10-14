@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "^8.71.1",
     "angular-eslint": "^22.2.0",
     "cypress": "^16.1.0",
-    "eslint": "^10.11.0",
+    "eslint": "^10.12.0",
     "http-server": "^14.1.1",
     "istanbul-lib-instrument": "^6.0.3",
     "npm-run-all": "^4.1.5",
