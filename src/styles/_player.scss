@@ -5,21 +5,20 @@ sd-player {
   width: 100%;
   z-index: 1000;
   visibility: hidden;
+  background-color: $brand-primary;
+  padding: 10px;
+  border: 0;
+  border-radius: 0;
+  color: white;
+  margin-bottom: 0;
+  transition:
+    transform 200ms ease-out,
+    visibility 200ms;
+  transform: translateY(100%);
 
-  .well {
-    background-color: $brand-primary;
-    padding: 10px;
-    border: 0;
-    border-radius: 0;
-    color: white;
-    margin-bottom: 0;
-    transition: transform 200ms ease-out;
-    transform: translateY(100%);
-
-    &.visible {
-      visibility: visible;
-      transform: translateY(0);
-    }
+  &.visible {
+    visibility: visible;
+    transform: none;
   }
 
   .controls {

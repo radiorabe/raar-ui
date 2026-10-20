@@ -23,6 +23,7 @@ import { BroadcastTimePipe } from "../shared/pipes/broadcast-time.pipe";
   templateUrl: "player.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SliderComponent, BroadcastTimePipe],
+  host: { "[class.visible]": "!!audioFile" },
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   private _player = inject(AudioPlayerService);
