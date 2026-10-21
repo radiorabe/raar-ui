@@ -42,7 +42,7 @@
     "@angular-eslint/schematics": "22.6.0",
     "@angular-eslint/template-parser": "22.6.0",
     "@angular/build": "^22.2.0",
-    "@angular/cli": "^22.2.0",
+    "@angular/cli": "^22.2.3",
     "@angular/compiler-cli": "^22.2.0",
     "@angular/language-service": "^22.2.0",
     "@types/node": "^26.6.3",
